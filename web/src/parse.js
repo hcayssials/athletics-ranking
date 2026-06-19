@@ -112,7 +112,8 @@ export function parseQuery(query, currentEvent) {
   else if (/(dl|diamond league)\s*final|diamond\s*final/.test(nq)) out.category = "DF";
   else if (/diamond league|\bdl\b|grand prix|prefontaine|weltklasse|bowerman|continental tour gold/.test(nq)) out.category = "GW";
   else if (/european champ|euro champ|area champ|continental champ/.test(nq)) out.category = "GL";
-  else if (/national champ|nationals/.test(nq)) out.category = "C";
+  else if (/national\s*champ|\bnationals\b/.test(nq)) out.category = "B";   // National Championships
+  else if (/national\s*meet|\bdomestic\b/.test(nq)) out.category = "C";     // ordinary national-level meet
   else if (/\bfinal\b/.test(nq)) out.category = "DF";
 
   // time

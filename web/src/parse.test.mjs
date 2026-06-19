@@ -28,6 +28,8 @@ eq(parseQuery("How does Riva look on the world ranking with a 3:31 win?", "1500m
 eq(parseQuery("women's 5000m: Smith finishes 2nd at the European Champs", "1500m_men"),
    { athlete: "women's 5000m: Smith finishes 2nd at the European Champs", championship: "road_to_birmingham", eventKey: "5000m_women", place: 2, category: "GL" }, "pq event+gender");
 eq(parseQuery("steeplechase third place", "1500m_men").eventKey, "3000mSC_men", "pq steeple keeps gender");
+eq(parseQuery("Wightman wins nationals in 3:34", "1500m_men").category, "B", "pq nationals -> B (national champs)");
+eq(parseQuery("3rd at a national meet", "1500m_men").category, "C", "pq national meet -> C");
 eq(parseQuery("the 800 in 1:43.5", "5000m_women").eventKey, "800m_women", "pq 800 keeps women");
 
 // --- extractSlug + deriveName ---
