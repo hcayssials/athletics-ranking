@@ -160,6 +160,21 @@ def what_if(event: str, athlete: str, new_time: str | float,
             "blocked_new": field_new["blocked"],
         }
 
+    # Reverse "what would it take": for a ranked athlete, the time a single new race (at the
+    # modelled place/category) would need to reach key targets — the qualifying cutoff and #1.
+    what_would_it_take = None
+    if not profile_info:
+        top = max((s for s in others if s is not None), default=None)
+        targets = []
+        if qualification and qualification.get("cutoff_score") is not None:
+            targets.append(("reach the qualifying cutoff", qualification["cutoff_score"]))
+        if top is not None:
+            targets.append(("reach #1", top + 1))
+        rows = _targets_required(event, recompute["old_counting"], best_n,
+                                 breakdown["placing_score"], recomputed_old, targets)
+        if rows:
+            what_would_it_take = {"place": place, "category": category.upper(), "targets": rows}
+
     # Unranked-athlete summary (when sourced from a profile): counting-set completeness and
     # the time the new race would need to reach a meaningful target.
     profile_summary = None
@@ -231,6 +246,7 @@ def what_if(event: str, athlete: str, new_time: str | float,
         "new_counting": recompute["new_counting"],
         "qualification": qualification,
         "profile_summary": profile_summary,
+        "what_would_it_take": what_would_it_take,
     }
     if verbose:
         print(format_report(result))
@@ -249,6 +265,27 @@ def _required_time(event: str, counting_old: list[dict], best_n: int,
         need_perf = target * best_n - sum(scores[: best_n - 1])
     need_result = math.ceil(need_perf - placing)
     return time_for_result_score(event, need_result), need_result
+
+
+def _targets_required(event: str, counting_old: list[dict], best_n: int, placing: int,
+                      current_score: float | None, targets: list[tuple[str, float]]) -> list[dict]:
+    """Reverse solver: for each (label, target_score), the time a single new race at `placing`
+    placing points would need to lift the athlete's average to that target. Reuses
+    _required_time. status: 'met' (current score already at/above the target), 'reachable'
+    (time shown), or 'unreachable' (needs a faster result than the table tops out at — try a
+    higher place/category)."""
+    rows = []
+    for label, score in targets:
+        if score is None:
+            continue
+        if current_score is not None and current_score >= score:
+            rows.append({"label": label, "target_score": round(score),
+                         "result_score": None, "time": None, "status": "met"})
+            continue
+        time, need_result = _required_time(event, counting_old, best_n, placing, score)
+        rows.append({"label": label, "target_score": round(score), "result_score": need_result,
+                     "time": time, "status": "reachable" if time else "unreachable"})
+    return rows
 
 
 def _fmt_perf(p: dict) -> str:
