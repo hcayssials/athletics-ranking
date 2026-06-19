@@ -85,6 +85,7 @@ function buildResultView(r, isRoad, qualifyOn, methodOpen) {
     oldScore: unranked ? r.recomputed_old_score : r.official_ranking_score, newScore: r.new_score, scoreDelta: sd,
     hypo: r.hypothetical_performance,
     counts: r.new_perf_counts,
+    bestN: (r.assumptions && r.assumptions.best_n) || 5,
     notes: (r.assumptions && r.assumptions.notes) || [],
     qual, display, open: methodOpen,
     unranked, profileSummary: r.profile_summary,
@@ -550,7 +551,7 @@ function ResultPanel({ rv, onToggle }) {
               {rv.hypo.time} · result <b>{rv.hypo.result_score}</b> + place pts <b>{rv.hypo.placing_score}</b> = <b>{rv.hypo.performance_score}</b>
             </div>
             <div style={{ fontSize: 11.5, color: "#a39c8c", marginTop: 3 }}>
-              {rv.counts ? "Counts toward the new average — it displaced a weaker result." : "Not strong enough to enter the best-5 — the score is unchanged."}
+              {rv.counts ? "Counts toward the new average — it displaced a weaker result." : `Not strong enough to enter the best-${rv.bestN} — the score is unchanged.`}
             </div>
           </div>
         </div>
@@ -588,7 +589,7 @@ function ResultPanel({ rv, onToggle }) {
                 </li>
               ))}
             </ul>
-            <div style={{ fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: MUTE, fontWeight: 600, marginBottom: 8 }}>Counting performances (best 5 of 12 mo)</div>
+            <div style={{ fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: MUTE, fontWeight: 600, marginBottom: 8 }}>Counting performances (best {rv.bestN} of 12 mo)</div>
             <div style={{ overflow: "auto" }}>
               <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12.5, minWidth: 480 }}>
                 <thead>
