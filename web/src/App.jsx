@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { getMeta, getRankings, runWhatIf } from "./api.js";
+import { getMeta, getRankings, getAthlete, runWhatIf } from "./api.js";
+import { parseTime, surnameOf, bestPerf, matchAthlete, parseQuery } from "./parse.js";
 
 // Ranking What-If Studio — the Claude Design look, driven by the live FastAPI backend.
 // All ranking/qualification numbers come from /api/rankings and /api/whatif (real data, all events).
@@ -15,22 +16,11 @@ const CAT_LABELS = {
 };
 
 // ---------- small helpers ----------
-const norm = (s) => (s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
 const shortMeet = (s) => {
   if (!s || s === "(hypothetical)") return "Hypothetical";
   const head = s.split(",")[0].trim();
   return head.length > 42 ? head.slice(0, 40) + "…" : head;
 };
-function parseTime(t) {
-  const m = String(t).match(/(\d):(\d{2})(?:\.(\d{1,2}))?/);
-  if (!m) return null;
-  return +m[1] * 60 + +m[2] + (m[3] ? +("0." + m[3]) : 0);
-}
-function fmtTime(sec) {
-  if (sec == null) return "—";
-  const m = Math.floor(sec / 60), s = sec - m * 60;
-  return m + ":" + s.toFixed(2).padStart(5, "0");
-}
 
 // Indicative qualifying zone for the table: champion bye consumes one place, then fill
 // quota-1 by descending score with a 3-per-country cap. Mirrors the design's shading.
@@ -107,14 +97,19 @@ export default function App() {
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const [methodOpen, setMethodOpen] = useState(false);
+  const [pending, setPending] = useState(null); // a queued natural-language run, executed once its list loads
 
   const isRoad = championship === "road_to_birmingham";
 
   useEffect(() => { getMeta().then(setMeta).catch((e) => setRankErr(e.message)); }, []);
   useEffect(() => {
-    setRankings(null); setResult(null); setSelected(null); setError(""); setRankErr("");
+    setRankings(null); setRankErr("");
     getRankings(championship, event).then(setRankings).catch((e) => setRankErr(e.message));
   }, [championship, event]);
+
+  // Manual selector changes start fresh; NL changes (via `pending`) keep their queued run alive.
+  const changeChampionship = (c) => { setChampionship(c); setResult(null); setSelected(null); setError(""); };
+  const changeEvent = (e) => { setEvent(e); setResult(null); setSelected(null); setError(""); };
 
   const zone = useMemo(() => (isRoad ? qualifyingZone(rankings) : qualifyingZone(null)), [rankings, isRoad]);
   const list = rankings ? rankings.athletes : [];
@@ -123,7 +118,7 @@ export default function App() {
   const eventLabel = meta ? (meta.events.find((e) => e.key === event) || {}).label || event : event;
   const categories = meta ? meta.categories : ["GW"];
 
-  async function run(overrideForm) {
+  async function run(overrideForm, champ = championship, ev = event) {
     const f = overrideForm || form;
     const name = (f.athlete || "").trim();
     if (!name) { setError("Pick an athlete first."); setResult(null); return; }
@@ -131,9 +126,9 @@ export default function App() {
     setBusy(true); setError("");
     try {
       const r = await runWhatIf({
-        event, championship, athlete: name, time: f.time,
+        event: ev, championship: champ, athlete: name, time: f.time,
         category: f.category, place: Math.max(1, parseInt(f.place) || 1),
-        qualify: isRoad && f.qualify,
+        qualify: champ === "road_to_birmingham" && f.qualify,
       });
       setResult(r); setSelected(r.athlete);
     } catch (e) {
@@ -141,28 +136,50 @@ export default function App() {
     } finally { setBusy(false); }
   }
 
-  // Lightweight natural-language parse → fills the console, then runs (client-side, like the design).
-  function interpret() {
-    if (!query.trim() || !list.length) return;
-    const nq = norm(query);
-    const f = { ...form };
-    let best = null;
-    for (const a of list) {
-      const surn = norm(a.name.split(" ").filter((w) => w === w.toUpperCase()).join(" "));
-      if (surn && nq.includes(surn)) { best = a.name; break; }
-      const last = norm(a.name.split(" ").pop());
-      if (last.length >= 4 && nq.includes(last)) best = a.name;
-    }
-    if (best) f.athlete = best;
-    const t = parseTime(query); if (t) f.time = fmtTime(t);
-    if (/\bwin(s|ning)?\b|\b1st\b|\bfirst\b/.test(nq)) f.place = 1;
-    else { const pm = nq.match(/(\d+)(?:st|nd|rd|th)\b|\bplace\s+(\d+)|\bfinish(?:es|ing)?\s+(\d+)/); if (pm) f.place = +(pm[1] || pm[2] || pm[3]); }
-    if (/olympic|world champ|worlds/.test(nq)) f.category = "OW";
-    else if (/dl final|diamond league final|\bfinal\b/.test(nq)) f.category = "DF";
-    else if (/european champ|euro champ/.test(nq)) f.category = "GL";
-    else if (/diamond|grand prix|continental|prefontaine|weltklasse/.test(nq)) f.category = "GW";
-    setForm(f); setSelected(f.athlete || null); run(f);
+  // Click/pick an athlete → select it and seed Time/Place/Category from their best performance.
+  async function selectAthlete(name) {
+    setSelected(name);
+    setForm((s) => ({ ...s, athlete: name }));
+    try {
+      const best = bestPerf(await getAthlete(championship, event, name), event);
+      if (best) setForm((s) => ({ ...s, athlete: name, ...best }));
+    } catch { /* keep current values if the lookup fails */ }
   }
+
+  // Natural-language box: parse → switch event/championship if named → queue a run for that list.
+  function interpret() {
+    if (!query.trim()) return;
+    const p = parseQuery(query, event);
+    const champ = p.championship && meta.championships.some((c) => c.key === p.championship) ? p.championship : championship;
+    const ev = p.eventKey && meta.events.some((e) => e.key === p.eventKey) ? p.eventKey : event;
+    if (champ !== championship) changeChampionship(champ);
+    if (ev !== event) changeEvent(ev);
+    setError("");
+    setPending({ p, champ, ev });
+  }
+
+  // Execute a queued NL run once the ranking list for its event/championship has loaded.
+  useEffect(() => {
+    if (!pending || !rankings) return;
+    if (rankings.championship !== pending.champ || rankings.event !== pending.ev) return;
+    const { p, champ, ev } = pending;
+    setPending(null);
+    (async () => {
+      const athlete = matchAthlete(p.athlete, rankings.athletes);
+      if (!athlete) { setError("Couldn't find that athlete in this list — try a surname from the table."); return; }
+      let f = { ...form, athlete };
+      try {
+        const best = bestPerf(await getAthlete(champ, ev, athlete), ev);
+        if (best) f = { ...f, ...best };           // default to their best performance…
+      } catch { /* ignore lookup failure */ }
+      if (p.time) f.time = p.time;                 // …then let explicit query values win
+      if (p.place != null) f.place = p.place;
+      if (p.category) f.category = p.category;
+      setForm(f); setSelected(athlete);
+      run(f, champ, ev);
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pending, rankings]);
 
   if (!meta) return <p style={{ padding: 24, fontFamily: "'Archivo', system-ui, sans-serif", color: INK }}>Loading… {rankErr}</p>;
 
@@ -175,11 +192,12 @@ export default function App() {
     ? "Best 5 of 12 mo · floored mean · Quota 30 (whole field) · champion takes a bye · max 3 per country · Europe only"
     : "Best 5 of 12 mo · floored mean · all nations · no quota or qualification caps";
 
-  const examples = [
-    "What if Wightman wins a Diamond League final in 3:27.8?",
-    "What if the 2nd-ranked finishes 2nd in 3:31.0?",
-    "What if the leader wins a Diamond League in 3:30.0?",
-  ];
+  // Examples built from the athletes actually in the current list (no hard-coded names/times).
+  const examples = list.length >= 5 ? [
+    `What if ${surnameOf(list[0].name)} wins a Diamond League final?`,
+    `What if ${surnameOf(list[2].name)} finishes 2nd at the European Champs?`,
+    `How does ${surnameOf(list[4].name)} look on the world ranking with a win?`,
+  ] : [];
 
   return (
     <div style={{ fontFamily: "'Archivo', system-ui, sans-serif", color: INK, background: CREAM, minHeight: "100vh" }}>
@@ -200,10 +218,10 @@ export default function App() {
         {/* TOGGLE + EVENT + ASSUMPTIONS */}
         <section style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 14, padding: "18px 0" }}>
           <div style={{ display: "inline-flex", padding: 4, background: "#e7e2d6", borderRadius: 10, gap: 4 }}>
-            <button onClick={() => setChampionship("world")} style={tab(!isRoad)}>World Ranking</button>
-            <button onClick={() => setChampionship("road_to_birmingham")} style={tab(isRoad)}>Road to Birmingham</button>
+            <button onClick={() => changeChampionship("world")} style={tab(!isRoad)}>World Ranking</button>
+            <button onClick={() => changeChampionship("road_to_birmingham")} style={tab(isRoad)}>Road to Birmingham</button>
           </div>
-          <select value={event} onChange={(e) => setEvent(e.target.value)} style={{ padding: "10px 14px", border: "1px solid #cfc8b8", borderRadius: 9, background: "#fff", fontSize: 14, fontWeight: 600, color: INK }}>
+          <select value={event} onChange={(e) => changeEvent(e.target.value)} style={{ padding: "10px 14px", border: "1px solid #cfc8b8", borderRadius: 9, background: "#fff", fontSize: 14, fontWeight: 600, color: INK }}>
             {meta.events.map((ev) => <option key={ev.key} value={ev.key}>{ev.label}</option>)}
           </select>
           <div style={{ flex: 1 }} />
@@ -272,7 +290,7 @@ export default function App() {
                     const fg = isSel ? CREAM : INK;
                     return (
                       <React.Fragment key={a.competitor_id || a.name}>
-                        <tr onClick={() => { setSelected(a.name); setForm((s) => ({ ...s, athlete: a.name })); }}
+                        <tr onClick={() => selectAthlete(a.name)}
                           style={{ cursor: "pointer", background: bg, color: fg, borderBottom: "1px solid #efeadd", transition: "background 0.12s" }}>
                           <td style={{ textAlign: "right", padding: "8px 10px 8px 18px", fontFamily: MONO, fontWeight: 600, color: isSel ? GOLD : inZone ? "#2f7d52" : "#a39c8c" }}>{a.rank}</td>
                           <td style={{ padding: "8px 10px", fontWeight: 600 }}>
@@ -305,7 +323,12 @@ export default function App() {
             <p style={{ margin: "0 0 14px", fontSize: 12.5, color: MUTE }}>Fine-tune the scenario, then run it.</p>
 
             <label style={labelStyle}>Athlete</label>
-            <input value={form.athlete} onChange={(e) => { setForm({ ...form, athlete: e.target.value }); setSelected(e.target.value); }}
+            <input value={form.athlete}
+              onChange={(e) => {
+                const v = e.target.value;
+                if (list.some((a) => a.name === v)) selectAthlete(v);              // picked from the datalist
+                else { setForm({ ...form, athlete: v }); setSelected(v); }
+              }}
               list="wf-athletes" placeholder="Type or click a row" style={{ ...inputStyle, marginBottom: 14 }} />
             <datalist id="wf-athletes">{list.map((a) => <option key={a.competitor_id || a.name} value={a.name} />)}</datalist>
 

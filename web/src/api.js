@@ -11,6 +11,9 @@ export const getMeta = () => j("/api/meta");
 export const getRankings = (championship, event) =>
   j(`/api/rankings?championship=${championship}&event=${event}`);
 
+export const getAthlete = (championship, event, name) =>
+  j(`/api/athlete?championship=${championship}&event=${event}&name=${encodeURIComponent(name)}`);
+
 export const runWhatIf = (body) =>
   j("/api/whatif", {
     method: "POST",
