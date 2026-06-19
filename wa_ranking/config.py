@@ -9,6 +9,9 @@ from pathlib import Path
 # data/ lives next to the package directory (project root/data).
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 CACHE_DIR = DATA_DIR / "cache"
+# A committed snapshot baked into the image; used as a warm starting point when the live
+# (ephemeral) cache is missing or stale, so cold starts serve instantly. See cache.read().
+SEED_DIR = DATA_DIR / "cache_seed"
 
 
 def _load_json(name: str) -> dict:

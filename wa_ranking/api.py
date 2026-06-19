@@ -39,9 +39,11 @@ def _prewarm_pairs() -> list[tuple[str, str]]:
 
 
 def _prewarm() -> None:
+    # force=True so we pull fresh live data into the (ephemeral) cache, overriding the baked
+    # seed snapshot. Without force, fetch would just read the seed back and never revalidate.
     for champ, event in _prewarm_pairs():
         try:
-            fetch.fetch_championship(champ, event)  # only fetches when the cache is stale
+            fetch.fetch_championship(champ, event, force=True)
         except Exception:
             pass  # e.g. men's steeplechase has no list — skip
 
