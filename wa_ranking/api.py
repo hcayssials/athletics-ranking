@@ -72,6 +72,13 @@ async def _http_exc(request, exc: HTTPException):
     return JSONResponse(status_code=exc.status_code, content={"error": exc.detail})
 
 
+@app.exception_handler(Exception)
+async def _unhandled_exc(request, exc: Exception):
+    # Any uncaught error (e.g. an upstream WA fetch failing) still returns JSON the UI can
+    # read, instead of FastAPI's plain-text "Internal Server Error" page.
+    return JSONResponse(status_code=500, content={"error": f"{type(exc).__name__}: {exc}"})
+
+
 @app.get("/api/health")
 def health():
     return {"ok": True}

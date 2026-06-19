@@ -1,8 +1,11 @@
 // Thin fetch helpers for the WA ranking API. See CONTRACT.md for shapes.
 async function j(url, opts) {
   const res = await fetch(url, opts);
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
+  const text = await res.text();
+  let data = null;
+  try { data = text ? JSON.parse(text) : {}; } catch { /* non-JSON body (e.g. a 500 page) */ }
+  if (!res.ok) throw new Error((data && data.error) || `Server error (HTTP ${res.status})`);
+  if (data === null) throw new Error("Unexpected non-JSON response from the server.");
   return data;
 }
 
