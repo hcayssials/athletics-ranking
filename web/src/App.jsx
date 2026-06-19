@@ -90,6 +90,7 @@ function buildResultView(r, isRoad, qualifyOn, methodOpen) {
     notes: (r.assumptions && r.assumptions.notes) || [],
     qual, display, open: methodOpen,
     unranked, profileSummary: r.profile_summary,
+    whatWouldItTake: r.what_would_it_take,
   };
 }
 
@@ -572,6 +573,36 @@ function ResultPanel({ rv, onToggle }) {
             {ps.best_rank ? ` Career-best rank #${ps.best_rank}${ps.best_rank_weeks ? ` (${ps.best_rank_weeks} weeks spent at it)` : ""}.` : ""}
             {ps.required_time ? ` To reach the ${ps.target_label} (${Math.round(ps.target_score)}), it would take about ${ps.required_time}.` : ""}
             {ps.incomplete_window ? " (Window data may be incomplete — couldn't reach the full results feed.)" : ""}
+          </div>
+        );
+      })()}
+
+      {/* reverse solver: what it would take to reach key targets */}
+      {rv.whatWouldItTake && rv.whatWouldItTake.targets.length > 0 && (() => {
+        const w = rv.whatWouldItTake;
+        const ord = (n) => n === 1 ? "1st" : n === 2 ? "2nd" : n === 3 ? "3rd" : `${n}th`;
+        return (
+          <div style={{ padding: "14px 24px", borderTop: "1px solid #d8dce2" }}>
+            <div style={{ fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: MUTE, fontWeight: 600, marginBottom: 9 }}>
+              What it would take — finishing {ord(w.place)} in a category {w.category} meet
+            </div>
+            <div style={{ display: "grid", gap: 7 }}>
+              {w.targets.map((t, i) => {
+                const cap = t.label.charAt(0).toUpperCase() + t.label.slice(1);
+                return (
+                  <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 12, fontSize: 13 }}>
+                    <span style={{ color: INK }}>{cap}{" "}
+                      <span style={{ color: MUTE, fontFamily: MONO, fontSize: 11.5 }}>({t.target_score})</span>
+                    </span>
+                    <span style={{ fontFamily: MONO, fontWeight: 700, whiteSpace: "nowrap" }}>
+                      {t.status === "met" ? <span style={{ color: "#1f8a4c" }}>already there ✓</span>
+                        : t.status === "reachable" ? <span style={{ color: ACCENT }}>~{t.time}</span>
+                          : <span style={{ color: MUTE, fontWeight: 600 }}>out of reach here</span>}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         );
       })()}
