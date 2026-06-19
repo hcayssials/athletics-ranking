@@ -1,6 +1,6 @@
 // Quick checks for parse.js against the live local backend (http://127.0.0.1:8077).
 // Run: node src/parse.test.mjs
-import { mainCode, parseQuery, bestPerf, matchAthlete, parseTime } from "./parse.js";
+import { mainCode, parseQuery, bestPerf, matchAthlete, parseTime, extractSlug, deriveName } from "./parse.js";
 
 const B = "http://127.0.0.1:8077";
 let pass = 0, fail = 0;
@@ -29,6 +29,13 @@ eq(parseQuery("women's 5000m: Smith finishes 2nd at the European Champs", "1500m
    { athlete: "women's 5000m: Smith finishes 2nd at the European Champs", championship: "road_to_birmingham", eventKey: "5000m_women", place: 2, category: "GL" }, "pq event+gender");
 eq(parseQuery("steeplechase third place", "1500m_men").eventKey, "3000mSC_men", "pq steeple keeps gender");
 eq(parseQuery("the 800 in 1:43.5", "5000m_women").eventKey, "800m_women", "pq 800 keeps women");
+
+// --- extractSlug + deriveName ---
+eq(extractSlug("https://worldathletics.org/athletes/great-britain/jake-heyward-14597392"), "jake-heyward-14597392", "slug from url");
+eq(extractSlug("https://worldathletics.org/athletes/great-britain/jake-heyward-14597392?foo=1#bar"), "jake-heyward-14597392", "slug strips query/hash");
+eq(extractSlug("  jake-heyward-14597392/  "), "jake-heyward-14597392", "slug from bare value + trailing slash");
+eq(deriveName("jake-heyward-14597392"), "Jake Heyward", "name from slug");
+eq(deriveName("pieter-sisk-14613049"), "Pieter Sisk", "name from slug 2");
 
 // --- live data: bestPerf + matchAthlete ---
 const main = async () => {

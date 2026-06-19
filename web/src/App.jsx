@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { getMeta, getRankings, getAthlete, runWhatIf } from "./api.js";
-import { parseTime, surnameOf, bestPerf, matchAthlete, parseQuery } from "./parse.js";
+import { parseTime, surnameOf, bestPerf, matchAthlete, parseQuery, extractSlug, deriveName } from "./parse.js";
 
 // Ranking What-If Studio — the Claude Design look, driven by the live FastAPI backend.
 // All ranking/qualification numbers come from /api/rankings and /api/whatif (real data, all events).
@@ -62,17 +62,19 @@ function buildResultView(r, isRoad, qualifyOn, methodOpen) {
     };
   }
 
+  const unranked = !!r.profile_summary;
   const sd = r.score_delta || 0, rd = r.rank_delta || 0;
   return {
     name: r.athlete, country: r.country,
     scopeLabel: (isRoad ? "Road to Birmingham" : "World Ranking") + " · " + r.rank_date,
     rankLabel: isRoad ? "European rank" : "World rank",
     oldRank: r.old_rank, newRank: r.new_rank, rankDelta: rd,
-    oldScore: r.official_ranking_score, newScore: r.new_score, scoreDelta: sd,
+    oldScore: unranked ? r.recomputed_old_score : r.official_ranking_score, newScore: r.new_score, scoreDelta: sd,
     hypo: r.hypothetical_performance,
     counts: r.new_perf_counts,
     notes: (r.assumptions && r.assumptions.notes) || [],
     qual, display, open: methodOpen,
+    unranked, profileSummary: r.profile_summary,
   };
 }
 
@@ -98,6 +100,7 @@ export default function App() {
   const [busy, setBusy] = useState(false);
   const [methodOpen, setMethodOpen] = useState(false);
   const [pending, setPending] = useState(null); // a queued natural-language run, executed once its list loads
+  const [profileUrl, setProfileUrl] = useState(""); // WA page/slug for an unranked athlete
 
   const isRoad = championship === "road_to_birmingham";
 
@@ -118,7 +121,7 @@ export default function App() {
   const eventLabel = meta ? (meta.events.find((e) => e.key === event) || {}).label || event : event;
   const categories = meta ? meta.categories : ["GW"];
 
-  async function run(overrideForm, champ = championship, ev = event) {
+  async function run(overrideForm, champ = championship, ev = event, profile = null) {
     const f = overrideForm || form;
     const name = (f.athlete || "").trim();
     if (!name) { setError("Pick an athlete first."); setResult(null); return; }
@@ -129,11 +132,25 @@ export default function App() {
         event: ev, championship: champ, athlete: name, time: f.time,
         category: f.category, place: Math.max(1, parseInt(f.place) || 1),
         qualify: champ === "road_to_birmingham" && f.qualify,
+        ...(profile ? { profile } : {}),
       });
       setResult(r); setSelected(r.athlete);
     } catch (e) {
-      setError(e.message); setResult(null);
+      // A "not on the list" failure for a ranked lookup → point the user at the unranked box.
+      const notFound = !profile && /not in the .*ranking list|enough performances/i.test(e.message);
+      setError(notFound
+        ? `${name} is either not in the top ~100, or doesn't have enough performances in the window to be ranked yet. If they're unranked, paste their World Athletics page in the “Unranked athlete” box below.`
+        : e.message);
+      setResult(null);
     } finally { setBusy(false); }
+  }
+
+  // Run the analysis from a pasted World Athletics profile (unranked athlete path).
+  function runUnranked() {
+    const slug = extractSlug(profileUrl);
+    if (!slug) { setError("Paste the athlete's World Athletics page link (or their slug)."); return; }
+    const name = deriveName(slug) || slug;
+    run({ ...form, athlete: name }, championship, event, slug);
   }
 
   // Click/pick an athlete → select it and seed Time/Place/Category from their best performance.
@@ -359,6 +376,21 @@ export default function App() {
               {busy ? "Running…" : "Run what-if"}
             </button>
             {error && <div style={{ marginTop: 12, padding: "10px 12px", background: "#f7e9e6", border: "1px solid #e3b8b0", borderRadius: 8, color: "#9c352a", fontSize: 12.5 }}>{error}</div>}
+
+            {/* Unranked athlete path — run from their World Athletics profile */}
+            <div style={{ marginTop: 18, paddingTop: 16, borderTop: "1px dashed #d8d2c4" }}>
+              <label style={labelStyle}>Unranked athlete?</label>
+              <p style={{ margin: "0 0 8px", fontSize: 12, color: MUTE, lineHeight: 1.45 }}>
+                Not in the list above? Paste their World Athletics page to run the analysis from their profile. Uses the Time / Place / Category set above.
+              </p>
+              <input value={profileUrl} onChange={(e) => setProfileUrl(e.target.value)}
+                placeholder="worldathletics.org/athletes/…/name-1234567"
+                style={{ ...inputStyle, fontSize: 13 }} />
+              <button onClick={runUnranked} disabled={busy}
+                style={{ width: "100%", marginTop: 10, padding: 12, border: `1px solid ${INK}`, borderRadius: 10, background: "transparent", color: INK, fontSize: 14, fontWeight: 700, cursor: busy ? "default" : "pointer", opacity: busy ? 0.6 : 1 }}>
+                {busy ? "Running…" : "Run unranked analysis"}
+              </button>
+            </div>
           </div>
         </section>
 
@@ -418,10 +450,21 @@ function ResultPanel({ rv, onToggle }) {
         <div style={{ padding: "22px 24px", borderRight: "1px solid #ece6d8" }}>
           <div style={{ fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: MUTE, fontWeight: 600 }}>{rv.rankLabel}</div>
           <div style={{ display: "flex", alignItems: "center", gap: 14, marginTop: 8, flexWrap: "wrap" }}>
-            <span style={{ fontSize: 56, fontWeight: 800, lineHeight: 1, color: "#b3ac9b", letterSpacing: "-0.03em" }}>#{rv.oldRank}</span>
-            <span style={{ fontSize: 28, color: GOLD }}>→</span>
-            <span style={{ fontSize: 74, fontWeight: 900, lineHeight: 0.9, letterSpacing: "-0.04em" }}>#{rv.newRank}</span>
-            <span style={{ marginLeft: 6, alignSelf: "center", fontSize: 12.5, fontWeight: 700, padding: "4px 11px", borderRadius: 20, background: rankB.bg, color: rankB.fg, whiteSpace: "nowrap" }}>{rankBadgeText}</span>
+            {rv.unranked ? (
+              <>
+                <span style={{ fontSize: 26, fontWeight: 800, color: "#b3ac9b", letterSpacing: "-0.01em" }}>UNRANKED</span>
+                <span style={{ fontSize: 28, color: GOLD }}>→</span>
+                <span style={{ fontSize: 74, fontWeight: 900, lineHeight: 0.9, letterSpacing: "-0.04em" }}>#{rv.newRank}</span>
+                <span style={{ marginLeft: 6, alignSelf: "center", fontSize: 12.5, fontWeight: 700, padding: "4px 11px", borderRadius: 20, background: "#e7e2d6", color: "#6b6457", whiteSpace: "nowrap" }}>would slot in (raw)</span>
+              </>
+            ) : (
+              <>
+                <span style={{ fontSize: 56, fontWeight: 800, lineHeight: 1, color: "#b3ac9b", letterSpacing: "-0.03em" }}>#{rv.oldRank}</span>
+                <span style={{ fontSize: 28, color: GOLD }}>→</span>
+                <span style={{ fontSize: 74, fontWeight: 900, lineHeight: 0.9, letterSpacing: "-0.04em" }}>#{rv.newRank}</span>
+                <span style={{ marginLeft: 6, alignSelf: "center", fontSize: 12.5, fontWeight: 700, padding: "4px 11px", borderRadius: 20, background: rankB.bg, color: rankB.fg, whiteSpace: "nowrap" }}>{rankBadgeText}</span>
+              </>
+            )}
           </div>
         </div>
         <div style={{ padding: "22px 24px", display: "flex", flexDirection: "column", justifyContent: "center", gap: 16 }}>
@@ -445,6 +488,18 @@ function ResultPanel({ rv, onToggle }) {
           </div>
         </div>
       </div>
+
+      {/* unranked profile summary */}
+      {rv.unranked && rv.profileSummary && (() => {
+        const ps = rv.profileSummary;
+        return (
+          <div style={{ padding: "12px 24px", borderTop: "1px solid #ece6d8", background: "#fbf7ec", fontSize: 12.5, color: "#5c4410", lineHeight: 1.5 }}>
+            Currently unranked{ps.best_rank ? ` (best ever #${ps.best_rank}${ps.best_rank_weeks ? `, ${ps.best_rank_weeks} wks ago` : ""})` : ""}.{" "}
+            {ps.counting_with_new} counting result{ps.counting_with_new === 1 ? "" : "s"}{ps.short_of_full_set > 0 ? `, ${ps.short_of_full_set} short of a full set` : ""}.
+            {ps.required_time ? ` To reach the ${ps.target_label} (${Math.round(ps.target_score)}) this race would need ≈ ${ps.required_time}.` : ""}
+          </div>
+        );
+      })()}
 
       {/* methodology */}
       <div style={{ borderTop: "1px solid #ece6d8" }}>

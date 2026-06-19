@@ -71,9 +71,11 @@ def what_if(event: str, athlete: str, new_time: str | float,
         if not profile:
             n = len(data["athletes"])
             raise ValueError(
-                f"'{athlete}' is not in the {championship} {event} ranking list (top ~{n}). "
-                "If they're unranked, pass profile='<wa-slug>' (e.g. 'jake-heyward-14597392', "
-                "the last part of their worldathletics.org/athletes/... URL).")
+                f"'{athlete}' is either not in the {championship} {event} ranking list "
+                f"(top ~{n}), or doesn't yet have enough performances in the window to be "
+                "ranked. If they're unranked, pass profile='<wa-slug>' (e.g. "
+                "'jake-heyward-14597392', the last part of their "
+                "worldathletics.org/athletes/... URL).")
         profile_info = fetch_profile(profile, event, as_of, window, force=force_refresh)
         ath = {"name": profile_info["name"], "country": profile_info["country"],
                "ranking_score": None, "rank": None,

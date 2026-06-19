@@ -23,6 +23,22 @@ export const surnameOf = (name) => {
   return up.length ? up[up.length - 1] : name.split(" ").pop();
 };
 
+// Extract the WA athlete slug from a pasted profile URL (or accept a bare slug).
+// e.g. "https://worldathletics.org/athletes/great-britain/jake-heyward-14597392?x=1" -> "jake-heyward-14597392"
+export function extractSlug(input) {
+  let s = (input || "").trim();
+  if (!s) return "";
+  s = s.split(/[?#]/)[0].replace(/\/+$/, "");          // drop query/hash + trailing slash
+  if (s.includes("/")) s = s.slice(s.lastIndexOf("/") + 1);
+  return s;
+}
+
+// Turn a slug into a readable name: "jake-heyward-14597392" -> "Jake Heyward".
+export function deriveName(slug) {
+  const s = (slug || "").replace(/-\d+$/, "");          // strip the trailing numeric id
+  return s.split("-").filter(Boolean).map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+}
+
 // Pick an athlete's best performance for this event (fastest main-event run), to seed the console.
 export function bestPerf(athlete, eventKey) {
   const perfs = athlete && athlete.performances;
