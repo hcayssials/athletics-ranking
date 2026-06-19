@@ -21,7 +21,7 @@ from . import fetch, graphql
 from .config import (championship_event_config, load_championships, load_event,
                      load_events, load_placing_scores)
 from .profile import _main_discipline_name
-from .whatif import what_if
+from .whatif import required_targets, what_if
 
 # On boot, warm the cache for common (championship, event) lists so the first real request
 # isn't slow (~40s/event). Cache-aware: fetch_championship is a no-op when data is fresh.
@@ -131,6 +131,16 @@ def athlete(championship: str, event: str, name: str):
     if a is None:
         raise HTTPException(status_code=404, detail=f"Athlete '{name}' not found in this list.")
     return a
+
+
+@app.get("/api/required")
+def required(championship: str, event: str, name: str, place: int = 1, category: str = "GW"):
+    """Reverse solver: the time (finishing `place` in a `category` meet) a ranked athlete would
+    need to reach the qualifying cutoff and #1, computed from current standings."""
+    try:
+        return required_targets(event, name, championship=championship, place=place, category=category)
+    except (ValueError, RuntimeError) as e:
+        raise HTTPException(status_code=400, detail=str(e))
 
 
 @app.get("/api/search")

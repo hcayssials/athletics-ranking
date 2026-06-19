@@ -20,6 +20,9 @@ export const getAthlete = (championship, event, name) =>
 export const searchAthletes = (name, event) =>
   j(`/api/search?name=${encodeURIComponent(name)}&event=${event}`);
 
+export const getRequired = (championship, event, name, place, category) =>
+  j(`/api/required?championship=${championship}&event=${event}&name=${encodeURIComponent(name)}&place=${place}&category=${category}`);
+
 export const runWhatIf = (body) =>
   j("/api/whatif", {
     method: "POST",

@@ -27,6 +27,22 @@ def test_targets_required_statuses():
     assert by_label["reach #1"]["time"] is None
 
 
+def test_required_targets_structure(monkeypatch):
+    from wa_ranking import whatif
+    data = {"rank_date": "2026-06-16", "athletes": [
+        {"name": "Top A", "country": "ESP", "ranking_score": 1320,
+         "performances": [{"performance_score": 1320, "discipline_code": "1500", "competition": "x", "date": "2026-05-01"}]},
+        {"name": "Low B", "country": "GBR", "ranking_score": 1150,
+         "performances": [{"performance_score": 1150, "discipline_code": "1500", "competition": "y", "date": "2026-05-01"}]},
+    ]}
+    monkeypatch.setattr(whatif.fetch, "fetch_championship", lambda *a, **k: data)
+    r = whatif.required_targets("1500m_men", "Low B", place=1, category="GW")
+    assert r["athlete"] == "Low B" and r["place"] == 1 and r["category"] == "GW"
+    assert any("#1" in t["label"] for t in r["targets"])
+    for t in r["targets"]:
+        assert t["status"] in ("met", "reachable", "unreachable")
+
+
 def test_targets_required_skips_none_score():
     rows = _targets_required("1500m_men", _counting([1300, 1280]), 5, 100, current_score=1290,
                              targets=[("no target", None), ("real", 1310)])

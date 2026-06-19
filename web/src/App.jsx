@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { getMeta, getRankings, getAthlete, searchAthletes, runWhatIf } from "./api.js";
+import { getMeta, getRankings, getAthlete, searchAthletes, runWhatIf, getRequired } from "./api.js";
 import { parseTime, surnameOf, bestPerf, matchAthlete, parseQuery, extractSlug, deriveName, looksLikeProfile, extractName } from "./parse.js";
 import { INK, SURFACE, BG, ACCENT, MUTE, MONO } from "./theme.js";
 
@@ -358,7 +358,8 @@ export default function App() {
           {result
             ? <ResultPanel rv={buildResultView(result, isRoad, form.qualify, methodOpen)} onToggle={() => setMethodOpen((v) => !v)} />
             : athleteInfo
-              ? <AthletePreview info={athleteInfo} eventCfg={eventCfg} isRoad={isRoad} rankDate={rankings ? rankings.rank_date : null} />
+              ? <AthletePreview info={athleteInfo} eventCfg={eventCfg} isRoad={isRoad} rankDate={rankings ? rankings.rank_date : null}
+                  event={event} championship={championship} categories={categories} />
               : (
                 <div style={{ border: "1.5px dashed #d8dce2", borderRadius: 14, padding: "40px 28px", textAlign: "center", color: MUTE }}>
                   <div style={{ fontSize: 17, fontWeight: 600, color: "#6b7480" }}>{busy ? "Running…" : selected ? `Loading ${selected}'s performances…` : "Run a what-if to see the impact"}</div>
@@ -521,6 +522,30 @@ export default function App() {
   );
 }
 
+// Reverse-solver target rows ("reach the cutoff → ~3:41"), shared by the what-if result block
+// and the click-to-preview card. Each row is met / reachable (shows the time) / unreachable.
+function TargetRows({ rows }) {
+  return (
+    <div style={{ display: "grid", gap: 7 }}>
+      {rows.map((t, i) => {
+        const cap = t.label.charAt(0).toUpperCase() + t.label.slice(1);
+        return (
+          <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 12, fontSize: 13 }}>
+            <span style={{ color: INK }}>{cap}{" "}
+              <span style={{ color: MUTE, fontFamily: MONO, fontSize: 11.5 }}>({t.target_score})</span>
+            </span>
+            <span style={{ fontFamily: MONO, fontWeight: 700, whiteSpace: "nowrap" }}>
+              {t.status === "met" ? <span style={{ color: "#1f8a4c" }}>already there ✓</span>
+                : t.status === "reachable" ? <span style={{ color: ACCENT }}>~{t.time}</span>
+                  : <span style={{ color: MUTE, fontWeight: 600 }}>out of reach here</span>}
+            </span>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 // Counting-performances table, shared by the what-if result and the click-to-preview card.
 // Rows may carry a `state` ("new" / "dropped") to flag the what-if diff; plain rows render clean.
 function PerfTable({ rows }) {
@@ -562,8 +587,22 @@ function PerfTable({ rows }) {
 
 // Read-only card shown when an athlete is clicked (before any what-if): current standing +
 // their counting performances. Running a what-if replaces this with the full ResultPanel.
-function AthletePreview({ info, eventCfg, isRoad, rankDate }) {
+function AthletePreview({ info, eventCfg, isRoad, rankDate, event, championship, categories }) {
   const lbl = { fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: MUTE, fontWeight: 600 };
+  // Reverse solver: the time this athlete would need (at a chosen place/category) to reach the
+  // cutoff / #1 — fetched live so it updates as the place/category controls change.
+  const [rPlace, setRPlace] = useState(1);
+  const [rCat, setRCat] = useState("GW");
+  const [wwit, setWwit] = useState(null);
+  const [wErr, setWErr] = useState(false);
+  useEffect(() => {
+    let live = true;
+    setWwit(null); setWErr(false);
+    getRequired(championship, event, info.name, Math.max(1, parseInt(rPlace) || 1), rCat)
+      .then((r) => { if (live) setWwit(r); })
+      .catch(() => { if (live) setWErr(true); });
+    return () => { live = false; };
+  }, [championship, event, info.name, rPlace, rCat]);
   return (
     <div style={{ border: "1px solid #d8dce2", borderRadius: 16, overflow: "hidden", background: BG, animation: "wf-rise 0.4s ease both" }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, padding: "16px 22px", background: INK, color: SURFACE }}>
@@ -583,6 +622,28 @@ function AthletePreview({ info, eventCfg, isRoad, rankDate }) {
           <div style={{ fontSize: 34, fontWeight: 800, fontFamily: MONO, marginTop: 4 }}>{info.ranking_score != null ? Math.round(info.ranking_score) : "—"}</div>
         </div>
       </div>
+
+      {/* reverse solver: what time it would take to reach key targets */}
+      <div style={{ padding: "14px 24px", borderBottom: "1px solid #d8dce2" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, flexWrap: "wrap", marginBottom: 10 }}>
+          <div style={{ fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: MUTE, fontWeight: 600 }}>What it would take</div>
+          <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, color: "#6b7480" }}>
+            finishing
+            <input type="number" min="1" value={rPlace} onChange={(e) => setRPlace(e.target.value)}
+              style={{ width: 46, padding: "4px 6px", border: "1px solid #d8dce2", borderRadius: 7, fontFamily: MONO, fontSize: 12 }} />
+            in a
+            <select value={rCat} onChange={(e) => setRCat(e.target.value)}
+              style={{ padding: "4px 6px", border: "1px solid #d8dce2", borderRadius: 7, fontSize: 12, background: "#fff" }}>
+              {(categories || []).map((c) => <option key={c} value={c}>{c}</option>)}
+            </select>
+            meet
+          </div>
+        </div>
+        {wwit && wwit.targets.length > 0 ? <TargetRows rows={wwit.targets} />
+          : wErr ? <div style={{ fontSize: 12.5, color: MUTE }}>Couldn't compute the required times right now.</div>
+            : <div style={{ fontSize: 12.5, color: MUTE }}>Calculating…</div>}
+      </div>
+
       <div style={{ padding: "14px 22px 20px" }}>
         <div style={{ fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: MUTE, fontWeight: 600, marginBottom: 8 }}>
           Counting performances (best {eventCfg.best_n || 5} of {eventCfg.window_months || 12} mo)
@@ -707,23 +768,7 @@ function ResultPanel({ rv, onToggle }) {
             <div style={{ fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: MUTE, fontWeight: 600, marginBottom: 9 }}>
               What it would take — finishing {ord(w.place)} in a category {w.category} meet
             </div>
-            <div style={{ display: "grid", gap: 7 }}>
-              {w.targets.map((t, i) => {
-                const cap = t.label.charAt(0).toUpperCase() + t.label.slice(1);
-                return (
-                  <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 12, fontSize: 13 }}>
-                    <span style={{ color: INK }}>{cap}{" "}
-                      <span style={{ color: MUTE, fontFamily: MONO, fontSize: 11.5 }}>({t.target_score})</span>
-                    </span>
-                    <span style={{ fontFamily: MONO, fontWeight: 700, whiteSpace: "nowrap" }}>
-                      {t.status === "met" ? <span style={{ color: "#1f8a4c" }}>already there ✓</span>
-                        : t.status === "reachable" ? <span style={{ color: ACCENT }}>~{t.time}</span>
-                          : <span style={{ color: MUTE, fontWeight: 600 }}>out of reach here</span>}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
+            <TargetRows rows={w.targets} />
           </div>
         );
       })()}

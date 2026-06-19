@@ -13,8 +13,8 @@ from .config import (championship_event_config, load_championship, load_event,
                      load_placing_scores)
 from .profile import fetch_profile
 from .qualify import athlete_status, build_ranked, qualifying_field
-from .ranking import insert_and_recompute, ranking_score, rank_position, resolve_window
-from .scoring import format_seconds, score_performance, time_for_result_score
+from .ranking import insert_and_recompute, ranking_score, rank_position, resolve_window, select_counting
+from .scoring import format_seconds, placing_score, score_performance, time_for_result_score
 
 
 def what_if(event: str, athlete: str, new_time: str | float,
@@ -286,6 +286,46 @@ def _targets_required(event: str, counting_old: list[dict], best_n: int, placing
         rows.append({"label": label, "target_score": round(score), "result_score": need_result,
                      "time": time, "status": "reachable" if time else "unreachable"})
     return rows
+
+
+def required_targets(event: str, athlete: str, *, championship: str = "road_to_birmingham",
+                     place: int = 1, category: str = "GW", force_refresh: bool = False) -> dict:
+    """Reverse solver, standalone (no hypothetical time needed): for a ranked athlete, the time
+    a single new race finishing `place` in a `category` meet would need to reach key targets —
+    the qualifying cutoff and #1 — computed from current standings."""
+    champ = load_championship(championship)
+    ev = load_event(event)
+    champ_event = championship_event_config(championship, event)
+    best_n = ev["best_n"]
+    placing_group = ev.get("placing_event_group", "standard")
+    sel = {"always_include_competitions": tuple(champ.get("always_include_competitions", ())),
+           "main_event_codes": tuple(ev.get("main_event_codes", ())),
+           "main_event_min": ev.get("main_event_min", 0)}
+
+    data = fetch.fetch_championship(championship, event, force=force_refresh)
+    ath = fetch.find_athlete(data, athlete)
+    if ath is None:
+        raise ValueError(f"'{athlete}' is not in the {championship} {event} ranking list.")
+    old_counting = select_counting(ath["performances"], best_n, **sel)
+    placing = placing_score(category, place, placing_group)
+    others = [a["ranking_score"] for a in data["athletes"] if a is not ath]
+    top = max((s for s in others if s is not None), default=None)
+
+    cutoff = None
+    if "quota" in champ_event:
+        field = qualifying_field(build_ranked(data["athletes"]), champ_event["quota"],
+                                 max_per_country=champ.get("max_per_country", 3),
+                                 defending_champion=champ_event.get("defending_champion"))
+        cutoff = field["cutoff_score"]
+
+    targets = []
+    if cutoff is not None:
+        targets.append(("reach the qualifying cutoff", cutoff))
+    if top is not None:
+        targets.append(("reach #1", top + 1))
+    rows = _targets_required(event, old_counting, best_n, placing, ath.get("ranking_score"), targets)
+    return {"event": event, "championship": championship, "athlete": ath["name"],
+            "place": place, "category": category.upper(), "targets": rows}
 
 
 def _fmt_perf(p: dict) -> str:
