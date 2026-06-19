@@ -1,12 +1,10 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { getMeta, getRankings, getAthlete, searchAthletes, runWhatIf } from "./api.js";
 import { parseTime, surnameOf, bestPerf, matchAthlete, parseQuery, extractSlug, deriveName, looksLikeProfile } from "./parse.js";
+import { INK, CREAM, PAPER, GOLD, MUTE, MONO } from "./theme.js";
 
 // Ranking What-If Studio — the Claude Design look, driven by the live FastAPI backend.
 // All ranking/qualification numbers come from /api/rankings and /api/whatif (real data, all events).
-
-const INK = "#1b1813", CREAM = "#f4f1ea", PAPER = "#fbfaf6", GOLD = "#c9b78f", MUTE = "#8a8475";
-const MONO = "'IBM Plex Mono', monospace";
 
 const CAT_LABELS = {
   OW: "OW — Olympics / World Champs", DF: "DF — Diamond League final",
