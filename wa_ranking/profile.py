@@ -41,7 +41,7 @@ _SIMILAR_NAMES = {
     "5000m": {"3000 Metres", "2 Miles", "5000 Metres Short Track",
               "3000 Metres Short Track", "2 Miles Short Track", "5 Kilometres"},
     "10000m": {"10 Kilometres"},
-    "3000m-steeplechase": {"2000 Metres Steeplechase"},
+    "3000msc": {"2000 Metres Steeplechase"},
 }
 
 
