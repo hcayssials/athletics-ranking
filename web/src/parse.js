@@ -78,6 +78,24 @@ export function matchAthlete(text, list) {
   return null;
 }
 
+// Pull a likely athlete name out of a natural-language what-if, for the unranked WA search:
+// strip a leading framing phrase ("what if …") and any "women's 5000m:" prefix, then keep the
+// words before the first scenario verb, preposition, or number. Best-effort — if it comes back
+// empty or wrong, the search simply finds nothing and the UI falls back to the profile-link hint.
+export function extractName(query) {
+  let s = (query || "").trim();
+  s = s.replace(/^\s*(what if|how would|how does|how do|what about|how about|will|can|could|if)\b[:,]?\s*/i, "");
+  // strip a leading "women's 5000m:" style event prefix — only if the part before the first
+  // colon actually names an event/gender (so a time like "3:34" doesn't trigger it).
+  const ci = s.indexOf(":");
+  if (ci > 0 && ci < 40 &&
+      /\b(men|women|ladies|mixed)\b|steeple|\bmile\b|metre|\b\d{3,}\s?m(sc)?\b|road to|\bworld\b|\beuro|birmingham/i.test(s.slice(0, ci)))
+    s = s.slice(ci + 1).trim();
+  const cut = s.search(/\b(wins?|winning|won|finish\w*|runs?|running|ran|places?|placing|placed|scores?|gets?|clocks?|goes?|going|looks?|with|at|in|on|to)\b|\d/i);
+  if (cut > 0) s = s.slice(0, cut);
+  return s.trim().replace(/[?.,;:]+$/, "");
+}
+
 // Parse a natural-language what-if into structured hints (all optional).
 export function parseQuery(query, currentEvent) {
   const nq = norm(query);

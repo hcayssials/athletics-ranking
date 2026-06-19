@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { getMeta, getRankings, getAthlete, searchAthletes, runWhatIf } from "./api.js";
-import { parseTime, surnameOf, bestPerf, matchAthlete, parseQuery, extractSlug, deriveName, looksLikeProfile } from "./parse.js";
+import { parseTime, surnameOf, bestPerf, matchAthlete, parseQuery, extractSlug, deriveName, looksLikeProfile, extractName } from "./parse.js";
 import { INK, SURFACE, BG, ACCENT, MUTE, MONO } from "./theme.js";
 
 // Ranking What-If Studio — "WA Editorial" look (see theme.js), driven by the live FastAPI backend.
@@ -38,21 +38,26 @@ const shortMeet = (s) => {
 // Indicative qualifying zone for the table: champion bye consumes one place, then fill
 // quota-1 by descending score with a 3-per-country cap. Mirrors the design's shading.
 function qualifyingZone(rankings) {
-  const empty = { qualSet: new Set(), lastQualName: null, cutoff: null };
+  const empty = { qualSet: new Set(), qualPos: {}, lastQualName: null, cutoff: null };
   if (!rankings) return empty;
-  const quota = rankings.quota || 30, maxPer = 3, places = quota - 1;
-  const champ = rankings.defending_champion?.name;
+  const quota = rankings.quota || 30, maxPer = 3;
+  const champ = rankings.defending_champion?.name || null;
   const sorted = [...rankings.athletes].sort((a, b) => b.ranking_score - a.ranking_score);
-  const cc = {}; let assigned = 0, last = null, cutoff = null;
-  const qualSet = new Set();
+  // Walk by descending score, filling `quota` slots: the champion qualifies by bye (exempt from
+  // the country cap); everyone else is subject to max 3 per country. qualPos = the slot number
+  // in the actual qualifying field (which can differ from the raw rank once the cap bites).
+  const cc = {}; let pos = 0, last = null, cutoff = null;
+  const qualSet = new Set(), qualPos = {};
   for (const a of sorted) {
-    if (a.name === champ) continue;             // champion enters by bye, not a ranking place
-    if (assigned >= places) break;
-    if ((cc[a.country] || 0) >= maxPer) continue;
-    cc[a.country] = (cc[a.country] || 0) + 1;
-    assigned++; qualSet.add(a.name); last = a.name; cutoff = a.ranking_score;
+    if (pos >= quota) break;
+    const isChamp = champ && a.name === champ;
+    if (!isChamp) {
+      if ((cc[a.country] || 0) >= maxPer) continue;   // country already full → blocked
+      cc[a.country] = (cc[a.country] || 0) + 1;
+    }
+    pos++; qualPos[a.name] = pos; qualSet.add(a.name); last = a.name; cutoff = a.ranking_score;
   }
-  return { qualSet, lastQualName: last, cutoff };
+  return { qualSet, qualPos, lastQualName: last, cutoff };
 }
 
 // Map a /api/whatif response into the result-panel view model.
@@ -246,7 +251,19 @@ export default function App() {
     setPending(null);
     (async () => {
       const athlete = matchAthlete(p.athlete, rankings.athletes);
-      if (!athlete) { setError("Couldn't find that athlete in this list — try a surname from the table."); return; }
+      if (!athlete) {
+        // Not on the ranking list → treat as unranked: search World Athletics for the name,
+        // with the parsed scenario values pre-filled so picking a candidate runs the right what-if.
+        const f = { ...form };
+        if (p.time) f.time = p.time;
+        if (p.place != null) f.place = p.place;
+        if (p.category) f.category = p.category;
+        setForm(f);
+        const name = extractName(query);
+        if (!name) { setError("Couldn't tell which athlete you meant — try starting the question with their name."); return; }
+        await searchFor(name, ev);
+        return;
+      }
       let f = { ...form, athlete };
       try {
         const best = bestPerf(await getAthlete(champ, ev, athlete), ev);
@@ -267,6 +284,7 @@ export default function App() {
   const tab = (active) => ({ ...tabBase, background: active ? INK : "transparent", color: active ? SURFACE : "#6b7480" });
   const labelStyle = { display: "block", fontSize: 11, letterSpacing: "0.06em", textTransform: "uppercase", color: MUTE, fontWeight: 600, marginBottom: 5 };
   const inputStyle = { width: "100%", padding: "11px 12px", border: "1px solid #d8dce2", borderRadius: 9, fontSize: 14, background: "#fff" };
+  const thCell = (align, padding) => ({ textAlign: align, padding, fontSize: 10.5, letterSpacing: "0.08em", color: MUTE, fontWeight: 600, textTransform: "uppercase" });
 
   const bestOfLine = `Best ${eventCfg.best_n || 5} of ${eventCfg.window_months || 12} mo`;
   const assumptionLine = isRoad
@@ -357,9 +375,11 @@ export default function App() {
               <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13.5 }}>
                 <thead>
                   <tr style={{ position: "sticky", top: 0, background: "#f2f4f7", zIndex: 1 }}>
-                    {["#", "Athlete", "Nat", "Score"].map((h, i) => (
-                      <th key={h} style={{ textAlign: i === 1 || i === 2 ? "left" : "right", padding: i === 0 ? "9px 10px 9px 18px" : i === 3 ? "9px 18px 9px 10px" : "9px 10px", fontSize: 10.5, letterSpacing: "0.08em", color: MUTE, fontWeight: 600, textTransform: "uppercase" }}>{h}</th>
-                    ))}
+                    <th style={thCell("right", "9px 10px 9px 18px")}>#</th>
+                    {isRoad && <th style={thCell("right", "9px 10px")} title="Position in the qualifying field after the champion bye and 3-per-country cap">Quota</th>}
+                    <th style={thCell("left", "9px 10px")}>Athlete</th>
+                    <th style={thCell("left", "9px 10px")}>Nat</th>
+                    <th style={thCell("right", "9px 18px 9px 10px")}>Score</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -374,6 +394,11 @@ export default function App() {
                         <tr onClick={() => selectAthlete(a.name)}
                           style={{ cursor: "pointer", background: bg, color: fg, borderBottom: "1px solid #f2f4f7", transition: "background 0.12s" }}>
                           <td style={{ textAlign: "right", padding: "8px 10px 8px 18px", fontFamily: MONO, fontWeight: 600, color: isSel ? ACCENT : inZone ? "#1f8a4c" : "#9aa1ac" }}>{a.rank}</td>
+                          {isRoad && (
+                            <td style={{ textAlign: "right", padding: "8px 10px", fontFamily: MONO, fontSize: 12, fontWeight: 600, color: isSel ? ACCENT : zone.qualPos[a.name] ? "#1f8a4c" : "#c4c9d0" }}>
+                              {zone.qualPos[a.name] || "—"}
+                            </td>
+                          )}
                           <td style={{ padding: "8px 10px", fontWeight: 600 }}>
                             <span style={{ display: "inline-block", width: 6, height: 6, borderRadius: "50%", marginRight: 8, verticalAlign: "middle", background: isSel ? ACCENT : compat ? "#2f4a6b" : "transparent" }} />
                             {a.name}
@@ -382,10 +407,10 @@ export default function App() {
                           <td style={{ padding: "8px 18px 8px 10px", textAlign: "right", fontFamily: MONO, fontWeight: 600 }}>{Math.round(a.ranking_score)}</td>
                         </tr>
                         {isRoad && zone.lastQualName === a.name && (
-                          <tr><td colSpan={4} style={{ padding: 0 }}>
+                          <tr><td colSpan={5} style={{ padding: 0 }}>
                             <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "3px 18px", background: INK, color: ACCENT, fontFamily: MONO, fontSize: 10.5, letterSpacing: "0.08em" }}>
                               <span style={{ flex: 1, height: 1, background: "#2a313b" }} />
-                              {`QUALIFYING CUTOFF · ${rankings.quota} places (1 to champion) · ≈ ${zone.cutoff != null ? Math.round(zone.cutoff) : "—"} pts`}
+                              {`QUALIFYING CUTOFF · ${rankings.quota} places${rankings.defending_champion ? " · 1 to champion" : ""} · ≈ ${zone.cutoff != null ? Math.round(zone.cutoff) : "—"} pts`}
                               <span style={{ flex: 1, height: 1, background: "#2a313b" }} />
                             </div>
                           </td></tr>

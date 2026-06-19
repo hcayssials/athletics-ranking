@@ -1,6 +1,6 @@
 // Quick checks for parse.js against the live local backend (http://127.0.0.1:8077).
 // Run: node src/parse.test.mjs
-import { mainCode, parseQuery, bestPerf, matchAthlete, parseTime, extractSlug, deriveName, looksLikeProfile } from "./parse.js";
+import { mainCode, parseQuery, bestPerf, matchAthlete, parseTime, extractSlug, deriveName, looksLikeProfile, extractName } from "./parse.js";
 
 const B = "http://127.0.0.1:8077";
 let pass = 0, fail = 0;
@@ -30,6 +30,12 @@ eq(parseQuery("women's 5000m: Smith finishes 2nd at the European Champs", "1500m
 eq(parseQuery("steeplechase third place", "1500m_men").eventKey, "3000mSC_men", "pq steeple keeps gender");
 eq(parseQuery("Wightman wins nationals in 3:34", "1500m_men").category, "B", "pq nationals -> B (national champs)");
 eq(parseQuery("3rd at a national meet", "1500m_men").category, "C", "pq national meet -> C");
+
+// --- extractName (for the unranked NL search) ---
+eq(extractName("What if Jake Heyward wins nationals in 3:34"), "Jake Heyward", "name: framed + verb");
+eq(extractName("Jake Heyward 3:34 at nationals"), "Jake Heyward", "name: stops at number");
+eq(extractName("women's 5000m: Mary Smith finishes 2nd"), "Mary Smith", "name: strips event prefix");
+eq(extractName("How does Riva look on the world ranking"), "Riva", "name: stops at 'look'");
 eq(parseQuery("the 800 in 1:43.5", "5000m_women").eventKey, "800m_women", "pq 800 keeps women");
 
 // --- extractSlug + deriveName ---
