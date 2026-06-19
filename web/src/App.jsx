@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { getMeta, getRankings, getAthlete, searchAthletes, runWhatIf } from "./api.js";
 import { parseTime, surnameOf, bestPerf, matchAthlete, parseQuery, extractSlug, deriveName, looksLikeProfile } from "./parse.js";
-import { INK, CREAM, PAPER, GOLD, MUTE, MONO } from "./theme.js";
+import { INK, SURFACE, BG, ACCENT, MUTE, MONO } from "./theme.js";
 
-// Ranking What-If Studio — the Claude Design look, driven by the live FastAPI backend.
+// Ranking What-If Studio — "WA Editorial" look (see theme.js), driven by the live FastAPI backend.
 // All ranking/qualification numbers come from /api/rankings and /api/whatif (real data, all events).
 
 const CAT_LABELS = {
@@ -96,8 +96,8 @@ function buildResultView(r, isRoad, qualifyOn, methodOpen) {
 const badge = (delta, kind) => {
   // kind: 'rank' (▲ up = better) or 'score'
   const up = delta > 0, down = delta < 0;
-  const bg = up ? "#dcefe2" : down ? "#f7e3df" : "#e7e2d6";
-  const fg = up ? "#1f6b43" : down ? "#9c352a" : "#6b6457";
+  const bg = up ? "#e3f3e9" : down ? "#fbe4e1" : "#eceef2";
+  const fg = up ? "#1f6b43" : down ? "#9c352a" : "#6b7480";
   return { bg, fg };
 };
 
@@ -247,9 +247,9 @@ export default function App() {
   if (!meta) return <p style={{ padding: 24, fontFamily: "'Archivo', system-ui, sans-serif", color: INK }}>Loading… {rankErr}</p>;
 
   const tabBase = { padding: "9px 16px", border: "none", borderRadius: 7, fontSize: 13.5, fontWeight: 700, cursor: "pointer" };
-  const tab = (active) => ({ ...tabBase, background: active ? INK : "transparent", color: active ? CREAM : "#6b6457" });
+  const tab = (active) => ({ ...tabBase, background: active ? INK : "transparent", color: active ? SURFACE : "#6b7480" });
   const labelStyle = { display: "block", fontSize: 11, letterSpacing: "0.06em", textTransform: "uppercase", color: MUTE, fontWeight: 600, marginBottom: 5 };
-  const inputStyle = { width: "100%", padding: "11px 12px", border: "1px solid #cfc8b8", borderRadius: 9, fontSize: 14, background: "#fff" };
+  const inputStyle = { width: "100%", padding: "11px 12px", border: "1px solid #d8dce2", borderRadius: 9, fontSize: 14, background: "#fff" };
 
   const bestOfLine = `Best ${eventCfg.best_n || 5} of ${eventCfg.window_months || 12} mo`;
   const assumptionLine = isRoad
@@ -264,7 +264,7 @@ export default function App() {
   ] : [];
 
   return (
-    <div style={{ fontFamily: "'Archivo', system-ui, sans-serif", color: INK, background: CREAM, minHeight: "100vh" }}>
+    <div style={{ fontFamily: "'Archivo', system-ui, sans-serif", color: INK, background: SURFACE, minHeight: "100vh" }}>
       <div style={{ maxWidth: 1320, margin: "0 auto", padding: "0 28px 64px" }}>
 
         {/* HEADER */}
@@ -281,33 +281,33 @@ export default function App() {
 
         {/* TOGGLE + EVENT + ASSUMPTIONS */}
         <section style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 14, padding: "18px 0" }}>
-          <div style={{ display: "inline-flex", padding: 4, background: "#e7e2d6", borderRadius: 10, gap: 4 }}>
+          <div style={{ display: "inline-flex", padding: 4, background: "#eceef2", borderRadius: 10, gap: 4 }}>
             <button onClick={() => changeChampionship("world")} style={tab(!isRoad)}>World Ranking</button>
             <button onClick={() => changeChampionship("road_to_birmingham")} style={tab(isRoad)}>Road to Birmingham</button>
           </div>
-          <select value={event} onChange={(e) => changeEvent(e.target.value)} style={{ padding: "10px 14px", border: "1px solid #cfc8b8", borderRadius: 9, background: "#fff", fontSize: 14, fontWeight: 600, color: INK }}>
+          <select value={event} onChange={(e) => changeEvent(e.target.value)} style={{ padding: "10px 14px", border: "1px solid #d8dce2", borderRadius: 9, background: "#fff", fontSize: 14, fontWeight: 600, color: INK }}>
             {meta.events.map((ev) => <option key={ev.key} value={ev.key}>{ev.label}</option>)}
           </select>
           <div style={{ flex: 1 }} />
-          <div style={{ fontFamily: MONO, fontSize: 11.5, color: "#6b6457", textAlign: "right", maxWidth: 460, lineHeight: 1.5 }}>{assumptionLine}</div>
+          <div style={{ fontFamily: MONO, fontSize: 11.5, color: "#6b7480", textAlign: "right", maxWidth: 460, lineHeight: 1.5 }}>{assumptionLine}</div>
         </section>
 
         {/* ASK BAR */}
-        <section style={{ background: INK, borderRadius: 14, padding: "20px 22px", color: CREAM, marginBottom: 22 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 12, letterSpacing: "0.14em", fontWeight: 600, color: GOLD, textTransform: "uppercase" }}>
-            <span style={{ display: "inline-block", width: 7, height: 7, borderRadius: "50%", background: GOLD }} />
+        <section style={{ background: INK, borderRadius: 14, padding: "20px 22px", color: SURFACE, marginBottom: 22 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 12, letterSpacing: "0.14em", fontWeight: 600, color: ACCENT, textTransform: "uppercase" }}>
+            <span style={{ display: "inline-block", width: 7, height: 7, borderRadius: "50%", background: ACCENT }} />
             Ask a what-if
           </div>
           <div style={{ display: "flex", gap: 10, marginTop: 12, flexWrap: "wrap" }}>
             <input value={query} onChange={(e) => setQuery(e.target.value)} onKeyDown={(e) => e.key === "Enter" && interpret()}
               placeholder="e.g. What if Wightman wins in Birmingham in 3:29.0?"
-              style={{ flex: 1, minWidth: 280, padding: "14px 16px", border: "none", borderRadius: 10, background: "#2c2820", color: CREAM, fontSize: 16, outline: "none" }} />
-            <button onClick={interpret} style={{ padding: "14px 26px", border: "none", borderRadius: 10, background: GOLD, color: INK, fontSize: 15, fontWeight: 700, cursor: "pointer" }}>Interpret →</button>
+              style={{ flex: 1, minWidth: 280, padding: "14px 16px", border: "none", borderRadius: 10, background: "#14181f", color: SURFACE, fontSize: 16, outline: "none" }} />
+            <button onClick={interpret} style={{ padding: "14px 26px", border: "none", borderRadius: 10, background: ACCENT, color: INK, fontSize: 15, fontWeight: 700, cursor: "pointer" }}>Interpret →</button>
           </div>
           <div style={{ display: "flex", gap: 8, marginTop: 12, flexWrap: "wrap" }}>
             {examples.map((ex) => (
               <button key={ex} onClick={() => { setQuery(ex); setTimeout(interpret, 0); }}
-                style={{ padding: "7px 12px", border: "1px solid #454034", borderRadius: 20, background: "transparent", color: "#cfc6b4", fontSize: 12.5, cursor: "pointer", fontFamily: MONO }}>
+                style={{ padding: "7px 12px", border: "1px solid #2a313b", borderRadius: 20, background: "transparent", color: "#d8dce2", fontSize: 12.5, cursor: "pointer", fontFamily: MONO }}>
                 {ex.length > 46 ? ex.slice(0, 44) + "…" : ex}
               </button>
             ))}
@@ -319,8 +319,8 @@ export default function App() {
           {result
             ? <ResultPanel rv={buildResultView(result, isRoad, form.qualify, methodOpen)} onToggle={() => setMethodOpen((v) => !v)} />
             : (
-              <div style={{ border: "1.5px dashed #cfc8b8", borderRadius: 14, padding: "40px 28px", textAlign: "center", color: MUTE }}>
-                <div style={{ fontSize: 17, fontWeight: 600, color: "#6b6457" }}>{busy ? "Running…" : "Run a what-if to see the impact"}</div>
+              <div style={{ border: "1.5px dashed #d8dce2", borderRadius: 14, padding: "40px 28px", textAlign: "center", color: MUTE }}>
+                <div style={{ fontSize: 17, fontWeight: 600, color: "#6b7480" }}>{busy ? "Running…" : "Run a what-if to see the impact"}</div>
                 <div style={{ fontSize: 13.5, marginTop: 6 }}>Pick an athlete from the table or type a question above. The rank change shows here.</div>
               </div>
             )}
@@ -330,7 +330,7 @@ export default function App() {
         <section style={{ display: "grid", gridTemplateColumns: "1.55fr 1fr", gap: 22, alignItems: "start" }}>
 
           {/* RANKINGS TABLE */}
-          <div style={{ background: PAPER, border: "1px solid #e2ddd0", borderRadius: 14, overflow: "hidden" }}>
+          <div style={{ background: BG, border: "1px solid #e7eaef", borderRadius: 14, overflow: "hidden" }}>
             <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", padding: "16px 18px 12px" }}>
               <h2 style={{ margin: 0, fontSize: 16, fontWeight: 700 }}>{(isRoad ? "Road to Birmingham" : "World Ranking") + " — " + eventLabel}</h2>
               <span style={{ fontFamily: MONO, fontSize: 11, color: MUTE }}>{rankings ? `${list.length} athletes` : "loading…"}</span>
@@ -339,7 +339,7 @@ export default function App() {
               {rankErr && <div style={{ padding: 18, color: "#9c352a", fontSize: 13 }}>{rankErr}</div>}
               <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13.5 }}>
                 <thead>
-                  <tr style={{ position: "sticky", top: 0, background: "#f0ece2", zIndex: 1 }}>
+                  <tr style={{ position: "sticky", top: 0, background: "#f2f4f7", zIndex: 1 }}>
                     {["#", "Athlete", "Nat", "Score"].map((h, i) => (
                       <th key={h} style={{ textAlign: i === 1 || i === 2 ? "left" : "right", padding: i === 0 ? "9px 10px 9px 18px" : i === 3 ? "9px 18px 9px 10px" : "9px 10px", fontSize: 10.5, letterSpacing: "0.08em", color: MUTE, fontWeight: 600, textTransform: "uppercase" }}>{h}</th>
                     ))}
@@ -350,26 +350,26 @@ export default function App() {
                     const isSel = selected === a.name;
                     const inZone = isRoad && zone.qualSet.has(a.name);
                     const compat = selCountry && a.country === selCountry && !isSel;
-                    const bg = isSel ? INK : compat ? "#f3ead2" : inZone ? "rgba(47,125,82,0.05)" : PAPER;
-                    const fg = isSel ? CREAM : INK;
+                    const bg = isSel ? INK : compat ? "#f2f4f7" : inZone ? "rgba(47,125,82,0.05)" : BG;
+                    const fg = isSel ? SURFACE : INK;
                     return (
                       <React.Fragment key={a.competitor_id || a.name}>
                         <tr onClick={() => selectAthlete(a.name)}
-                          style={{ cursor: "pointer", background: bg, color: fg, borderBottom: "1px solid #efeadd", transition: "background 0.12s" }}>
-                          <td style={{ textAlign: "right", padding: "8px 10px 8px 18px", fontFamily: MONO, fontWeight: 600, color: isSel ? GOLD : inZone ? "#2f7d52" : "#a39c8c" }}>{a.rank}</td>
+                          style={{ cursor: "pointer", background: bg, color: fg, borderBottom: "1px solid #f2f4f7", transition: "background 0.12s" }}>
+                          <td style={{ textAlign: "right", padding: "8px 10px 8px 18px", fontFamily: MONO, fontWeight: 600, color: isSel ? ACCENT : inZone ? "#1f8a4c" : "#9aa1ac" }}>{a.rank}</td>
                           <td style={{ padding: "8px 10px", fontWeight: 600 }}>
-                            <span style={{ display: "inline-block", width: 6, height: 6, borderRadius: "50%", marginRight: 8, verticalAlign: "middle", background: isSel ? GOLD : compat ? "#b8851f" : "transparent" }} />
+                            <span style={{ display: "inline-block", width: 6, height: 6, borderRadius: "50%", marginRight: 8, verticalAlign: "middle", background: isSel ? ACCENT : compat ? "#2f4a6b" : "transparent" }} />
                             {a.name}
                           </td>
-                          <td style={{ padding: "8px 10px", fontFamily: MONO, fontSize: 12, color: "#6b6457" }}>{a.country}</td>
+                          <td style={{ padding: "8px 10px", fontFamily: MONO, fontSize: 12, color: "#6b7480" }}>{a.country}</td>
                           <td style={{ padding: "8px 18px 8px 10px", textAlign: "right", fontFamily: MONO, fontWeight: 600 }}>{Math.round(a.ranking_score)}</td>
                         </tr>
                         {isRoad && zone.lastQualName === a.name && (
                           <tr><td colSpan={4} style={{ padding: 0 }}>
-                            <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "3px 18px", background: INK, color: GOLD, fontFamily: MONO, fontSize: 10.5, letterSpacing: "0.08em" }}>
-                              <span style={{ flex: 1, height: 1, background: "#454034" }} />
+                            <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "3px 18px", background: INK, color: ACCENT, fontFamily: MONO, fontSize: 10.5, letterSpacing: "0.08em" }}>
+                              <span style={{ flex: 1, height: 1, background: "#2a313b" }} />
                               {`QUALIFYING CUTOFF · ${rankings.quota} places (1 to champion) · ≈ ${zone.cutoff != null ? Math.round(zone.cutoff) : "—"} pts`}
-                              <span style={{ flex: 1, height: 1, background: "#454034" }} />
+                              <span style={{ flex: 1, height: 1, background: "#2a313b" }} />
                             </div>
                           </td></tr>
                         )}
@@ -382,7 +382,7 @@ export default function App() {
           </div>
 
           {/* WHAT-IF CONSOLE */}
-          <div style={{ background: PAPER, border: "1px solid #e2ddd0", borderRadius: 14, padding: "18px 18px 20px", position: "sticky", top: 16 }}>
+          <div style={{ background: BG, border: "1px solid #e7eaef", borderRadius: 14, padding: "18px 18px 20px", position: "sticky", top: 16 }}>
             <h2 style={{ margin: "0 0 4px", fontSize: 16, fontWeight: 700 }}>What-if console</h2>
             <p style={{ margin: "0 0 14px", fontSize: 12.5, color: MUTE }}>Fine-tune the scenario, then run it.</p>
 
@@ -415,11 +415,11 @@ export default function App() {
               {categories.map((c) => <option key={c} value={c}>{CAT_LABELS[c] || c}</option>)}
             </select>
             <button onClick={() => setCatHelp((v) => !v)}
-              style={{ background: "none", border: "none", padding: 0, marginBottom: catHelp ? 8 : 14, color: "#6b6457", fontSize: 11.5, fontWeight: 600, cursor: "pointer", fontFamily: "inherit", textDecoration: "underline", textUnderlineOffset: 2 }}>
+              style={{ background: "none", border: "none", padding: 0, marginBottom: catHelp ? 8 : 14, color: "#6b7480", fontSize: 11.5, fontWeight: 600, cursor: "pointer", fontFamily: "inherit", textDecoration: "underline", textUnderlineOffset: 2 }}>
               {catHelp ? "Hide category guide" : "ⓘ What do these categories mean?"}
             </button>
             {catHelp && (
-              <div style={{ marginBottom: 14, padding: "12px 14px", background: "#f4f1ea", border: "1px solid #e2ddd0", borderRadius: 10, fontSize: 12, color: "#4a4538", lineHeight: 1.5 }}>
+              <div style={{ marginBottom: 14, padding: "12px 14px", background: "#f2f4f7", border: "1px solid #e7eaef", borderRadius: 10, fontSize: 12, color: "#3a414c", lineHeight: 1.5 }}>
                 <p style={{ margin: "0 0 8px" }}>Higher categories award more placing points. World Athletics assigns each meet's exact category — this is a rough guide:</p>
                 <ul style={{ margin: "0 0 8px", padding: 0, listStyle: "none", display: "grid", gap: 5 }}>
                   {CAT_INFO.map(([k, desc]) => (
@@ -430,7 +430,7 @@ export default function App() {
                   ))}
                 </ul>
                 <p style={{ margin: "0 0 8px" }}>Heads-up: a <b>National Championships</b> is usually category <b>B</b>, whereas an ordinary national meeting is <b>C</b> — so check which one a meet actually is.</p>
-                <a href={WA_RULES_URL} target="_blank" rel="noreferrer" style={{ color: "#9c5a1f", fontWeight: 600 }}>
+                <a href={WA_RULES_URL} target="_blank" rel="noreferrer" style={{ color: "#2f4a6b", fontWeight: 600 }}>
                   Look up the official rules &amp; per-meet categories on World Athletics →
                 </a>
               </div>
@@ -438,34 +438,34 @@ export default function App() {
 
             {isRoad && (
               <label onClick={() => setForm((s) => ({ ...s, qualify: !s.qualify }))} style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer", padding: "10px 0 0", userSelect: "none" }}>
-                <span style={{ width: 38, height: 22, borderRadius: 11, background: form.qualify ? "#2f7d52" : "#cfc8b8", position: "relative", flex: "none", boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.06)", transition: "background 0.15s", backgroundImage: form.qualify ? "radial-gradient(circle at 27px 11px, #fff 7px, transparent 7px)" : "radial-gradient(circle at 11px 11px, #fff 7px, transparent 7px)" }} />
+                <span style={{ width: 38, height: 22, borderRadius: 11, background: form.qualify ? "#1f8a4c" : "#d8dce2", position: "relative", flex: "none", boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.06)", transition: "background 0.15s", backgroundImage: form.qualify ? "radial-gradient(circle at 27px 11px, #fff 7px, transparent 7px)" : "radial-gradient(circle at 11px 11px, #fff 7px, transparent 7px)" }} />
                 <span style={{ fontSize: 13.5, fontWeight: 600 }}>Resolve Birmingham qualification</span>
               </label>
             )}
 
-            <button onClick={() => run()} disabled={busy} style={{ width: "100%", marginTop: 16, padding: 14, border: "none", borderRadius: 10, background: INK, color: CREAM, fontSize: 15, fontWeight: 700, cursor: busy ? "default" : "pointer", opacity: busy ? 0.7 : 1 }}>
+            <button onClick={() => run()} disabled={busy} style={{ width: "100%", marginTop: 16, padding: 14, border: "none", borderRadius: 10, background: INK, color: SURFACE, fontSize: 15, fontWeight: 700, cursor: busy ? "default" : "pointer", opacity: busy ? 0.7 : 1 }}>
               {busy ? "Running…" : "Run what-if"}
             </button>
-            {error && <div style={{ marginTop: 12, padding: "10px 12px", background: "#f7e9e6", border: "1px solid #e3b8b0", borderRadius: 8, color: "#9c352a", fontSize: 12.5 }}>{error}</div>}
+            {error && <div style={{ marginTop: 12, padding: "10px 12px", background: "#fbe4e1", border: "1px solid #f0c5c0", borderRadius: 8, color: "#9c352a", fontSize: 12.5 }}>{error}</div>}
 
             {searching && <div style={{ marginTop: 12, fontSize: 12.5, color: MUTE }}>Searching World Athletics…</div>}
             {candidates && candidates.length > 0 && (
-              <div style={{ marginTop: 12, border: "1px solid #e2ddd0", borderRadius: 10, overflow: "hidden", background: "#fff" }}>
-                <div style={{ padding: "8px 12px", background: "#f4f1ea", fontSize: 11.5, fontWeight: 700, color: "#6b6457" }}>Not in the list — did you mean?</div>
+              <div style={{ marginTop: 12, border: "1px solid #e7eaef", borderRadius: 10, overflow: "hidden", background: "#fff" }}>
+                <div style={{ padding: "8px 12px", background: "#f2f4f7", fontSize: 11.5, fontWeight: 700, color: "#6b7480" }}>Not in the list — did you mean?</div>
                 {candidates.map((c) => (
                   <button key={c.slug} onClick={() => pickCandidate(c)}
-                    style={{ display: "block", width: "100%", textAlign: "left", padding: "9px 12px", border: "none", borderTop: "1px solid #efeadd", background: "transparent", cursor: "pointer", fontFamily: "inherit" }}>
-                    <div style={{ fontSize: 13.5, fontWeight: 600, color: INK }}>{c.name} <span style={{ fontFamily: MONO, fontSize: 11, color: "#6b6457" }}>{c.country}</span></div>
+                    style={{ display: "block", width: "100%", textAlign: "left", padding: "9px 12px", border: "none", borderTop: "1px solid #f2f4f7", background: "transparent", cursor: "pointer", fontFamily: "inherit" }}>
+                    <div style={{ fontSize: 13.5, fontWeight: 600, color: INK }}>{c.name} <span style={{ fontFamily: MONO, fontSize: 11, color: "#6b7480" }}>{c.country}</span></div>
                     {c.disciplines && <div style={{ fontSize: 11, color: MUTE, marginTop: 1 }}>{c.disciplines}</div>}
                   </button>
                 ))}
-                <div style={{ padding: "7px 12px", fontSize: 11, color: MUTE, borderTop: "1px solid #efeadd" }}>Runs from their World Athletics profile — first lookup can take ~30s.</div>
+                <div style={{ padding: "7px 12px", fontSize: 11, color: MUTE, borderTop: "1px solid #f2f4f7" }}>Runs from their World Athletics profile — first lookup can take ~30s.</div>
               </div>
             )}
           </div>
         </section>
 
-        <footer style={{ marginTop: 28, paddingTop: 14, borderTop: "1px solid #e2ddd0", fontSize: 11, color: "#a39c8c", fontFamily: MONO, lineHeight: 1.6 }}>
+        <footer style={{ marginTop: 28, paddingTop: 14, borderTop: "1px solid #e7eaef", fontSize: 11, color: "#9aa1ac", fontFamily: MONO, lineHeight: 1.6 }}>
           Live data from the World Athletics ranking API · {eventLabel} · edition {rankings ? rankings.rank_date : "…"}. Result scores from the WA 2025 Scoring Tables; placing points from the 2026 World Ranking placing table. Other athletes held at current scores — only the chosen athlete moves.
         </footer>
       </div>
@@ -483,20 +483,20 @@ function ResultPanel({ rv, onToggle }) {
   if (rv.qual) {
     const q = rv.qual;
     if (q.status === "champion") verdict = { mark: "★", title: "QUALIFIES — DEFENDING CHAMPION BYE", detail: "Enters by wildcard, exempt from the country cap, and consumes one place.", bg: "#e7eef6", fg: "#1c3a5e", bar: "#2f4a6b" };
-    else if (q.status === "in") verdict = { mark: "✓", title: "INSIDE THE QUALIFYING ZONE", detail: `Auto-confirmed on score — qualifying position #${q.position} of ${q.quota} (champion bye + 3-per-country cap applied).`, bg: "#dcefe2", fg: "#1b3d2a", bar: "#2f7d52" };
-    else if (q.status === "blocked") verdict = { mark: "≈", title: "ELIGIBLE — BUT FEDERATION'S CALL", detail: `Above the cutoff, yet ${q.countryAhead} higher-ranked ${q.country} athletes already hold the 3 places. The cap is a maximum — selection is ${q.country}'s decision.`, bg: "#faf0d8", fg: "#5c4410", bar: "#b8851f" };
-    else verdict = { mark: "✕", title: "OUTSIDE THE QUALIFYING ZONE", detail: `Below the cutoff by ${q.needPts} pts at this score.`, bg: "#f7e3df", fg: "#5e201a", bar: "#b23a2e" };
+    else if (q.status === "in") verdict = { mark: "✓", title: "INSIDE THE QUALIFYING ZONE", detail: `Auto-confirmed on score — qualifying position #${q.position} of ${q.quota} (champion bye + 3-per-country cap applied).`, bg: "#e3f3e9", fg: "#1b3d2a", bar: "#1f8a4c" };
+    else if (q.status === "blocked") verdict = { mark: "≈", title: "ELIGIBLE — BUT FEDERATION'S CALL", detail: `Above the cutoff, yet ${q.countryAhead} higher-ranked ${q.country} athletes already hold the 3 places. The cap is a maximum — selection is ${q.country}'s decision.`, bg: "#fdebed", fg: "#2f4a6b", bar: "#2f4a6b" };
+    else verdict = { mark: "✕", title: "OUTSIDE THE QUALIFYING ZONE", detail: `Below the cutoff by ${q.needPts} pts at this score.`, bg: "#fbe4e1", fg: "#8a2b22", bar: "#c62b35" };
   }
 
   return (
-    <div style={{ border: "1px solid #d8d2c4", borderRadius: 16, overflow: "hidden", background: PAPER, animation: "wf-rise 0.4s ease both" }}>
+    <div style={{ border: "1px solid #d8dce2", borderRadius: 16, overflow: "hidden", background: BG, animation: "wf-rise 0.4s ease both" }}>
       {/* name bar */}
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, padding: "16px 22px", background: INK, color: CREAM }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, padding: "16px 22px", background: INK, color: SURFACE }}>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <span style={{ fontSize: 19, fontWeight: 800, letterSpacing: "-0.01em" }}>{rv.name}</span>
-          <span style={{ fontFamily: MONO, fontSize: 12, padding: "3px 8px", borderRadius: 5, background: "#2c2820", color: GOLD }}>{rv.country}</span>
+          <span style={{ fontFamily: MONO, fontSize: 12, padding: "3px 8px", borderRadius: 5, background: "#14181f", color: ACCENT }}>{rv.country}</span>
         </div>
-        <span style={{ fontFamily: MONO, fontSize: 11, color: "#a39c8c" }}>{rv.scopeLabel}</span>
+        <span style={{ fontFamily: MONO, fontSize: 11, color: "#9aa1ac" }}>{rv.scopeLabel}</span>
       </div>
 
       {/* verdict */}
@@ -518,20 +518,20 @@ function ResultPanel({ rv, onToggle }) {
 
       {/* rank + score */}
       <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr" }}>
-        <div style={{ padding: "22px 24px", borderRight: "1px solid #ece6d8" }}>
+        <div style={{ padding: "22px 24px", borderRight: "1px solid #d8dce2" }}>
           <div style={{ fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: MUTE, fontWeight: 600 }}>{rv.rankLabel}</div>
           <div style={{ display: "flex", alignItems: "center", gap: 14, marginTop: 8, flexWrap: "wrap" }}>
             {rv.unranked ? (
               <>
-                <span style={{ fontSize: 26, fontWeight: 800, color: "#b3ac9b", letterSpacing: "-0.01em" }}>UNRANKED</span>
-                <span style={{ fontSize: 28, color: GOLD }}>→</span>
+                <span style={{ fontSize: 26, fontWeight: 800, color: "#9aa1ac", letterSpacing: "-0.01em" }}>UNRANKED</span>
+                <span style={{ fontSize: 28, color: ACCENT }}>→</span>
                 <span style={{ fontSize: 74, fontWeight: 900, lineHeight: 0.9, letterSpacing: "-0.04em" }}>#{rv.newRank}</span>
-                <span style={{ marginLeft: 6, alignSelf: "center", fontSize: 12.5, fontWeight: 700, padding: "4px 11px", borderRadius: 20, background: "#e7e2d6", color: "#6b6457", whiteSpace: "nowrap" }}>would slot in (raw)</span>
+                <span style={{ marginLeft: 6, alignSelf: "center", fontSize: 12.5, fontWeight: 700, padding: "4px 11px", borderRadius: 20, background: "#eceef2", color: "#6b7480", whiteSpace: "nowrap" }}>would slot in (raw)</span>
               </>
             ) : (
               <>
-                <span style={{ fontSize: 56, fontWeight: 800, lineHeight: 1, color: "#b3ac9b", letterSpacing: "-0.03em" }}>#{rv.oldRank}</span>
-                <span style={{ fontSize: 28, color: GOLD }}>→</span>
+                <span style={{ fontSize: 56, fontWeight: 800, lineHeight: 1, color: "#9aa1ac", letterSpacing: "-0.03em" }}>#{rv.oldRank}</span>
+                <span style={{ fontSize: 28, color: ACCENT }}>→</span>
                 <span style={{ fontSize: 74, fontWeight: 900, lineHeight: 0.9, letterSpacing: "-0.04em" }}>#{rv.newRank}</span>
                 <span style={{ marginLeft: 6, alignSelf: "center", fontSize: 12.5, fontWeight: 700, padding: "4px 11px", borderRadius: 20, background: rankB.bg, color: rankB.fg, whiteSpace: "nowrap" }}>{rankBadgeText}</span>
               </>
@@ -542,18 +542,18 @@ function ResultPanel({ rv, onToggle }) {
           <div>
             <div style={{ fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: MUTE, fontWeight: 600 }}>Ranking score</div>
             <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginTop: 4, fontFamily: MONO, flexWrap: "wrap" }}>
-              <span style={{ fontSize: 18, color: "#b3ac9b" }}>{Math.round(rv.oldScore)}</span>
-              <span style={{ color: GOLD }}>→</span>
+              <span style={{ fontSize: 18, color: "#9aa1ac" }}>{Math.round(rv.oldScore)}</span>
+              <span style={{ color: ACCENT }}>→</span>
               <span style={{ fontSize: 28, fontWeight: 600 }}>{rv.newScore}</span>
               <span style={{ fontSize: 13, fontWeight: 700, padding: "2px 8px", borderRadius: 20, background: scoreB.bg, color: scoreB.fg }}>{(rv.scoreDelta > 0 ? "+" : "") + rv.scoreDelta}</span>
             </div>
           </div>
-          <div style={{ borderTop: "1px solid #ece6d8", paddingTop: 14 }}>
+          <div style={{ borderTop: "1px solid #d8dce2", paddingTop: 14 }}>
             <div style={{ fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: MUTE, fontWeight: 600 }}>This race scores</div>
-            <div style={{ fontFamily: MONO, fontSize: 13, marginTop: 5, color: "#4a4538" }}>
+            <div style={{ fontFamily: MONO, fontSize: 13, marginTop: 5, color: "#3a414c" }}>
               {rv.hypo.time} · result <b>{rv.hypo.result_score}</b> + place pts <b>{rv.hypo.placing_score}</b> = <b>{rv.hypo.performance_score}</b>
             </div>
-            <div style={{ fontSize: 11.5, color: "#a39c8c", marginTop: 3 }}>
+            <div style={{ fontSize: 11.5, color: "#9aa1ac", marginTop: 3 }}>
               {rv.counts ? "Counts toward the new average — it displaced a weaker result." : `Not strong enough to enter the best-${rv.bestN} — the score is unchanged.`}
             </div>
           </div>
@@ -566,7 +566,7 @@ function ResultPanel({ rv, onToggle }) {
         const bestN = ps.counting_with_new + ps.short_of_full_set;   // size of a full counting set
         const shortNow = Math.max(0, bestN - ps.counting_now);       // results missing right now
         return (
-          <div style={{ padding: "12px 24px", borderTop: "1px solid #ece6d8", background: "#fbf7ec", fontSize: 12.5, color: "#5c4410", lineHeight: 1.55 }}>
+          <div style={{ padding: "12px 24px", borderTop: "1px solid #d8dce2", background: "#eef2f7", fontSize: 12.5, color: "#2f4a6b", lineHeight: 1.55 }}>
             <b>Not currently ranked</b> for this event. A ranking score averages the best {bestN} results from the past {rv.windowMonths} months — {rv.name} has <b>{ps.counting_now}</b>
             {shortNow > 0 ? <>, so <b>{shortNow} more {shortNow === 1 ? "result is" : "results are"} needed</b> for a full set</> : ", a full set"}; this race would make {ps.counting_with_new}.
             {ps.best_rank ? ` Career-best rank #${ps.best_rank}${ps.best_rank_weeks ? ` (${ps.best_rank_weeks} weeks spent at it)` : ""}.` : ""}
@@ -577,8 +577,8 @@ function ResultPanel({ rv, onToggle }) {
       })()}
 
       {/* methodology */}
-      <div style={{ borderTop: "1px solid #ece6d8" }}>
-        <button onClick={onToggle} style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "13px 22px", background: CREAM, border: "none", cursor: "pointer", fontSize: 13, fontWeight: 700, color: INK, fontFamily: "inherit", textAlign: "left" }}>
+      <div style={{ borderTop: "1px solid #d8dce2" }}>
+        <button onClick={onToggle} style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "13px 22px", background: SURFACE, border: "none", cursor: "pointer", fontSize: 13, fontWeight: 700, color: INK, fontFamily: "inherit", textAlign: "left" }}>
           <span>Assumptions &amp; counting performances</span>
           <span style={{ transition: "transform 0.18s", transform: rv.open ? "rotate(180deg)" : "none", fontSize: 16, color: MUTE }}>⌄</span>
         </button>
@@ -587,8 +587,8 @@ function ResultPanel({ rv, onToggle }) {
             <div style={{ fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: MUTE, fontWeight: 600, margin: "14px 0 8px" }}>Assumptions in play</div>
             <ul style={{ margin: "0 0 20px", padding: 0, listStyle: "none", display: "grid", gap: 7 }}>
               {rv.notes.map((n, i) => (
-                <li key={i} style={{ display: "flex", gap: 9, fontSize: 12.5, color: "#4a4538", lineHeight: 1.45 }}>
-                  <span style={{ color: GOLD, fontWeight: 700, flex: "none" }}>—</span><span>{n}</span>
+                <li key={i} style={{ display: "flex", gap: 9, fontSize: 12.5, color: "#3a414c", lineHeight: 1.45 }}>
+                  <span style={{ color: ACCENT, fontWeight: 700, flex: "none" }}>—</span><span>{n}</span>
                 </li>
               ))}
             </ul>
@@ -605,10 +605,10 @@ function ResultPanel({ rv, onToggle }) {
                 <tbody>
                   {rv.display.map((p, i) => {
                     let tag = "", tagBg = "transparent", rowBg = "transparent", strike = "none", op = 1;
-                    if (p.state === "new") { tag = "NEW"; tagBg = "#2f7d52"; rowBg = "#eaf4ee"; }
-                    else if (p.state === "dropped") { tag = "OUT"; tagBg = "#b23a2e"; strike = "line-through"; op = 0.55; }
+                    if (p.state === "new") { tag = "NEW"; tagBg = "#1f8a4c"; rowBg = "#e3f3e9"; }
+                    else if (p.state === "dropped") { tag = "OUT"; tagBg = "#c62b35"; strike = "line-through"; op = 0.55; }
                     return (
-                      <tr key={i} style={{ borderTop: "1px solid #efeadd", background: rowBg, textDecoration: strike, opacity: op }}>
+                      <tr key={i} style={{ borderTop: "1px solid #f2f4f7", background: rowBg, textDecoration: strike, opacity: op }}>
                         <td style={{ padding: "7px 8px" }}>
                           {tag && <span style={{ display: "inline-block", fontSize: 9, fontWeight: 700, padding: "1px 5px", borderRadius: 4, marginRight: 7, background: tagBg, color: "#fff", verticalAlign: "middle", fontFamily: MONO }}>{tag}</span>}
                           {shortMeet(p.competition)}
@@ -616,8 +616,8 @@ function ResultPanel({ rv, onToggle }) {
                         <td style={{ padding: "7px 8px", fontFamily: MONO }}>{p.category}</td>
                         <td style={{ padding: "7px 8px", textAlign: "right", fontFamily: MONO }}>{p.place}</td>
                         <td style={{ padding: "7px 8px", textAlign: "right", fontFamily: MONO }}>{p.mark}</td>
-                        <td style={{ padding: "7px 8px", textAlign: "right", fontFamily: MONO, color: "#6b6457" }}>{p.result_score}</td>
-                        <td style={{ padding: "7px 8px", textAlign: "right", fontFamily: MONO, color: "#6b6457" }}>{p.placing_score}</td>
+                        <td style={{ padding: "7px 8px", textAlign: "right", fontFamily: MONO, color: "#6b7480" }}>{p.result_score}</td>
+                        <td style={{ padding: "7px 8px", textAlign: "right", fontFamily: MONO, color: "#6b7480" }}>{p.placing_score}</td>
                         <td style={{ padding: "7px 8px", textAlign: "right", fontFamily: MONO, fontWeight: 600 }}>{p.performance_score}</td>
                       </tr>
                     );
