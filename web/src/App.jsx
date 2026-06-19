@@ -1,139 +1,480 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { getMeta, getRankings, runWhatIf } from "./api.js";
 
-// Minimal, functional baseline — proves the API wiring. Restyle/extend in Claude Design.
-const box = { border: "1px solid #ddd", borderRadius: 8, padding: 12, margin: "8px 0" };
+// Ranking What-If Studio — the Claude Design look, driven by the live FastAPI backend.
+// All ranking/qualification numbers come from /api/rankings and /api/whatif (real data, all events).
+
+const INK = "#1b1813", CREAM = "#f4f1ea", PAPER = "#fbfaf6", GOLD = "#c9b78f", MUTE = "#8a8475";
+const MONO = "'IBM Plex Mono', monospace";
+
+const CAT_LABELS = {
+  OW: "OW — Olympics / World Champs", DF: "DF — Diamond League Final",
+  GW: "GW — DL / World Indoor", GL: "GL — Area Senior Champs",
+  A: "A — top international", B: "B — international", C: "C — national",
+  D: "D", E: "E", F: "F — local",
+};
+
+// ---------- small helpers ----------
+const norm = (s) => (s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+const shortMeet = (s) => {
+  if (!s || s === "(hypothetical)") return "Hypothetical";
+  const head = s.split(",")[0].trim();
+  return head.length > 42 ? head.slice(0, 40) + "…" : head;
+};
+function parseTime(t) {
+  const m = String(t).match(/(\d):(\d{2})(?:\.(\d{1,2}))?/);
+  if (!m) return null;
+  return +m[1] * 60 + +m[2] + (m[3] ? +("0." + m[3]) : 0);
+}
+function fmtTime(sec) {
+  if (sec == null) return "—";
+  const m = Math.floor(sec / 60), s = sec - m * 60;
+  return m + ":" + s.toFixed(2).padStart(5, "0");
+}
+
+// Indicative qualifying zone for the table: champion bye consumes one place, then fill
+// quota-1 by descending score with a 3-per-country cap. Mirrors the design's shading.
+function qualifyingZone(rankings) {
+  const empty = { qualSet: new Set(), lastQualName: null, cutoff: null };
+  if (!rankings) return empty;
+  const quota = rankings.quota || 30, maxPer = 3, places = quota - 1;
+  const champ = rankings.defending_champion?.name;
+  const sorted = [...rankings.athletes].sort((a, b) => b.ranking_score - a.ranking_score);
+  const cc = {}; let assigned = 0, last = null, cutoff = null;
+  const qualSet = new Set();
+  for (const a of sorted) {
+    if (a.name === champ) continue;             // champion enters by bye, not a ranking place
+    if (assigned >= places) break;
+    if ((cc[a.country] || 0) >= maxPer) continue;
+    cc[a.country] = (cc[a.country] || 0) + 1;
+    assigned++; qualSet.add(a.name); last = a.name; cutoff = a.ranking_score;
+  }
+  return { qualSet, lastQualName: last, cutoff };
+}
+
+// Map a /api/whatif response into the result-panel view model.
+function buildResultView(r, isRoad, qualifyOn, methodOpen) {
+  const rowKey = (p) => `${p.date_raw || p.date}|${p.mark}|${p.performance_score}`;
+  const newKeys = new Set(r.new_counting.filter((p) => !p.hypothetical).map(rowKey));
+  const display = r.new_counting.map((p) => ({ ...p, state: p.hypothetical ? "new" : "kept" }));
+  for (const p of r.old_counting || []) if (!newKeys.has(rowKey(p))) display.push({ ...p, state: "dropped" });
+
+  const q = (isRoad && qualifyOn && r.qualification) ? r.qualification : null;
+  let qual = null;
+  if (q) {
+    const inField = (q.field_new || []).some((e) => e.name === r.athlete && e.reason === "ranking");
+    const blocked = (q.blocked_new || []).some((e) => e.name === r.athlete);
+    const status = q.is_defending_champion ? "champion" : inField ? "in" : blocked ? "blocked" : "below";
+    qual = {
+      status, cutoff: q.cutoff_score, position: q.qual_position_new, quota: q.quota,
+      country: r.country, countryAhead: q.country_ahead || 0,
+      needPts: Math.max(0, Math.round((q.cutoff_score || 0) - r.new_score)),
+    };
+  }
+
+  const sd = r.score_delta || 0, rd = r.rank_delta || 0;
+  return {
+    name: r.athlete, country: r.country,
+    scopeLabel: (isRoad ? "Road to Birmingham" : "World Ranking") + " · " + r.rank_date,
+    rankLabel: isRoad ? "European rank" : "World rank",
+    oldRank: r.old_rank, newRank: r.new_rank, rankDelta: rd,
+    oldScore: r.official_ranking_score, newScore: r.new_score, scoreDelta: sd,
+    hypo: r.hypothetical_performance,
+    counts: r.new_perf_counts,
+    notes: (r.assumptions && r.assumptions.notes) || [],
+    qual, display, open: methodOpen,
+  };
+}
+
+const badge = (delta, kind) => {
+  // kind: 'rank' (▲ up = better) or 'score'
+  const up = delta > 0, down = delta < 0;
+  const bg = up ? "#dcefe2" : down ? "#f7e3df" : "#e7e2d6";
+  const fg = up ? "#1f6b43" : down ? "#9c352a" : "#6b6457";
+  return { bg, fg };
+};
 
 export default function App() {
   const [meta, setMeta] = useState(null);
   const [championship, setChampionship] = useState("road_to_birmingham");
   const [event, setEvent] = useState("1500m_men");
   const [rankings, setRankings] = useState(null);
-  const [form, setForm] = useState({ athlete: "", time: "3:30.00", category: "GW", place: 2,
-                                      qualify: true, unranked: false, profile: "" });
+  const [rankErr, setRankErr] = useState("");
+  const [query, setQuery] = useState("");
+  const [form, setForm] = useState({ athlete: "", time: "3:30.00", place: 1, category: "GW", qualify: true });
+  const [selected, setSelected] = useState(null);
   const [result, setResult] = useState(null);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const [methodOpen, setMethodOpen] = useState(false);
 
-  useEffect(() => { getMeta().then(setMeta).catch((e) => setError(e.message)); }, []);
+  const isRoad = championship === "road_to_birmingham";
+
+  useEffect(() => { getMeta().then(setMeta).catch((e) => setRankErr(e.message)); }, []);
   useEffect(() => {
-    setRankings(null); setError(null);
-    getRankings(championship, event).then(setRankings).catch((e) => setError(e.message));
+    setRankings(null); setResult(null); setSelected(null); setError(""); setRankErr("");
+    getRankings(championship, event).then(setRankings).catch((e) => setRankErr(e.message));
   }, [championship, event]);
 
-  const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
+  const zone = useMemo(() => (isRoad ? qualifyingZone(rankings) : qualifyingZone(null)), [rankings, isRoad]);
+  const list = rankings ? rankings.athletes : [];
+  const selCountry = selected ? (list.find((a) => a.name === selected) || {}).country : null;
 
-  async function submit(e) {
-    e.preventDefault();
-    setBusy(true); setError(null); setResult(null);
+  const eventLabel = meta ? (meta.events.find((e) => e.key === event) || {}).label || event : event;
+  const categories = meta ? meta.categories : ["GW"];
+
+  async function run(overrideForm) {
+    const f = overrideForm || form;
+    const name = (f.athlete || "").trim();
+    if (!name) { setError("Pick an athlete first."); setResult(null); return; }
+    if (!parseTime(f.time)) { setError("Enter a time like 3:29.00."); setResult(null); return; }
+    setBusy(true); setError("");
     try {
-      setResult(await runWhatIf({
-        event, championship, athlete: form.athlete, time: form.time,
-        category: form.category, place: Number(form.place), qualify: form.qualify,
-        profile: form.unranked ? form.profile : null,
-      }));
-    } catch (e) { setError(e.message); } finally { setBusy(false); }
+      const r = await runWhatIf({
+        event, championship, athlete: name, time: f.time,
+        category: f.category, place: Math.max(1, parseInt(f.place) || 1),
+        qualify: isRoad && f.qualify,
+      });
+      setResult(r); setSelected(r.athlete);
+    } catch (e) {
+      setError(e.message); setResult(null);
+    } finally { setBusy(false); }
   }
 
-  if (!meta) return <p style={{ padding: 20 }}>Loading… {error}</p>;
+  // Lightweight natural-language parse → fills the console, then runs (client-side, like the design).
+  function interpret() {
+    if (!query.trim() || !list.length) return;
+    const nq = norm(query);
+    const f = { ...form };
+    let best = null;
+    for (const a of list) {
+      const surn = norm(a.name.split(" ").filter((w) => w === w.toUpperCase()).join(" "));
+      if (surn && nq.includes(surn)) { best = a.name; break; }
+      const last = norm(a.name.split(" ").pop());
+      if (last.length >= 4 && nq.includes(last)) best = a.name;
+    }
+    if (best) f.athlete = best;
+    const t = parseTime(query); if (t) f.time = fmtTime(t);
+    if (/\bwin(s|ning)?\b|\b1st\b|\bfirst\b/.test(nq)) f.place = 1;
+    else { const pm = nq.match(/(\d+)(?:st|nd|rd|th)\b|\bplace\s+(\d+)|\bfinish(?:es|ing)?\s+(\d+)/); if (pm) f.place = +(pm[1] || pm[2] || pm[3]); }
+    if (/olympic|world champ|worlds/.test(nq)) f.category = "OW";
+    else if (/dl final|diamond league final|\bfinal\b/.test(nq)) f.category = "DF";
+    else if (/european champ|euro champ/.test(nq)) f.category = "GL";
+    else if (/diamond|grand prix|continental|prefontaine|weltklasse/.test(nq)) f.category = "GW";
+    setForm(f); setSelected(f.athlete || null); run(f);
+  }
+
+  if (!meta) return <p style={{ padding: 24, fontFamily: "'Archivo', system-ui, sans-serif", color: INK }}>Loading… {rankErr}</p>;
+
+  const tabBase = { padding: "9px 16px", border: "none", borderRadius: 7, fontSize: 13.5, fontWeight: 700, cursor: "pointer" };
+  const tab = (active) => ({ ...tabBase, background: active ? INK : "transparent", color: active ? CREAM : "#6b6457" });
+  const labelStyle = { display: "block", fontSize: 11, letterSpacing: "0.06em", textTransform: "uppercase", color: MUTE, fontWeight: 600, marginBottom: 5 };
+  const inputStyle = { width: "100%", padding: "11px 12px", border: "1px solid #cfc8b8", borderRadius: 9, fontSize: 14, background: "#fff" };
+
+  const assumptionLine = isRoad
+    ? "Best 5 of 12 mo · floored mean · Quota 30 (whole field) · champion takes a bye · max 3 per country · Europe only"
+    : "Best 5 of 12 mo · floored mean · all nations · no quota or qualification caps";
+
+  const examples = [
+    "What if Wightman wins a Diamond League final in 3:27.8?",
+    "What if the 2nd-ranked finishes 2nd in 3:31.0?",
+    "What if the leader wins a Diamond League in 3:30.0?",
+  ];
 
   return (
-    <div style={{ fontFamily: "system-ui", maxWidth: 1000, margin: "0 auto", padding: 16 }}>
-      <h1>World Athletics ranking what-if</h1>
+    <div style={{ fontFamily: "'Archivo', system-ui, sans-serif", color: INK, background: CREAM, minHeight: "100vh" }}>
+      <div style={{ maxWidth: 1320, margin: "0 auto", padding: "0 28px 64px" }}>
 
-      <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-        <select value={championship} onChange={(e) => setChampionship(e.target.value)}>
-          {meta.championships.map((c) => <option key={c.key} value={c.key}>{c.label}</option>)}
-        </select>
-        <select value={event} onChange={(e) => setEvent(e.target.value)}>
-          {meta.events.map((ev) => <option key={ev.key} value={ev.key}>{ev.label}</option>)}
-        </select>
-      </div>
+        {/* HEADER */}
+        <header style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 24, padding: "26px 0 18px", borderBottom: `2px solid ${INK}` }}>
+          <div>
+            <div style={{ fontSize: 11, letterSpacing: "0.22em", fontWeight: 600, color: MUTE, textTransform: "uppercase" }}>World Athletics · Middle Distance</div>
+            <h1 style={{ margin: "4px 0 0", fontSize: 30, fontWeight: 800, letterSpacing: "-0.02em" }}>Ranking What-If Studio</h1>
+          </div>
+          <div style={{ textAlign: "right", fontFamily: MONO, fontSize: 11, color: MUTE, lineHeight: 1.5 }}>
+            <div>RANKINGS UPDATED</div>
+            <div style={{ color: INK, fontWeight: 600, fontSize: 13 }}>{rankings ? rankings.rank_date : "…"}</div>
+          </div>
+        </header>
 
-      {rankings && (
-        <div style={box}>
-          <b>Assumptions:</b> best {meta.events.find((e) => e.key === event)?.best_n} ·
-          quota {rankings.quota ?? "—"} ·
-          champion {rankings.defending_champion?.name ?? "—"} ·
-          last update {rankings.rank_date}
-        </div>
-      )}
+        {/* TOGGLE + EVENT + ASSUMPTIONS */}
+        <section style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 14, padding: "18px 0" }}>
+          <div style={{ display: "inline-flex", padding: 4, background: "#e7e2d6", borderRadius: 10, gap: 4 }}>
+            <button onClick={() => setChampionship("world")} style={tab(!isRoad)}>World Ranking</button>
+            <button onClick={() => setChampionship("road_to_birmingham")} style={tab(isRoad)}>Road to Birmingham</button>
+          </div>
+          <select value={event} onChange={(e) => setEvent(e.target.value)} style={{ padding: "10px 14px", border: "1px solid #cfc8b8", borderRadius: 9, background: "#fff", fontSize: 14, fontWeight: 600, color: INK }}>
+            {meta.events.map((ev) => <option key={ev.key} value={ev.key}>{ev.label}</option>)}
+          </select>
+          <div style={{ flex: 1 }} />
+          <div style={{ fontFamily: MONO, fontSize: 11.5, color: "#6b6457", textAlign: "right", maxWidth: 460, lineHeight: 1.5 }}>{assumptionLine}</div>
+        </section>
 
-      <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
-        {/* Rankings table */}
-        <div style={{ ...box, flex: "1 1 380px", maxHeight: 420, overflow: "auto" }}>
-          {!rankings ? <p>Loading rankings… {error}</p> : (
-            <table style={{ width: "100%", fontSize: 13, borderCollapse: "collapse" }}>
-              <thead><tr><th>#</th><th>Athlete</th><th>Nat</th><th>Score</th></tr></thead>
-              <tbody>
-                {rankings.athletes.map((a) => (
-                  <tr key={a.competitor_id} style={{ cursor: "pointer" }}
-                      onClick={() => setForm({ ...form, athlete: a.name, unranked: false })}>
-                    <td>{a.rank}</td><td>{a.name}</td><td>{a.country}</td><td>{a.ranking_score}</td>
+        {/* ASK BAR */}
+        <section style={{ background: INK, borderRadius: 14, padding: "20px 22px", color: CREAM, marginBottom: 22 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 12, letterSpacing: "0.14em", fontWeight: 600, color: GOLD, textTransform: "uppercase" }}>
+            <span style={{ display: "inline-block", width: 7, height: 7, borderRadius: "50%", background: GOLD }} />
+            Ask a what-if
+          </div>
+          <div style={{ display: "flex", gap: 10, marginTop: 12, flexWrap: "wrap" }}>
+            <input value={query} onChange={(e) => setQuery(e.target.value)} onKeyDown={(e) => e.key === "Enter" && interpret()}
+              placeholder="e.g. What if Wightman wins in Birmingham in 3:29.0?"
+              style={{ flex: 1, minWidth: 280, padding: "14px 16px", border: "none", borderRadius: 10, background: "#2c2820", color: CREAM, fontSize: 16, outline: "none" }} />
+            <button onClick={interpret} style={{ padding: "14px 26px", border: "none", borderRadius: 10, background: GOLD, color: INK, fontSize: 15, fontWeight: 700, cursor: "pointer" }}>Interpret →</button>
+          </div>
+          <div style={{ display: "flex", gap: 8, marginTop: 12, flexWrap: "wrap" }}>
+            {examples.map((ex) => (
+              <button key={ex} onClick={() => { setQuery(ex); setTimeout(interpret, 0); }}
+                style={{ padding: "7px 12px", border: "1px solid #454034", borderRadius: 20, background: "transparent", color: "#cfc6b4", fontSize: 12.5, cursor: "pointer", fontFamily: MONO }}>
+                {ex.length > 46 ? ex.slice(0, 44) + "…" : ex}
+              </button>
+            ))}
+          </div>
+        </section>
+
+        {/* RESULT PANEL */}
+        <section style={{ marginBottom: 24 }}>
+          {result
+            ? <ResultPanel rv={buildResultView(result, isRoad, form.qualify, methodOpen)} onToggle={() => setMethodOpen((v) => !v)} />
+            : (
+              <div style={{ border: "1.5px dashed #cfc8b8", borderRadius: 14, padding: "40px 28px", textAlign: "center", color: MUTE }}>
+                <div style={{ fontSize: 17, fontWeight: 600, color: "#6b6457" }}>{busy ? "Running…" : "Run a what-if to see the impact"}</div>
+                <div style={{ fontSize: 13.5, marginTop: 6 }}>Pick an athlete from the table or type a question above. The rank change shows here.</div>
+              </div>
+            )}
+        </section>
+
+        {/* MAIN GRID */}
+        <section style={{ display: "grid", gridTemplateColumns: "1.55fr 1fr", gap: 22, alignItems: "start" }}>
+
+          {/* RANKINGS TABLE */}
+          <div style={{ background: PAPER, border: "1px solid #e2ddd0", borderRadius: 14, overflow: "hidden" }}>
+            <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", padding: "16px 18px 12px" }}>
+              <h2 style={{ margin: 0, fontSize: 16, fontWeight: 700 }}>{(isRoad ? "Road to Birmingham" : "World Ranking") + " — " + eventLabel}</h2>
+              <span style={{ fontFamily: MONO, fontSize: 11, color: MUTE }}>{rankings ? `${list.length} athletes` : "loading…"}</span>
+            </div>
+            <div style={{ maxHeight: 560, overflow: "auto" }}>
+              {rankErr && <div style={{ padding: 18, color: "#9c352a", fontSize: 13 }}>{rankErr}</div>}
+              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13.5 }}>
+                <thead>
+                  <tr style={{ position: "sticky", top: 0, background: "#f0ece2", zIndex: 1 }}>
+                    {["#", "Athlete", "Nat", "Score"].map((h, i) => (
+                      <th key={h} style={{ textAlign: i === 1 || i === 2 ? "left" : "right", padding: i === 0 ? "9px 10px 9px 18px" : i === 3 ? "9px 18px 9px 10px" : "9px 10px", fontSize: 10.5, letterSpacing: "0.08em", color: MUTE, fontWeight: 600, textTransform: "uppercase" }}>{h}</th>
+                    ))}
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
-        </div>
+                </thead>
+                <tbody>
+                  {list.map((a) => {
+                    const isSel = selected === a.name;
+                    const inZone = isRoad && zone.qualSet.has(a.name);
+                    const compat = selCountry && a.country === selCountry && !isSel;
+                    const bg = isSel ? INK : compat ? "#f3ead2" : inZone ? "rgba(47,125,82,0.05)" : PAPER;
+                    const fg = isSel ? CREAM : INK;
+                    return (
+                      <React.Fragment key={a.competitor_id || a.name}>
+                        <tr onClick={() => { setSelected(a.name); setForm((s) => ({ ...s, athlete: a.name })); }}
+                          style={{ cursor: "pointer", background: bg, color: fg, borderBottom: "1px solid #efeadd", transition: "background 0.12s" }}>
+                          <td style={{ textAlign: "right", padding: "8px 10px 8px 18px", fontFamily: MONO, fontWeight: 600, color: isSel ? GOLD : inZone ? "#2f7d52" : "#a39c8c" }}>{a.rank}</td>
+                          <td style={{ padding: "8px 10px", fontWeight: 600 }}>
+                            <span style={{ display: "inline-block", width: 6, height: 6, borderRadius: "50%", marginRight: 8, verticalAlign: "middle", background: isSel ? GOLD : compat ? "#b8851f" : "transparent" }} />
+                            {a.name}
+                          </td>
+                          <td style={{ padding: "8px 10px", fontFamily: MONO, fontSize: 12, color: "#6b6457" }}>{a.country}</td>
+                          <td style={{ padding: "8px 18px 8px 10px", textAlign: "right", fontFamily: MONO, fontWeight: 600 }}>{Math.round(a.ranking_score)}</td>
+                        </tr>
+                        {isRoad && zone.lastQualName === a.name && (
+                          <tr><td colSpan={4} style={{ padding: 0 }}>
+                            <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "3px 18px", background: INK, color: GOLD, fontFamily: MONO, fontSize: 10.5, letterSpacing: "0.08em" }}>
+                              <span style={{ flex: 1, height: 1, background: "#454034" }} />
+                              {`QUALIFYING CUTOFF · ${rankings.quota} places (1 to champion) · ≈ ${zone.cutoff != null ? Math.round(zone.cutoff) : "—"} pts`}
+                              <span style={{ flex: 1, height: 1, background: "#454034" }} />
+                            </div>
+                          </td></tr>
+                        )}
+                      </React.Fragment>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
 
-        {/* What-if form */}
-        <form style={{ ...box, flex: "1 1 320px" }} onSubmit={submit}>
-          <label><input type="checkbox" checked={form.unranked}
-            onChange={(e) => setForm({ ...form, unranked: e.target.checked })} /> athlete not ranked</label>
-          {form.unranked
-            ? <p><input placeholder="WA profile slug e.g. jake-heyward-14597392"
-                value={form.profile} onChange={set("profile")} style={{ width: "100%" }} /></p>
-            : <p><input placeholder="athlete name" value={form.athlete} onChange={set("athlete")}
-                style={{ width: "100%" }} /></p>}
-          <p>Time <input value={form.time} onChange={set("time")} /> </p>
-          <p>Place <input type="number" value={form.place} onChange={set("place")} style={{ width: 60 }} />
-            {"  "}Category <select value={form.category} onChange={set("category")}>
-              {meta.categories.map((c) => <option key={c}>{c}</option>)}
-            </select></p>
-          <label><input type="checkbox" checked={form.qualify}
-            onChange={(e) => setForm({ ...form, qualify: e.target.checked })} /> resolve qualification</label>
-          <p><button disabled={busy}>{busy ? "Running…" : "Run what-if"}</button></p>
-        </form>
+          {/* WHAT-IF CONSOLE */}
+          <div style={{ background: PAPER, border: "1px solid #e2ddd0", borderRadius: 14, padding: "18px 18px 20px", position: "sticky", top: 16 }}>
+            <h2 style={{ margin: "0 0 4px", fontSize: 16, fontWeight: 700 }}>What-if console</h2>
+            <p style={{ margin: "0 0 14px", fontSize: 12.5, color: MUTE }}>Fine-tune the scenario, then run it.</p>
+
+            <label style={labelStyle}>Athlete</label>
+            <input value={form.athlete} onChange={(e) => { setForm({ ...form, athlete: e.target.value }); setSelected(e.target.value); }}
+              list="wf-athletes" placeholder="Type or click a row" style={{ ...inputStyle, marginBottom: 14 }} />
+            <datalist id="wf-athletes">{list.map((a) => <option key={a.competitor_id || a.name} value={a.name} />)}</datalist>
+
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 14 }}>
+              <div>
+                <label style={labelStyle}>Time</label>
+                <input value={form.time} onChange={(e) => setForm({ ...form, time: e.target.value })} placeholder="3:29.00" style={{ ...inputStyle, fontFamily: MONO }} />
+              </div>
+              <div>
+                <label style={labelStyle}>Finish place</label>
+                <input value={form.place} onChange={(e) => setForm({ ...form, place: e.target.value })} type="number" min="1" style={{ ...inputStyle, fontFamily: MONO }} />
+              </div>
+            </div>
+
+            <label style={labelStyle}>Meet category</label>
+            <select value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} style={{ ...inputStyle, marginBottom: 14 }}>
+              {categories.map((c) => <option key={c} value={c}>{CAT_LABELS[c] || c}</option>)}
+            </select>
+
+            {isRoad && (
+              <label onClick={() => setForm((s) => ({ ...s, qualify: !s.qualify }))} style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer", padding: "10px 0 0", userSelect: "none" }}>
+                <span style={{ width: 38, height: 22, borderRadius: 11, background: form.qualify ? "#2f7d52" : "#cfc8b8", position: "relative", flex: "none", boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.06)", transition: "background 0.15s", backgroundImage: form.qualify ? "radial-gradient(circle at 27px 11px, #fff 7px, transparent 7px)" : "radial-gradient(circle at 11px 11px, #fff 7px, transparent 7px)" }} />
+                <span style={{ fontSize: 13.5, fontWeight: 600 }}>Resolve Birmingham qualification</span>
+              </label>
+            )}
+
+            <button onClick={() => run()} disabled={busy} style={{ width: "100%", marginTop: 16, padding: 14, border: "none", borderRadius: 10, background: INK, color: CREAM, fontSize: 15, fontWeight: 700, cursor: busy ? "default" : "pointer", opacity: busy ? 0.7 : 1 }}>
+              {busy ? "Running…" : "Run what-if"}
+            </button>
+            {error && <div style={{ marginTop: 12, padding: "10px 12px", background: "#f7e9e6", border: "1px solid #e3b8b0", borderRadius: 8, color: "#9c352a", fontSize: 12.5 }}>{error}</div>}
+          </div>
+        </section>
+
+        <footer style={{ marginTop: 28, paddingTop: 14, borderTop: "1px solid #e2ddd0", fontSize: 11, color: "#a39c8c", fontFamily: MONO, lineHeight: 1.6 }}>
+          Live data from the World Athletics ranking API · {eventLabel} · edition {rankings ? rankings.rank_date : "…"}. Scores from the WA 2025 scoring &amp; placing tables; other athletes held at current scores, only the chosen athlete moves.
+        </footer>
       </div>
-
-      {error && <div style={{ ...box, color: "#b00" }}>{error}</div>}
-      {result && <Result r={result} />}
     </div>
   );
 }
 
-function Result({ r }) {
-  const q = r.qualification, ps = r.profile_summary;
+function ResultPanel({ rv, onToggle }) {
+  const rankB = badge(rv.rankDelta, "rank");
+  const scoreB = badge(rv.scoreDelta, "score");
+  const rankBadgeText = rv.rankDelta > 0 ? `▲ ${Math.abs(rv.rankDelta)} place${Math.abs(rv.rankDelta) === 1 ? "" : "s"}`
+    : rv.rankDelta < 0 ? `▼ ${Math.abs(rv.rankDelta)} place${Math.abs(rv.rankDelta) === 1 ? "" : "s"}` : "no change";
+
+  let verdict = null;
+  if (rv.qual) {
+    const q = rv.qual;
+    if (q.status === "champion") verdict = { mark: "★", title: "QUALIFIES — DEFENDING CHAMPION BYE", detail: "Enters by wildcard, exempt from the country cap, and consumes one place.", bg: "#e7eef6", fg: "#1c3a5e", bar: "#2f4a6b" };
+    else if (q.status === "in") verdict = { mark: "✓", title: "INSIDE THE QUALIFYING ZONE", detail: `Auto-confirmed on score — qualifying position #${q.position} of ${q.quota} (champion bye + 3-per-country cap applied).`, bg: "#dcefe2", fg: "#1b3d2a", bar: "#2f7d52" };
+    else if (q.status === "blocked") verdict = { mark: "≈", title: "ELIGIBLE — BUT FEDERATION'S CALL", detail: `Above the cutoff, yet ${q.countryAhead} higher-ranked ${q.country} athletes already hold the 3 places. The cap is a maximum — selection is ${q.country}'s decision.`, bg: "#faf0d8", fg: "#5c4410", bar: "#b8851f" };
+    else verdict = { mark: "✕", title: "OUTSIDE THE QUALIFYING ZONE", detail: `Below the cutoff by ${q.needPts} pts at this score.`, bg: "#f7e3df", fg: "#5e201a", bar: "#b23a2e" };
+  }
+
   return (
-    <div style={box}>
-      <h2>{r.athlete} ({r.country})</h2>
-      <p style={{ fontSize: 22 }}>
-        {ps ? <>UNRANKED → would average <b>{r.new_score}</b>, rank ~#{r.new_rank} (raw)</>
-            : <>{r.official_ranking_score} → <b>{r.new_score}</b> ({r.score_delta >= 0 ? "+" : ""}{r.score_delta})
-                {"  ·  "}rank {r.old_rank} → {r.new_rank}</>}
-      </p>
-      <p>{r.hypothetical_performance.time}: result {r.hypothetical_performance.result_score} +
-        placing {r.hypothetical_performance.placing_score} ={" "}
-        <b>{r.hypothetical_performance.performance_score}</b></p>
+    <div style={{ border: "1px solid #d8d2c4", borderRadius: 16, overflow: "hidden", background: PAPER, animation: "wf-rise 0.4s ease both" }}>
+      {/* name bar */}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, padding: "16px 22px", background: INK, color: CREAM }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <span style={{ fontSize: 19, fontWeight: 800, letterSpacing: "-0.01em" }}>{rv.name}</span>
+          <span style={{ fontFamily: MONO, fontSize: 12, padding: "3px 8px", borderRadius: 5, background: "#2c2820", color: GOLD }}>{rv.country}</span>
+        </div>
+        <span style={{ fontFamily: MONO, fontSize: 11, color: "#a39c8c" }}>{rv.scopeLabel}</span>
+      </div>
 
-      {q && (
-        <p>Cutoff {q.cutoff_score} —{" "}
-          {q.is_defending_champion ? "qualifies by bye (defending champion)"
-            : !q.above_cutoff ? "below the cutoff"
-            : q.country_ahead > 0
-              ? `above the cutoff, but ${q.country_ahead} higher-ranked compatriots for ${q.max_per_country} places — the federation's call`
-              : `above the cutoff — auto-confirmed (#${q.qual_position_new})`}</p>
+      {/* verdict */}
+      {verdict && (
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, padding: "14px 22px", background: verdict.bg, color: verdict.fg, borderLeft: `5px solid ${verdict.bar}` }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <span style={{ fontSize: 24, lineHeight: 1 }}>{verdict.mark}</span>
+            <div>
+              <div style={{ fontSize: 15, fontWeight: 800, letterSpacing: "0.02em" }}>{verdict.title}</div>
+              <div style={{ fontSize: 12.5, opacity: 0.9, marginTop: 2 }}>{verdict.detail}</div>
+            </div>
+          </div>
+          <div style={{ fontFamily: MONO, fontSize: 11, textAlign: "right", flex: "none" }}>
+            <div style={{ opacity: 0.7 }}>CUTOFF</div>
+            <div style={{ fontSize: 20, fontWeight: 700 }}>{rv.qual.cutoff != null ? Math.round(rv.qual.cutoff) : "—"}</div>
+          </div>
+        </div>
       )}
-      {ps && <p>Currently unranked (best ever #{ps.best_rank}); {ps.counting_with_new} counting
-        result(s), {ps.short_of_full_set} short of a full set.
-        {ps.required_time && ` To reach the ${ps.target_label} (${ps.target_score}) needs ~${ps.required_time}.`}</p>}
 
-      <h4>Counting performances</h4>
-      <ul>{r.new_counting.map((p, i) => (
-        <li key={i} style={{ fontWeight: p.hypothetical ? "bold" : "normal" }}>
-          {p.performance_score} — {p.mark} {p.category} P{p.place} {p.date}{p.hypothetical ? " ← new" : ""}
-        </li>))}</ul>
+      {/* rank + score */}
+      <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr" }}>
+        <div style={{ padding: "22px 24px", borderRight: "1px solid #ece6d8" }}>
+          <div style={{ fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: MUTE, fontWeight: 600 }}>{rv.rankLabel}</div>
+          <div style={{ display: "flex", alignItems: "center", gap: 14, marginTop: 8, flexWrap: "wrap" }}>
+            <span style={{ fontSize: 56, fontWeight: 800, lineHeight: 1, color: "#b3ac9b", letterSpacing: "-0.03em" }}>#{rv.oldRank}</span>
+            <span style={{ fontSize: 28, color: GOLD }}>→</span>
+            <span style={{ fontSize: 74, fontWeight: 900, lineHeight: 0.9, letterSpacing: "-0.04em" }}>#{rv.newRank}</span>
+            <span style={{ marginLeft: 6, alignSelf: "center", fontSize: 12.5, fontWeight: 700, padding: "4px 11px", borderRadius: 20, background: rankB.bg, color: rankB.fg, whiteSpace: "nowrap" }}>{rankBadgeText}</span>
+          </div>
+        </div>
+        <div style={{ padding: "22px 24px", display: "flex", flexDirection: "column", justifyContent: "center", gap: 16 }}>
+          <div>
+            <div style={{ fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: MUTE, fontWeight: 600 }}>Ranking score</div>
+            <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginTop: 4, fontFamily: MONO, flexWrap: "wrap" }}>
+              <span style={{ fontSize: 18, color: "#b3ac9b" }}>{Math.round(rv.oldScore)}</span>
+              <span style={{ color: GOLD }}>→</span>
+              <span style={{ fontSize: 28, fontWeight: 600 }}>{rv.newScore}</span>
+              <span style={{ fontSize: 13, fontWeight: 700, padding: "2px 8px", borderRadius: 20, background: scoreB.bg, color: scoreB.fg }}>{(rv.scoreDelta > 0 ? "+" : "") + rv.scoreDelta}</span>
+            </div>
+          </div>
+          <div style={{ borderTop: "1px solid #ece6d8", paddingTop: 14 }}>
+            <div style={{ fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: MUTE, fontWeight: 600 }}>This race scores</div>
+            <div style={{ fontFamily: MONO, fontSize: 13, marginTop: 5, color: "#4a4538" }}>
+              {rv.hypo.time} · result <b>{rv.hypo.result_score}</b> + place pts <b>{rv.hypo.placing_score}</b> = <b>{rv.hypo.performance_score}</b>
+            </div>
+            <div style={{ fontSize: 11.5, color: "#a39c8c", marginTop: 3 }}>
+              {rv.counts ? "Counts toward the new average — it displaced a weaker result." : "Not strong enough to enter the best-5 — the score is unchanged."}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* methodology */}
+      <div style={{ borderTop: "1px solid #ece6d8" }}>
+        <button onClick={onToggle} style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "13px 22px", background: CREAM, border: "none", cursor: "pointer", fontSize: 13, fontWeight: 700, color: INK, fontFamily: "inherit", textAlign: "left" }}>
+          <span>Assumptions &amp; counting performances</span>
+          <span style={{ transition: "transform 0.18s", transform: rv.open ? "rotate(180deg)" : "none", fontSize: 16, color: MUTE }}>⌄</span>
+        </button>
+        {rv.open && (
+          <div style={{ padding: "4px 22px 22px" }}>
+            <div style={{ fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: MUTE, fontWeight: 600, margin: "14px 0 8px" }}>Assumptions in play</div>
+            <ul style={{ margin: "0 0 20px", padding: 0, listStyle: "none", display: "grid", gap: 7 }}>
+              {rv.notes.map((n, i) => (
+                <li key={i} style={{ display: "flex", gap: 9, fontSize: 12.5, color: "#4a4538", lineHeight: 1.45 }}>
+                  <span style={{ color: GOLD, fontWeight: 700, flex: "none" }}>—</span><span>{n}</span>
+                </li>
+              ))}
+            </ul>
+            <div style={{ fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: MUTE, fontWeight: 600, marginBottom: 8 }}>Counting performances (best 5 of 12 mo)</div>
+            <div style={{ overflow: "auto" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12.5, minWidth: 480 }}>
+                <thead>
+                  <tr style={{ color: MUTE, fontSize: 10.5, letterSpacing: "0.06em", textTransform: "uppercase" }}>
+                    {[["Meet", "left"], ["Cat", "left"], ["Pl", "right"], ["Mark", "right"], ["Result", "right"], ["Place pts", "right"], ["Perf score", "right"]].map(([h, al]) => (
+                      <th key={h} style={{ textAlign: al, padding: "6px 8px", fontWeight: 600 }}>{h}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {rv.display.map((p, i) => {
+                    let tag = "", tagBg = "transparent", rowBg = "transparent", strike = "none", op = 1;
+                    if (p.state === "new") { tag = "NEW"; tagBg = "#2f7d52"; rowBg = "#eaf4ee"; }
+                    else if (p.state === "dropped") { tag = "OUT"; tagBg = "#b23a2e"; strike = "line-through"; op = 0.55; }
+                    return (
+                      <tr key={i} style={{ borderTop: "1px solid #efeadd", background: rowBg, textDecoration: strike, opacity: op }}>
+                        <td style={{ padding: "7px 8px" }}>
+                          {tag && <span style={{ display: "inline-block", fontSize: 9, fontWeight: 700, padding: "1px 5px", borderRadius: 4, marginRight: 7, background: tagBg, color: "#fff", verticalAlign: "middle", fontFamily: MONO }}>{tag}</span>}
+                          {shortMeet(p.competition)}
+                        </td>
+                        <td style={{ padding: "7px 8px", fontFamily: MONO }}>{p.category}</td>
+                        <td style={{ padding: "7px 8px", textAlign: "right", fontFamily: MONO }}>{p.place}</td>
+                        <td style={{ padding: "7px 8px", textAlign: "right", fontFamily: MONO }}>{p.mark}</td>
+                        <td style={{ padding: "7px 8px", textAlign: "right", fontFamily: MONO, color: "#6b6457" }}>{p.result_score}</td>
+                        <td style={{ padding: "7px 8px", textAlign: "right", fontFamily: MONO, color: "#6b6457" }}>{p.placing_score}</td>
+                        <td style={{ padding: "7px 8px", textAlign: "right", fontFamily: MONO, fontWeight: 600 }}>{p.performance_score}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

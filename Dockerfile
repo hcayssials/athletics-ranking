@@ -16,9 +16,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY wa_ranking/ ./wa_ranking/
 COPY data/ ./data/
 COPY --from=web /web/dist ./web/dist
-# Quick path: serve the polished standalone design (baked sample data) as the homepage.
-# Remove this line to fall back to the live-API React app built above.
-COPY web/standalone.html ./web/dist/index.html
 ENV PORT=8000
 # Optional: WA_API_KEY for the unranked-profile multi-year path.
 CMD ["sh", "-c", "uvicorn wa_ranking.api:app --host 0.0.0.0 --port ${PORT:-8000}"]
