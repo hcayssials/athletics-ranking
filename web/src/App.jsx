@@ -9,11 +9,26 @@ const INK = "#1b1813", CREAM = "#f4f1ea", PAPER = "#fbfaf6", GOLD = "#c9b78f", M
 const MONO = "'IBM Plex Mono', monospace";
 
 const CAT_LABELS = {
-  OW: "OW — Olympics / World Champs", DF: "DF — Diamond League Final",
-  GW: "GW — DL / World Indoor", GL: "GL — Area Senior Champs",
-  A: "A — top international", B: "B — international", C: "C — national",
-  D: "D", E: "E", F: "F — local",
+  OW: "OW — Olympics / World Champs", DF: "DF — Diamond League final",
+  GW: "GW — Diamond League / World Indoor", GL: "GL — Area championships",
+  A: "A — top international", B: "B — national champs / strong int'l",
+  C: "C — national meets", D: "D — regional", E: "E — smaller", F: "F — local",
 };
+
+// Rough guide to what each World Athletics category covers (WA sets the exact category per meet).
+const CAT_INFO = [
+  ["OW", "Olympic Games & World Championships (outdoor and indoor)"],
+  ["DF", "Diamond League final"],
+  ["GW", "Diamond League meetings & World Indoor Championships"],
+  ["GL", "Area senior championships (e.g. European Championships)"],
+  ["A", "Top international meetings (e.g. Continental Tour Gold)"],
+  ["B", "National Championships & strong internationals (e.g. Continental Tour Silver)"],
+  ["C", "Ordinary national-level meetings (e.g. Continental Tour Bronze)"],
+  ["D", "Smaller domestic / regional meetings"],
+  ["E", "Lower-level domestic meetings"],
+  ["F", "Local / club meetings"],
+];
+const WA_RULES_URL = "https://worldathletics.org/world-ranking-rules/track-field-events-2026";
 
 // ---------- small helpers ----------
 const shortMeet = (s) => {
@@ -99,6 +114,7 @@ export default function App() {
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const [methodOpen, setMethodOpen] = useState(false);
+  const [catHelp, setCatHelp] = useState(false);
   const [pending, setPending] = useState(null); // a queued natural-language run, executed once its list loads
 
   const isRoad = championship === "road_to_birmingham";
@@ -374,9 +390,30 @@ export default function App() {
             </div>
 
             <label style={labelStyle}>Meet category</label>
-            <select value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} style={{ ...inputStyle, marginBottom: 14 }}>
+            <select value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} style={{ ...inputStyle, marginBottom: 6 }}>
               {categories.map((c) => <option key={c} value={c}>{CAT_LABELS[c] || c}</option>)}
             </select>
+            <button onClick={() => setCatHelp((v) => !v)}
+              style={{ background: "none", border: "none", padding: 0, marginBottom: catHelp ? 8 : 14, color: "#6b6457", fontSize: 11.5, fontWeight: 600, cursor: "pointer", fontFamily: "inherit", textDecoration: "underline", textUnderlineOffset: 2 }}>
+              {catHelp ? "Hide category guide" : "ⓘ What do these categories mean?"}
+            </button>
+            {catHelp && (
+              <div style={{ marginBottom: 14, padding: "12px 14px", background: "#f4f1ea", border: "1px solid #e2ddd0", borderRadius: 10, fontSize: 12, color: "#4a4538", lineHeight: 1.5 }}>
+                <p style={{ margin: "0 0 8px" }}>Higher categories award more placing points. World Athletics assigns each meet's exact category — this is a rough guide:</p>
+                <ul style={{ margin: "0 0 8px", padding: 0, listStyle: "none", display: "grid", gap: 5 }}>
+                  {CAT_INFO.map(([k, desc]) => (
+                    <li key={k} style={{ display: "flex", gap: 8 }}>
+                      <b style={{ flex: "none", width: 22, fontFamily: MONO, color: INK }}>{k}</b>
+                      <span>{desc}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p style={{ margin: "0 0 8px" }}>Heads-up: a <b>National Championships</b> is usually category <b>B</b>, whereas an ordinary national meeting is <b>C</b> — so check which one a meet actually is.</p>
+                <a href={WA_RULES_URL} target="_blank" rel="noreferrer" style={{ color: "#9c5a1f", fontWeight: 600 }}>
+                  Look up the official rules &amp; per-meet categories on World Athletics →
+                </a>
+              </div>
+            )}
 
             {isRoad && (
               <label onClick={() => setForm((s) => ({ ...s, qualify: !s.qualify }))} style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer", padding: "10px 0 0", userSelect: "none" }}>
