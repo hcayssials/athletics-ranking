@@ -1,6 +1,6 @@
 // Quick checks for parse.js against the live local backend (http://127.0.0.1:8077).
 // Run: node src/parse.test.mjs
-import { mainCode, parseQuery, bestPerf, matchAthlete, parseTime, extractSlug, deriveName } from "./parse.js";
+import { mainCode, parseQuery, bestPerf, matchAthlete, parseTime, extractSlug, deriveName, looksLikeProfile } from "./parse.js";
 
 const B = "http://127.0.0.1:8077";
 let pass = 0, fail = 0;
@@ -36,6 +36,13 @@ eq(extractSlug("https://worldathletics.org/athletes/great-britain/jake-heyward-1
 eq(extractSlug("  jake-heyward-14597392/  "), "jake-heyward-14597392", "slug from bare value + trailing slash");
 eq(deriveName("jake-heyward-14597392"), "Jake Heyward", "name from slug");
 eq(deriveName("pieter-sisk-14613049"), "Pieter Sisk", "name from slug 2");
+
+// --- looksLikeProfile ---
+eq(looksLikeProfile("https://worldathletics.org/athletes/great-britain/jake-heyward-14597392"), true, "profile url");
+eq(looksLikeProfile("jake-heyward-14597392"), true, "profile bare slug");
+eq(looksLikeProfile("Jake WIGHTMAN"), false, "name not profile");
+eq(looksLikeProfile("Narve Gilje NORDÅS"), false, "spaced name not profile");
+eq(looksLikeProfile(""), false, "empty not profile");
 
 // --- live data: bestPerf + matchAthlete ---
 const main = async () => {

@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { getMeta, getRankings, getAthlete, runWhatIf } from "./api.js";
-import { parseTime, surnameOf, bestPerf, matchAthlete, parseQuery, extractSlug, deriveName } from "./parse.js";
+import { parseTime, surnameOf, bestPerf, matchAthlete, parseQuery, extractSlug, deriveName, looksLikeProfile } from "./parse.js";
 
 // Ranking What-If Studio — the Claude Design look, driven by the live FastAPI backend.
 // All ranking/qualification numbers come from /api/rankings and /api/whatif (real data, all events).
@@ -100,7 +100,6 @@ export default function App() {
   const [busy, setBusy] = useState(false);
   const [methodOpen, setMethodOpen] = useState(false);
   const [pending, setPending] = useState(null); // a queued natural-language run, executed once its list loads
-  const [profileUrl, setProfileUrl] = useState(""); // WA page/slug for an unranked athlete
 
   const isRoad = championship === "road_to_birmingham";
 
@@ -123,8 +122,13 @@ export default function App() {
 
   async function run(overrideForm, champ = championship, ev = event, profile = null) {
     const f = overrideForm || form;
-    const name = (f.athlete || "").trim();
-    if (!name) { setError("Pick an athlete first."); setResult(null); return; }
+    let name = (f.athlete || "").trim();
+    // A pasted World Athletics link/slug in the athlete field → unranked profile path.
+    if (!profile && looksLikeProfile(name)) {
+      profile = extractSlug(name);
+      name = deriveName(profile) || profile;
+    }
+    if (!name) { setError("Enter an athlete — a name from the list, or a World Athletics link."); setResult(null); return; }
     if (!parseTime(f.time)) { setError("Enter a time like 3:29.00."); setResult(null); return; }
     setBusy(true); setError("");
     try {
@@ -136,21 +140,13 @@ export default function App() {
       });
       setResult(r); setSelected(r.athlete);
     } catch (e) {
-      // A "not on the list" failure for a ranked lookup → point the user at the unranked box.
+      // A "not on the list" failure for a ranked lookup → point the user at the link option.
       const notFound = !profile && /not in the .*ranking list|enough performances/i.test(e.message);
       setError(notFound
-        ? `${name} is either not in the top ~100, or doesn't have enough performances in the window to be ranked yet. If they're unranked, paste their World Athletics page in the “Unranked athlete” box below.`
+        ? `${name} is either not in the top ~100, or doesn't have enough performances in the window to be ranked yet. If they're unranked, paste their World Athletics profile link in the athlete box above.`
         : e.message);
       setResult(null);
     } finally { setBusy(false); }
-  }
-
-  // Run the analysis from a pasted World Athletics profile (unranked athlete path).
-  function runUnranked() {
-    const slug = extractSlug(profileUrl);
-    if (!slug) { setError("Paste the athlete's World Athletics page link (or their slug)."); return; }
-    const name = deriveName(slug) || slug;
-    run({ ...form, athlete: name }, championship, event, slug);
   }
 
   // Click/pick an athlete → select it and seed Time/Place/Category from their best performance.
@@ -346,7 +342,10 @@ export default function App() {
                 if (list.some((a) => a.name === v)) selectAthlete(v);              // picked from the datalist
                 else { setForm({ ...form, athlete: v }); setSelected(v); }
               }}
-              list="wf-athletes" placeholder="Type or click a row" style={{ ...inputStyle, marginBottom: 14 }} />
+              list="wf-athletes" placeholder="Type a name, or paste a World Athletics link" style={{ ...inputStyle, marginBottom: 6 }} />
+            <p style={{ margin: "0 0 14px", fontSize: 11.5, color: MUTE, lineHeight: 1.4 }}>
+              Unranked / not in the list? Paste their worldathletics.org profile link — first lookup can take ~30s.
+            </p>
             <datalist id="wf-athletes">{list.map((a) => <option key={a.competitor_id || a.name} value={a.name} />)}</datalist>
 
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 14 }}>
@@ -376,21 +375,6 @@ export default function App() {
               {busy ? "Running…" : "Run what-if"}
             </button>
             {error && <div style={{ marginTop: 12, padding: "10px 12px", background: "#f7e9e6", border: "1px solid #e3b8b0", borderRadius: 8, color: "#9c352a", fontSize: 12.5 }}>{error}</div>}
-
-            {/* Unranked athlete path — run from their World Athletics profile */}
-            <div style={{ marginTop: 18, paddingTop: 16, borderTop: "1px dashed #d8d2c4" }}>
-              <label style={labelStyle}>Unranked athlete?</label>
-              <p style={{ margin: "0 0 8px", fontSize: 12, color: MUTE, lineHeight: 1.45 }}>
-                Not in the list above? Paste their World Athletics page to run the analysis from their profile. Uses the Time / Place / Category set above. The first time the site sees an athlete, this can take ~30 seconds while it fetches their profile.
-              </p>
-              <input value={profileUrl} onChange={(e) => setProfileUrl(e.target.value)}
-                placeholder="worldathletics.org/athletes/…/name-1234567"
-                style={{ ...inputStyle, fontSize: 13 }} />
-              <button onClick={runUnranked} disabled={busy}
-                style={{ width: "100%", marginTop: 10, padding: 12, border: `1px solid ${INK}`, borderRadius: 10, background: "transparent", color: INK, fontSize: 14, fontWeight: 700, cursor: busy ? "default" : "pointer", opacity: busy ? 0.6 : 1 }}>
-                {busy ? "Running…" : "Run unranked analysis"}
-              </button>
-            </div>
           </div>
         </section>
 

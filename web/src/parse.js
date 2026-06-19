@@ -33,6 +33,16 @@ export function extractSlug(input) {
   return s;
 }
 
+// Does this athlete-field text look like a World Athletics profile (URL or bare slug)
+// rather than a name? Used to route the single console input to the unranked path.
+export function looksLikeProfile(s) {
+  const t = (s || "").trim();
+  if (!t) return false;
+  if (/^https?:\/\//i.test(t) || /worldathletics\.org|\/athletes\//i.test(t)) return true;
+  if (!/\s/.test(t) && /-\d{4,}$/.test(t)) return true;   // bare slug, e.g. jake-heyward-14597392
+  return false;
+}
+
 // Turn a slug into a readable name: "jake-heyward-14597392" -> "Jake Heyward".
 export function deriveName(slug) {
   const s = (slug || "").replace(/-\d+$/, "");          // strip the trailing numeric id
