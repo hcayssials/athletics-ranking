@@ -103,7 +103,16 @@ export default function App() {
 
   const isRoad = championship === "road_to_birmingham";
 
-  useEffect(() => { getMeta().then(setMeta).catch((e) => setRankErr(e.message)); }, []);
+  const entryStandardFor = (ev) => (meta && (meta.events.find((e) => e.key === ev) || {}).entry_standard) || "";
+
+  useEffect(() => {
+    getMeta().then((m) => {
+      setMeta(m);
+      const es = (m.events.find((e) => e.key === event) || {}).entry_standard;
+      if (es) setForm((s) => ({ ...s, time: es }));   // sensible starting time for the initial event
+    }).catch((e) => setRankErr(e.message));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   useEffect(() => {
     setRankings(null); setRankErr("");
     getRankings(championship, event).then(setRankings).catch((e) => setRankErr(e.message));
@@ -111,7 +120,12 @@ export default function App() {
 
   // Manual selector changes start fresh; NL changes (via `pending`) keep their queued run alive.
   const changeChampionship = (c) => { setChampionship(c); setResult(null); setSelected(null); setError(""); };
-  const changeEvent = (e) => { setEvent(e); setResult(null); setSelected(null); setError(""); };
+  // New event → reset Time to that event's entry standard and Place to 1 (keep Category) so the
+  // console never shows a time from the previous event. A later athlete pick still overrides these.
+  const changeEvent = (e) => {
+    setEvent(e); setResult(null); setSelected(null); setError("");
+    setForm((s) => ({ ...s, time: entryStandardFor(e), place: 1 }));
+  };
 
   const zone = useMemo(() => (isRoad ? qualifyingZone(rankings) : qualifyingZone(null)), [rankings, isRoad]);
   const list = rankings ? rankings.athletes : [];
