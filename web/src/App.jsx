@@ -86,6 +86,7 @@ function buildResultView(r, isRoad, qualifyOn, methodOpen) {
     hypo: r.hypothetical_performance,
     counts: r.new_perf_counts,
     bestN: (r.assumptions && r.assumptions.best_n) || 5,
+    windowMonths: (r.assumptions && r.assumptions.window_months) || 12,
     notes: (r.assumptions && r.assumptions.notes) || [],
     qual, display, open: methodOpen,
     unranked, profileSummary: r.profile_summary,
@@ -148,7 +149,8 @@ export default function App() {
   const list = rankings ? rankings.athletes : [];
   const selCountry = selected ? (list.find((a) => a.name === selected) || {}).country : null;
 
-  const eventLabel = meta ? (meta.events.find((e) => e.key === event) || {}).label || event : event;
+  const eventCfg = meta ? (meta.events.find((e) => e.key === event) || {}) : {};
+  const eventLabel = eventCfg.label || event;
   const categories = meta ? meta.categories : ["GW"];
 
   async function run(overrideForm, champ = championship, ev = event, profile = null) {
@@ -249,9 +251,10 @@ export default function App() {
   const labelStyle = { display: "block", fontSize: 11, letterSpacing: "0.06em", textTransform: "uppercase", color: MUTE, fontWeight: 600, marginBottom: 5 };
   const inputStyle = { width: "100%", padding: "11px 12px", border: "1px solid #cfc8b8", borderRadius: 9, fontSize: 14, background: "#fff" };
 
+  const bestOfLine = `Best ${eventCfg.best_n || 5} of ${eventCfg.window_months || 12} mo`;
   const assumptionLine = isRoad
-    ? "Best 5 of 12 mo · floored mean · Quota 30 (whole field) · champion takes a bye · max 3 per country · Europe only"
-    : "Best 5 of 12 mo · floored mean · all nations · no quota or qualification caps";
+    ? `${bestOfLine} · floored mean · Quota 30 (whole field) · champion takes a bye · max 3 per country · Europe only`
+    : `${bestOfLine} · floored mean · all nations · no quota or qualification caps`;
 
   // Examples built from the athletes actually in the current list (no hard-coded names/times).
   const examples = list.length >= 5 ? [
@@ -564,7 +567,7 @@ function ResultPanel({ rv, onToggle }) {
         const shortNow = Math.max(0, bestN - ps.counting_now);       // results missing right now
         return (
           <div style={{ padding: "12px 24px", borderTop: "1px solid #ece6d8", background: "#fbf7ec", fontSize: 12.5, color: "#5c4410", lineHeight: 1.55 }}>
-            <b>Not currently ranked</b> for this event. A ranking score averages the best {bestN} results from the past 12 months — {rv.name} has <b>{ps.counting_now}</b>
+            <b>Not currently ranked</b> for this event. A ranking score averages the best {bestN} results from the past {rv.windowMonths} months — {rv.name} has <b>{ps.counting_now}</b>
             {shortNow > 0 ? <>, so <b>{shortNow} more {shortNow === 1 ? "result is" : "results are"} needed</b> for a full set</> : ", a full set"}; this race would make {ps.counting_with_new}.
             {ps.best_rank ? ` Career-best rank #${ps.best_rank}${ps.best_rank_weeks ? ` (${ps.best_rank_weeks} weeks spent at it)` : ""}.` : ""}
             {ps.required_time ? ` To reach the ${ps.target_label} (${Math.round(ps.target_score)}), it would take about ${ps.required_time}.` : ""}
@@ -589,7 +592,7 @@ function ResultPanel({ rv, onToggle }) {
                 </li>
               ))}
             </ul>
-            <div style={{ fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: MUTE, fontWeight: 600, marginBottom: 8 }}>Counting performances (best {rv.bestN} of 12 mo)</div>
+            <div style={{ fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: MUTE, fontWeight: 600, marginBottom: 8 }}>Counting performances (best {rv.bestN} of {rv.windowMonths} mo)</div>
             <div style={{ overflow: "auto" }}>
               <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12.5, minWidth: 480 }}>
                 <thead>
