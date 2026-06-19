@@ -381,7 +381,7 @@ export default function App() {
             <div style={{ marginTop: 18, paddingTop: 16, borderTop: "1px dashed #d8d2c4" }}>
               <label style={labelStyle}>Unranked athlete?</label>
               <p style={{ margin: "0 0 8px", fontSize: 12, color: MUTE, lineHeight: 1.45 }}>
-                Not in the list above? Paste their World Athletics page to run the analysis from their profile. Uses the Time / Place / Category set above.
+                Not in the list above? Paste their World Athletics page to run the analysis from their profile. Uses the Time / Place / Category set above. The first time the site sees an athlete, this can take ~30 seconds while it fetches their profile.
               </p>
               <input value={profileUrl} onChange={(e) => setProfileUrl(e.target.value)}
                 placeholder="worldathletics.org/athletes/…/name-1234567"
@@ -395,7 +395,7 @@ export default function App() {
         </section>
 
         <footer style={{ marginTop: 28, paddingTop: 14, borderTop: "1px solid #e2ddd0", fontSize: 11, color: "#a39c8c", fontFamily: MONO, lineHeight: 1.6 }}>
-          Live data from the World Athletics ranking API · {eventLabel} · edition {rankings ? rankings.rank_date : "…"}. Scores from the WA 2025 scoring &amp; placing tables; other athletes held at current scores, only the chosen athlete moves.
+          Live data from the World Athletics ranking API · {eventLabel} · edition {rankings ? rankings.rank_date : "…"}. Result scores from the WA 2025 Scoring Tables; placing points from the 2026 World Ranking placing table. Other athletes held at current scores — only the chosen athlete moves.
         </footer>
       </div>
     </div>
