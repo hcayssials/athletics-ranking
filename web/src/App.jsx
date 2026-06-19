@@ -131,6 +131,7 @@ export default function App() {
   const [query, setQuery] = useState("");
   const [form, setForm] = useState({ athlete: "", time: "3:30.00", place: 1, category: "GW", qualify: true });
   const [selected, setSelected] = useState(null);
+  const [athleteInfo, setAthleteInfo] = useState(null); // clicked athlete's perfs (preview before a what-if)
   const [result, setResult] = useState(null);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
@@ -159,11 +160,11 @@ export default function App() {
   }, [championship, event]);
 
   // Manual selector changes start fresh; NL changes (via `pending`) keep their queued run alive.
-  const changeChampionship = (c) => { setChampionship(c); setResult(null); setSelected(null); setError(""); setCandidates(null); };
+  const changeChampionship = (c) => { setChampionship(c); setResult(null); setSelected(null); setAthleteInfo(null); setError(""); setCandidates(null); };
   // New event → reset Time to that event's entry standard and Place to 1 (keep Category) so the
   // console never shows a time from the previous event. A later athlete pick still overrides these.
   const changeEvent = (e) => {
-    setEvent(e); setResult(null); setSelected(null); setError(""); setCandidates(null);
+    setEvent(e); setResult(null); setSelected(null); setAthleteInfo(null); setError(""); setCandidates(null);
     setForm((s) => ({ ...s, time: entryStandardFor(e), place: 1 }));
   };
 
@@ -221,12 +222,15 @@ export default function App() {
     run({ ...form, athlete: c.name }, championship, event, c.slug);
   }
 
-  // Click/pick an athlete → select it and seed Time/Place/Category from their best performance.
+  // Click/pick an athlete → select it, preview their performances, and seed Time/Place/Category
+  // from their best performance. A fresh selection clears any prior what-if result.
   async function selectAthlete(name) {
-    setSelected(name);
+    setSelected(name); setResult(null); setAthleteInfo(null); setError("");
     setForm((s) => ({ ...s, athlete: name }));
     try {
-      const best = bestPerf(await getAthlete(championship, event, name), event);
+      const ath = await getAthlete(championship, event, name);
+      setAthleteInfo(ath);
+      const best = bestPerf(ath, event);
       if (best) setForm((s) => ({ ...s, athlete: name, ...best }));
     } catch { /* keep current values if the lookup fails */ }
   }
@@ -353,12 +357,14 @@ export default function App() {
         <section style={{ marginBottom: 24 }}>
           {result
             ? <ResultPanel rv={buildResultView(result, isRoad, form.qualify, methodOpen)} onToggle={() => setMethodOpen((v) => !v)} />
-            : (
-              <div style={{ border: "1.5px dashed #d8dce2", borderRadius: 14, padding: "40px 28px", textAlign: "center", color: MUTE }}>
-                <div style={{ fontSize: 17, fontWeight: 600, color: "#6b7480" }}>{busy ? "Running…" : "Run a what-if to see the impact"}</div>
-                <div style={{ fontSize: 13.5, marginTop: 6 }}>Pick an athlete from the table or type a question above. The rank change shows here.</div>
-              </div>
-            )}
+            : athleteInfo
+              ? <AthletePreview info={athleteInfo} eventCfg={eventCfg} isRoad={isRoad} rankDate={rankings ? rankings.rank_date : null} />
+              : (
+                <div style={{ border: "1.5px dashed #d8dce2", borderRadius: 14, padding: "40px 28px", textAlign: "center", color: MUTE }}>
+                  <div style={{ fontSize: 17, fontWeight: 600, color: "#6b7480" }}>{busy ? "Running…" : selected ? `Loading ${selected}'s performances…` : "Run a what-if to see the impact"}</div>
+                  <div style={{ fontSize: 13.5, marginTop: 6 }}>Pick an athlete from the table or type a question above. The rank change shows here.</div>
+                </div>
+              )}
         </section>
 
         {/* MAIN GRID */}
@@ -515,6 +521,79 @@ export default function App() {
   );
 }
 
+// Counting-performances table, shared by the what-if result and the click-to-preview card.
+// Rows may carry a `state` ("new" / "dropped") to flag the what-if diff; plain rows render clean.
+function PerfTable({ rows }) {
+  return (
+    <div style={{ overflow: "auto" }}>
+      <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12.5, minWidth: 480 }}>
+        <thead>
+          <tr style={{ color: MUTE, fontSize: 10.5, letterSpacing: "0.06em", textTransform: "uppercase" }}>
+            {[["Meet", "left"], ["Cat", "left"], ["Pl", "right"], ["Mark", "right"], ["Result", "right"], ["Place pts", "right"], ["Perf score", "right"]].map(([h, al]) => (
+              <th key={h} style={{ textAlign: al, padding: "6px 8px", fontWeight: 600 }}>{h}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((p, i) => {
+            let tag = "", tagBg = "transparent", rowBg = "transparent", strike = "none", op = 1;
+            if (p.state === "new") { tag = "NEW"; tagBg = "#1f8a4c"; rowBg = "#e3f3e9"; }
+            else if (p.state === "dropped") { tag = "OUT"; tagBg = "#c62b35"; strike = "line-through"; op = 0.55; }
+            return (
+              <tr key={i} style={{ borderTop: "1px solid #f2f4f7", background: rowBg, textDecoration: strike, opacity: op }}>
+                <td style={{ padding: "7px 8px" }}>
+                  {tag && <span style={{ display: "inline-block", fontSize: 9, fontWeight: 700, padding: "1px 5px", borderRadius: 4, marginRight: 7, background: tagBg, color: "#fff", verticalAlign: "middle", fontFamily: MONO }}>{tag}</span>}
+                  {shortMeet(p.competition)}
+                </td>
+                <td style={{ padding: "7px 8px", fontFamily: MONO }}>{p.category}</td>
+                <td style={{ padding: "7px 8px", textAlign: "right", fontFamily: MONO }}>{p.place}</td>
+                <td style={{ padding: "7px 8px", textAlign: "right", fontFamily: MONO }}>{p.mark}</td>
+                <td style={{ padding: "7px 8px", textAlign: "right", fontFamily: MONO, color: "#6b7480" }}>{p.result_score}</td>
+                <td style={{ padding: "7px 8px", textAlign: "right", fontFamily: MONO, color: "#6b7480" }}>{p.placing_score}</td>
+                <td style={{ padding: "7px 8px", textAlign: "right", fontFamily: MONO, fontWeight: 600 }}>{p.performance_score}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+// Read-only card shown when an athlete is clicked (before any what-if): current standing +
+// their counting performances. Running a what-if replaces this with the full ResultPanel.
+function AthletePreview({ info, eventCfg, isRoad, rankDate }) {
+  const lbl = { fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: MUTE, fontWeight: 600 };
+  return (
+    <div style={{ border: "1px solid #d8dce2", borderRadius: 16, overflow: "hidden", background: BG, animation: "wf-rise 0.4s ease both" }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, padding: "16px 22px", background: INK, color: SURFACE }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <span style={{ fontSize: 19, fontWeight: 800, letterSpacing: "-0.01em" }}>{info.name}</span>
+          <span style={{ fontFamily: MONO, fontSize: 12, padding: "3px 8px", borderRadius: 5, background: "#14181f", color: ACCENT }}>{info.country}</span>
+        </div>
+        <span style={{ fontFamily: MONO, fontSize: 11, color: "#9aa1ac" }}>{(isRoad ? "Road to Birmingham" : "World Ranking") + (rankDate ? " · " + rankDate : "")}</span>
+      </div>
+      <div style={{ display: "flex", gap: 32, padding: "16px 24px", flexWrap: "wrap", borderBottom: "1px solid #d8dce2" }}>
+        <div>
+          <div style={lbl}>{isRoad ? "European rank" : "World rank"}</div>
+          <div style={{ fontSize: 34, fontWeight: 800, marginTop: 4 }}>{info.rank != null ? `#${info.rank}` : "—"}</div>
+        </div>
+        <div>
+          <div style={lbl}>Ranking score</div>
+          <div style={{ fontSize: 34, fontWeight: 800, fontFamily: MONO, marginTop: 4 }}>{info.ranking_score != null ? Math.round(info.ranking_score) : "—"}</div>
+        </div>
+      </div>
+      <div style={{ padding: "14px 22px 20px" }}>
+        <div style={{ fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: MUTE, fontWeight: 600, marginBottom: 8 }}>
+          Counting performances (best {eventCfg.best_n || 5} of {eventCfg.window_months || 12} mo)
+        </div>
+        <PerfTable rows={info.performances || []} />
+        <div style={{ fontSize: 12, color: MUTE, marginTop: 12 }}>Set a time, place &amp; category on the right, then run a what-if to see the impact.</div>
+      </div>
+    </div>
+  );
+}
+
 function ResultPanel({ rv, onToggle }) {
   const narrow = useIsNarrow();
   const rankB = badge(rv.rankDelta, "rank");
@@ -666,38 +745,7 @@ function ResultPanel({ rv, onToggle }) {
               ))}
             </ul>
             <div style={{ fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: MUTE, fontWeight: 600, marginBottom: 8 }}>Counting performances (best {rv.bestN} of {rv.windowMonths} mo)</div>
-            <div style={{ overflow: "auto" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12.5, minWidth: 480 }}>
-                <thead>
-                  <tr style={{ color: MUTE, fontSize: 10.5, letterSpacing: "0.06em", textTransform: "uppercase" }}>
-                    {[["Meet", "left"], ["Cat", "left"], ["Pl", "right"], ["Mark", "right"], ["Result", "right"], ["Place pts", "right"], ["Perf score", "right"]].map(([h, al]) => (
-                      <th key={h} style={{ textAlign: al, padding: "6px 8px", fontWeight: 600 }}>{h}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {rv.display.map((p, i) => {
-                    let tag = "", tagBg = "transparent", rowBg = "transparent", strike = "none", op = 1;
-                    if (p.state === "new") { tag = "NEW"; tagBg = "#1f8a4c"; rowBg = "#e3f3e9"; }
-                    else if (p.state === "dropped") { tag = "OUT"; tagBg = "#c62b35"; strike = "line-through"; op = 0.55; }
-                    return (
-                      <tr key={i} style={{ borderTop: "1px solid #f2f4f7", background: rowBg, textDecoration: strike, opacity: op }}>
-                        <td style={{ padding: "7px 8px" }}>
-                          {tag && <span style={{ display: "inline-block", fontSize: 9, fontWeight: 700, padding: "1px 5px", borderRadius: 4, marginRight: 7, background: tagBg, color: "#fff", verticalAlign: "middle", fontFamily: MONO }}>{tag}</span>}
-                          {shortMeet(p.competition)}
-                        </td>
-                        <td style={{ padding: "7px 8px", fontFamily: MONO }}>{p.category}</td>
-                        <td style={{ padding: "7px 8px", textAlign: "right", fontFamily: MONO }}>{p.place}</td>
-                        <td style={{ padding: "7px 8px", textAlign: "right", fontFamily: MONO }}>{p.mark}</td>
-                        <td style={{ padding: "7px 8px", textAlign: "right", fontFamily: MONO, color: "#6b7480" }}>{p.result_score}</td>
-                        <td style={{ padding: "7px 8px", textAlign: "right", fontFamily: MONO, color: "#6b7480" }}>{p.placing_score}</td>
-                        <td style={{ padding: "7px 8px", textAlign: "right", fontFamily: MONO, fontWeight: 600 }}>{p.performance_score}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
+            <PerfTable rows={rv.display} />
           </div>
         )}
       </div>
