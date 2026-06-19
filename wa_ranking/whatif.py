@@ -318,7 +318,7 @@ def _format_profile_result(r: dict, ps: dict) -> list[str]:
     best = f"best ever #{ps['best_rank']}" if ps["best_rank"] else "no prior ranking"
     lines = ["RESULT  (athlete sourced from profile — not on the live ranking list)"]
     lines.append(f"  Currently       : UNRANKED in {r['event']}  ({best}, "
-                 f"{ps['best_rank_weeks']} wks) — no current WA ranking")
+                 f"{ps['best_rank_weeks']} wks at it) — no current WA ranking")
     lines.append(f"  Counting results: {ps['counting_now']} now -> {ps['counting_with_new']} "
                  f"with this race  (a full ranking averages {r['assumptions']['best_n']})")
     if ps["short_of_full_set"]:

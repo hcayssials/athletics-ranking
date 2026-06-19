@@ -567,7 +567,7 @@ function ResultPanel({ rv, onToggle }) {
           <div style={{ padding: "12px 24px", borderTop: "1px solid #ece6d8", background: "#fbf7ec", fontSize: 12.5, color: "#5c4410", lineHeight: 1.55 }}>
             <b>Not currently ranked</b> for this event. A ranking score averages the best {bestN} results from the past 12 months — {rv.name} has <b>{ps.counting_now}</b>
             {shortNow > 0 ? <>, so <b>{shortNow} more {shortNow === 1 ? "result is" : "results are"} needed</b> for a full set</> : ", a full set"}; this race would make {ps.counting_with_new}.
-            {ps.best_rank ? ` Best-ever #${ps.best_rank}${ps.best_rank_weeks ? `, ${ps.best_rank_weeks} weeks ago` : ""}.` : ""}
+            {ps.best_rank ? ` Career-best rank #${ps.best_rank}${ps.best_rank_weeks ? ` (${ps.best_rank_weeks} weeks spent at it)` : ""}.` : ""}
             {ps.required_time ? ` To reach the ${ps.target_label} (${Math.round(ps.target_score)}), it would take about ${ps.required_time}.` : ""}
             {ps.incomplete_window ? " (Window data may be incomplete — couldn't reach the full results feed.)" : ""}
           </div>
