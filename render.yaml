@@ -1,0 +1,11 @@
+# Render Blueprint — tells Render how to run this project.
+# On render.com: New + > Blueprint > pick this repo, and it reads this file.
+services:
+  - type: web
+    name: athletics-ranking
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /api/health
+    # Render injects PORT automatically; the Dockerfile's CMD already honors it.
+    # If you ever add a World Athletics API key, set WA_API_KEY in the Render dashboard.

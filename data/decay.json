@@ -1,0 +1,11 @@
+{
+  "_meta": {
+    "description": "Age-decay (World Athletics 'month correction') applied to a performance's score based on how many whole months old it is, measured from the ranking date. Performances 12+ months old fall out of the rolling window entirely.",
+    "unit": "deduction in points, subtracted from the performance score",
+    "source": "Per project spec (-20/-40/-60 at 9/10/11 months). Edit if World Athletics' published month-correction differs."
+  },
+  "deductions_by_month_age": {
+    "0": 0, "1": 0, "2": 0, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0,
+    "9": -20, "10": -40, "11": -60
+  }
+}

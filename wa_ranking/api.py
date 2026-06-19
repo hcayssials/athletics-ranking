@@ -1,0 +1,157 @@
+"""FastAPI wrapper exposing the what-if engine + ranking data to a web front-end.
+
+Thin layer: every endpoint maps to an existing function that already returns JSON-ready data.
+Run locally with:  uvicorn wa_ranking.api:app --reload
+"""
+from __future__ import annotations
+
+import os
+import threading
+from contextlib import asynccontextmanager
+from datetime import date
+from pathlib import Path
+
+from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
+from pydantic import BaseModel
+
+from . import fetch
+from .config import (championship_event_config, load_championships, load_events,
+                     load_placing_scores)
+from .whatif import what_if
+
+# On boot, warm the cache for common (championship, event) lists so the first real request
+# isn't slow (~40s/event). Cache-aware: fetch_championship is a no-op when data is fresh.
+# Override with PREWARM="champ:event,champ:event" or disable with PREWARM="off".
+_PREWARM_DEFAULT = "road_to_birmingham"  # all events under this championship
+
+
+def _prewarm_pairs() -> list[tuple[str, str]]:
+    spec = os.environ.get("PREWARM", _PREWARM_DEFAULT)
+    if spec.lower() == "off":
+        return []
+    if ":" in spec:
+        return [tuple(p.split(":", 1)) for p in spec.split(",") if ":" in p]
+    return [(spec, ev) for ev in load_events()]  # PREWARM names a championship -> all events
+
+
+def _prewarm() -> None:
+    for champ, event in _prewarm_pairs():
+        try:
+            fetch.fetch_championship(champ, event)  # only fetches when the cache is stale
+        except Exception:
+            pass  # e.g. men's steeplechase has no list — skip
+
+
+@asynccontextmanager
+async def lifespan(_app: FastAPI):
+    threading.Thread(target=_prewarm, daemon=True).start()  # non-blocking
+    yield
+
+
+app = FastAPI(title="World Athletics ranking what-if API", version="1.0", lifespan=lifespan)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=os.environ.get("CORS_ORIGINS", "*").split(","),
+    allow_methods=["GET", "POST"],
+    allow_headers=["*"],
+)
+
+_RANKING_FIELDS = ("rank", "name", "country", "ranking_score", "competitor_id", "slug")
+
+
+@app.exception_handler(HTTPException)
+async def _http_exc(request, exc: HTTPException):
+    # Surface a consistent {"error": ...} shape for the UI.
+    return JSONResponse(status_code=exc.status_code, content={"error": exc.detail})
+
+
+@app.get("/api/health")
+def health():
+    return {"ok": True}
+
+
+@app.get("/api/meta")
+def meta():
+    """Selectors + reference data for the UI (events, championships, placing categories)."""
+    events = load_events()
+    champs = load_championships()
+    cats = load_placing_scores().get("_meta", {}).get("categories", [])
+    return {
+        "events": [
+            {"key": k, **{f: e.get(f) for f in
+                          ("label", "gender", "best_n", "main_event_min",
+                           "window_months", "entry_standard")}}
+            for k, e in events.items()
+        ],
+        "championships": [{"key": k, "label": c.get("label")} for k, c in champs.items()],
+        "categories": cats,
+    }
+
+
+@app.get("/api/rankings")
+def rankings(championship: str, event: str, limit: int | None = None):
+    """The ranking list for an event (slim rows for the table/picker)."""
+    try:
+        data = fetch.fetch_championship(championship, event, limit=limit)
+    except (ValueError, RuntimeError) as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    ce = championship_event_config(championship, event)
+    return {
+        "championship": championship,
+        "event": event,
+        "rank_date": data["rank_date"],
+        "quota": ce.get("quota"),
+        "defending_champion": ce.get("defending_champion"),
+        "athletes": [{f: a.get(f) for f in _RANKING_FIELDS} for a in data["athletes"]],
+    }
+
+
+@app.get("/api/athlete")
+def athlete(championship: str, event: str, name: str):
+    """One athlete's counting performances (for a detail view)."""
+    try:
+        data = fetch.fetch_championship(championship, event)
+    except (ValueError, RuntimeError) as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    a = fetch.find_athlete(data, name)
+    if a is None:
+        raise HTTPException(status_code=404, detail=f"Athlete '{name}' not found in this list.")
+    return a
+
+
+class WhatIfRequest(BaseModel):
+    event: str
+    athlete: str
+    time: str
+    category: str = "GW"
+    place: int = 2
+    championship: str = "road_to_birmingham"
+    as_of: str | None = None
+    qualify: bool = False
+    qualification_window: bool = False
+    profile: str | None = None
+
+
+@app.post("/api/whatif")
+def whatif_endpoint(req: WhatIfRequest):
+    """Run a what-if scenario. Returns the full structured result dict."""
+    try:
+        return what_if(
+            req.event, req.athlete, req.time,
+            category=req.category, place=req.place, championship=req.championship,
+            as_of=date.fromisoformat(req.as_of) if req.as_of else None,
+            qualify=req.qualify, qualification_window=req.qualification_window,
+            profile=req.profile, verbose=False,
+        )
+    except (ValueError, RuntimeError) as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+
+# Serve the built front-end (web/dist) at / when present — single-service deploy.
+_DIST = Path(__file__).resolve().parent.parent / "web" / "dist"
+if _DIST.exists():
+    app.mount("/", StaticFiles(directory=str(_DIST), html=True), name="web")

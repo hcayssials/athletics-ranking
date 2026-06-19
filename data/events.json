@@ -1,0 +1,93 @@
+{
+  "_meta": {
+    "note": "Per-event ranking config from World Athletics Track & Field 2026 rules. best_n = performances averaged; main_event_min = how many must be the Main Event; main/similar event codes are WA disciplineCode values (main codes are used to enforce the minimum; similar codes are informational). window_months: 12 for 800/1500/5000, 18 for 10000. result_table is the time->result-score table; placing_event_group selects the placing table. entry_standard is the Birmingham 2026 European Champs standard.",
+    "event_path": {"800m": "800m", "1500m": "1500m", "5000m": "5000m", "10000m": "10000m"}
+  },
+
+  "800m_men": {
+    "label": "Men's 800m", "gender": "men",
+    "discipline": "800m", "main_event_codes": ["800"],
+    "similar_event_codes": ["600", "600sh", "800sh", "1000", "1000sh"],
+    "best_n": 5, "main_event_min": 3, "window_months": 12,
+    "result_table": "scoring_tables/800m_men.csv",
+    "placing_event_group": "standard", "entry_standard": "1:44.80"
+  },
+  "800m_women": {
+    "label": "Women's 800m", "gender": "women",
+    "discipline": "800m", "main_event_codes": ["800"],
+    "similar_event_codes": ["600", "600sh", "800sh", "1000", "1000sh"],
+    "best_n": 5, "main_event_min": 3, "window_months": 12,
+    "result_table": "scoring_tables/800m_women.csv",
+    "placing_event_group": "standard", "entry_standard": "1:59.80"
+  },
+
+  "1500m_men": {
+    "label": "Men's 1500m", "gender": "men",
+    "discipline": "1500m", "main_event_codes": ["1500"],
+    "similar_event_codes": ["1500sh", "MILE", "MILEsh", "2000", "2000sh", "1MR"],
+    "best_n": 5, "main_event_min": 3, "window_months": 12,
+    "result_table": "scoring_tables/1500m_men.csv",
+    "placing_event_group": "standard", "entry_standard": "3:33.50"
+  },
+  "1500m_women": {
+    "label": "Women's 1500m", "gender": "women",
+    "discipline": "1500m", "main_event_codes": ["1500"],
+    "similar_event_codes": ["1500sh", "MILE", "MILEsh", "2000", "2000sh", "1MR"],
+    "best_n": 5, "main_event_min": 3, "window_months": 12,
+    "result_table": "scoring_tables/1500m_women.csv",
+    "placing_event_group": "standard", "entry_standard": "4:03.50"
+  },
+
+  "5000m_men": {
+    "label": "Men's 5000m", "gender": "men",
+    "discipline": "5000m", "main_event_codes": ["5000"],
+    "similar_event_codes": ["3000", "3000sh", "2M", "2Msh", "5000sh", "5KR"],
+    "best_n": 3, "main_event_min": 2, "window_months": 12,
+    "result_table": "scoring_tables/5000m_men.csv",
+    "placing_event_group": "5000m", "entry_standard": "13:08.00"
+  },
+  "5000m_women": {
+    "label": "Women's 5000m", "gender": "women",
+    "discipline": "5000m", "main_event_codes": ["5000"],
+    "similar_event_codes": ["3000", "3000sh", "2M", "2Msh", "5000sh", "5KR"],
+    "best_n": 3, "main_event_min": 2, "window_months": 12,
+    "result_table": "scoring_tables/5000m_women.csv",
+    "placing_event_group": "5000m", "entry_standard": "15:05.00"
+  },
+
+  "10000m_men": {
+    "label": "Men's 10000m", "gender": "men",
+    "discipline": "10000m", "main_event_codes": ["10K"],
+    "similar_event_codes": ["10RR"],
+    "best_n": 2, "main_event_min": 1, "window_months": 18,
+    "result_table": "scoring_tables/10000m_men.csv",
+    "placing_event_group": "10000m", "entry_standard": "27:50.00"
+  },
+  "10000m_women": {
+    "label": "Women's 10000m", "gender": "women",
+    "discipline": "10000m", "main_event_codes": ["10K"],
+    "similar_event_codes": ["10RR"],
+    "best_n": 2, "main_event_min": 1, "window_months": 18,
+    "result_table": "scoring_tables/10000m_women.csv",
+    "placing_event_group": "10000m", "entry_standard": "32:00.00"
+  },
+
+  "3000mSC_men": {
+    "label": "Men's 3000m SC", "gender": "men",
+    "discipline": "3000m-steeplechase", "discipline_name": "3000 Metres Steeplechase",
+    "graphql_event_group": "3000msc",
+    "main_event_codes": ["3000mSC"], "similar_event_codes": ["2000mSC"],
+    "best_n": 3, "main_event_min": 2, "window_months": 12,
+    "result_table": "scoring_tables/3000mSC_men.csv",
+    "placing_event_group": "5000m", "entry_standard": "8:20.00"
+  },
+  "3000mSC_women": {
+    "label": "Women's 3000m SC", "gender": "women",
+    "discipline": "3000m-steeplechase", "discipline_name": "3000 Metres Steeplechase",
+    "graphql_event_group": "3000msc",
+    "main_event_codes": ["3000mSC"], "similar_event_codes": ["2000mSC"],
+    "best_n": 3, "main_event_min": 2, "window_months": 12,
+    "result_table": "scoring_tables/3000mSC_women.csv",
+    "placing_event_group": "5000m", "entry_standard": "9:28.00"
+  }
+}

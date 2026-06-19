@@ -1,0 +1,39 @@
+{
+  "_meta": {
+    "note": "Championships are region-level and apply to any event. Pick an event with --event (e.g. 1500m_men). The rankings URL is built from rankings_url_template using the event's discipline + gender. Per-event qualification config (quota, defending champion, optional window override) lives under 'events'."
+  },
+
+  "world": {
+    "label": "World Ranking",
+    "rankings_url_template": "https://worldathletics.org/world-rankings/{event_path}/{gender}",
+    "calculation_url": "https://worldathletics.org/WorldRanking/RankingScoreCalculation?competitorId={competitor_id}",
+    "note": "Global World Athletics ranking (all nations). General-ranking questions only; no quota/qualification."
+  },
+
+  "road_to_birmingham": {
+    "label": "Road to Birmingham (2026 European Athletics Championships)",
+    "rankings_url_template": "https://worldathletics.org/world-rankings/{event_path}/{gender}?regionType=area&region=europe",
+    "calculation_url": "https://worldathletics.org/WorldRanking/RankingScoreCalculation?competitorId={competitor_id}",
+    "region": "europe",
+    "max_per_country": 3,
+    "always_include_competitions": ["European Athletics Championships"],
+    "qualification_window": {"start": "2025-07-27", "end": "2026-07-26"},
+    "quota_source": "European Athletics 'Qualification System and Entry Standards' (Birmingham 2026), 'Target number of athletes / teams per event' table.",
+    "quota_is_total_field": true,
+    "qualification_note": "Quota is the TOTAL target field; world rankings only fill what remains after entry-standard achievers, finishing-position qualifiers, the defending-champion wildcard and approved unqualified athletes. This tool treats the field as ranking-only (champion bye + 3-per-country cap), so it over-counts ranking places. Defending champions are the Rome 2024 European Outdoor Champions (wildcard applies only if entered by their federation; some may not compete). 10000m uses an 18-month qualification window.",
+    "events": {
+      "800m_men":    {"quota": 32, "defending_champion": {"name": "Gabriel TUAL", "country": "FRA"}},
+      "800m_women":  {"quota": 32, "defending_champion": {"name": "Keely HODGKINSON", "country": "GBR"}},
+      "1500m_men":   {"quota": 30, "defending_champion": {"name": "Jakob INGEBRIGTSEN", "country": "NOR"}},
+      "1500m_women": {"quota": 30, "defending_champion": {"name": "Ciara MAGEEAN", "country": "IRL"}},
+      "5000m_men":   {"quota": 25, "defending_champion": {"name": "Jakob INGEBRIGTSEN", "country": "NOR"}},
+      "5000m_women": {"quota": 25, "defending_champion": {"name": "Nadia BATTOCLETTI", "country": "ITA"}},
+      "10000m_men":   {"quota": 27, "defending_champion": {"name": "Dominic LOBALU", "country": "SUI"},
+                       "qualification_window": {"start": "2025-01-25", "end": "2026-07-26"}},
+      "10000m_women": {"quota": 27, "defending_champion": {"name": "Nadia BATTOCLETTI", "country": "ITA"},
+                       "qualification_window": {"start": "2025-01-25", "end": "2026-07-26"}},
+      "3000mSC_men":   {"quota": 34, "defending_champion": {"name": "Alexis MIELLET", "country": "FRA"}},
+      "3000mSC_women": {"quota": 34, "defending_champion": {"name": "Alice FINOT", "country": "FRA"}}
+    }
+  }
+}

@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+data/cache/*.json
+!data/cache/.gitkeep
+.venv/
+web/node_modules/
+web/dist/
+
+# macOS
+.DS_Store
