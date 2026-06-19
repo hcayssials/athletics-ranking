@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { getMeta, getRankings, getAthlete, runWhatIf } from "./api.js";
+import { getMeta, getRankings, getAthlete, searchAthletes, runWhatIf } from "./api.js";
 import { parseTime, surnameOf, bestPerf, matchAthlete, parseQuery, extractSlug, deriveName, looksLikeProfile } from "./parse.js";
 
 // Ranking What-If Studio — the Claude Design look, driven by the live FastAPI backend.
@@ -115,6 +115,8 @@ export default function App() {
   const [busy, setBusy] = useState(false);
   const [methodOpen, setMethodOpen] = useState(false);
   const [catHelp, setCatHelp] = useState(false);
+  const [candidates, setCandidates] = useState(null); // WA search matches for an unlisted name
+  const [searching, setSearching] = useState(false);
   const [pending, setPending] = useState(null); // a queued natural-language run, executed once its list loads
 
   const isRoad = championship === "road_to_birmingham";
@@ -135,11 +137,11 @@ export default function App() {
   }, [championship, event]);
 
   // Manual selector changes start fresh; NL changes (via `pending`) keep their queued run alive.
-  const changeChampionship = (c) => { setChampionship(c); setResult(null); setSelected(null); setError(""); };
+  const changeChampionship = (c) => { setChampionship(c); setResult(null); setSelected(null); setError(""); setCandidates(null); };
   // New event → reset Time to that event's entry standard and Place to 1 (keep Category) so the
   // console never shows a time from the previous event. A later athlete pick still overrides these.
   const changeEvent = (e) => {
-    setEvent(e); setResult(null); setSelected(null); setError("");
+    setEvent(e); setResult(null); setSelected(null); setError(""); setCandidates(null);
     setForm((s) => ({ ...s, time: entryStandardFor(e), place: 1 }));
   };
 
@@ -160,7 +162,7 @@ export default function App() {
     }
     if (!name) { setError("Enter an athlete — a name from the list, or a World Athletics link."); setResult(null); return; }
     if (!parseTime(f.time)) { setError("Enter a time like 3:29.00."); setResult(null); return; }
-    setBusy(true); setError("");
+    setBusy(true); setError(""); setCandidates(null);
     try {
       const r = await runWhatIf({
         event: ev, championship: champ, athlete: name, time: f.time,
@@ -170,13 +172,30 @@ export default function App() {
       });
       setResult(r); setSelected(r.athlete);
     } catch (e) {
-      // A "not on the list" failure for a ranked lookup → point the user at the link option.
-      const notFound = !profile && /not in the .*ranking list|enough performances/i.test(e.message);
-      setError(notFound
-        ? `${name} is either not in the top ~100, or doesn't have enough performances in the window to be ranked yet. If they're unranked, paste their World Athletics profile link in the athlete box above.`
-        : e.message);
       setResult(null);
+      // A ranked lookup that isn't on the list → auto-search World Athletics for that name.
+      const notFound = !profile && /not in the .*ranking list|enough performances/i.test(e.message);
+      if (notFound) { await searchFor(name, ev); }
+      else { setError(e.message); }
     } finally { setBusy(false); }
+  }
+
+  // Auto-search WA for an unlisted name and surface matches the user can pick from.
+  async function searchFor(name, ev = event) {
+    setSearching(true); setError("");
+    try {
+      const { candidates: cands } = await searchAthletes(name, ev);
+      setCandidates(cands);
+      if (!cands.length) setError(`Couldn't find “${name}” on World Athletics. Check the spelling, or paste their profile link.`);
+    } catch {
+      setError(`${name} isn't in the top ~100, and the World Athletics search is unavailable right now — paste their profile link to run the analysis.`);
+    } finally { setSearching(false); }
+  }
+
+  // Pick a search match → run the unranked analysis from that athlete's profile.
+  function pickCandidate(c) {
+    setCandidates(null);
+    run({ ...form, athlete: c.name }, championship, event, c.slug);
   }
 
   // Click/pick an athlete → select it and seed Time/Place/Category from their best performance.
@@ -426,6 +445,21 @@ export default function App() {
               {busy ? "Running…" : "Run what-if"}
             </button>
             {error && <div style={{ marginTop: 12, padding: "10px 12px", background: "#f7e9e6", border: "1px solid #e3b8b0", borderRadius: 8, color: "#9c352a", fontSize: 12.5 }}>{error}</div>}
+
+            {searching && <div style={{ marginTop: 12, fontSize: 12.5, color: MUTE }}>Searching World Athletics…</div>}
+            {candidates && candidates.length > 0 && (
+              <div style={{ marginTop: 12, border: "1px solid #e2ddd0", borderRadius: 10, overflow: "hidden", background: "#fff" }}>
+                <div style={{ padding: "8px 12px", background: "#f4f1ea", fontSize: 11.5, fontWeight: 700, color: "#6b6457" }}>Not in the list — did you mean?</div>
+                {candidates.map((c) => (
+                  <button key={c.slug} onClick={() => pickCandidate(c)}
+                    style={{ display: "block", width: "100%", textAlign: "left", padding: "9px 12px", border: "none", borderTop: "1px solid #efeadd", background: "transparent", cursor: "pointer", fontFamily: "inherit" }}>
+                    <div style={{ fontSize: 13.5, fontWeight: 600, color: INK }}>{c.name} <span style={{ fontFamily: MONO, fontSize: 11, color: "#6b6457" }}>{c.country}</span></div>
+                    {c.disciplines && <div style={{ fontSize: 11, color: MUTE, marginTop: 1 }}>{c.disciplines}</div>}
+                  </button>
+                ))}
+                <div style={{ padding: "7px 12px", fontSize: 11, color: MUTE, borderTop: "1px solid #efeadd" }}>Runs from their World Athletics profile — first lookup can take ~30s.</div>
+              </div>
+            )}
           </div>
         </section>
 
@@ -527,11 +561,15 @@ function ResultPanel({ rv, onToggle }) {
       {/* unranked profile summary */}
       {rv.unranked && rv.profileSummary && (() => {
         const ps = rv.profileSummary;
+        const bestN = ps.counting_with_new + ps.short_of_full_set;   // size of a full counting set
+        const shortNow = Math.max(0, bestN - ps.counting_now);       // results missing right now
         return (
-          <div style={{ padding: "12px 24px", borderTop: "1px solid #ece6d8", background: "#fbf7ec", fontSize: 12.5, color: "#5c4410", lineHeight: 1.5 }}>
-            Currently unranked{ps.best_rank ? ` (best ever #${ps.best_rank}${ps.best_rank_weeks ? `, ${ps.best_rank_weeks} wks ago` : ""})` : ""}.{" "}
-            {ps.counting_with_new} counting result{ps.counting_with_new === 1 ? "" : "s"}{ps.short_of_full_set > 0 ? `, ${ps.short_of_full_set} short of a full set` : ""}.
-            {ps.required_time ? ` To reach the ${ps.target_label} (${Math.round(ps.target_score)}) this race would need ≈ ${ps.required_time}.` : ""}
+          <div style={{ padding: "12px 24px", borderTop: "1px solid #ece6d8", background: "#fbf7ec", fontSize: 12.5, color: "#5c4410", lineHeight: 1.55 }}>
+            <b>Not currently ranked</b> for this event. A ranking score averages the best {bestN} results from the past 12 months — {rv.name} has <b>{ps.counting_now}</b>
+            {shortNow > 0 ? <>, so <b>{shortNow} more {shortNow === 1 ? "result is" : "results are"} needed</b> for a full set</> : ", a full set"}; this race would make {ps.counting_with_new}.
+            {ps.best_rank ? ` Best-ever #${ps.best_rank}${ps.best_rank_weeks ? `, ${ps.best_rank_weeks} weeks ago` : ""}.` : ""}
+            {ps.required_time ? ` To reach the ${ps.target_label} (${Math.round(ps.target_score)}), it would take about ${ps.required_time}.` : ""}
+            {ps.incomplete_window ? " (Window data may be incomplete — couldn't reach the full results feed.)" : ""}
           </div>
         );
       })()}

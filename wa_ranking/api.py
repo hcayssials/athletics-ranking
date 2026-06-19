@@ -17,9 +17,10 @@ from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
-from . import fetch
-from .config import (championship_event_config, load_championships, load_events,
-                     load_placing_scores)
+from . import fetch, graphql
+from .config import (championship_event_config, load_championships, load_event,
+                     load_events, load_placing_scores)
+from .profile import _main_discipline_name
 from .whatif import what_if
 
 # On boot, warm the cache for common (championship, event) lists so the first real request
@@ -121,6 +122,46 @@ def athlete(championship: str, event: str, name: str):
     if a is None:
         raise HTTPException(status_code=404, detail=f"Athlete '{name}' not found in this list.")
     return a
+
+
+@app.get("/api/search")
+def search(name: str, event: str | None = None):
+    """Search World Athletics for athletes by name (for the unranked path). Ranks candidates
+    whose discipline/gender match `event` first. Returns slim rows incl. the profile slug."""
+    name = (name or "").strip()
+    if len(name) < 2:
+        return {"name": name, "candidates": []}
+    try:
+        raw = graphql.search_competitors(name)
+    except Exception:
+        raise HTTPException(status_code=502, detail="World Athletics search is temporarily unavailable.")
+
+    main_name = gender = None
+    if event:
+        try:
+            ev = load_event(event)
+            main_name = ev.get("discipline_name") or _main_discipline_name(ev["discipline"])
+            gender = ev.get("gender")
+        except Exception:
+            pass
+
+    def relevance(c: dict) -> int:
+        score = 0
+        if main_name and main_name in (c.get("disciplines") or ""):
+            score += 4
+        if gender and (c.get("gender") or "").lower() == gender:
+            score += 2
+        return score
+
+    ranked = sorted(raw, key=relevance, reverse=True)
+    candidates = [{
+        "name": f"{(c.get('givenName') or '').strip()} {(c.get('familyName') or '').strip()}".strip(),
+        "country": c.get("country"),
+        "slug": (c.get("urlSlug") or "").split("/")[-1],
+        "disciplines": c.get("disciplines"),
+        "gender": c.get("gender"),
+    } for c in ranked[:8] if c.get("urlSlug")]
+    return {"name": name, "candidates": candidates}
 
 
 class WhatIfRequest(BaseModel):

@@ -14,6 +14,9 @@ export const getRankings = (championship, event) =>
 export const getAthlete = (championship, event, name) =>
   j(`/api/athlete?championship=${championship}&event=${event}&name=${encodeURIComponent(name)}`);
 
+export const searchAthletes = (name, event) =>
+  j(`/api/search?name=${encodeURIComponent(name)}&event=${event}`);
+
 export const runWhatIf = (body) =>
   j("/api/whatif", {
     method: "POST",

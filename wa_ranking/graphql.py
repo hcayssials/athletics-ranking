@@ -107,6 +107,17 @@ def world_rankings(event_group: str, region_type: str | None = None,
     return data["getWorldRankings"]
 
 
+_SEARCH_QUERY = """query S($q:String){
+  searchCompetitors(query:$q){ aaAthleteId familyName givenName disciplines gender country urlSlug }
+}"""
+
+
+def search_competitors(name: str) -> list[dict]:
+    """Search World Athletics competitors by name. Returns raw competitor dicts (possibly empty)."""
+    data = query(_SEARCH_QUERY, {"q": name})
+    return data.get("searchCompetitors") or []
+
+
 def query(query_str: str, variables: dict) -> dict:
     """Run a GraphQL query, refreshing the key once on auth failure. Returns the `data` dict."""
     key = get_api_key()
