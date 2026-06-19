@@ -2,8 +2,9 @@
 
 Key fact about the data source: the World Athletics RankingScoreCalculation endpoint returns
 *exactly the counting performances* — WA has already applied every selection rule (12-month
-window, similar events, the >=3-of-5 main-event minimum, and the always-include-previous-
-continental-championship rule). Verified: `floor(mean(returned performances)) == official`
+window, similar events, the >=3-of-5 main-event minimum, and the rule that a previous
+continental-championship result stays eligible even when it falls outside that window).
+Verified: `floor(mean(returned performances)) == official`
 for every athlete on the list.
 
 So the **baseline** ranking score is simply the floored mean of the returned set; we do *not*
@@ -34,7 +35,9 @@ def _score(p: dict) -> int:
 
 
 def _is_protected(perf: dict, patterns: list[str]) -> bool:
-    """A performance that always counts (e.g. the previous continental championship)."""
+    """A performance that bypasses the date window (e.g. the previous continental
+    championship). It stays eligible regardless of date, but a better result can still
+    displace it from the counting set."""
     comp = (perf.get("competition") or "").lower()
     return any(pat in comp for pat in patterns)
 
@@ -57,7 +60,9 @@ def select_counting(candidates: list[dict], best_n: int, *,
                     window_end: date | None = None) -> list[dict]:
     """Select the counting performances (<= best_n) that maximise the mean, subject to:
 
-    - **protected** performances (matching `always_include_competitions`) always count;
+    - **protected** performances (matching `always_include_competitions`) are *window-exempt*
+      — they stay eligible regardless of date — but compete on score like any other result,
+      so a better result still displaces them;
     - at least `main_event_min` of the selection are in `main_event_codes`;
     - if a fixed window (`window_start`/`window_end`) is given, non-protected performances
       outside it are dropped first. With no window bounds, all candidates are kept (the
@@ -81,21 +86,17 @@ def select_counting(candidates: list[dict], best_n: int, *,
                 pool.append(p)
     pool.sort(key=_score, reverse=True)
 
-    # 2. Force-keep protected performances.
-    selected = [p for p in pool if _is_protected(p, patterns)]
-    others = [p for p in pool if not _is_protected(p, patterns)]
-
-    # 3. Satisfy the main-event minimum with the best available main-event performances.
+    # 2. Satisfy the main-event minimum with the best available main events. (Protected
+    #    results are window-exempt via step 1 but compete on score like any other result —
+    #    a better result still displaces them.)
+    selected = []
     if main_codes and main_event_min > 0:
-        mains_in = sum(1 for p in selected if p.get("discipline_code") in main_codes)
-        need = min(main_event_min - mains_in, best_n - len(selected))
-        if need > 0:
-            other_mains = [p for p in others if p.get("discipline_code") in main_codes]
-            selected += other_mains[:need]
+        mains = [p for p in pool if p.get("discipline_code") in main_codes]
+        selected = mains[: min(main_event_min, best_n)]
 
-    # 4. Fill remaining slots by score.
+    # 3. Fill remaining slots by score (best of the rest; may add further main events).
     sel_ids = {id(p) for p in selected}
-    selected += [p for p in others if id(p) not in sel_ids][: best_n - len(selected)]
+    selected += [p for p in pool if id(p) not in sel_ids][: best_n - len(selected)]
 
     selected.sort(key=_score, reverse=True)
     return selected[:best_n]

@@ -35,13 +35,15 @@ def test_select_counting_takes_best_n():
         [1400, 1380, 1360, 1340, 1320]
 
 
-def test_protected_championship_always_counts():
-    # A weak previous-championship result is kept even though it isn't top-5 by score.
+def test_protected_championship_is_window_exempt_but_displaceable():
+    # The continental result is window-exempt (kept despite being out of window) but is
+    # still displaced when there are enough better in-window results.
     perfs = [p(1400), p(1380), p(1360), p(1340), p(1320),
              p(1000, d="2024-06-12", comp=f"{EAC}, Roma")]
     sel = select_counting(perfs, 5, always_include_competitions=(EAC,))
     scores = [x["performance_score"] for x in sel]
-    assert 1000 in scores and 1320 not in scores and len(sel) == 5
+    # Five better results fill the best-5, so the weak continental result drops out.
+    assert 1000 not in scores and 1320 in scores and len(sel) == 5
 
 
 def test_main_event_minimum_enforced():
@@ -82,12 +84,28 @@ def test_insert_too_weak_does_not_count():
     assert r["new_score"] == r["old_score"]
 
 
-def test_insert_cannot_displace_protected_championship():
+def test_better_result_displaces_continental():
+    # A stronger new result fills the best-5 and pushes the weak continental result out;
+    # the continental result is window-exempt, not immune to a better score.
     perfs = [p(1400), p(1380), p(1360), p(1340), p(1000, d="2024-06-12", comp=EAC)]
     r = insert_and_recompute(perfs, p(1390), 5, always_include_competitions=(EAC,))
     scores = [x["performance_score"] for x in r["new_counting"]]
-    assert 1000 in scores and 1340 not in scores      # weakest NON-protected dropped
+    assert 1390 in scores and 1000 not in scores      # weak continental result displaced
     assert r["new_perf_counts"] is True
+
+
+def test_steeple_weak_hypothetical_does_not_count():
+    # Regression (Daru): full best-3 set incl. a continental result, all main-event (3KSC).
+    # A weaker main-event hypothetical must NOT be force-selected by the main-event minimum
+    # — it should not count and the score must be unchanged.
+    perfs = [p(1252, disc="3KSC"), p(1236, disc="3KSC"),
+             p(1225, d="2024-06-10", disc="3KSC", comp=EAC)]
+    r = insert_and_recompute(
+        perfs, p(1206, disc="3KSC", comp="(hypothetical)"), 3,
+        main_event_codes=("3KSC",), main_event_min=2, always_include_competitions=(EAC,),
+    )
+    assert r["new_perf_counts"] is False
+    assert r["new_score"] == r["old_score"] == 1237
 
 
 # --- misc -----------------------------------------------------------------------------

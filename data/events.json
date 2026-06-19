@@ -76,7 +76,7 @@
     "label": "Men's 3000m SC", "gender": "men",
     "discipline": "3000msc", "discipline_name": "3000 Metres Steeplechase",
     "graphql_event_group": "3000msc",
-    "main_event_codes": ["3000mSC"], "similar_event_codes": ["2000mSC"],
+    "main_event_codes": ["3KSC"], "similar_event_codes": ["2KSC"],
     "best_n": 3, "main_event_min": 2, "window_months": 12,
     "result_table": "scoring_tables/3000mSC_men.csv",
     "placing_event_group": "5000m", "entry_standard": "8:20.00"
@@ -85,7 +85,7 @@
     "label": "Women's 3000m SC", "gender": "women",
     "discipline": "3000msc", "discipline_name": "3000 Metres Steeplechase",
     "graphql_event_group": "3000msc",
-    "main_event_codes": ["3000mSC"], "similar_event_codes": ["2000mSC"],
+    "main_event_codes": ["3KSC"], "similar_event_codes": ["2KSC"],
     "best_n": 3, "main_event_min": 2, "window_months": 12,
     "result_table": "scoring_tables/3000mSC_women.csv",
     "placing_event_group": "5000m", "entry_standard": "9:28.00"
