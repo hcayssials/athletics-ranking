@@ -201,9 +201,9 @@ def _rankings_via_graphql(ev: dict, champ: dict) -> list[dict]:
     returned_gender = (data.get("parameters") or {}).get("gender")
     if ev["gender"] == "men" or returned_gender == "women" and ev["gender"] != "women":
         raise RuntimeError(
-            f"{ev['label']} rankings aren't available: World Athletics doesn't server-render "
-            "this event's HTML list, and the reachable GraphQL rankings feed returns women "
-            "only. Women's is supported; men's needs a men's-rankings source.")
+            f"{ev['label']} rankings aren't available yet — World Athletics doesn't publish "
+            "this event's ranking list in a form this tool can read (the women's list works). "
+            "Every other event is available normally.")
     return [{
         "competitor_id": str(r["id"]),
         "slug": r.get("competitorUrlSlug"),
