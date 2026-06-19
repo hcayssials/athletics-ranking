@@ -14,7 +14,7 @@ from __future__ import annotations
 
 import json
 import re
-from datetime import date, datetime
+from datetime import date
 
 import requests
 from dateutil.relativedelta import relativedelta
@@ -22,6 +22,7 @@ from dateutil.relativedelta import relativedelta
 from . import cache, graphql
 from .config import load_event
 from .scoring import placing_score
+from .wa_parse import parse_place, parse_wa_date
 
 _PROFILE_URL = "https://worldathletics.org/athletes/x/{slug}"
 _HEADERS = {"User-Agent": "Mozilla/5.0 (wa-ranking-whatif research tool)"}
@@ -75,27 +76,13 @@ def _parse_next_data(doc: str) -> dict:
     return json.loads(m.group(1))
 
 
-def _parse_wa_date(raw: str) -> str | None:
-    for fmt in ("%d %b %Y", "%d %B %Y"):
-        try:
-            return datetime.strptime((raw or "").strip(), fmt).date().isoformat()
-        except ValueError:
-            continue
-    return None
-
-
-def _place_int(raw) -> int | None:
-    m = re.search(r"\d+", str(raw or ""))
-    return int(m.group()) if m else None
-
-
 def _result_to_perf(r: dict, is_main: bool, main_code: str, group: str) -> dict:
     rscore = r.get("resultScore") or 0
-    place = _place_int(r.get("place"))
+    place = parse_place(r.get("place"))
     cat = r.get("category")
     pscore = placing_score(cat, place, group) if (cat and place) else 0
     return {
-        "date": _parse_wa_date(r.get("date")),
+        "date": parse_wa_date(r.get("date")),
         "competition": r.get("competition") or r.get("venue"),
         "category": cat,
         "discipline_code": main_code if is_main else "SIMILAR",

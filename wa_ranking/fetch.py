@@ -18,12 +18,13 @@ import html
 import json
 import re
 import time
-from datetime import date, datetime
+from datetime import datetime
 
 import requests
 
 from . import cache
 from .config import load_championship
+from .wa_parse import parse_place, parse_wa_date
 
 _HEADERS = {
     "User-Agent": "Mozilla/5.0 (wa-ranking-whatif research tool)",
@@ -68,33 +69,17 @@ def parse_ranking_html(doc: str) -> list[dict]:
     return athletes
 
 
-def _parse_wa_date(raw: str) -> str | None:
-    """'07 JUN 2026' -> '2026-06-07' (ISO). Returns None if unparseable."""
-    raw = (raw or "").strip()
-    for fmt in ("%d %b %Y", "%d %B %Y"):
-        try:
-            return datetime.strptime(raw, fmt).date().isoformat()
-        except ValueError:
-            continue
-    return None
-
-
-def _parse_place(raw) -> int | None:
-    m = re.search(r"\d+", str(raw or ""))
-    return int(m.group()) if m else None
-
-
 def normalize_performance(r: dict) -> dict:
     """Normalise one entry from the RankingScoreCalculation 'results' list."""
     return {
-        "date": _parse_wa_date(r.get("date")),
+        "date": parse_wa_date(r.get("date")),
         "date_raw": r.get("date"),
         "competition": r.get("competition"),
         "category": r.get("category"),
         "discipline_code": r.get("disciplineCode"),
         "discipline": r.get("discipline"),
         "indoor": bool(r.get("indoor")),
-        "place": _parse_place(r.get("place")),
+        "place": parse_place(r.get("place")),
         "mark": (r.get("mark") or "").strip(),
         "result_score": r.get("resultScore"),
         "placing_score": r.get("placingScore"),
@@ -124,8 +109,8 @@ def fetch_athlete_calculation(competitor_id: str, calc_url_template: str,
         "athlete": payload.get("athlete"),
         "slug": payload.get("athleteUrlSlug"),
         "country": payload.get("country"),
-        "birth_date": _parse_wa_date(payload.get("birthDate")),
-        "rank_date": _parse_wa_date(payload.get("rankDate")),
+        "birth_date": parse_wa_date(payload.get("birthDate")),
+        "rank_date": parse_wa_date(payload.get("rankDate")),
         "rank_date_raw": payload.get("rankDate"),
         "event_group": payload.get("eventGroup"),
         "rank": payload.get("place"),
@@ -209,7 +194,7 @@ def _rankings_via_graphql(ev: dict, champ: dict) -> list[dict]:
         "slug": r.get("competitorUrlSlug"),
         "rank": r.get("place"),
         "name": r.get("competitorName", ""),
-        "dob": _parse_wa_date(r.get("competitorBirthDate")),
+        "dob": parse_wa_date(r.get("competitorBirthDate")),
         "country": r.get("countryCode"),
         "ranking_score": r.get("rankingScore"),
     } for r in (data.get("rankings") or [])]
