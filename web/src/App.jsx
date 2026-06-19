@@ -102,6 +102,21 @@ const badge = (delta, kind) => {
   return { bg, fg };
 };
 
+// True on phone-width screens; lets inline styles branch on layout (CSS-in-JS can't use
+// media queries). Both App and ResultPanel use it to stack columns and shrink hero numbers.
+function useIsNarrow(maxWidth = 760) {
+  const q = `(max-width: ${maxWidth}px)`;
+  const [narrow, setNarrow] = useState(() =>
+    typeof window !== "undefined" && window.matchMedia(q).matches);
+  useEffect(() => {
+    const mq = window.matchMedia(q);
+    const on = (e) => setNarrow(e.matches);
+    mq.addEventListener("change", on);
+    return () => mq.removeEventListener("change", on);
+  }, [q]);
+  return narrow;
+}
+
 export default function App() {
   const [meta, setMeta] = useState(null);
   const [championship, setChampionship] = useState("road_to_birmingham");
@@ -121,6 +136,7 @@ export default function App() {
   const [pending, setPending] = useState(null); // a queued natural-language run, executed once its list loads
 
   const isRoad = championship === "road_to_birmingham";
+  const narrow = useIsNarrow();
 
   const entryStandardFor = (ev) => (meta && (meta.events.find((e) => e.key === ev) || {}).entry_standard) || "";
 
@@ -266,13 +282,13 @@ export default function App() {
 
   return (
     <div style={{ fontFamily: "'Archivo', system-ui, sans-serif", color: INK, background: SURFACE, minHeight: "100vh" }}>
-      <div style={{ maxWidth: 1320, margin: "0 auto", padding: "0 28px 64px" }}>
+      <div style={{ maxWidth: 1320, margin: "0 auto", padding: narrow ? "0 14px 40px" : "0 28px 64px" }}>
 
         {/* HEADER */}
-        <header style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 24, padding: "26px 0 18px", borderBottom: `2px solid ${INK}` }}>
+        <header style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: 16, padding: "26px 0 18px", borderBottom: `2px solid ${INK}` }}>
           <div>
             <div style={{ fontSize: 11, letterSpacing: "0.22em", fontWeight: 600, color: MUTE, textTransform: "uppercase" }}>World Athletics · Middle Distance</div>
-            <h1 style={{ margin: "4px 0 0", fontSize: 30, fontWeight: 800, letterSpacing: "-0.02em" }}>Ranking What-If Studio</h1>
+            <h1 style={{ margin: "4px 0 0", fontSize: narrow ? 23 : 30, fontWeight: 800, letterSpacing: "-0.02em" }}>Ranking What-If Studio</h1>
           </div>
           <div style={{ textAlign: "right", fontFamily: MONO, fontSize: 11, color: MUTE, lineHeight: 1.5 }}>
             <div>RANKINGS UPDATED</div>
@@ -328,7 +344,7 @@ export default function App() {
         </section>
 
         {/* MAIN GRID */}
-        <section style={{ display: "grid", gridTemplateColumns: "1.55fr 1fr", gap: 22, alignItems: "start" }}>
+        <section style={{ display: "grid", gridTemplateColumns: narrow ? "1fr" : "1.55fr 1fr", gap: 22, alignItems: "start" }}>
 
           {/* RANKINGS TABLE */}
           <div style={{ background: BG, border: "1px solid #e7eaef", borderRadius: 14, overflow: "hidden" }}>
@@ -383,7 +399,7 @@ export default function App() {
           </div>
 
           {/* WHAT-IF CONSOLE */}
-          <div style={{ background: BG, border: "1px solid #e7eaef", borderRadius: 14, padding: "18px 18px 20px", position: "sticky", top: 16 }}>
+          <div style={{ background: BG, border: "1px solid #e7eaef", borderRadius: 14, padding: "18px 18px 20px", position: narrow ? "static" : "sticky", top: 16 }}>
             <h2 style={{ margin: "0 0 4px", fontSize: 16, fontWeight: 700 }}>What-if console</h2>
             <p style={{ margin: "0 0 14px", fontSize: 12.5, color: MUTE }}>Fine-tune the scenario, then run it.</p>
 
@@ -475,6 +491,7 @@ export default function App() {
 }
 
 function ResultPanel({ rv, onToggle }) {
+  const narrow = useIsNarrow();
   const rankB = badge(rv.rankDelta, "rank");
   const scoreB = badge(rv.scoreDelta, "score");
   const rankBadgeText = rv.rankDelta > 0 ? `▲ ${Math.abs(rv.rankDelta)} place${Math.abs(rv.rankDelta) === 1 ? "" : "s"}`
@@ -518,22 +535,22 @@ function ResultPanel({ rv, onToggle }) {
       )}
 
       {/* rank + score */}
-      <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr" }}>
-        <div style={{ padding: "22px 24px", borderRight: "1px solid #d8dce2" }}>
+      <div style={{ display: "grid", gridTemplateColumns: narrow ? "1fr" : "1.4fr 1fr" }}>
+        <div style={{ padding: "22px 24px", borderRight: narrow ? "none" : "1px solid #d8dce2", borderBottom: narrow ? "1px solid #d8dce2" : "none" }}>
           <div style={{ fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: MUTE, fontWeight: 600 }}>{rv.rankLabel}</div>
           <div style={{ display: "flex", alignItems: "center", gap: 14, marginTop: 8, flexWrap: "wrap" }}>
             {rv.unranked ? (
               <>
-                <span style={{ fontSize: 26, fontWeight: 800, color: "#9aa1ac", letterSpacing: "-0.01em" }}>UNRANKED</span>
-                <span style={{ fontSize: 28, color: ACCENT }}>→</span>
-                <span style={{ fontSize: 74, fontWeight: 900, lineHeight: 0.9, letterSpacing: "-0.04em" }}>#{rv.newRank}</span>
+                <span style={{ fontSize: narrow ? 22 : 26, fontWeight: 800, color: "#9aa1ac", letterSpacing: "-0.01em" }}>UNRANKED</span>
+                <span style={{ fontSize: narrow ? 22 : 28, color: ACCENT }}>→</span>
+                <span style={{ fontSize: narrow ? 52 : 74, fontWeight: 900, lineHeight: 0.9, letterSpacing: "-0.04em" }}>#{rv.newRank}</span>
                 <span style={{ marginLeft: 6, alignSelf: "center", fontSize: 12.5, fontWeight: 700, padding: "4px 11px", borderRadius: 20, background: "#eceef2", color: "#6b7480", whiteSpace: "nowrap" }}>would slot in (raw)</span>
               </>
             ) : (
               <>
-                <span style={{ fontSize: 56, fontWeight: 800, lineHeight: 1, color: "#9aa1ac", letterSpacing: "-0.03em" }}>#{rv.oldRank}</span>
-                <span style={{ fontSize: 28, color: ACCENT }}>→</span>
-                <span style={{ fontSize: 74, fontWeight: 900, lineHeight: 0.9, letterSpacing: "-0.04em" }}>#{rv.newRank}</span>
+                <span style={{ fontSize: narrow ? 40 : 56, fontWeight: 800, lineHeight: 1, color: "#9aa1ac", letterSpacing: "-0.03em" }}>#{rv.oldRank}</span>
+                <span style={{ fontSize: narrow ? 22 : 28, color: ACCENT }}>→</span>
+                <span style={{ fontSize: narrow ? 52 : 74, fontWeight: 900, lineHeight: 0.9, letterSpacing: "-0.04em" }}>#{rv.newRank}</span>
                 <span style={{ marginLeft: 6, alignSelf: "center", fontSize: 12.5, fontWeight: 700, padding: "4px 11px", borderRadius: 20, background: rankB.bg, color: rankB.fg, whiteSpace: "nowrap" }}>{rankBadgeText}</span>
               </>
             )}
