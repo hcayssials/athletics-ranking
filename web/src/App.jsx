@@ -592,7 +592,7 @@ function AthletePreview({ info, eventCfg, isRoad, rankDate, event, championship,
   // Reverse solver: the time this athlete would need (at a chosen place/category) to reach the
   // cutoff / #1 — fetched live so it updates as the place/category controls change.
   const [rPlace, setRPlace] = useState(1);
-  const [rCat, setRCat] = useState("GW");
+  const [rCat, setRCat] = useState("B");   // default to a B-level meet (national champs) — realistic baseline
   const [wwit, setWwit] = useState(null);
   const [wErr, setWErr] = useState(false);
   useEffect(() => {
