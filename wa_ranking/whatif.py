@@ -17,12 +17,45 @@ from .ranking import insert_and_recompute, ranking_score, rank_position, resolve
 from .scoring import format_seconds, placing_score, score_performance, time_for_result_score
 
 
+def _resolve_input_event(ev: dict, sub_event: str | None) -> dict:
+    """Which discipline is the hypothetical performance in? Defaults to the ranking's main
+    event; `sub_event` selects one of the event's configured `alt_events` (a similar event such
+    as the 3000m for a 5000m ranking, or an indoor variant). Returns the scoring table, the WA
+    discipline code used to tag the result for best-N selection, the placing group, and whether
+    it's the main event."""
+    main = {
+        "key": "main",
+        "label": ev.get("discipline", "main event"),
+        "discipline_code": ev["main_event_codes"][0],
+        "result_table": ev["result_table"],
+        "placing_event_group": ev.get("placing_event_group", "standard"),
+        "indoor": False,
+        "is_main": True,
+    }
+    if not sub_event or sub_event in ("main", main["discipline_code"]):
+        return main
+    for alt in ev.get("alt_events", ()):
+        if alt["key"] == sub_event:
+            return {
+                "key": alt["key"],
+                "label": alt["label"],
+                "discipline_code": alt["discipline_code"],
+                "result_table": alt["result_table"],
+                "placing_event_group": alt.get("placing_event_group",
+                                               ev.get("placing_event_group", "standard")),
+                "indoor": alt.get("indoor", False),
+                "is_main": False,
+            }
+    options = ["main"] + [a["key"] for a in ev.get("alt_events", ())]
+    raise ValueError(f"Unknown sub_event '{sub_event}'. Options: {', '.join(options)}.")
+
+
 def what_if(event: str, athlete: str, new_time: str | float,
             category: str = "GW", place: int = 2, *,
             championship: str = "road_to_birmingham",
             as_of: date | None = None, indoor: bool = False,
             qualification_window: bool = False, qualify: bool = False,
-            profile: str | None = None,
+            profile: str | None = None, sub_event: str | None = None,
             force_refresh: bool = False, verbose: bool = True) -> dict:
     """Model the effect of a new performance on an athlete's ranking score and rank.
 
@@ -43,7 +76,9 @@ def what_if(event: str, athlete: str, new_time: str | float,
     ev = load_event(event)
     champ_event = championship_event_config(championship, event)
     best_n, window = ev["best_n"], ev["window_months"]
-    placing_group = ev.get("placing_event_group", "standard")
+    inp = _resolve_input_event(ev, sub_event)
+    placing_group = inp["placing_event_group"]
+    main_label = ev.get("discipline", "main event")
 
     # Window: rolling (default, matches WA's published scores) or the championship's fixed
     # qualification window if requested (per-event override falls back to championship default).
@@ -83,17 +118,20 @@ def what_if(event: str, athlete: str, new_time: str | float,
 
     perfs = ath["performances"]
 
-    # Score the hypothetical performance (a fresh result -> no age decay).
+    # Score the hypothetical performance (a fresh result -> no age decay). For a similar-event
+    # hypothetical (e.g. a 3000m), score it on that discipline's table and tag it with that
+    # discipline code so best-N selection treats it as a non-main result.
     breakdown = score_performance(
         event, new_time, category, place,
         perf_date=as_of, as_of=as_of, event_group=placing_group,
+        result_table=inp["result_table"],
     )
     new_perf = {
         "date": as_of.isoformat(),
         "competition": "(hypothetical)",
         "category": category.upper(),
-        "discipline_code": ev["main_event_codes"][0],
-        "indoor": indoor,
+        "discipline_code": inp["discipline_code"],
+        "indoor": indoor or inp["indoor"],
         "place": place,
         "mark": str(new_time),
         "result_score": breakdown["result_score"],
@@ -107,6 +145,65 @@ def what_if(event: str, athlete: str, new_time: str | float,
     official_score = ath.get("ranking_score")
     recomputed_old = ranking_score(perfs, best_n, **sel)
     new_score = recompute["new_score"]
+
+    # Explain the main-event rule when the hypothetical is a similar event (e.g. a 3000m for a
+    # 5000m ranking). The selection already enforces "main_min of best_n must be the main
+    # event", so a similar result can only ever occupy the (best_n - main_min) non-main slots.
+    # Distinguish "didn't count because it was weaker" from "couldn't displace a main event" —
+    # otherwise a fast 3000m that doesn't move the score looks like a bug.
+    similar_event_note = None
+    blocked_by_main_rule = False
+    similar_capacity = best_n - main_min
+    if not inp["is_main"] and main_min > 0:
+        new_counts = recompute["new_perf_counts"]
+        # Would it count if the main-event minimum were lifted? If yes but it doesn't count
+        # now, the minimum (not its score) is what's keeping it out.
+        free = select_counting(perfs + [new_perf], best_n, **{**sel, "main_event_min": 0})
+        would_count_unconstrained = any(p is new_perf for p in free)
+        non_main = [p for p in recompute["new_counting"]
+                    if p.get("discipline_code") not in set(main_codes)]
+        slots = (f"the single non-{main_label} slot" if similar_capacity == 1
+                 else f"{similar_capacity} non-{main_label} slots")
+        if not new_counts and would_count_unconstrained:
+            blocked_by_main_rule = True
+            occ = max(non_main, key=lambda p: p.get("performance_score") or 0) if non_main else None
+            held = (f"your {occ.get('mark')} ({occ.get('performance_score')} pts) already fills it"
+                    if occ and similar_capacity == 1 else
+                    "your existing similar-event results already fill it") if occ else ""
+            similar_event_note = (
+                f"This {inp['label']} scores well enough to be one of your top {best_n} marks, but "
+                f"ranking rules require at least {main_min} of {best_n} counting results to be the "
+                f"{main_label}. A {inp['label']} is a similar event, so it can only take {slots}"
+                + (f" — and {held}. " if held else " — already filled. ")
+                + f"A faster {inp['label']} won't change your score; you'd need a faster {main_label}."
+            )
+        elif not new_counts:
+            similar_event_note = (
+                f"This {inp['label']} doesn't beat any of your current counting results, so your "
+                f"score is unchanged. (As a similar event it competes only for {slots}; at least "
+                f"{main_min} of {best_n} must be the {main_label}.)"
+            )
+        else:
+            new_ids = {id(p) for p in recompute["new_counting"]}
+            displaced = [p for p in recompute["old_counting"] if id(p) not in new_ids]
+            if not displaced:
+                similar_event_note = (
+                    f"This {inp['label']} counts — it filled an open slot in your set (you had "
+                    f"fewer than {best_n} counting results)."
+                )
+            elif displaced[0].get("discipline_code") in set(main_codes):
+                similar_event_note = (
+                    f"This {inp['label']} counts — it replaced your weakest counting {main_label} "
+                    f"({displaced[0].get('mark')}). That's allowed because only {main_min} of "
+                    f"{best_n} need to be the {main_label}; a similar event can fill the other "
+                    f"{similar_capacity}."
+                )
+            else:
+                similar_event_note = (
+                    f"This {inp['label']} counts in {slots}, replacing your previous "
+                    f"{displaced[0].get('mark')} similar-event result. It can't push out one of "
+                    f"your {main_label} results ({main_min} of {best_n} must be the {main_label})."
+                )
 
     # New rank: hold all other athletes at their current (official) ranking scores.
     others = [a["ranking_score"] for a in data["athletes"] if a is not ath]
@@ -234,6 +331,16 @@ def what_if(event: str, athlete: str, new_time: str | float,
             ],
         },
         "hypothetical_performance": breakdown,
+        "hypothetical_event": {
+            "key": inp["key"], "label": inp["label"],
+            "discipline_code": inp["discipline_code"], "is_main": inp["is_main"],
+            "indoor": new_perf["indoor"],
+        },
+        "main_event_rule": {
+            "main_label": main_label, "main_event_min": main_min, "best_n": best_n,
+            "similar_capacity": similar_capacity, "blocked_by_main_rule": blocked_by_main_rule,
+        },
+        "similar_event_note": similar_event_note,
         "official_ranking_score": official_score,
         "recomputed_old_score": recomputed_old,
         "new_score": new_score,
@@ -358,6 +465,10 @@ def format_report(r: dict) -> str:
         lines.append(f"  - {n}")
     lines.append("")
     lines.append("HYPOTHETICAL PERFORMANCE")
+    he = r.get("hypothetical_event") or {}
+    if he and not he.get("is_main", True):
+        lines.append(f"  Event           : {he['label']}  (similar event, not the "
+                     f"{r['main_event_rule']['main_label']})")
     lines.append(f"  Time {b['time']}  ->  result score {b['result_score']}")
     lines.append(f"  Place {b['place']} in category {b['category']}  ->  "
                  f"placing score {b['placing_score']}")
@@ -380,6 +491,11 @@ def format_report(r: dict) -> str:
         lines.append(f"  Rank                         : "
                      f"{r['old_rank']}  ->  {r['new_rank']}  ({_signed(r['rank_delta'])} places)")
     lines.append("")
+    if r.get("similar_event_note"):
+        lines.append("SIMILAR-EVENT NOTE")
+        for chunk in _wrap(r["similar_event_note"]):
+            lines.append(f"  {chunk}")
+        lines.append("")
     lines.append("NEW COUNTING PERFORMANCES (best N)")
     for p in r["new_counting"]:
         lines.append(_fmt_perf(p))
@@ -449,6 +565,11 @@ def _format_qualification(q: dict) -> list[str]:
     else:
         lines.append("  Status          : BELOW THE CUTOFF — would not qualify on ranking")
     return lines
+
+
+def _wrap(text: str, width: int = 68) -> list[str]:
+    import textwrap
+    return textwrap.wrap(text, width=width) or [""]
 
 
 def _signed(v) -> str:

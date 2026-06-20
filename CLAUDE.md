@@ -39,10 +39,28 @@ image; `cache.read()` falls back to it when the live cache is cold. `api.py:_pre
 force-refreshes live data on boot. A weekly GitHub Action (`.github/workflows/refresh-seed.yml`)
 regenerates the seed and pushes (also runnable manually: `python -m scripts.refresh_seed`).
 
+## Scoring tables & similar-event what-ifs
+- **`data/scoring_tables/*.csv` are generated, not hand-made.** `python -m scripts.build_scoring_tables`
+  regenerates every running event × gender × indoor/outdoor table from a published parse of WA's
+  official PDFs (verified byte-identical to the originals). It has two gates: value-identity to the
+  committed tables, and a real-data gate (0 errors >1pt vs cached WA-scored performances; ±1 is
+  expected mark-rounding noise on steep events). Run `--check` to validate without writing. Indoor
+  uses a *different* (faster) table than outdoor — they are separate files (`_indoor` suffix).
+  Road races (e.g. `10RR` → `10km_*.csv`) are deliberately **excluded from the strict gate**: WA
+  applies course corrections (downhill/aided courses score lower), so real road marks can differ
+  from the table by tens of points. The table is correct for a standard course (the what-if case).
+- **A what-if can be entered in a similar event** (e.g. a 3000m for a 5000m ranking) via
+  `events.json` `alt_events` → `what_if(..., sub_event=<key>)`. Each alt's `result_table` scores it
+  and its `discipline_code` (must be a real WA code, NOT in `main_event_codes`) makes
+  `select_counting` treat it as non-main — so the main-event minimum naturally limits it to the
+  `best_n - main_event_min` non-main slots. `whatif.py` emits `similar_event_note` /
+  `main_event_rule.blocked_by_main_rule` to explain when a fast similar result *can't* help.
+
 ## Landmines (read before changing these)
 - **Discipline codes must match WA's real data.** `data/events.json` `main_event_codes` /
-  `similar_event_codes` must equal the `disciplineCode` values WA returns. Steeple uses
-  `3KSC`/`2KSC` (NOT `3000mSC`). A mismatch silently breaks the main-event-minimum rule.
+  `similar_event_codes` / `alt_events[].discipline_code` must equal the `disciplineCode` values WA
+  returns. Steeple uses `3KSC`/`2KSC` (NOT `3000mSC`); indoor variants use the `sh` suffix
+  (`5000sh`, `1500sh`). A mismatch silently breaks the main-event-minimum rule.
 - **Continental-championship results are window-exempt, not undisplaceable.** In
   `ranking.py:select_counting`, a previous European/area result survives the date window but a
   better score still displaces it. Don't reinstate force-keeping.

@@ -31,10 +31,13 @@ def parse_time(value: str | float) -> float:
     return round(seconds, 3)
 
 
-def result_score(event: str, time: str | float) -> int:
-    """Convert a performance time to a World Athletics result score for `event`."""
+def result_score(event: str, time: str | float, result_table: str | None = None) -> int:
+    """Convert a performance time to a World Athletics result score.
+
+    By default uses `event`'s result table; pass `result_table` to score on a different
+    discipline's table (e.g. a hypothetical 3000m for a 5000m ranking)."""
     seconds = parse_time(time)
-    table = load_result_table(load_event(event)["result_table"])  # sorted asc by seconds
+    table = load_result_table(result_table or load_event(event)["result_table"])  # asc by seconds
     marks = [row[0] for row in table]
     idx = bisect_left(marks, seconds)
     if idx >= len(table):
@@ -50,12 +53,13 @@ def format_seconds(seconds: float) -> str:
     return f"{int(m)}:{s:05.2f}"
 
 
-def time_for_result_score(event: str, target_score: int) -> str | None:
+def time_for_result_score(event: str, target_score: int, result_table: str | None = None) -> str | None:
     """The (slowest) time that scores at least `target_score` result points, formatted.
 
-    Useful for "what time would they need?": invert the result-score table.
+    Useful for "what time would they need?": invert the result-score table. Pass `result_table`
+    to invert a different discipline's table.
     """
-    table = load_result_table(load_event(event)["result_table"])  # sorted asc by seconds
+    table = load_result_table(result_table or load_event(event)["result_table"])  # asc by seconds
     best = None
     for seconds, score in table:
         if score >= target_score:
@@ -98,9 +102,10 @@ def performance_score(result: int, placing: int, decay: int = 0) -> int:
 
 def score_performance(event: str, time: str | float, category: str, place: int,
                       perf_date: date | None = None, as_of: date | None = None,
-                      event_group: str = "standard") -> dict:
-    """Fully score a (hypothetical) performance, returning a breakdown dict."""
-    rscore = result_score(event, time)
+                      event_group: str = "standard", result_table: str | None = None) -> dict:
+    """Fully score a (hypothetical) performance, returning a breakdown dict. `result_table`
+    overrides the scoring table (for a similar-event hypothetical, e.g. a 3000m)."""
+    rscore = result_score(event, time, result_table=result_table)
     pscore = placing_score(category, place, event_group)
     months = month_age(perf_date, as_of) if (perf_date and as_of) else 0
     decay = decay_deduction(months)

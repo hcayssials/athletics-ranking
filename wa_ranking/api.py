@@ -94,7 +94,14 @@ def meta():
         "events": [
             {"key": k, **{f: e.get(f) for f in
                           ("label", "gender", "best_n", "main_event_min",
-                           "window_months", "entry_standard")}}
+                           "window_months", "entry_standard")},
+             # The discipline a hypothetical can be entered in: the main event plus similar /
+             # indoor events. The UI builds the input-event picker from this.
+             "input_events": [{"key": "main", "label": e.get("discipline"), "is_main": True,
+                               "indoor": False}]
+                            + [{"key": a["key"], "label": a["label"], "is_main": False,
+                                "indoor": a.get("indoor", False)}
+                               for a in e.get("alt_events", ())]}
             for k, e in events.items()
         ],
         "championships": [{"key": k, "label": c.get("label")} for k, c in champs.items()],
@@ -194,6 +201,7 @@ class WhatIfRequest(BaseModel):
     qualify: bool = False
     qualification_window: bool = False
     profile: str | None = None
+    sub_event: str | None = None
 
 
 @app.post("/api/whatif")
@@ -205,7 +213,7 @@ def whatif_endpoint(req: WhatIfRequest):
             category=req.category, place=req.place, championship=req.championship,
             as_of=date.fromisoformat(req.as_of) if req.as_of else None,
             qualify=req.qualify, qualification_window=req.qualification_window,
-            profile=req.profile, verbose=False,
+            profile=req.profile, sub_event=req.sub_event, verbose=False,
         )
     except (ValueError, RuntimeError) as e:
         raise HTTPException(status_code=400, detail=str(e))

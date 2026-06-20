@@ -96,6 +96,9 @@ function buildResultView(r, isRoad, qualifyOn, methodOpen) {
     qual, display, open: methodOpen,
     unranked, profileSummary: r.profile_summary,
     whatWouldItTake: r.what_would_it_take,
+    hypoEvent: r.hypothetical_event,           // which discipline the hypothetical was in
+    simNote: r.similar_event_note,             // main-event-rule explanation (similar events)
+    blockedByMainRule: !!(r.main_event_rule && r.main_event_rule.blocked_by_main_rule),
   };
 }
 
@@ -129,7 +132,7 @@ export default function App() {
   const [rankings, setRankings] = useState(null);
   const [rankErr, setRankErr] = useState("");
   const [query, setQuery] = useState("");
-  const [form, setForm] = useState({ athlete: "", time: "3:30.00", place: 1, category: "GW", qualify: true });
+  const [form, setForm] = useState({ athlete: "", time: "3:30.00", place: 1, category: "GW", qualify: true, subEvent: "main" });
   const [selected, setSelected] = useState(null);
   const [athleteInfo, setAthleteInfo] = useState(null); // clicked athlete's perfs (preview before a what-if)
   const [result, setResult] = useState(null);
@@ -165,7 +168,7 @@ export default function App() {
   // console never shows a time from the previous event. A later athlete pick still overrides these.
   const changeEvent = (e) => {
     setEvent(e); setResult(null); setSelected(null); setAthleteInfo(null); setError(""); setCandidates(null);
-    setForm((s) => ({ ...s, time: entryStandardFor(e), place: 1 }));
+    setForm((s) => ({ ...s, time: entryStandardFor(e), place: 1, subEvent: "main" }));
   };
 
   const zone = useMemo(() => (isRoad ? qualifyingZone(rankings) : qualifyingZone(null)), [rankings, isRoad]);
@@ -192,6 +195,7 @@ export default function App() {
         event: ev, championship: champ, athlete: name, time: f.time,
         category: f.category, place: Math.max(1, parseInt(f.place) || 1),
         qualify: champ === "road_to_birmingham" && f.qualify,
+        ...(f.subEvent && f.subEvent !== "main" ? { sub_event: f.subEvent } : {}),
         ...(profile ? { profile } : {}),
       });
       setResult(r); setSelected(r.athlete);
@@ -258,7 +262,7 @@ export default function App() {
       if (!athlete) {
         // Not on the ranking list → treat as unranked: search World Athletics for the name,
         // with the parsed scenario values pre-filled so picking a candidate runs the right what-if.
-        const f = { ...form };
+        const f = { ...form, subEvent: "main" };
         if (p.time) f.time = p.time;
         if (p.place != null) f.place = p.place;
         if (p.category) f.category = p.category;
@@ -268,7 +272,7 @@ export default function App() {
         await searchFor(name, ev);
         return;
       }
-      let f = { ...form, athlete };
+      let f = { ...form, athlete, subEvent: "main" };
       try {
         const best = bestPerf(await getAthlete(champ, ev, athlete), ev);
         if (best) f = { ...f, ...best };           // default to their best performance…
@@ -447,6 +451,24 @@ export default function App() {
               Unranked / not in the list? Paste their worldathletics.org profile link — first lookup can take ~30s.
             </p>
             <datalist id="wf-athletes">{list.map((a) => <option key={a.competitor_id || a.name} value={a.name} />)}</datalist>
+
+            {eventCfg.input_events && eventCfg.input_events.length > 1 && (
+              <div style={{ marginBottom: 14 }}>
+                <label style={labelStyle}>Event for this performance</label>
+                <select value={form.subEvent} onChange={(e) => setForm({ ...form, subEvent: e.target.value })}
+                  style={{ ...inputStyle, marginBottom: 4 }}>
+                  {eventCfg.input_events.map((ie) => (
+                    <option key={ie.key} value={ie.key}>{ie.label}{ie.is_main ? " — main event" : ""}</option>
+                  ))}
+                </select>
+                {form.subEvent !== "main" && (
+                  <p style={{ margin: 0, fontSize: 11.5, color: MUTE, lineHeight: 1.4 }}>
+                    Similar event — enter the time for this distance. At least {eventCfg.main_event_min} of {eventCfg.best_n} counting
+                    results must be the {(eventCfg.input_events.find((ie) => ie.is_main) || {}).label}, so it can only fill a non-main slot.
+                  </p>
+                )}
+              </div>
+            )}
 
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 14 }}>
               <div>
@@ -732,13 +754,25 @@ function ResultPanel({ rv, onToggle }) {
             </div>
           </div>
           <div style={{ borderTop: "1px solid #d8dce2", paddingTop: 14 }}>
-            <div style={{ fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: MUTE, fontWeight: 600 }}>This race scores</div>
+            <div style={{ fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: MUTE, fontWeight: 600 }}>
+              This {rv.hypoEvent && !rv.hypoEvent.is_main ? rv.hypoEvent.label : "race"} scores
+            </div>
             <div style={{ fontFamily: MONO, fontSize: 13, marginTop: 5, color: "#3a414c" }}>
               {rv.hypo.time} · result <b>{rv.hypo.result_score}</b> + place pts <b>{rv.hypo.placing_score}</b> = <b>{rv.hypo.performance_score}</b>
             </div>
-            <div style={{ fontSize: 11.5, color: "#9aa1ac", marginTop: 3 }}>
-              {rv.counts ? "Counts toward the new average — it displaced a weaker result." : `Not strong enough to enter the best-${rv.bestN} — the score is unchanged.`}
-            </div>
+            {rv.simNote ? (
+              <div style={{
+                marginTop: 8, fontSize: 12, lineHeight: 1.5, borderRadius: 6, padding: "9px 11px",
+                background: rv.blockedByMainRule ? "#fdebed" : "#eef2f7",
+                color: "#2f4a6b", border: `1px solid ${rv.blockedByMainRule ? "#f3c9cf" : "#d3dceb"}`,
+              }}>
+                {rv.blockedByMainRule && <b>Why didn’t this change the score? </b>}{rv.simNote}
+              </div>
+            ) : (
+              <div style={{ fontSize: 11.5, color: "#9aa1ac", marginTop: 3 }}>
+                {rv.counts ? "Counts toward the new average — it displaced a weaker result." : `Not strong enough to enter the best-${rv.bestN} — the score is unchanged.`}
+              </div>
+            )}
           </div>
         </div>
       </div>
