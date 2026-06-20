@@ -55,6 +55,12 @@ regenerates the seed and pushes (also runnable manually: `python -m scripts.refr
   `select_counting` treat it as non-main — so the main-event minimum naturally limits it to the
   `best_n - main_event_min` non-main slots. `whatif.py` emits `similar_event_note` /
   `main_event_rule.blocked_by_main_rule` to explain when a fast similar result *can't* help.
+- **Each event group has exactly ONE Main Event.** For the 1500m that's the *outdoor 1500m only* —
+  the Mile (incl. outdoor), indoor 1500m, 2000m, and road miles are all **Similar Events**. Do NOT
+  add them to `main_event_codes` (the metric-mile equivalence applies to entry standards/records,
+  NOT the ranking main-event minimum). You can't confirm Main-vs-Similar from our cache — the WA
+  API returns only the *counting set*, not the uncounted results that would reveal it; use the WA
+  rulebook (worldathletics.org/world-ranking-rules → Track & Field Events).
 
 ## Landmines (read before changing these)
 - **Discipline codes must match WA's real data.** `data/events.json` `main_event_codes` /
