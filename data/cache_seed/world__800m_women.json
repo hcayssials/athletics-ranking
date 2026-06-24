@@ -1,15 +1,15 @@
 {
- "_fetched_at": 1781895855.496576,
+ "_fetched_at": 1782309675.026565,
  "_key": "world__800m_women",
  "data": {
   "championship": "world",
   "event": "800m_women",
   "rankings_url": "https://worldathletics.org/world-rankings/800m/women",
-  "fetched": "2026-06-19T19:04:15",
-  "rank_date": "2026-06-16",
+  "fetched": "2026-06-24T14:01:15",
+  "rank_date": "2026-06-23",
   "athletes": [
    {
-    "competitor_id": "131249125",
+    "competitor_id": "131736251",
     "slug": "/athletes/great-britain-ni/keely-hodgkinson-14642894",
     "rank": 1,
     "name": "Keely HODGKINSON",
@@ -93,10 +93,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249126",
+    "competitor_id": "131736252",
     "slug": "/athletes/switzerland/audrey-werro-14856078",
     "rank": 2,
     "name": "Audrey WERRO",
@@ -180,16 +180,16 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249127",
+    "competitor_id": "131736253",
     "slug": "/athletes/great-britain-ni/georgia-hunter-bell-14329797",
     "rank": 3,
     "name": "Georgia HUNTER BELL",
     "dob": "17 OCT 1993",
     "country": "GBR",
-    "ranking_score": 1367.0,
+    "ranking_score": 1370.0,
     "performances": [
      {
       "date": "2025-09-21",
@@ -252,25 +252,25 @@
       "month_correction_applied": false
      },
      {
-      "date": "2025-09-19",
-      "date_raw": "19 SEP 2025",
-      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
-      "category": "OW",
+      "date": "2026-06-21",
+      "date_raw": "21 JUN 2026",
+      "competition": "Novuna UK Athletics Championships, Alexander Stadium, Birmingham",
+      "category": "B",
       "discipline_code": "800",
       "discipline": "800 Metres",
       "indoor": false,
-      "place": 7,
-      "mark": "1:58.62",
-      "result_score": 1187,
-      "placing_score": 100,
-      "performance_score": 1287,
+      "place": 1,
+      "mark": "1:55.93",
+      "result_score": 1236,
+      "placing_score": 70,
+      "performance_score": 1306,
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249128",
+    "competitor_id": "131736254",
     "slug": "/athletes/kenya/lilian-odira-14758184",
     "rank": 4,
     "name": "Lilian ODIRA",
@@ -354,16 +354,103 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249129",
-    "slug": "/athletes/ethiopia/tsige-duguma-14774192",
+    "competitor_id": "131736255",
+    "slug": "/athletes/united-states/addison-wiley-14907337",
     "rank": 5,
+    "name": "Addison WILEY",
+    "dob": "24 OCT 2003",
+    "country": "USA",
+    "ranking_score": 1321.0,
+    "performances": [
+     {
+      "date": "2025-07-11",
+      "date_raw": "11 JUL 2025",
+      "competition": "Meeting International d’Athlétisme Herculis EBS, Stade Louis II, Monaco",
+      "category": "GW",
+      "discipline_code": "1000",
+      "discipline": "1000 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "2:30.71",
+      "result_score": 1227,
+      "placing_score": 120,
+      "performance_score": 1347,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-19",
+      "date_raw": "19 JUN 2026",
+      "competition": "Doha Meeting, Suhaim bin Hamad Stadium, Doha",
+      "category": "GW",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "1:57.98",
+      "result_score": 1199,
+      "placing_score": 140,
+      "performance_score": 1339,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-07-19",
+      "date_raw": "19 JUL 2025",
+      "competition": "London Athletics Meet, Olympic Stadium, London",
+      "category": "GW",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "1:57.43",
+      "result_score": 1209,
+      "placing_score": 120,
+      "performance_score": 1329,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-03-22",
+      "date_raw": "22 MAR 2026",
+      "competition": "World Athletics Indoor Championships, Kujawsko-Pomorska Arena, Toruń (i)",
+      "category": "GW",
+      "discipline_code": "800sh",
+      "discipline": "800 Metres Short Track",
+      "indoor": false,
+      "place": 3,
+      "mark": "1:58.36",
+      "result_score": 1213,
+      "placing_score": 110,
+      "performance_score": 1323,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-08-28",
+      "date_raw": "28 AUG 2025",
+      "competition": "Weltklasse Zürich, Letzigrund, Zürich",
+      "category": "DF",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 8,
+      "mark": "1:59.14",
+      "result_score": 1178,
+      "placing_score": 90,
+      "performance_score": 1268,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-06-23"
+   },
+   {
+    "competitor_id": "131736256",
+    "slug": "/athletes/ethiopia/tsige-duguma-14774192",
+    "rank": 6,
     "name": "Tsige DUGUMA",
     "dob": "23 FEB 2001",
     "country": "ETH",
-    "ranking_score": 1310.0,
+    "ranking_score": 1317.0,
     "performances": [
      {
       "date": "2025-07-05",
@@ -396,6 +483,21 @@
       "month_correction_applied": false
      },
      {
+      "date": "2026-06-19",
+      "date_raw": "19 JUN 2026",
+      "competition": "Doha Meeting, Suhaim bin Hamad Stadium, Doha",
+      "category": "GW",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "1:58.08",
+      "result_score": 1197,
+      "placing_score": 120,
+      "performance_score": 1317,
+      "month_correction_applied": false
+     },
+     {
       "date": "2025-09-19",
       "date_raw": "19 SEP 2025",
       "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
@@ -424,29 +526,14 @@
       "placing_score": 100,
       "performance_score": 1287,
       "month_correction_applied": false
-     },
-     {
-      "date": "2026-02-19",
-      "date_raw": "19 FEB 2026",
-      "competition": "Meeting Hauts-de-France Pas-de-Calais Trophée EDF, Arena Stade Couvert, Liévin (i)",
-      "category": "A",
-      "discipline_code": "800sh",
-      "discipline": "800 Metres Short Track",
-      "indoor": false,
-      "place": 3,
-      "mark": "1:58.83",
-      "result_score": 1205,
-      "placing_score": 77,
-      "performance_score": 1282,
-      "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249130",
+    "competitor_id": "131736257",
     "slug": "/athletes/france/anais-bourgoin-14523787",
-    "rank": 6,
+    "rank": 7,
     "name": "Anaïs BOURGOIN",
     "dob": "03 OCT 1996",
     "country": "FRA",
@@ -528,12 +615,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249131",
+    "competitor_id": "131736258",
     "slug": "/athletes/united-states/sage-hurta-klecker-14478094",
-    "rank": 7,
+    "rank": 8,
     "name": "Sage HURTA-KLECKER",
     "dob": "23 JUN 1998",
     "country": "USA",
@@ -615,12 +702,99 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249132",
+    "competitor_id": "131736259",
+    "slug": "/athletes/uganda/halimah-nakaayi-14431159",
+    "rank": 9,
+    "name": "Halimah NAKAAYI",
+    "dob": "16 OCT 1994",
+    "country": "UGA",
+    "ranking_score": 1304.0,
+    "performances": [
+     {
+      "date": "2025-07-19",
+      "date_raw": "19 JUL 2025",
+      "competition": "London Athletics Meet, Olympic Stadium, London",
+      "category": "GW",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 3,
+      "mark": "1:57.62",
+      "result_score": 1205,
+      "placing_score": 110,
+      "performance_score": 1315,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-07-05",
+      "date_raw": "05 JUL 2025",
+      "competition": "Prefontaine Classic, Hayward Field, Eugene, OR",
+      "category": "GW",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 3,
+      "mark": "1:57.89",
+      "result_score": 1200,
+      "placing_score": 110,
+      "performance_score": 1310,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-19",
+      "date_raw": "19 JUN 2026",
+      "competition": "Doha Meeting, Suhaim bin Hamad Stadium, Doha",
+      "category": "GW",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 3,
+      "mark": "1:58.41",
+      "result_score": 1191,
+      "placing_score": 110,
+      "performance_score": 1301,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-08-28",
+      "date_raw": "28 AUG 2025",
+      "competition": "Weltklasse Zürich, Letzigrund, Zürich",
+      "category": "DF",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 5,
+      "mark": "1:58.43",
+      "result_score": 1190,
+      "placing_score": 110,
+      "performance_score": 1300,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-07-11",
+      "date_raw": "11 JUL 2025",
+      "competition": "Meeting International d’Athlétisme Herculis EBS, Stade Louis II, Monaco",
+      "category": "GW",
+      "discipline_code": "1000",
+      "discipline": "1000 Metres",
+      "indoor": false,
+      "place": 6,
+      "mark": "2:31.67",
+      "result_score": 1214,
+      "placing_score": 80,
+      "performance_score": 1294,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-06-23"
+   },
+   {
+    "competitor_id": "131736260",
     "slug": "/athletes/south-africa/prudence-sekgodiso-14745817",
-    "rank": 8,
+    "rank": 10,
     "name": "Prudence SEKGODISO",
     "dob": "05 JAN 2002",
     "country": "RSA",
@@ -702,184 +876,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249133",
-    "slug": "/athletes/uganda/halimah-nakaayi-14431159",
-    "rank": 9,
-    "name": "Halimah NAKAAYI",
-    "dob": "16 OCT 1994",
-    "country": "UGA",
-    "ranking_score": 1301.0,
-    "performances": [
-     {
-      "date": "2025-07-19",
-      "date_raw": "19 JUL 2025",
-      "competition": "London Athletics Meet, Olympic Stadium, London",
-      "category": "GW",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 3,
-      "mark": "1:57.62",
-      "result_score": 1205,
-      "placing_score": 110,
-      "performance_score": 1315,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-05",
-      "date_raw": "05 JUL 2025",
-      "competition": "Prefontaine Classic, Hayward Field, Eugene, OR",
-      "category": "GW",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 3,
-      "mark": "1:57.89",
-      "result_score": 1200,
-      "placing_score": 110,
-      "performance_score": 1310,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-28",
-      "date_raw": "28 AUG 2025",
-      "competition": "Weltklasse Zürich, Letzigrund, Zürich",
-      "category": "DF",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 5,
-      "mark": "1:58.43",
-      "result_score": 1190,
-      "placing_score": 110,
-      "performance_score": 1300,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-11",
-      "date_raw": "11 JUL 2025",
-      "competition": "Meeting International d’Athlétisme Herculis EBS, Stade Louis II, Monaco",
-      "category": "GW",
-      "discipline_code": "1000",
-      "discipline": "1000 Metres",
-      "indoor": false,
-      "place": 6,
-      "mark": "2:31.67",
-      "result_score": 1214,
-      "placing_score": 80,
-      "performance_score": 1294,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-09-19",
-      "date_raw": "19 SEP 2025",
-      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
-      "category": "OW",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 10,
-      "mark": "1:57.79",
-      "result_score": 1202,
-      "placing_score": 84,
-      "performance_score": 1286,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-06-16"
-   },
-   {
-    "competitor_id": "131249134",
-    "slug": "/athletes/united-states/addison-wiley-14907337",
-    "rank": 10,
-    "name": "Addison WILEY",
-    "dob": "24 OCT 2003",
-    "country": "USA",
-    "ranking_score": 1297.0,
-    "performances": [
-     {
-      "date": "2025-07-11",
-      "date_raw": "11 JUL 2025",
-      "competition": "Meeting International d’Athlétisme Herculis EBS, Stade Louis II, Monaco",
-      "category": "GW",
-      "discipline_code": "1000",
-      "discipline": "1000 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "2:30.71",
-      "result_score": 1227,
-      "placing_score": 120,
-      "performance_score": 1347,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-19",
-      "date_raw": "19 JUL 2025",
-      "competition": "London Athletics Meet, Olympic Stadium, London",
-      "category": "GW",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "1:57.43",
-      "result_score": 1209,
-      "placing_score": 120,
-      "performance_score": 1329,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-03-22",
-      "date_raw": "22 MAR 2026",
-      "competition": "World Athletics Indoor Championships, Kujawsko-Pomorska Arena, Toruń (i)",
-      "category": "GW",
-      "discipline_code": "800sh",
-      "discipline": "800 Metres Short Track",
-      "indoor": false,
-      "place": 3,
-      "mark": "1:58.36",
-      "result_score": 1213,
-      "placing_score": 110,
-      "performance_score": 1323,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-28",
-      "date_raw": "28 AUG 2025",
-      "competition": "Weltklasse Zürich, Letzigrund, Zürich",
-      "category": "DF",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 8,
-      "mark": "1:59.14",
-      "result_score": 1178,
-      "placing_score": 90,
-      "performance_score": 1268,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-20",
-      "date_raw": "20 AUG 2025",
-      "competition": "Athletissima Lausanne, Stade Olympique de la Pontaise, Lausanne",
-      "category": "GW",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 9,
-      "mark": "1:59.64",
-      "result_score": 1169,
-      "placing_score": 49,
-      "performance_score": 1218,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-06-16"
-   },
-   {
-    "competitor_id": "131249135",
+    "competitor_id": "131736261",
     "slug": "/athletes/saint-vincent/shafiqua-maloney-14574729",
     "rank": 11,
     "name": "Shafiqua MALONEY",
@@ -963,10 +963,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249136",
+    "competitor_id": "131736262",
     "slug": "/athletes/botswana/oratile-nowe-14754344",
     "rank": 12,
     "name": "Oratile NOWE",
@@ -1050,10 +1050,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249137",
+    "competitor_id": "131736263",
     "slug": "/athletes/ethiopia/nigist-getachew-14774194",
     "rank": 13,
     "name": "Nigist GETACHEW",
@@ -1137,10 +1137,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249138",
+    "competitor_id": "131736264",
     "slug": "/athletes/united-states/roisin-willis-14761309",
     "rank": 14,
     "name": "Roisin WILLIS",
@@ -1224,10 +1224,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249139",
+    "competitor_id": "131736265",
     "slug": "/athletes/australia/sarah-billings-14464575",
     "rank": 15,
     "name": "Sarah BILLINGS",
@@ -1311,10 +1311,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249140",
+    "competitor_id": "131736266",
     "slug": "/athletes/slovak-republic/gabriela-gajanova-14593394",
     "rank": 16,
     "name": "Gabriela GAJANOVÁ",
@@ -1398,16 +1398,103 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249141",
-    "slug": "/athletes/poland/anna-wielgosz-14388995",
+    "competitor_id": "131736267",
+    "slug": "/athletes/france/clara-liberman-14737263",
     "rank": 17,
+    "name": "Clara LIBERMAN",
+    "dob": "05 APR 2000",
+    "country": "FRA",
+    "ranking_score": 1254.0,
+    "performances": [
+     {
+      "date": "2026-02-22",
+      "date_raw": "22 FEB 2026",
+      "competition": "ORLEN Copernicus Cup, Arena Toruń, Toruń (i)",
+      "category": "A",
+      "discipline_code": "800sh",
+      "discipline": "800 Metres Short Track",
+      "indoor": false,
+      "place": 3,
+      "mark": "1:59.50",
+      "result_score": 1194,
+      "placing_score": 77,
+      "performance_score": 1271,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-21",
+      "date_raw": "21 JUN 2026",
+      "competition": "FBK Games, FBK Stadium, Hengelo",
+      "category": "A",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 3,
+      "mark": "1:58.69",
+      "result_score": 1186,
+      "placing_score": 77,
+      "performance_score": 1263,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-07-19",
+      "date_raw": "19 JUL 2025",
+      "competition": "Meeting Madrid 2025, Estadio Vallehermoso, Madrid",
+      "category": "B",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "1:58.96",
+      "result_score": 1181,
+      "placing_score": 70,
+      "performance_score": 1251,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-07-15",
+      "date_raw": "15 JUL 2025",
+      "competition": "Spitzen Leichtathletik Luzern, Stadion Allmend, Luzern",
+      "category": "B",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "1:59.25",
+      "result_score": 1176,
+      "placing_score": 70,
+      "performance_score": 1246,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-03-21",
+      "date_raw": "21 MAR 2026",
+      "competition": "World Athletics Indoor Championships, Kujawsko-Pomorska Arena, Toruń (i)",
+      "category": "GW",
+      "discipline_code": "800sh",
+      "discipline": "800 Metres Short Track",
+      "indoor": false,
+      "place": 7,
+      "mark": "2:00.28",
+      "result_score": 1181,
+      "placing_score": 60,
+      "performance_score": 1241,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-06-23"
+   },
+   {
+    "competitor_id": "131736268",
+    "slug": "/athletes/poland/anna-wielgosz-14388995",
+    "rank": 18,
     "name": "Anna WIELGOSZ",
     "dob": "09 NOV 1993",
     "country": "POL",
-    "ranking_score": 1258.0,
+    "ranking_score": 1253.0,
     "performances": [
      {
       "date": "2026-06-07",
@@ -1440,21 +1527,6 @@
       "month_correction_applied": false
      },
      {
-      "date": "2025-06-17",
-      "date_raw": "17 JUN 2025",
-      "competition": "Paavo Nurmi Games, Paavo Nurmen Stadion, Turku",
-      "category": "A",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "1:59.55",
-      "result_score": 1170,
-      "placing_score": 84,
-      "performance_score": 1254,
-      "month_correction_applied": false
-     },
-     {
       "date": "2025-06-24",
       "date_raw": "24 JUN 2025",
       "competition": "64th Ostrava Golden Spike, Mestský Stadion, Ostrava",
@@ -1483,14 +1555,29 @@
       "placing_score": 70,
       "performance_score": 1232,
       "month_correction_applied": false
+     },
+     {
+      "date": "2024-06-11",
+      "date_raw": "11 JUN 2024",
+      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
+      "category": "GL",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 4,
+      "mark": "1:59.07",
+      "result_score": 1179,
+      "placing_score": 50,
+      "performance_score": 1229,
+      "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249142",
+    "competitor_id": "131736269",
     "slug": "/athletes/great-britain-ni/jemma-reekie-14533469",
-    "rank": 18,
+    "rank": 19,
     "name": "Jemma REEKIE",
     "dob": "06 MAR 1998",
     "country": "GBR",
@@ -1572,12 +1659,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249143",
+    "competitor_id": "131736270",
     "slug": "/athletes/australia/claudia-hollingsworth-14922448",
-    "rank": 19,
+    "rank": 20,
     "name": "Claudia HOLLINGSWORTH",
     "dob": "12 APR 2005",
     "country": "AUS",
@@ -1659,75 +1746,30 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249144",
-    "slug": "/athletes/france/clara-liberman-14737263",
-    "rank": 20,
-    "name": "Clara LIBERMAN",
-    "dob": "05 APR 2000",
-    "country": "FRA",
+    "competitor_id": "131736271",
+    "slug": "/athletes/australia/abbey-caldwell-14636659",
+    "rank": 21,
+    "name": "Abbey CALDWELL",
+    "dob": "03 JUL 2001",
+    "country": "AUS",
     "ranking_score": 1248.0,
     "performances": [
      {
-      "date": "2026-02-22",
-      "date_raw": "22 FEB 2026",
-      "competition": "ORLEN Copernicus Cup, Arena Toruń, Toruń (i)",
+      "date": "2026-06-21",
+      "date_raw": "21 JUN 2026",
+      "competition": "FBK Games, FBK Stadium, Hengelo",
       "category": "A",
-      "discipline_code": "800sh",
-      "discipline": "800 Metres Short Track",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
       "indoor": false,
-      "place": 3,
-      "mark": "1:59.50",
+      "place": 2,
+      "mark": "1:58.22",
       "result_score": 1194,
-      "placing_score": 77,
-      "performance_score": 1271,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-19",
-      "date_raw": "19 JUL 2025",
-      "competition": "Meeting Madrid 2025, Estadio Vallehermoso, Madrid",
-      "category": "B",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "1:58.96",
-      "result_score": 1181,
-      "placing_score": 70,
-      "performance_score": 1251,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-15",
-      "date_raw": "15 JUL 2025",
-      "competition": "Spitzen Leichtathletik Luzern, Stadion Allmend, Luzern",
-      "category": "B",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "1:59.25",
-      "result_score": 1176,
-      "placing_score": 70,
-      "performance_score": 1246,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-03-21",
-      "date_raw": "21 MAR 2026",
-      "competition": "World Athletics Indoor Championships, Kujawsko-Pomorska Arena, Toruń (i)",
-      "category": "GW",
-      "discipline_code": "800sh",
-      "discipline": "800 Metres Short Track",
-      "indoor": false,
-      "place": 7,
-      "mark": "2:00.28",
-      "result_score": 1181,
-      "placing_score": 60,
-      "performance_score": 1241,
+      "placing_score": 84,
+      "performance_score": 1278,
       "month_correction_applied": false
      },
      {
@@ -1738,20 +1780,65 @@
       "discipline_code": "800",
       "discipline": "800 Metres",
       "indoor": false,
-      "place": 7,
-      "mark": "1:58.82",
-      "result_score": 1183,
-      "placing_score": 49,
-      "performance_score": 1232,
+      "place": 6,
+      "mark": "1:57.70",
+      "result_score": 1204,
+      "placing_score": 56,
+      "performance_score": 1260,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-04-12",
+      "date_raw": "12 APR 2026",
+      "competition": "Australian Championships, Olympic Park, Sydney",
+      "category": "B",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "1:58.57",
+      "result_score": 1188,
+      "placing_score": 70,
+      "performance_score": 1258,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-09-19",
+      "date_raw": "19 SEP 2025",
+      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
+      "category": "OW",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 15,
+      "mark": "1:58.44",
+      "result_score": 1190,
+      "placing_score": 53,
+      "performance_score": 1243,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-08-20",
+      "date_raw": "20 AUG 2025",
+      "competition": "Internationales Abendsportfest, TSV Stadion, Pfungstadt",
+      "category": "F",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "1:58.02",
+      "result_score": 1198,
+      "placing_score": 7,
+      "performance_score": 1205,
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249145",
+    "competitor_id": "131736272",
     "slug": "/athletes/united-states/raevyn-rogers-14378260",
-    "rank": 21,
+    "rank": 22,
     "name": "Raevyn ROGERS",
     "dob": "07 SEP 1996",
     "country": "USA",
@@ -1833,12 +1920,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249146",
+    "competitor_id": "131736273",
     "slug": "/athletes/italy/eloisa-coiro-14699224",
-    "rank": 22,
+    "rank": 23,
     "name": "Eloisa COIRO",
     "dob": "01 DEC 2000",
     "country": "ITA",
@@ -1920,12 +2007,186 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249147",
+    "competitor_id": "131736274",
+    "slug": "/athletes/switzerland/valentina-rosamilia-14763733",
+    "rank": 24,
+    "name": "Valentina ROSAMILIA",
+    "dob": "27 JAN 2003",
+    "country": "SUI",
+    "ranking_score": 1236.0,
+    "performances": [
+     {
+      "date": "2026-05-29",
+      "date_raw": "29 MAY 2026",
+      "competition": "8th Irena Szewińska Memorial, Zdzisław Krzyszkowiak Stadium, Bydgoszcz",
+      "category": "A",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "2:00.73",
+      "result_score": 1149,
+      "placing_score": 100,
+      "performance_score": 1249,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-02-19",
+      "date_raw": "19 FEB 2026",
+      "competition": "Meeting Hauts-de-France Pas-de-Calais Trophée EDF, Arena Stade Couvert, Liévin (i)",
+      "category": "A",
+      "discipline_code": "800sh",
+      "discipline": "800 Metres Short Track",
+      "indoor": false,
+      "place": 5,
+      "mark": "1:59.95",
+      "result_score": 1186,
+      "placing_score": 63,
+      "performance_score": 1249,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-02-08",
+      "date_raw": "08 FEB 2026",
+      "competition": "Meeting Metz Moselle Athlélor Crédit Mutuel, L'Anneau-Halle d'athlétisme de Metz, Metz (i)",
+      "category": "B",
+      "discipline_code": "800sh",
+      "discipline": "800 Metres Short Track",
+      "indoor": false,
+      "place": 2,
+      "mark": "1:59.90",
+      "result_score": 1187,
+      "placing_score": 56,
+      "performance_score": 1243,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-21",
+      "date_raw": "21 JUN 2026",
+      "competition": "FBK Games, FBK Stadium, Hengelo",
+      "category": "A",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 5,
+      "mark": "1:59.75",
+      "result_score": 1167,
+      "placing_score": 63,
+      "performance_score": 1230,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-08-08",
+      "date_raw": "08 AUG 2025",
+      "competition": "TIPOS P-T-S Meeting, Štadión SNP, Banská Bystrica",
+      "category": "B",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 4,
+      "mark": "1:59.61",
+      "result_score": 1169,
+      "placing_score": 42,
+      "performance_score": 1211,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-06-23"
+   },
+   {
+    "competitor_id": "131736275",
+    "slug": "/athletes/great-britain-ni/isabelle-boffey-14643787",
+    "rank": 25,
+    "name": "Isabelle BOFFEY",
+    "dob": "13 APR 2000",
+    "country": "GBR",
+    "ranking_score": 1234.0,
+    "performances": [
+     {
+      "date": "2026-01-24",
+      "date_raw": "24 JAN 2026",
+      "competition": "New Balance Indoor Grand Prix, The Track at New Balance, Boston, MA (i)",
+      "category": "A",
+      "discipline_code": "800sh",
+      "discipline": "800 Metres Short Track",
+      "indoor": false,
+      "place": 2,
+      "mark": "2:00.14",
+      "result_score": 1183,
+      "placing_score": 84,
+      "performance_score": 1267,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-02-22",
+      "date_raw": "22 FEB 2026",
+      "competition": "ORLEN Copernicus Cup, Arena Toruń, Toruń (i)",
+      "category": "A",
+      "discipline_code": "800sh",
+      "discipline": "800 Metres Short Track",
+      "indoor": false,
+      "place": 4,
+      "mark": "1:59.80",
+      "result_score": 1189,
+      "placing_score": 70,
+      "performance_score": 1259,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-21",
+      "date_raw": "21 JUN 2026",
+      "competition": "Novuna UK Athletics Championships, Alexander Stadium, Birmingham",
+      "category": "B",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "1:59.56",
+      "result_score": 1170,
+      "placing_score": 56,
+      "performance_score": 1226,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-06-24",
+      "date_raw": "24 JUN 2025",
+      "competition": "64th Ostrava Golden Spike, Mestský Stadion, Ostrava",
+      "category": "A",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 7,
+      "mark": "2:00.07",
+      "result_score": 1161,
+      "placing_score": 49,
+      "performance_score": 1210,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-05-24",
+      "date_raw": "24 MAY 2026",
+      "competition": "61. Internationales Pfingstsportfest Rehlingen, Bungertstadion, Rehlingen",
+      "category": "B",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "2:00.54",
+      "result_score": 1153,
+      "placing_score": 56,
+      "performance_score": 1209,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-06-23"
+   },
+   {
+    "competitor_id": "131736276",
     "slug": "/athletes/united-states/meghan-hunter-14772603",
-    "rank": 23,
+    "rank": 26,
     "name": "Meghan HUNTER",
     "dob": "31 MAY 2001",
     "country": "USA",
@@ -2007,99 +2268,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249148",
-    "slug": "/athletes/australia/abbey-caldwell-14636659",
-    "rank": 24,
-    "name": "Abbey CALDWELL",
-    "dob": "03 JUL 2001",
-    "country": "AUS",
-    "ranking_score": 1234.0,
-    "performances": [
-     {
-      "date": "2025-08-16",
-      "date_raw": "16 AUG 2025",
-      "competition": "Silesia Kamila Skolimowska Memorial, Stadion Śląski, Chorzów",
-      "category": "A",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 6,
-      "mark": "1:57.70",
-      "result_score": 1204,
-      "placing_score": 56,
-      "performance_score": 1260,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-04-12",
-      "date_raw": "12 APR 2026",
-      "competition": "Australian Championships, Olympic Park, Sydney",
-      "category": "B",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "1:58.57",
-      "result_score": 1188,
-      "placing_score": 70,
-      "performance_score": 1258,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-09-19",
-      "date_raw": "19 SEP 2025",
-      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
-      "category": "OW",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 15,
-      "mark": "1:58.44",
-      "result_score": 1190,
-      "placing_score": 53,
-      "performance_score": 1243,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-20",
-      "date_raw": "20 AUG 2025",
-      "competition": "Internationales Abendsportfest, TSV Stadion, Pfungstadt",
-      "category": "F",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "1:58.02",
-      "result_score": 1198,
-      "placing_score": 7,
-      "performance_score": 1205,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-03-14",
-      "date_raw": "14 MAR 2026",
-      "competition": "Adelaide Invitational, SA Athletic Stadium, Adelaide",
-      "category": "C",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "2:00.04",
-      "result_score": 1162,
-      "placing_score": 42,
-      "performance_score": 1204,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-06-16"
-   },
-   {
-    "competitor_id": "131249149",
+    "competitor_id": "131736277",
     "slug": "/athletes/lithuania/gabija-galvydyte-14675493",
-    "rank": 25,
+    "rank": 27,
     "name": "Gabija GALVYDYTĖ",
     "dob": "17 JAN 2000",
     "country": "LTU",
@@ -2181,12 +2355,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249150",
+    "competitor_id": "131736278",
     "slug": "/athletes/austria/caroline-bredlinger-14630471",
-    "rank": 26,
+    "rank": 28,
     "name": "Caroline BREDLINGER",
     "dob": "04 APR 2001",
     "country": "AUT",
@@ -2268,12 +2442,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249151",
+    "competitor_id": "131736279",
     "slug": "/athletes/jamaica/kelly-ann-beckford-14691439",
-    "rank": 27,
+    "rank": 29,
     "name": "Kelly-Ann BECKFORD",
     "dob": "20 APR 2000",
     "country": "JAM",
@@ -2355,12 +2529,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249152",
+    "competitor_id": "131736280",
     "slug": "/athletes/jamaica/natoya-goule-toppin-14285696",
-    "rank": 28,
+    "rank": 30,
     "name": "Natoya GOULE-TOPPIN",
     "dob": "30 MAR 1991",
     "country": "JAM",
@@ -2442,99 +2616,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249153",
-    "slug": "/athletes/great-britain-ni/isabelle-boffey-14643787",
-    "rank": 29,
-    "name": "Isabelle BOFFEY",
-    "dob": "13 APR 2000",
-    "country": "GBR",
-    "ranking_score": 1230.0,
-    "performances": [
-     {
-      "date": "2026-01-24",
-      "date_raw": "24 JAN 2026",
-      "competition": "New Balance Indoor Grand Prix, The Track at New Balance, Boston, MA (i)",
-      "category": "A",
-      "discipline_code": "800sh",
-      "discipline": "800 Metres Short Track",
-      "indoor": false,
-      "place": 2,
-      "mark": "2:00.14",
-      "result_score": 1183,
-      "placing_score": 84,
-      "performance_score": 1267,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-02-22",
-      "date_raw": "22 FEB 2026",
-      "competition": "ORLEN Copernicus Cup, Arena Toruń, Toruń (i)",
-      "category": "A",
-      "discipline_code": "800sh",
-      "discipline": "800 Metres Short Track",
-      "indoor": false,
-      "place": 4,
-      "mark": "1:59.80",
-      "result_score": 1189,
-      "placing_score": 70,
-      "performance_score": 1259,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-06-24",
-      "date_raw": "24 JUN 2025",
-      "competition": "64th Ostrava Golden Spike, Mestský Stadion, Ostrava",
-      "category": "A",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 7,
-      "mark": "2:00.07",
-      "result_score": 1161,
-      "placing_score": 49,
-      "performance_score": 1210,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-05-24",
-      "date_raw": "24 MAY 2026",
-      "competition": "61. Internationales Pfingstsportfest Rehlingen, Bungertstadion, Rehlingen",
-      "category": "B",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "2:00.54",
-      "result_score": 1153,
-      "placing_score": 56,
-      "performance_score": 1209,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-09",
-      "date_raw": "09 AUG 2025",
-      "competition": "IFAM Oordegem, Putbosstadion, Oordegem",
-      "category": "C",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "1:59.53",
-      "result_score": 1171,
-      "placing_score": 35,
-      "performance_score": 1206,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-06-16"
-   },
-   {
-    "competitor_id": "131249154",
+    "competitor_id": "131736281",
     "slug": "/athletes/switzerland/lore-hoffmann-14457538",
-    "rank": 30,
+    "rank": 31,
     "name": "Lore HOFFMANN",
     "dob": "25 JUL 1996",
     "country": "SUI",
@@ -2616,97 +2703,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249155",
-    "slug": "/athletes/switzerland/valentina-rosamilia-14763733",
-    "rank": 31,
-    "name": "Valentina ROSAMILIA",
-    "dob": "27 JAN 2003",
-    "country": "SUI",
-    "ranking_score": 1229.0,
-    "performances": [
-     {
-      "date": "2026-05-29",
-      "date_raw": "29 MAY 2026",
-      "competition": "8th Irena Szewińska Memorial, Zdzisław Krzyszkowiak Stadium, Bydgoszcz",
-      "category": "A",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "2:00.73",
-      "result_score": 1149,
-      "placing_score": 100,
-      "performance_score": 1249,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-02-19",
-      "date_raw": "19 FEB 2026",
-      "competition": "Meeting Hauts-de-France Pas-de-Calais Trophée EDF, Arena Stade Couvert, Liévin (i)",
-      "category": "A",
-      "discipline_code": "800sh",
-      "discipline": "800 Metres Short Track",
-      "indoor": false,
-      "place": 5,
-      "mark": "1:59.95",
-      "result_score": 1186,
-      "placing_score": 63,
-      "performance_score": 1249,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-02-08",
-      "date_raw": "08 FEB 2026",
-      "competition": "Meeting Metz Moselle Athlélor Crédit Mutuel, L'Anneau-Halle d'athlétisme de Metz, Metz (i)",
-      "category": "B",
-      "discipline_code": "800sh",
-      "discipline": "800 Metres Short Track",
-      "indoor": false,
-      "place": 2,
-      "mark": "1:59.90",
-      "result_score": 1187,
-      "placing_score": 56,
-      "performance_score": 1243,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-08",
-      "date_raw": "08 AUG 2025",
-      "competition": "TIPOS P-T-S Meeting, Štadión SNP, Banská Bystrica",
-      "category": "B",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 4,
-      "mark": "1:59.61",
-      "result_score": 1169,
-      "placing_score": 42,
-      "performance_score": 1211,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-06-03",
-      "date_raw": "03 JUN 2026",
-      "competition": "Silver Gala, Stadio Olimpico, Roma",
-      "category": "E",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "1:59.05",
-      "result_score": 1179,
-      "placing_score": 15,
-      "performance_score": 1194,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-06-16"
-   },
-   {
-    "competitor_id": "131249156",
+    "competitor_id": "131736282",
     "slug": "/athletes/australia/hayley-kitching-14814102",
     "rank": 32,
     "name": "Hayley KITCHING",
@@ -2790,12 +2790,99 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249157",
-    "slug": "/athletes/spain/rocio-arroyo-14877106",
+    "competitor_id": "131736283",
+    "slug": "/athletes/germany/majtie-kolberg-14593204",
     "rank": 33,
+    "name": "Majtie KOLBERG",
+    "dob": "05 DEC 1999",
+    "country": "GER",
+    "ranking_score": 1227.0,
+    "performances": [
+     {
+      "date": "2026-06-21",
+      "date_raw": "21 JUN 2026",
+      "competition": "FBK Games, FBK Stadium, Hengelo",
+      "category": "A",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 4,
+      "mark": "1:58.78",
+      "result_score": 1184,
+      "placing_score": 70,
+      "performance_score": 1254,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2024-06-12",
+      "date_raw": "12 JUN 2024",
+      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
+      "category": "GL",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 5,
+      "mark": "1:59.87",
+      "result_score": 1165,
+      "placing_score": 75,
+      "performance_score": 1240,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2024-06-11",
+      "date_raw": "11 JUN 2024",
+      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
+      "category": "GL",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 3,
+      "mark": "1:58.74",
+      "result_score": 1185,
+      "placing_score": 50,
+      "performance_score": 1235,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-05-31",
+      "date_raw": "31 MAY 2026",
+      "competition": "Goldenes Oval, Heinz-Steyer-Stadion, Dresden",
+      "category": "B",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "2:00.67",
+      "result_score": 1150,
+      "placing_score": 56,
+      "performance_score": 1206,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-07-27",
+      "date_raw": "27 JUL 2025",
+      "competition": "ISTAF 2025, Olympiastadion, Berlin",
+      "category": "B",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 3,
+      "mark": "2:00.44",
+      "result_score": 1154,
+      "placing_score": 49,
+      "performance_score": 1203,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-06-23"
+   },
+   {
+    "competitor_id": "131736284",
+    "slug": "/athletes/spain/rocio-arroyo-14877106",
+    "rank": 34,
     "name": "Rocio ARROYO",
     "dob": "06 JUL 2003",
     "country": "ESP",
@@ -2877,12 +2964,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249158",
+    "competitor_id": "131736285",
     "slug": "/athletes/the-gambia/sanu-jallow-14880079",
-    "rank": 34,
+    "rank": 35,
     "name": "Sanu JALLOW",
     "dob": "04 APR 2003",
     "country": "GAM",
@@ -2964,12 +3051,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249159",
+    "competitor_id": "131736286",
     "slug": "/athletes/united-states/maggi-congdon-14844329",
-    "rank": 35,
+    "rank": 36,
     "name": "Maggi CONGDON",
     "dob": "23 JUL 2002",
     "country": "USA",
@@ -3051,12 +3138,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249160",
+    "competitor_id": "131736287",
     "slug": "/athletes/poland/angelika-sarna-14628042",
-    "rank": 36,
+    "rank": 37,
     "name": "Angelika SARNA",
     "dob": "01 OCT 1997",
     "country": "POL",
@@ -3138,12 +3225,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249161",
+    "competitor_id": "131736288",
     "slug": "/athletes/france/lena-kandissounon-14630038",
-    "rank": 37,
+    "rank": 38,
     "name": "Léna KANDISSOUNON",
     "dob": "26 NOV 1998",
     "country": "FRA",
@@ -3225,12 +3312,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249162",
+    "competitor_id": "131736289",
     "slug": "/athletes/united-states/victoria-bossong-14823678",
-    "rank": 38,
+    "rank": 39,
     "name": "Victoria BOSSONG",
     "dob": "05 MAY 2003",
     "country": "USA",
@@ -3312,12 +3399,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249163",
+    "competitor_id": "131736290",
     "slug": "/athletes/united-states/valery-tobias-14704616",
-    "rank": 39,
+    "rank": 40,
     "name": "Valery TOBIAS",
     "dob": "24 SEP 2000",
     "country": "USA",
@@ -3399,12 +3486,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249164",
+    "competitor_id": "131736291",
     "slug": "/athletes/norway/pernille-karlsen-antonsen-14708774",
-    "rank": 40,
+    "rank": 41,
     "name": "Pernille Karlsen ANTONSEN",
     "dob": "13 DEC 2002",
     "country": "NOR",
@@ -3486,62 +3573,191 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249165",
-    "slug": "/athletes/germany/majtie-kolberg-14593204",
-    "rank": 41,
-    "name": "Majtie KOLBERG",
-    "dob": "05 DEC 1999",
-    "country": "GER",
-    "ranking_score": 1216.0,
+    "competitor_id": "131736292",
+    "slug": "/athletes/ethiopia/msgana-hailu-14916206",
+    "rank": 42,
+    "name": "Msgana HAILU",
+    "dob": "22 DEC 2005",
+    "country": "ETH",
+    "ranking_score": 1215.0,
     "performances": [
      {
-      "date": "2024-06-12",
-      "date_raw": "12 JUN 2024",
-      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
+      "date": "2026-05-14",
+      "date_raw": "14 MAY 2026",
+      "competition": "African Athletics Championships, University of Ghana Sports Stadium, Accra",
       "category": "GL",
       "discipline_code": "800",
       "discipline": "800 Metres",
       "indoor": false,
-      "place": 5,
-      "mark": "1:59.87",
-      "result_score": 1165,
-      "placing_score": 75,
-      "performance_score": 1240,
+      "place": 1,
+      "mark": "1:59.02",
+      "result_score": 1180,
+      "placing_score": 120,
+      "performance_score": 1300,
       "month_correction_applied": false
      },
      {
-      "date": "2024-06-11",
-      "date_raw": "11 JUN 2024",
-      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
-      "category": "GL",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 3,
-      "mark": "1:58.74",
-      "result_score": 1185,
-      "placing_score": 50,
-      "performance_score": 1235,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-05-31",
-      "date_raw": "31 MAY 2026",
-      "competition": "Goldenes Oval, Heinz-Steyer-Stadion, Dresden",
+      "date": "2026-03-25",
+      "date_raw": "25 MAR 2026",
+      "competition": "Ethiopian Championships, Ethiopian Sport Academy, Addis Ababa",
       "category": "B",
       "discipline_code": "800",
       "discipline": "800 Metres",
       "indoor": false,
-      "place": 2,
-      "mark": "2:00.67",
-      "result_score": 1150,
-      "placing_score": 56,
-      "performance_score": 1206,
+      "place": 1,
+      "mark": "2:01.22",
+      "result_score": 1140,
+      "placing_score": 70,
+      "performance_score": 1210,
       "month_correction_applied": false
      },
+     {
+      "date": "2026-04-26",
+      "date_raw": "26 APR 2026",
+      "competition": "Botswana Golden Grand Prix, National Stadium, Gaborone",
+      "category": "B",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 5,
+      "mark": "1:59.96",
+      "result_score": 1163,
+      "placing_score": 38,
+      "performance_score": 1201,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-05-13",
+      "date_raw": "13 MAY 2026",
+      "competition": "African Athletics Championships, University of Ghana Sports Stadium, Accra",
+      "category": "GL",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "2:01.33",
+      "result_score": 1139,
+      "placing_score": 50,
+      "performance_score": 1189,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-19",
+      "date_raw": "19 JUN 2026",
+      "competition": "Doha Meeting, Suhaim bin Hamad Stadium, Doha",
+      "category": "GW",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 10,
+      "mark": "2:01.47",
+      "result_score": 1136,
+      "placing_score": 42,
+      "performance_score": 1178,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-06-23"
+   },
+   {
+    "competitor_id": "131736293",
+    "slug": "/athletes/france/charlotte-dumas-14635389",
+    "rank": 43,
+    "name": "Charlotte DUMAS",
+    "dob": "07 AUG 1997",
+    "country": "FRA",
+    "ranking_score": 1215.0,
+    "performances": [
+     {
+      "date": "2026-01-30",
+      "date_raw": "30 JAN 2026",
+      "competition": "Elite Indoor Track Miramas Meeting, Stadium Miramas Métropole, Miramas (i)",
+      "category": "B",
+      "discipline_code": "800sh",
+      "discipline": "800 Metres Short Track",
+      "indoor": false,
+      "place": 1,
+      "mark": "2:00.26",
+      "result_score": 1181,
+      "placing_score": 70,
+      "performance_score": 1251,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-05-24",
+      "date_raw": "24 MAY 2026",
+      "competition": "61. Internationales Pfingstsportfest Rehlingen, Bungertstadion, Rehlingen",
+      "category": "B",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "2:00.49",
+      "result_score": 1153,
+      "placing_score": 70,
+      "performance_score": 1223,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-17",
+      "date_raw": "17 JUN 2026",
+      "competition": "Meeting International de Montreuil, Stade Jean Delbert, Montreuil",
+      "category": "C",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 3,
+      "mark": "1:59.09",
+      "result_score": 1179,
+      "placing_score": 31,
+      "performance_score": 1210,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-02-19",
+      "date_raw": "19 FEB 2026",
+      "competition": "Meeting Hauts-de-France Pas-de-Calais Trophée EDF, Arena Stade Couvert, Liévin (i)",
+      "category": "A",
+      "discipline_code": "800sh",
+      "discipline": "800 Metres Short Track",
+      "indoor": false,
+      "place": 9,
+      "mark": "2:01.47",
+      "result_score": 1162,
+      "placing_score": 35,
+      "performance_score": 1197,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-19",
+      "date_raw": "19 JUN 2026",
+      "competition": "40ème Meeting International Montgeron-Essonne, Stade Pierre de Coubertin, Montgeron",
+      "category": "C",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "2:00.52",
+      "result_score": 1153,
+      "placing_score": 42,
+      "performance_score": 1195,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-06-23"
+   },
+   {
+    "competitor_id": "131736294",
+    "slug": "/athletes/spain/lorea-ibarzabal-14427311",
+    "rank": 44,
+    "name": "Lorea IBARZABAL",
+    "dob": "07 NOV 1994",
+    "country": "ESP",
+    "ranking_score": 1215.0,
+    "performances": [
      {
       "date": "2025-07-27",
       "date_raw": "27 JUL 2025",
@@ -3550,35 +3766,80 @@
       "discipline_code": "800",
       "discipline": "800 Metres",
       "indoor": false,
-      "place": 3,
-      "mark": "2:00.44",
-      "result_score": 1154,
-      "placing_score": 49,
-      "performance_score": 1203,
+      "place": 2,
+      "mark": "1:59.70",
+      "result_score": 1168,
+      "placing_score": 56,
+      "performance_score": 1224,
       "month_correction_applied": false
      },
      {
-      "date": "2026-02-01",
-      "date_raw": "01 FEB 2026",
-      "competition": "Meeting de L'Eure, Stade couvert Jesse Owens, Val-de-Reuil (i)",
+      "date": "2025-07-19",
+      "date_raw": "19 JUL 2025",
+      "competition": "Meeting Madrid 2025, Estadio Vallehermoso, Madrid",
       "category": "B",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 3,
+      "mark": "1:59.60",
+      "result_score": 1169,
+      "placing_score": 49,
+      "performance_score": 1218,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-02-19",
+      "date_raw": "19 FEB 2026",
+      "competition": "Meeting Hauts-de-France Pas-de-Calais Trophée EDF, Arena Stade Couvert, Liévin (i)",
+      "category": "A",
       "discipline_code": "800sh",
       "discipline": "800 Metres Short Track",
       "indoor": false,
-      "place": 5,
-      "mark": "2:01.42",
-      "result_score": 1162,
-      "placing_score": 38,
-      "performance_score": 1200,
+      "place": 8,
+      "mark": "2:00.79",
+      "result_score": 1173,
+      "placing_score": 42,
+      "performance_score": 1215,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-19",
+      "date_raw": "19 JUN 2026",
+      "competition": "Doha Meeting, Suhaim bin Hamad Stadium, Doha",
+      "category": "GW",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 9,
+      "mark": "1:59.84",
+      "result_score": 1165,
+      "placing_score": 49,
+      "performance_score": 1214,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-03-21",
+      "date_raw": "21 MAR 2026",
+      "competition": "World Athletics Indoor Championships, Kujawsko-Pomorska Arena, Toruń (i)",
+      "category": "GW",
+      "discipline_code": "800sh",
+      "discipline": "800 Metres Short Track",
+      "indoor": false,
+      "place": 12,
+      "mark": "2:00.74",
+      "result_score": 1173,
+      "placing_score": 32,
+      "performance_score": 1205,
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249166",
+    "competitor_id": "131736295",
     "slug": "/athletes/kenya/mary-moraa-14798209",
-    "rank": 42,
+    "rank": 45,
     "name": "Mary MORAA",
     "dob": "15 JUN 2000",
     "country": "KEN",
@@ -3660,12 +3921,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249167",
+    "competitor_id": "131736296",
     "slug": "/athletes/united-states/olivia-baker-14411226",
-    "rank": 43,
+    "rank": 46,
     "name": "Olivia BAKER",
     "dob": "12 JUN 1996",
     "country": "USA",
@@ -3747,99 +4008,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249168",
-    "slug": "/athletes/ethiopia/msgana-hailu-14916206",
-    "rank": 44,
-    "name": "Msgana HAILU",
-    "dob": "22 DEC 2005",
-    "country": "ETH",
-    "ranking_score": 1212.0,
-    "performances": [
-     {
-      "date": "2026-05-14",
-      "date_raw": "14 MAY 2026",
-      "competition": "African Athletics Championships, University of Ghana Sports Stadium, Accra",
-      "category": "GL",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "1:59.02",
-      "result_score": 1180,
-      "placing_score": 120,
-      "performance_score": 1300,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-03-25",
-      "date_raw": "25 MAR 2026",
-      "competition": "Ethiopian Championships, Ethiopian Sport Academy, Addis Ababa",
-      "category": "B",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "2:01.22",
-      "result_score": 1140,
-      "placing_score": 70,
-      "performance_score": 1210,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-04-26",
-      "date_raw": "26 APR 2026",
-      "competition": "Botswana Golden Grand Prix, National Stadium, Gaborone",
-      "category": "B",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 5,
-      "mark": "1:59.96",
-      "result_score": 1163,
-      "placing_score": 38,
-      "performance_score": 1201,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-05-13",
-      "date_raw": "13 MAY 2026",
-      "competition": "African Athletics Championships, University of Ghana Sports Stadium, Accra",
-      "category": "GL",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "2:01.33",
-      "result_score": 1139,
-      "placing_score": 50,
-      "performance_score": 1189,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-05-28",
-      "date_raw": "28 MAY 2026",
-      "competition": "Trond Mohn Games, Fana Stadion, Bergen",
-      "category": "B",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 4,
-      "mark": "2:02.45",
-      "result_score": 1119,
-      "placing_score": 42,
-      "performance_score": 1161,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-06-16"
-   },
-   {
-    "competitor_id": "131249169",
+    "competitor_id": "131736297",
     "slug": "/athletes/united-states/mckenna-keegan-14607778",
-    "rank": 45,
+    "rank": 47,
     "name": "McKenna KEEGAN",
     "dob": "31 AUG 1998",
     "country": "USA",
@@ -3921,12 +4095,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249170",
+    "competitor_id": "131736298",
     "slug": "/athletes/mauritius/rachel-klopfenstein-14479308",
-    "rank": 46,
+    "rank": 48,
     "name": "Rachel KLOPFENSTEIN",
     "dob": "08 MAR 1995",
     "country": "MRI",
@@ -4008,184 +4182,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249171",
-    "slug": "/athletes/spain/lorea-ibarzabal-14427311",
-    "rank": 47,
-    "name": "Lorea IBARZABAL",
-    "dob": "07 NOV 1994",
-    "country": "ESP",
-    "ranking_score": 1211.0,
-    "performances": [
-     {
-      "date": "2025-07-27",
-      "date_raw": "27 JUL 2025",
-      "competition": "ISTAF 2025, Olympiastadion, Berlin",
-      "category": "B",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "1:59.70",
-      "result_score": 1168,
-      "placing_score": 56,
-      "performance_score": 1224,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-19",
-      "date_raw": "19 JUL 2025",
-      "competition": "Meeting Madrid 2025, Estadio Vallehermoso, Madrid",
-      "category": "B",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 3,
-      "mark": "1:59.60",
-      "result_score": 1169,
-      "placing_score": 49,
-      "performance_score": 1218,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-02-19",
-      "date_raw": "19 FEB 2026",
-      "competition": "Meeting Hauts-de-France Pas-de-Calais Trophée EDF, Arena Stade Couvert, Liévin (i)",
-      "category": "A",
-      "discipline_code": "800sh",
-      "discipline": "800 Metres Short Track",
-      "indoor": false,
-      "place": 8,
-      "mark": "2:00.79",
-      "result_score": 1173,
-      "placing_score": 42,
-      "performance_score": 1215,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-03-21",
-      "date_raw": "21 MAR 2026",
-      "competition": "World Athletics Indoor Championships, Kujawsko-Pomorska Arena, Toruń (i)",
-      "category": "GW",
-      "discipline_code": "800sh",
-      "discipline": "800 Metres Short Track",
-      "indoor": false,
-      "place": 12,
-      "mark": "2:00.74",
-      "result_score": 1173,
-      "placing_score": 32,
-      "performance_score": 1205,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-04",
-      "date_raw": "04 JUL 2025",
-      "competition": "Meeting Stanislas Nancy, Stade Raymond Petit, Tomblaine",
-      "category": "B",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 5,
-      "mark": "2:00.32",
-      "result_score": 1157,
-      "placing_score": 38,
-      "performance_score": 1195,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-06-16"
-   },
-   {
-    "competitor_id": "131249172",
-    "slug": "/athletes/switzerland/veronica-vancardo-14584794",
-    "rank": 48,
-    "name": "Veronica VANCARDO",
-    "dob": "26 SEP 2000",
-    "country": "SUI",
-    "ranking_score": 1210.0,
-    "performances": [
-     {
-      "date": "2025-08-24",
-      "date_raw": "24 AUG 2025",
-      "competition": "Swiss Championships, Kleine Allmend, Frauenfeld",
-      "category": "B",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 3,
-      "mark": "1:59.10",
-      "result_score": 1178,
-      "placing_score": 49,
-      "performance_score": 1227,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-24",
-      "date_raw": "24 JUL 2025",
-      "competition": "FISU World University Games, Lohrheidestadion, Wattenscheid, Bochum",
-      "category": "B",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "2:00.08",
-      "result_score": 1161,
-      "placing_score": 56,
-      "performance_score": 1217,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-15",
-      "date_raw": "15 JUL 2025",
-      "competition": "Spitzen Leichtathletik Luzern, Stadion Allmend, Luzern",
-      "category": "B",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 4,
-      "mark": "1:59.97",
-      "result_score": 1163,
-      "placing_score": 42,
-      "performance_score": 1205,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-06-21",
-      "date_raw": "21 JUN 2025",
-      "competition": "Atleticageneve - EAP, Centre sportif Bout-du-Monde, Genève",
-      "category": "C",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "2:00.04",
-      "result_score": 1162,
-      "placing_score": 42,
-      "performance_score": 1204,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-05-31",
-      "date_raw": "31 MAY 2026",
-      "competition": "Meeting International de Forbach, Stade Omnisports Schlossberg, Forbach",
-      "category": "C",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "2:00.30",
-      "result_score": 1157,
-      "placing_score": 42,
-      "performance_score": 1199,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-06-16"
-   },
-   {
-    "competitor_id": "131249173",
+    "competitor_id": "131736299",
     "slug": "/athletes/united-states/nia-akins-14615589",
     "rank": 49,
     "name": "Nia AKINS",
@@ -4269,12 +4269,186 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249174",
-    "slug": "/athletes/japan/rin-kubo-15005744",
+    "competitor_id": "131736300",
+    "slug": "/athletes/france/renelle-lamote-14424718",
     "rank": 50,
+    "name": "Rénelle LAMOTE",
+    "dob": "26 DEC 1993",
+    "country": "FRA",
+    "ranking_score": 1209.0,
+    "performances": [
+     {
+      "date": "2026-06-19",
+      "date_raw": "19 JUN 2026",
+      "competition": "Doha Meeting, Suhaim bin Hamad Stadium, Doha",
+      "category": "GW",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 7,
+      "mark": "1:59.21",
+      "result_score": 1176,
+      "placing_score": 75,
+      "performance_score": 1251,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-08-20",
+      "date_raw": "20 AUG 2025",
+      "competition": "Athletissima Lausanne, Stade Olympique de la Pontaise, Lausanne",
+      "category": "GW",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 8,
+      "mark": "1:59.60",
+      "result_score": 1169,
+      "placing_score": 70,
+      "performance_score": 1239,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-05-29",
+      "date_raw": "29 MAY 2026",
+      "competition": "8th Irena Szewińska Memorial, Zdzisław Krzyszkowiak Stadium, Bydgoszcz",
+      "category": "A",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 3,
+      "mark": "2:01.13",
+      "result_score": 1142,
+      "placing_score": 77,
+      "performance_score": 1219,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-09-18",
+      "date_raw": "18 SEP 2025",
+      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
+      "category": "OW",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 14,
+      "mark": "1:59.32",
+      "result_score": 1174,
+      "placing_score": 0,
+      "performance_score": 1174,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-09-19",
+      "date_raw": "19 SEP 2025",
+      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
+      "category": "OW",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 22,
+      "mark": "1:59.94",
+      "result_score": 1163,
+      "placing_score": 0,
+      "performance_score": 1163,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-06-23"
+   },
+   {
+    "competitor_id": "131736301",
+    "slug": "/athletes/switzerland/veronica-vancardo-14584794",
+    "rank": 51,
+    "name": "Veronica VANCARDO",
+    "dob": "26 SEP 2000",
+    "country": "SUI",
+    "ranking_score": 1209.0,
+    "performances": [
+     {
+      "date": "2025-08-24",
+      "date_raw": "24 AUG 2025",
+      "competition": "Swiss Championships, Kleine Allmend, Frauenfeld",
+      "category": "B",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 3,
+      "mark": "1:59.10",
+      "result_score": 1178,
+      "placing_score": 49,
+      "performance_score": 1227,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-07-24",
+      "date_raw": "24 JUL 2025",
+      "competition": "FISU World University Games, Lohrheidestadion, Wattenscheid, Bochum",
+      "category": "B",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "2:00.08",
+      "result_score": 1161,
+      "placing_score": 56,
+      "performance_score": 1217,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-07-15",
+      "date_raw": "15 JUL 2025",
+      "competition": "Spitzen Leichtathletik Luzern, Stadion Allmend, Luzern",
+      "category": "B",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 4,
+      "mark": "1:59.97",
+      "result_score": 1163,
+      "placing_score": 42,
+      "performance_score": 1205,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-05-31",
+      "date_raw": "31 MAY 2026",
+      "competition": "Meeting International de Forbach, Stade Omnisports Schlossberg, Forbach",
+      "category": "C",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "2:00.30",
+      "result_score": 1157,
+      "placing_score": 42,
+      "performance_score": 1199,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-17",
+      "date_raw": "17 JUN 2026",
+      "competition": "Meeting International de Montreuil, Stade Jean Delbert, Montreuil",
+      "category": "C",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 5,
+      "mark": "1:59.43",
+      "result_score": 1172,
+      "placing_score": 25,
+      "performance_score": 1197,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-06-23"
+   },
+   {
+    "competitor_id": "131736302",
+    "slug": "/athletes/japan/rin-kubo-15005744",
+    "rank": 52,
     "name": "Rin KUBO",
     "dob": "20 JAN 2008",
     "country": "JPN",
@@ -4356,30 +4530,75 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249175",
-    "slug": "/athletes/france/charlotte-dumas-14635389",
-    "rank": 51,
-    "name": "Charlotte DUMAS",
-    "dob": "07 AUG 1997",
-    "country": "FRA",
+    "competitor_id": "131736303",
+    "slug": "/athletes/germany/smilla-kolbe-14738926",
+    "rank": 53,
+    "name": "Smilla KOLBE",
+    "dob": "01 MAR 2002",
+    "country": "GER",
     "ranking_score": 1207.0,
     "performances": [
      {
-      "date": "2026-01-30",
-      "date_raw": "30 JAN 2026",
-      "competition": "Elite Indoor Track Miramas Meeting, Stadium Miramas Métropole, Miramas (i)",
+      "date": "2026-05-31",
+      "date_raw": "31 MAY 2026",
+      "competition": "Goldenes Oval, Heinz-Steyer-Stadion, Dresden",
+      "category": "B",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "2:00.02",
+      "result_score": 1162,
+      "placing_score": 70,
+      "performance_score": 1232,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-17",
+      "date_raw": "17 JUN 2026",
+      "competition": "Meeting International de Montreuil, Stade Jean Delbert, Montreuil",
+      "category": "C",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "1:58.99",
+      "result_score": 1180,
+      "placing_score": 42,
+      "performance_score": 1222,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-02-08",
+      "date_raw": "08 FEB 2026",
+      "competition": "Meeting Metz Moselle Athlélor Crédit Mutuel, L'Anneau-Halle d'athlétisme de Metz, Metz (i)",
       "category": "B",
       "discipline_code": "800sh",
       "discipline": "800 Metres Short Track",
       "indoor": false,
+      "place": 4,
+      "mark": "2:01.75",
+      "result_score": 1157,
+      "placing_score": 42,
+      "performance_score": 1199,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-03",
+      "date_raw": "03 JUN 2026",
+      "competition": "Silver Gala, Stadio Olimpico, Roma",
+      "category": "E",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
       "place": 1,
-      "mark": "2:00.26",
-      "result_score": 1181,
-      "placing_score": 70,
-      "performance_score": 1251,
+      "mark": "1:59.04",
+      "result_score": 1179,
+      "placing_score": 18,
+      "performance_score": 1197,
       "month_correction_applied": false
      },
      {
@@ -4390,65 +4609,20 @@
       "discipline_code": "800",
       "discipline": "800 Metres",
       "indoor": false,
-      "place": 1,
-      "mark": "2:00.49",
-      "result_score": 1153,
-      "placing_score": 70,
-      "performance_score": 1223,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-02-19",
-      "date_raw": "19 FEB 2026",
-      "competition": "Meeting Hauts-de-France Pas-de-Calais Trophée EDF, Arena Stade Couvert, Liévin (i)",
-      "category": "A",
-      "discipline_code": "800sh",
-      "discipline": "800 Metres Short Track",
-      "indoor": false,
-      "place": 9,
-      "mark": "2:01.47",
-      "result_score": 1162,
-      "placing_score": 35,
-      "performance_score": 1197,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-05-31",
-      "date_raw": "31 MAY 2026",
-      "competition": "Meeting International de Forbach, Stade Omnisports Schlossberg, Forbach",
-      "category": "C",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "2:00.51",
-      "result_score": 1153,
-      "placing_score": 35,
-      "performance_score": 1188,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-05-29",
-      "date_raw": "29 MAY 2026",
-      "competition": "8th Irena Szewińska Memorial, Zdzisław Krzyszkowiak Stadium, Bydgoszcz",
-      "category": "A",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 5,
-      "mark": "2:02.53",
-      "result_score": 1117,
-      "placing_score": 63,
-      "performance_score": 1180,
+      "place": 4,
+      "mark": "2:00.84",
+      "result_score": 1147,
+      "placing_score": 42,
+      "performance_score": 1189,
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249176",
+    "competitor_id": "131736304",
     "slug": "/athletes/united-states/ajee-wilson-14411176",
-    "rank": 52,
+    "rank": 54,
     "name": "Ajee' WILSON",
     "dob": "08 MAY 1994",
     "country": "USA",
@@ -4515,27 +4689,27 @@
       "month_correction_applied": false
      },
      {
-      "date": "2025-06-22",
-      "date_raw": "22 JUN 2025",
-      "competition": "The Elliott Denman NJ International, Monmouth University Joe Compagni Track at Kessler Stadium, West Long Branch, NJ",
-      "category": "F",
+      "date": "2025-08-01",
+      "date_raw": "01 AUG 2025",
+      "competition": "USA Championships, Hayward Field, Eugene, OR",
+      "category": "B",
       "discipline_code": "800",
       "discipline": "800 Metres",
       "indoor": false,
-      "place": 1,
-      "mark": "1:58.76",
-      "result_score": 1185,
-      "placing_score": 11,
-      "performance_score": 1196,
+      "place": 2,
+      "mark": "1:58.30",
+      "result_score": 1193,
+      "placing_score": 0,
+      "performance_score": 1193,
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249177",
+    "competitor_id": "131736305",
     "slug": "/athletes/canada/maeliss-trapeau-14652395",
-    "rank": 53,
+    "rank": 55,
     "name": "Maeliss TRAPEAU",
     "dob": "28 SEP 1999",
     "country": "CAN",
@@ -4617,12 +4791,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249178",
+    "competitor_id": "131736306",
     "slug": "/athletes/cuba/daily-cooper-gaspar-14831173",
-    "rank": 54,
+    "rank": 56,
     "name": "Daily COOPER GASPAR",
     "dob": "11 MAR 2002",
     "country": "CUB",
@@ -4704,12 +4878,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249179",
+    "competitor_id": "131736307",
     "slug": "/athletes/kenya/sarah-moraa-15102075",
-    "rank": 55,
+    "rank": 57,
     "name": "Sarah MORAA",
     "dob": "26 OCT 2005",
     "country": "KEN",
@@ -4791,12 +4965,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249180",
+    "competitor_id": "131736308",
     "slug": "/athletes/bahrain/nelly-jepkosgei-14373314",
-    "rank": 56,
+    "rank": 58,
     "name": "Nelly JEPKOSGEI",
     "dob": "14 JUL 1991",
     "country": "BRN",
@@ -4878,103 +5052,16 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249181",
-    "slug": "/athletes/germany/smilla-kolbe-14738926",
-    "rank": 57,
-    "name": "Smilla KOLBE",
-    "dob": "01 MAR 2002",
-    "country": "GER",
-    "ranking_score": 1200.0,
-    "performances": [
-     {
-      "date": "2026-05-31",
-      "date_raw": "31 MAY 2026",
-      "competition": "Goldenes Oval, Heinz-Steyer-Stadion, Dresden",
-      "category": "B",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "2:00.02",
-      "result_score": 1162,
-      "placing_score": 70,
-      "performance_score": 1232,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-02-08",
-      "date_raw": "08 FEB 2026",
-      "competition": "Meeting Metz Moselle Athlélor Crédit Mutuel, L'Anneau-Halle d'athlétisme de Metz, Metz (i)",
-      "category": "B",
-      "discipline_code": "800sh",
-      "discipline": "800 Metres Short Track",
-      "indoor": false,
-      "place": 4,
-      "mark": "2:01.75",
-      "result_score": 1157,
-      "placing_score": 42,
-      "performance_score": 1199,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-06-03",
-      "date_raw": "03 JUN 2026",
-      "competition": "Silver Gala, Stadio Olimpico, Roma",
-      "category": "E",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "1:59.04",
-      "result_score": 1179,
-      "placing_score": 18,
-      "performance_score": 1197,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-05-24",
-      "date_raw": "24 MAY 2026",
-      "competition": "61. Internationales Pfingstsportfest Rehlingen, Bungertstadion, Rehlingen",
-      "category": "B",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 4,
-      "mark": "2:00.84",
-      "result_score": 1147,
-      "placing_score": 42,
-      "performance_score": 1189,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-03",
-      "date_raw": "03 AUG 2025",
-      "competition": "German Championships, Heinz-Steyer-Stadion, Dresden",
-      "category": "B",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "2:02.57",
-      "result_score": 1117,
-      "placing_score": 70,
-      "performance_score": 1187,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-06-16"
-   },
-   {
-    "competitor_id": "131249182",
+    "competitor_id": "131736309",
     "slug": "/athletes/morocco/souad-elhaddad-15018745",
-    "rank": 58,
+    "rank": 59,
     "name": "Souad ELHADDAD",
     "dob": "10 MAR 2001",
     "country": "MAR",
-    "ranking_score": 1199.0,
+    "ranking_score": 1197.0,
     "performances": [
      {
       "date": "2026-05-14",
@@ -5022,21 +5109,6 @@
       "month_correction_applied": false
      },
      {
-      "date": "2025-06-21",
-      "date_raw": "21 JUN 2025",
-      "competition": "27. Anhalt Meeting Dessau, Paul-Greifzu-Stadion, Dessau",
-      "category": "C",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 3,
-      "mark": "2:01.15",
-      "result_score": 1142,
-      "placing_score": 31,
-      "performance_score": 1173,
-      "month_correction_applied": false
-     },
-     {
       "date": "2025-07-09",
       "date_raw": "09 JUL 2025",
       "competition": "Míting Internacional Ciutat de Barcelona, Estadi Joan Serrahima, Barcelona",
@@ -5050,99 +5122,27 @@
       "placing_score": 21,
       "performance_score": 1172,
       "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-06-16"
-   },
-   {
-    "competitor_id": "131249183",
-    "slug": "/athletes/canada/jazz-shukla-14514144",
-    "rank": 59,
-    "name": "Jazz SHUKLA",
-    "dob": "24 AUG 1998",
-    "country": "CAN",
-    "ranking_score": 1197.0,
-    "performances": [
-     {
-      "date": "2025-08-16",
-      "date_raw": "16 AUG 2025",
-      "competition": "NACAC Championships, Grand Bahama Sports Complex, Freeport",
-      "category": "GL",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 4,
-      "mark": "2:00.43",
-      "result_score": 1155,
-      "placing_score": 85,
-      "performance_score": 1240,
-      "month_correction_applied": false
      },
      {
-      "date": "2025-07-13",
-      "date_raw": "13 JUL 2025",
-      "competition": "Edmonton Athletics Invitational, Foote Field, Edmonton",
-      "category": "B",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "2:00.44",
-      "result_score": 1154,
-      "placing_score": 70,
-      "performance_score": 1224,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-02",
-      "date_raw": "02 AUG 2025",
-      "competition": "Canadian Championships, Terry Fox AF, Ottawa",
-      "category": "B",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "2:01.95",
-      "result_score": 1128,
-      "placing_score": 70,
-      "performance_score": 1198,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-06-22",
-      "date_raw": "22 JUN 2025",
-      "competition": "Bob Vigars Classic, Alumni Stadium, London",
+      "date": "2025-07-05",
+      "date_raw": "05 JUL 2025",
+      "competition": "IX Ordizia Meeting - International Meeting Jose Antonio Peña, Altamira estadioa, Ordizia",
       "category": "C",
       "discipline_code": "800",
       "discipline": "800 Metres",
       "indoor": false,
-      "place": 2,
-      "mark": "2:01.44",
-      "result_score": 1137,
-      "placing_score": 35,
-      "performance_score": 1172,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-06-18",
-      "date_raw": "18 JUN 2025",
-      "competition": "Royal City Inferno Track and Field Festival, Alumni Stadium, Guelph",
-      "category": "C",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 4,
-      "mark": "2:02.15",
-      "result_score": 1124,
-      "placing_score": 28,
-      "performance_score": 1152,
+      "place": 5,
+      "mark": "2:01.32",
+      "result_score": 1139,
+      "placing_score": 25,
+      "performance_score": 1164,
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249184",
+    "competitor_id": "131736310",
     "slug": "/athletes/spain/daniela-garcia-14695724",
     "rank": 60,
     "name": "Daniela GARCÍA",
@@ -5226,10 +5226,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249185",
+    "competitor_id": "131736311",
     "slug": "/athletes/jamaica/adelle-tracey-14941414",
     "rank": 61,
     "name": "Adelle TRACEY",
@@ -5313,10 +5313,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249186",
+    "competitor_id": "131736312",
     "slug": "/athletes/kenya/gladys-chepngetich-15035928",
     "rank": 62,
     "name": "Gladys CHEPNGETICH",
@@ -5400,99 +5400,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249187",
-    "slug": "/athletes/australia/bendere-oboya-14764890",
-    "rank": 63,
-    "name": "Bendere OBOYA",
-    "dob": "17 APR 2000",
-    "country": "AUS",
-    "ranking_score": 1196.0,
-    "performances": [
-     {
-      "date": "2025-07-19",
-      "date_raw": "19 JUL 2025",
-      "competition": "Meeting Madrid 2025, Estadio Vallehermoso, Madrid",
-      "category": "B",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 4,
-      "mark": "1:59.66",
-      "result_score": 1168,
-      "placing_score": 42,
-      "performance_score": 1210,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-13",
-      "date_raw": "13 JUL 2025",
-      "competition": "Meeting Sport e Solidarietà Lignano, Stadio G. Teghil, Lignano Sabbiadoro",
-      "category": "C",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "2:00.04",
-      "result_score": 1162,
-      "placing_score": 42,
-      "performance_score": 1204,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-06-22",
-      "date_raw": "22 JUN 2025",
-      "competition": "Meeting International d'Athlétisme de Troyes Aube, Stade d'Athletisme Pierre Voillequin, Troyes",
-      "category": "C",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "2:00.16",
-      "result_score": 1159,
-      "placing_score": 42,
-      "performance_score": 1201,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-16",
-      "date_raw": "16 AUG 2025",
-      "competition": "CITIUS Meeting, Stadion Wankdorf, Bern",
-      "category": "C",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 3,
-      "mark": "2:00.51",
-      "result_score": 1153,
-      "placing_score": 31,
-      "performance_score": 1184,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-06",
-      "date_raw": "06 AUG 2025",
-      "competition": "8. International Wiesław Maniak Memorial, Wieslaw Maniak Municipal Athletic Stadium, Szczecin",
-      "category": "C",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "2:01.33",
-      "result_score": 1139,
-      "placing_score": 42,
-      "performance_score": 1181,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-06-16"
-   },
-   {
-    "competitor_id": "131249188",
+    "competitor_id": "131736313",
     "slug": "/athletes/united-states/juliette-whittaker-14879694",
-    "rank": 64,
+    "rank": 63,
     "name": "Juliette WHITTAKER",
     "dob": "01 DEC 2003",
     "country": "USA",
@@ -5574,12 +5487,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249189",
+    "competitor_id": "131736314",
     "slug": "/athletes/poland/margarita-koczanowa-14703758",
-    "rank": 65,
+    "rank": 64,
     "name": "Margarita KOCZANOWA",
     "dob": "01 FEB 1999",
     "country": "POL",
@@ -5661,12 +5574,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249190",
+    "competitor_id": "131736315",
     "slug": "/athletes/belgium/camille-laus-14363849",
-    "rank": 66,
+    "rank": 65,
     "name": "Camille LAUS",
     "dob": "23 MAY 1993",
     "country": "BEL",
@@ -5748,12 +5661,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249191",
+    "competitor_id": "131736316",
     "slug": "/athletes/slovenia/anita-horvat-14472475",
-    "rank": 67,
+    "rank": 66,
     "name": "Anita HORVAT",
     "dob": "07 SEP 1996",
     "country": "SLO",
@@ -5835,99 +5748,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249192",
-    "slug": "/athletes/morocco/soukaina-hajji-14579514",
-    "rank": 68,
-    "name": "Soukaina HAJJI",
-    "dob": "04 FEB 1997",
-    "country": "MAR",
-    "ranking_score": 1190.0,
-    "performances": [
-     {
-      "date": "2025-06-24",
-      "date_raw": "24 JUN 2025",
-      "competition": "64th Ostrava Golden Spike, Mestský Stadion, Ostrava",
-      "category": "A",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 8,
-      "mark": "2:00.09",
-      "result_score": 1161,
-      "placing_score": 42,
-      "performance_score": 1203,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-06-21",
-      "date_raw": "21 JUN 2025",
-      "competition": "27. Anhalt Meeting Dessau, Paul-Greifzu-Stadion, Dessau",
-      "category": "C",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "2:00.15",
-      "result_score": 1160,
-      "placing_score": 42,
-      "performance_score": 1202,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-08",
-      "date_raw": "08 AUG 2025",
-      "competition": "Memorial Zbigniewa Ludwichowskiego, Uniwersytetu Warmińsko-Mazurskiego, Olsztyn",
-      "category": "C",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "2:00.48",
-      "result_score": 1154,
-      "placing_score": 35,
-      "performance_score": 1189,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-06-14",
-      "date_raw": "14 JUN 2026",
-      "competition": "Janusz Sidlo Memorial Grand Prix of Sopot, Forest Stadium, Sopot",
-      "category": "D",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "2:00.28",
-      "result_score": 1157,
-      "placing_score": 28,
-      "performance_score": 1185,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-04",
-      "date_raw": "04 JUL 2025",
-      "competition": "Meeting Stanislas Nancy, Stade Raymond Petit, Tomblaine",
-      "category": "B",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 8,
-      "mark": "2:00.79",
-      "result_score": 1148,
-      "placing_score": 27,
-      "performance_score": 1175,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-06-16"
-   },
-   {
-    "competitor_id": "131249193",
+    "competitor_id": "131736317",
     "slug": "/athletes/united-states/michaela-rose-14715998",
-    "rank": 69,
+    "rank": 67,
     "name": "Michaela ROSE",
     "dob": "13 JUN 2003",
     "country": "USA",
@@ -6009,12 +5835,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249194",
+    "competitor_id": "131736318",
     "slug": "/athletes/united-states/makayla-paige-14846445",
-    "rank": 70,
+    "rank": 68,
     "name": "Makayla PAIGE",
     "dob": "07 MAY 2003",
     "country": "USA",
@@ -6096,99 +5922,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249195",
-    "slug": "/athletes/south-africa/charne-du-plessis-14882946",
-    "rank": 71,
-    "name": "Charné DU PLESSIS",
-    "dob": "02 JAN 2002",
-    "country": "RSA",
-    "ranking_score": 1187.0,
-    "performances": [
-     {
-      "date": "2025-07-04",
-      "date_raw": "04 JUL 2025",
-      "competition": "Meeting Stanislas Nancy, Stade Raymond Petit, Tomblaine",
-      "category": "B",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "1:59.03",
-      "result_score": 1180,
-      "placing_score": 56,
-      "performance_score": 1236,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-06-17",
-      "date_raw": "17 JUN 2025",
-      "competition": "Paavo Nurmi Games, Paavo Nurmen Stadion, Turku",
-      "category": "A",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 5,
-      "mark": "2:00.26",
-      "result_score": 1158,
-      "placing_score": 63,
-      "performance_score": 1221,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-06-21",
-      "date_raw": "21 JUN 2025",
-      "competition": "27. Anhalt Meeting Dessau, Paul-Greifzu-Stadion, Dessau",
-      "category": "C",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "2:00.99",
-      "result_score": 1145,
-      "placing_score": 35,
-      "performance_score": 1180,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-24",
-      "date_raw": "24 JUL 2025",
-      "competition": "FISU World University Games, Lohrheidestadion, Wattenscheid, Bochum",
-      "category": "B",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 6,
-      "mark": "2:01.45",
-      "result_score": 1136,
-      "placing_score": 34,
-      "performance_score": 1170,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-23",
-      "date_raw": "23 JUL 2025",
-      "competition": "FISU World University Games, Lohrheidestadion, Wattenscheid, Bochum",
-      "category": "B",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "2:01.68",
-      "result_score": 1132,
-      "placing_score": 0,
-      "performance_score": 1132,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-06-16"
-   },
-   {
-    "competitor_id": "131249196",
+    "competitor_id": "131736319",
     "slug": "/athletes/united-states/analisse-batista-14874188",
-    "rank": 72,
+    "rank": 69,
     "name": "Analisse BATISTA",
     "dob": "",
     "country": "USA",
@@ -6270,12 +6009,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249197",
+    "competitor_id": "131736320",
     "slug": "/athletes/france/charlotte-pizzo-14595644",
-    "rank": 73,
+    "rank": 70,
     "name": "Charlotte PIZZO",
     "dob": "10 MAY 1997",
     "country": "FRA",
@@ -6357,12 +6096,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249198",
+    "competitor_id": "131736321",
     "slug": "/athletes/great-britain-ni/abigail-ives-14762856",
-    "rank": 74,
+    "rank": 71,
     "name": "Abigail IVES",
     "dob": "06 FEB 2004",
     "country": "GBR",
@@ -6444,12 +6183,99 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249199",
+    "competitor_id": "131736322",
+    "slug": "/athletes/spain/marta-mitjans-14937005",
+    "rank": 72,
+    "name": "Marta MITJANS",
+    "dob": "28 DEC 2006",
+    "country": "ESP",
+    "ranking_score": 1187.0,
+    "performances": [
+     {
+      "date": "2025-07-19",
+      "date_raw": "19 JUL 2025",
+      "competition": "Meeting Madrid 2025, Estadio Vallehermoso, Madrid",
+      "category": "B",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 6,
+      "mark": "1:59.88",
+      "result_score": 1164,
+      "placing_score": 34,
+      "performance_score": 1198,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-07-05",
+      "date_raw": "05 JUL 2025",
+      "competition": "IX Ordizia Meeting - International Meeting Jose Antonio Peña, Altamira estadioa, Ordizia",
+      "category": "C",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 3,
+      "mark": "2:00.21",
+      "result_score": 1158,
+      "placing_score": 31,
+      "performance_score": 1189,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-20",
+      "date_raw": "20 JUN 2026",
+      "competition": "Track Night Vienna, LAZ Wien, Wien",
+      "category": "D",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "2:00.04",
+      "result_score": 1162,
+      "placing_score": 24,
+      "performance_score": 1186,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-01-30",
+      "date_raw": "30 JAN 2026",
+      "competition": "Elite Indoor Track Miramas Meeting, Stadium Miramas Métropole, Miramas (i)",
+      "category": "B",
+      "discipline_code": "800sh",
+      "discipline": "800 Metres Short Track",
+      "indoor": false,
+      "place": 5,
+      "mark": "2:02.62",
+      "result_score": 1143,
+      "placing_score": 38,
+      "performance_score": 1181,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-02-06",
+      "date_raw": "06 FEB 2026",
+      "competition": "World Indoor Tour Gold Madrid 2026, Gallur, Madrid (i)",
+      "category": "A",
+      "discipline_code": "800sh",
+      "discipline": "800 Metres Short Track",
+      "indoor": false,
+      "place": 9,
+      "mark": "2:02.44",
+      "result_score": 1146,
+      "placing_score": 35,
+      "performance_score": 1181,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-06-23"
+   },
+   {
+    "competitor_id": "131736323",
     "slug": "/athletes/pr-of-china/hongjiao-wu-14885770",
-    "rank": 75,
+    "rank": 73,
     "name": "Hongjiao WU",
     "dob": "25 JUL 2003",
     "country": "CHN",
@@ -6531,10 +6357,184 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249200",
+    "competitor_id": "131736324",
+    "slug": "/athletes/croatia/nina-vukovic-14859047",
+    "rank": 74,
+    "name": "Nina VUKOVIĆ",
+    "dob": "03 JUN 2002",
+    "country": "CRO",
+    "ranking_score": 1186.0,
+    "performances": [
+     {
+      "date": "2026-06-20",
+      "date_raw": "20 JUN 2026",
+      "competition": "Balkan Senior Championships, Panthessaliko Stadium, Volos",
+      "category": "B",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "2:01.76",
+      "result_score": 1131,
+      "placing_score": 70,
+      "performance_score": 1201,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-02-12",
+      "date_raw": "12 FEB 2026",
+      "competition": "Indoor Spike, Atletická hala, Ruská, Ostrava (i)",
+      "category": "D",
+      "discipline_code": "800sh",
+      "discipline": "800 Metres Short Track",
+      "indoor": false,
+      "place": 1,
+      "mark": "2:01.03",
+      "result_score": 1169,
+      "placing_score": 28,
+      "performance_score": 1197,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-02-04",
+      "date_raw": "04 FEB 2026",
+      "competition": "IFAM Louvain-La-Neuve Indoor, Complexe Sportif de Blocry, Louvain-La-Neuve (i)",
+      "category": "D",
+      "discipline_code": "800sh",
+      "discipline": "800 Metres Short Track",
+      "indoor": false,
+      "place": 2,
+      "mark": "2:01.00",
+      "result_score": 1169,
+      "placing_score": 24,
+      "performance_score": 1193,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-04",
+      "date_raw": "04 JUN 2026",
+      "competition": "Liese Prokop Memorial, Sportzentrum Niederösterreich, St. Pölten",
+      "category": "C",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "2:01.41",
+      "result_score": 1137,
+      "placing_score": 35,
+      "performance_score": 1172,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-14",
+      "date_raw": "14 JUN 2026",
+      "competition": "Folksam Grand Prix Sollentuna, Sollentunavallen, Sollentuna",
+      "category": "C",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "2:01.51",
+      "result_score": 1135,
+      "placing_score": 35,
+      "performance_score": 1170,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-06-23"
+   },
+   {
+    "competitor_id": "131736325",
+    "slug": "/athletes/morocco/soukaina-hajji-14579514",
+    "rank": 75,
+    "name": "Soukaina HAJJI",
+    "dob": "04 FEB 1997",
+    "country": "MAR",
+    "ranking_score": 1184.0,
+    "performances": [
+     {
+      "date": "2025-06-24",
+      "date_raw": "24 JUN 2025",
+      "competition": "64th Ostrava Golden Spike, Mestský Stadion, Ostrava",
+      "category": "A",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 8,
+      "mark": "2:00.09",
+      "result_score": 1161,
+      "placing_score": 42,
+      "performance_score": 1203,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-08-08",
+      "date_raw": "08 AUG 2025",
+      "competition": "Memorial Zbigniewa Ludwichowskiego, Uniwersytetu Warmińsko-Mazurskiego, Olsztyn",
+      "category": "C",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "2:00.48",
+      "result_score": 1154,
+      "placing_score": 35,
+      "performance_score": 1189,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-14",
+      "date_raw": "14 JUN 2026",
+      "competition": "Janusz Sidlo Memorial Grand Prix of Sopot, Forest Stadium, Sopot",
+      "category": "D",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "2:00.28",
+      "result_score": 1157,
+      "placing_score": 28,
+      "performance_score": 1185,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-07-04",
+      "date_raw": "04 JUL 2025",
+      "competition": "Meeting Stanislas Nancy, Stade Raymond Petit, Tomblaine",
+      "category": "B",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 8,
+      "mark": "2:00.79",
+      "result_score": 1148,
+      "placing_score": 27,
+      "performance_score": 1175,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-07-19",
+      "date_raw": "19 JUL 2025",
+      "competition": "Moroccan Championships, Piste Athlétisme, Tiflet",
+      "category": "B",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "2:03.41",
+      "result_score": 1102,
+      "placing_score": 70,
+      "performance_score": 1172,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-06-23"
+   },
+   {
+    "competitor_id": "131736326",
     "slug": "/athletes/slovenia/ziva-remic-15061294",
     "rank": 76,
     "name": "Živa REMIC",
@@ -6618,10 +6618,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249201",
+    "competitor_id": "131736327",
     "slug": "/athletes/ethiopia/habtam-gebeyehu-15174528",
     "rank": 77,
     "name": "Habtam GEBEYEHU",
@@ -6705,99 +6705,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249202",
-    "slug": "/athletes/spain/marta-mitjans-14937005",
-    "rank": 78,
-    "name": "Marta MITJANS",
-    "dob": "28 DEC 2006",
-    "country": "ESP",
-    "ranking_score": 1182.0,
-    "performances": [
-     {
-      "date": "2025-07-19",
-      "date_raw": "19 JUL 2025",
-      "competition": "Meeting Madrid 2025, Estadio Vallehermoso, Madrid",
-      "category": "B",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 6,
-      "mark": "1:59.88",
-      "result_score": 1164,
-      "placing_score": 34,
-      "performance_score": 1198,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-05",
-      "date_raw": "05 JUL 2025",
-      "competition": "IX Ordizia Meeting - International Meeting Jose Antonio Peña, Altamira estadioa, Ordizia",
-      "category": "C",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 3,
-      "mark": "2:00.21",
-      "result_score": 1158,
-      "placing_score": 31,
-      "performance_score": 1189,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-01-30",
-      "date_raw": "30 JAN 2026",
-      "competition": "Elite Indoor Track Miramas Meeting, Stadium Miramas Métropole, Miramas (i)",
-      "category": "B",
-      "discipline_code": "800sh",
-      "discipline": "800 Metres Short Track",
-      "indoor": false,
-      "place": 5,
-      "mark": "2:02.62",
-      "result_score": 1143,
-      "placing_score": 38,
-      "performance_score": 1181,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-02-06",
-      "date_raw": "06 FEB 2026",
-      "competition": "World Indoor Tour Gold Madrid 2026, Gallur, Madrid (i)",
-      "category": "A",
-      "discipline_code": "800sh",
-      "discipline": "800 Metres Short Track",
-      "indoor": false,
-      "place": 9,
-      "mark": "2:02.44",
-      "result_score": 1146,
-      "placing_score": 35,
-      "performance_score": 1181,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-06-10",
-      "date_raw": "10 JUN 2026",
-      "competition": "Meeting de Marseille, Stade Delort, Marseille",
-      "category": "D",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 3,
-      "mark": "2:01.06",
-      "result_score": 1143,
-      "placing_score": 21,
-      "performance_score": 1164,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-06-16"
-   },
-   {
-    "competitor_id": "131249203",
+    "competitor_id": "131736328",
     "slug": "/athletes/united-states/taiya-shelby-14729444",
-    "rank": 79,
+    "rank": 78,
     "name": "Taiya SHELBY",
     "dob": "16 AUG 2000",
     "country": "USA",
@@ -6879,12 +6792,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249204",
+    "competitor_id": "131736329",
     "slug": "/athletes/united-states/samantha-watson-14625816",
-    "rank": 80,
+    "rank": 79,
     "name": "Samantha WATSON",
     "dob": "10 NOV 1999",
     "country": "USA",
@@ -6966,99 +6879,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249205",
-    "slug": "/athletes/croatia/nina-vukovic-14859047",
-    "rank": 81,
-    "name": "Nina VUKOVIĆ",
-    "dob": "03 JUN 2002",
-    "country": "CRO",
-    "ranking_score": 1180.0,
-    "performances": [
-     {
-      "date": "2026-02-12",
-      "date_raw": "12 FEB 2026",
-      "competition": "Indoor Spike, Atletická hala, Ruská, Ostrava (i)",
-      "category": "D",
-      "discipline_code": "800sh",
-      "discipline": "800 Metres Short Track",
-      "indoor": false,
-      "place": 1,
-      "mark": "2:01.03",
-      "result_score": 1169,
-      "placing_score": 28,
-      "performance_score": 1197,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-02-04",
-      "date_raw": "04 FEB 2026",
-      "competition": "IFAM Louvain-La-Neuve Indoor, Complexe Sportif de Blocry, Louvain-La-Neuve (i)",
-      "category": "D",
-      "discipline_code": "800sh",
-      "discipline": "800 Metres Short Track",
-      "indoor": false,
-      "place": 2,
-      "mark": "2:01.00",
-      "result_score": 1169,
-      "placing_score": 24,
-      "performance_score": 1193,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-06-04",
-      "date_raw": "04 JUN 2026",
-      "competition": "Liese Prokop Memorial, Sportzentrum Niederösterreich, St. Pölten",
-      "category": "C",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "2:01.41",
-      "result_score": 1137,
-      "placing_score": 35,
-      "performance_score": 1172,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-06-14",
-      "date_raw": "14 JUN 2026",
-      "competition": "Folksam Grand Prix Sollentuna, Sollentunavallen, Sollentuna",
-      "category": "C",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "2:01.51",
-      "result_score": 1135,
-      "placing_score": 35,
-      "performance_score": 1170,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-06-09",
-      "date_raw": "09 JUN 2026",
-      "competition": "Kladno hází a Kladenské Memoriály, Mestský Stadion Sletište, Kladno",
-      "category": "C",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "2:02.05",
-      "result_score": 1126,
-      "placing_score": 42,
-      "performance_score": 1168,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-06-16"
-   },
-   {
-    "competitor_id": "131249206",
+    "competitor_id": "131736330",
     "slug": "/athletes/australia/jaylah-hancock-cameron-14764892",
-    "rank": 82,
+    "rank": 80,
     "name": "Jaylah HANCOCK-CAMERON",
     "dob": "28 MAY 2002",
     "country": "AUS",
@@ -7140,12 +6966,273 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249207",
-    "slug": "/athletes/czechia/kimberley-ficenec-14437401",
+    "competitor_id": "131736331",
+    "slug": "/athletes/canada/jazz-shukla-14514144",
+    "rank": 81,
+    "name": "Jazz SHUKLA",
+    "dob": "24 AUG 1998",
+    "country": "CAN",
+    "ranking_score": 1177.0,
+    "performances": [
+     {
+      "date": "2025-08-16",
+      "date_raw": "16 AUG 2025",
+      "competition": "NACAC Championships, Grand Bahama Sports Complex, Freeport",
+      "category": "GL",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 4,
+      "mark": "2:00.43",
+      "result_score": 1155,
+      "placing_score": 85,
+      "performance_score": 1240,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-07-13",
+      "date_raw": "13 JUL 2025",
+      "competition": "Edmonton Athletics Invitational, Foote Field, Edmonton",
+      "category": "B",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "2:00.44",
+      "result_score": 1154,
+      "placing_score": 70,
+      "performance_score": 1224,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-08-02",
+      "date_raw": "02 AUG 2025",
+      "competition": "Canadian Championships, Terry Fox AF, Ottawa",
+      "category": "B",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "2:01.95",
+      "result_score": 1128,
+      "placing_score": 70,
+      "performance_score": 1198,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-09-18",
+      "date_raw": "18 SEP 2025",
+      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
+      "category": "OW",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 36,
+      "mark": "2:01.42",
+      "result_score": 1137,
+      "placing_score": 0,
+      "performance_score": 1137,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-08-01",
+      "date_raw": "01 AUG 2025",
+      "competition": "Canadian Championships, Terry Fox AF, Ottawa",
+      "category": "B",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "2:04.27",
+      "result_score": 1087,
+      "placing_score": 0,
+      "performance_score": 1087,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-06-23"
+   },
+   {
+    "competitor_id": "131736332",
+    "slug": "/athletes/greece/georgia-maria-despollari-14895318",
+    "rank": 82,
+    "name": "Georgia-Maria DESPOLLARI",
+    "dob": "19 SEP 2003",
+    "country": "GRE",
+    "ranking_score": 1177.0,
+    "performances": [
+     {
+      "date": "2026-05-23",
+      "date_raw": "23 MAY 2026",
+      "competition": "IFAM Outdoor, Boudewijnstadion, Bruxelles",
+      "category": "C",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 3,
+      "mark": "2:00.32",
+      "result_score": 1157,
+      "placing_score": 31,
+      "performance_score": 1188,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-20",
+      "date_raw": "20 JUN 2026",
+      "competition": "Balkan Senior Championships, Panthessaliko Stadium, Volos",
+      "category": "B",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "2:02.14",
+      "result_score": 1124,
+      "placing_score": 56,
+      "performance_score": 1180,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-07-26",
+      "date_raw": "26 JUL 2025",
+      "competition": "Balkan Championships, Panthessaliko Stadium, Volos",
+      "category": "B",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "2:02.35",
+      "result_score": 1121,
+      "placing_score": 56,
+      "performance_score": 1177,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-07-19",
+      "date_raw": "19 JUL 2025",
+      "competition": "European Athletics U23 Championships, Fana Stadion, Bergen",
+      "category": "C",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 4,
+      "mark": "2:00.92",
+      "result_score": 1146,
+      "placing_score": 28,
+      "performance_score": 1174,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-08-16",
+      "date_raw": "16 AUG 2025",
+      "competition": "Meeting voor Mon, AtletiekArena Gaston Roelants Kessel-Lo / Hal 5, Leuven",
+      "category": "D",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 4,
+      "mark": "2:00.69",
+      "result_score": 1150,
+      "placing_score": 18,
+      "performance_score": 1168,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-06-23"
+   },
+   {
+    "competitor_id": "131736333",
+    "slug": "/athletes/australia/bendere-oboya-14764890",
     "rank": 83,
+    "name": "Bendere OBOYA",
+    "dob": "17 APR 2000",
+    "country": "AUS",
+    "ranking_score": 1176.0,
+    "performances": [
+     {
+      "date": "2025-07-19",
+      "date_raw": "19 JUL 2025",
+      "competition": "Meeting Madrid 2025, Estadio Vallehermoso, Madrid",
+      "category": "B",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 4,
+      "mark": "1:59.66",
+      "result_score": 1168,
+      "placing_score": 42,
+      "performance_score": 1210,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-07-13",
+      "date_raw": "13 JUL 2025",
+      "competition": "Meeting Sport e Solidarietà Lignano, Stadio G. Teghil, Lignano Sabbiadoro",
+      "category": "C",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "2:00.04",
+      "result_score": 1162,
+      "placing_score": 42,
+      "performance_score": 1204,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-08-16",
+      "date_raw": "16 AUG 2025",
+      "competition": "CITIUS Meeting, Stadion Wankdorf, Bern",
+      "category": "C",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 3,
+      "mark": "2:00.51",
+      "result_score": 1153,
+      "placing_score": 31,
+      "performance_score": 1184,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-08-06",
+      "date_raw": "06 AUG 2025",
+      "competition": "8. International Wiesław Maniak Memorial, Wieslaw Maniak Municipal Athletic Stadium, Szczecin",
+      "category": "C",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "2:01.33",
+      "result_score": 1139,
+      "placing_score": 42,
+      "performance_score": 1181,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-08-20",
+      "date_raw": "20 AUG 2025",
+      "competition": "Athletissima Lausanne, Stade Olympique de la Pontaise, Lausanne",
+      "category": "F",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 8,
+      "mark": "2:03.22",
+      "result_score": 1105,
+      "placing_score": 0,
+      "performance_score": 1105,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-06-23"
+   },
+   {
+    "competitor_id": "131736334",
+    "slug": "/athletes/czechia/kimberley-ficenec-14437401",
+    "rank": 84,
     "name": "Kimberley FICENEC",
     "dob": "23 JUL 1994",
     "country": "CZE",
@@ -7227,12 +7314,99 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249208",
+    "competitor_id": "131736335",
+    "slug": "/athletes/belgium/mariska-parewyck-14270260",
+    "rank": 85,
+    "name": "Mariska PAREWYCK",
+    "dob": "13 DEC 1988",
+    "country": "BEL",
+    "ranking_score": 1176.0,
+    "performances": [
+     {
+      "date": "2026-02-04",
+      "date_raw": "04 FEB 2026",
+      "competition": "IFAM Louvain-La-Neuve Indoor, Complexe Sportif de Blocry, Louvain-La-Neuve (i)",
+      "category": "D",
+      "discipline_code": "800sh",
+      "discipline": "800 Metres Short Track",
+      "indoor": false,
+      "place": 1,
+      "mark": "2:01.81",
+      "result_score": 1156,
+      "placing_score": 28,
+      "performance_score": 1184,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-08-09",
+      "date_raw": "09 AUG 2025",
+      "competition": "IFAM Oordegem, Putbosstadion, Oordegem",
+      "category": "C",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 4,
+      "mark": "2:00.40",
+      "result_score": 1155,
+      "placing_score": 28,
+      "performance_score": 1183,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-19",
+      "date_raw": "19 JUN 2026",
+      "competition": "40ème Meeting International Montgeron-Essonne, Stade Pierre de Coubertin, Montgeron",
+      "category": "C",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "2:00.92",
+      "result_score": 1146,
+      "placing_score": 35,
+      "performance_score": 1181,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-01-31",
+      "date_raw": "31 JAN 2026",
+      "competition": "IFAM Gent Indoor, Topsporthal Vlaanderen, Gent (i)",
+      "category": "D",
+      "discipline_code": "800sh",
+      "discipline": "800 Metres Short Track",
+      "indoor": false,
+      "place": 1,
+      "mark": "2:02.40",
+      "result_score": 1146,
+      "placing_score": 28,
+      "performance_score": 1174,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-05-01",
+      "date_raw": "01 MAY 2026",
+      "competition": "VS open meeting, Putbosstadion, Oordegem",
+      "category": "F",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "2:00.47",
+      "result_score": 1154,
+      "placing_score": 7,
+      "performance_score": 1161,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-06-23"
+   },
+   {
+    "competitor_id": "131736336",
     "slug": "/athletes/united-states/lauren-tolbert-14807207",
-    "rank": 84,
+    "rank": 86,
     "name": "Lauren TOLBERT",
     "dob": "06 JUL 2004",
     "country": "USA",
@@ -7314,12 +7488,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249209",
+    "competitor_id": "131736337",
     "slug": "/athletes/czechia/pavla-stoudkova-14776387",
-    "rank": 85,
+    "rank": 87,
     "name": "Pavla ŠTOUDKOVÁ",
     "dob": "05 MAR 2003",
     "country": "CZE",
@@ -7401,99 +7575,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249210",
-    "slug": "/athletes/greece/georgia-maria-despollari-14895318",
-    "rank": 86,
-    "name": "Georgia-Maria DESPOLLARI",
-    "dob": "19 SEP 2003",
-    "country": "GRE",
-    "ranking_score": 1174.0,
-    "performances": [
-     {
-      "date": "2026-05-23",
-      "date_raw": "23 MAY 2026",
-      "competition": "IFAM Outdoor, Boudewijnstadion, Bruxelles",
-      "category": "C",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 3,
-      "mark": "2:00.32",
-      "result_score": 1157,
-      "placing_score": 31,
-      "performance_score": 1188,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-26",
-      "date_raw": "26 JUL 2025",
-      "competition": "Balkan Championships, Panthessaliko Stadium, Volos",
-      "category": "B",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "2:02.35",
-      "result_score": 1121,
-      "placing_score": 56,
-      "performance_score": 1177,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-19",
-      "date_raw": "19 JUL 2025",
-      "competition": "European Athletics U23 Championships, Fana Stadion, Bergen",
-      "category": "C",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 4,
-      "mark": "2:00.92",
-      "result_score": 1146,
-      "placing_score": 28,
-      "performance_score": 1174,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-16",
-      "date_raw": "16 AUG 2025",
-      "competition": "Meeting voor Mon, AtletiekArena Gaston Roelants Kessel-Lo / Hal 5, Leuven",
-      "category": "D",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 4,
-      "mark": "2:00.69",
-      "result_score": 1150,
-      "placing_score": 18,
-      "performance_score": 1168,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-02-04",
-      "date_raw": "04 FEB 2026",
-      "competition": "IFAM Louvain-La-Neuve Indoor, Complexe Sportif de Blocry, Louvain-La-Neuve (i)",
-      "category": "D",
-      "discipline_code": "800sh",
-      "discipline": "800 Metres Short Track",
-      "indoor": false,
-      "place": 3,
-      "mark": "2:02.43",
-      "result_score": 1146,
-      "placing_score": 21,
-      "performance_score": 1167,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-06-16"
-   },
-   {
-    "competitor_id": "131249211",
+    "competitor_id": "131736338",
     "slug": "/athletes/india/pooja-14818407",
-    "rank": 87,
+    "rank": 88,
     "name": ". POOJA",
     "dob": "17 JUN 2002",
     "country": "IND",
@@ -7575,12 +7662,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249212",
+    "competitor_id": "131736339",
     "slug": "/athletes/norway/amanda-marie-froynes-14653699",
-    "rank": 88,
+    "rank": 89,
     "name": "Amanda Marie FRØYNES",
     "dob": "13 SEP 1998",
     "country": "NOR",
@@ -7662,77 +7749,104 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249213",
-    "slug": "/athletes/italy/marta-zenoni-14680524",
-    "rank": 89,
-    "name": "Marta ZENONI",
-    "dob": "09 MAR 1999",
-    "country": "ITA",
-    "ranking_score": 1172.0,
+    "competitor_id": "131736340",
+    "slug": "/athletes/germany/jana-marie-becker-14994730",
+    "rank": 90,
+    "name": "Jana Marie BECKER",
+    "dob": "11 MAY 2006",
+    "country": "GER",
+    "ranking_score": 1173.0,
     "performances": [
      {
-      "date": "2025-08-03",
-      "date_raw": "03 AUG 2025",
-      "competition": "Italian Championships, Giovanni Chiggiato Stadium, Caorle",
+      "date": "2025-07-27",
+      "date_raw": "27 JUL 2025",
+      "competition": "ISTAF 2025, Olympiastadion, Berlin",
       "category": "B",
       "discipline_code": "800",
       "discipline": "800 Metres",
       "indoor": false,
-      "place": 1,
-      "mark": "2:00.57",
-      "result_score": 1152,
-      "placing_score": 70,
-      "performance_score": 1222,
+      "place": 4,
+      "mark": "2:00.76",
+      "result_score": 1149,
+      "placing_score": 42,
+      "performance_score": 1191,
       "month_correction_applied": false
      },
      {
-      "date": "2025-07-15",
-      "date_raw": "15 JUL 2025",
-      "competition": "Grand Prix Brescia, Centro Gabre Gabric, Brescia",
+      "date": "2026-06-20",
+      "date_raw": "20 JUN 2026",
+      "competition": "Track Night Vienna, LAZ Wien, Wien",
+      "category": "D",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 3,
+      "mark": "2:00.41",
+      "result_score": 1155,
+      "placing_score": 21,
+      "performance_score": 1176,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-08-20",
+      "date_raw": "20 AUG 2025",
+      "competition": "Internationales Abendsportfest, TSV Stadion, Pfungstadt",
+      "category": "F",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 6,
+      "mark": "1:59.59",
+      "result_score": 1170,
+      "placing_score": 0,
+      "performance_score": 1170,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-13",
+      "date_raw": "13 JUN 2026",
+      "competition": "Meeting Nikaia, Parc des Sports C. Ehrmann, Nice",
       "category": "C",
       "discipline_code": "800",
       "discipline": "800 Metres",
       "indoor": false,
-      "place": 2,
-      "mark": "1:59.45",
-      "result_score": 1172,
-      "placing_score": 35,
-      "performance_score": 1207,
+      "place": 3,
+      "mark": "2:01.43",
+      "result_score": 1137,
+      "placing_score": 31,
+      "performance_score": 1168,
       "month_correction_applied": false
      },
      {
-      "date": "2025-07-12",
-      "date_raw": "12 JUL 2025",
-      "competition": "British Milers Club Grand Prix, Woodside Stadium, Watford",
+      "date": "2025-08-10",
+      "date_raw": "10 AUG 2025",
+      "competition": "European Athletics U20 Championships, Ratinan Stadion, Tampere",
       "category": "D",
       "discipline_code": "800",
       "discipline": "800 Metres",
       "indoor": false,
       "place": 1,
-      "mark": "1:59.79",
-      "result_score": 1166,
+      "mark": "2:01.67",
+      "result_score": 1133,
       "placing_score": 28,
-      "performance_score": 1194,
+      "performance_score": 1161,
       "month_correction_applied": false
-     },
-     {
-      "date": "2025-06-18",
-      "date_raw": "18 JUN 2025",
-      "competition": "St Mary's University BMC Record Breaker, Mo Farah Athletics Track, Twickenham",
-      "category": "F",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "2:01.80",
-      "result_score": 1130,
-      "placing_score": 11,
-      "performance_score": 1141,
-      "month_correction_applied": false
-     },
+     }
+    ],
+    "rank_date": "2026-06-23"
+   },
+   {
+    "competitor_id": "131736341",
+    "slug": "/athletes/france/agathe-delahoutre-14594182",
+    "rank": 91,
+    "name": "Agathe DELAHOUTRE",
+    "dob": "17 MAY 1997",
+    "country": "FRA",
+    "ranking_score": 1172.0,
+    "performances": [
      {
       "date": "2026-02-08",
       "date_raw": "08 FEB 2026",
@@ -7741,107 +7855,80 @@
       "discipline_code": "800sh",
       "discipline": "800 Metres Short Track",
       "indoor": false,
-      "place": 15,
-      "mark": "2:05.35",
-      "result_score": 1099,
-      "placing_score": 0,
-      "performance_score": 1099,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-06-16"
-   },
-   {
-    "competitor_id": "131249214",
-    "slug": "/athletes/russia/mariya-prokhorets-14562689",
-    "rank": 90,
-    "name": "Mariya PROKHORETS",
-    "dob": "24 NOV 1995",
-    "country": "RUS",
-    "ranking_score": 1172.0,
-    "performances": [
-     {
-      "date": "2025-08-08",
-      "date_raw": "08 AUG 2025",
-      "competition": "Russian Championships, Central Stadium, Kazan",
-      "category": "B",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "2:00.64",
-      "result_score": 1151,
-      "placing_score": 70,
-      "performance_score": 1221,
+      "place": 6,
+      "mark": "2:01.94",
+      "result_score": 1154,
+      "placing_score": 34,
+      "performance_score": 1188,
       "month_correction_applied": false
      },
      {
-      "date": "2025-07-20",
-      "date_raw": "20 JUL 2025",
-      "competition": "Sinyaev Memorial, Stadium Desna, Bryansk",
-      "category": "F",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
+      "date": "2026-02-19",
+      "date_raw": "19 FEB 2026",
+      "competition": "Meeting Hauts-de-France Pas-de-Calais Trophée EDF, Arena Stade Couvert, Liévin (i)",
+      "category": "A",
+      "discipline_code": "800sh",
+      "discipline": "800 Metres Short Track",
       "indoor": false,
-      "place": 1,
-      "mark": "1:59.57",
-      "result_score": 1170,
-      "placing_score": 11,
-      "performance_score": 1181,
+      "place": 12,
+      "mark": "2:02.03",
+      "result_score": 1152,
+      "placing_score": 24,
+      "performance_score": 1176,
       "month_correction_applied": false
      },
      {
-      "date": "2025-06-22",
-      "date_raw": "22 JUN 2025",
-      "competition": "National Cup, Meteor, Zhukovskiy",
-      "category": "F",
+      "date": "2026-06-19",
+      "date_raw": "19 JUN 2026",
+      "competition": "40ème Meeting International Montgeron-Essonne, Stade Pierre de Coubertin, Montgeron",
+      "category": "C",
       "discipline_code": "800",
       "discipline": "800 Metres",
       "indoor": false,
-      "place": 1,
-      "mark": "2:00.96",
-      "result_score": 1145,
-      "placing_score": 11,
-      "performance_score": 1156,
+      "place": 3,
+      "mark": "2:01.19",
+      "result_score": 1141,
+      "placing_score": 31,
+      "performance_score": 1172,
       "month_correction_applied": false
      },
      {
       "date": "2025-07-12",
       "date_raw": "12 JUL 2025",
-      "competition": "The Cup of the Strongest Athletes, Regional Sport Complex, Brest",
-      "category": "F",
+      "competition": "Moore-Guldensporenmeeting, Sportcentrum Wembley, Kortrijk",
+      "category": "C",
       "discipline_code": "800",
       "discipline": "800 Metres",
       "indoor": false,
-      "place": 1,
-      "mark": "2:01.00",
-      "result_score": 1144,
-      "placing_score": 11,
-      "performance_score": 1155,
+      "place": 2,
+      "mark": "2:01.59",
+      "result_score": 1134,
+      "placing_score": 35,
+      "performance_score": 1169,
       "month_correction_applied": false
      },
      {
-      "date": "2025-08-23",
-      "date_raw": "23 AUG 2025",
-      "competition": "Final of the Queen of Sports, Kalininets Stadium, Yekaterinburg",
-      "category": "F",
+      "date": "2025-07-05",
+      "date_raw": "05 JUL 2025",
+      "competition": "Meeting National Est Lyonnais, Stade Raymond Troussier, Decines",
+      "category": "D",
       "discipline_code": "800",
       "discipline": "800 Metres",
       "indoor": false,
-      "place": 1,
-      "mark": "2:01.37",
+      "place": 3,
+      "mark": "2:01.38",
       "result_score": 1138,
-      "placing_score": 11,
-      "performance_score": 1149,
+      "placing_score": 21,
+      "performance_score": 1159,
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249215",
+    "competitor_id": "131736342",
     "slug": "/athletes/luxembourg/fanny-arendt-14806232",
-    "rank": 91,
+    "rank": 92,
     "name": "Fanny ARENDT",
     "dob": "05 JUN 2002",
     "country": "LUX",
@@ -7923,97 +8010,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249216",
-    "slug": "/athletes/france/agathe-delahoutre-14594182",
-    "rank": 92,
-    "name": "Agathe DELAHOUTRE",
-    "dob": "17 MAY 1997",
-    "country": "FRA",
-    "ranking_score": 1169.0,
-    "performances": [
-     {
-      "date": "2026-02-08",
-      "date_raw": "08 FEB 2026",
-      "competition": "Meeting Metz Moselle Athlélor Crédit Mutuel, L'Anneau-Halle d'athlétisme de Metz, Metz (i)",
-      "category": "B",
-      "discipline_code": "800sh",
-      "discipline": "800 Metres Short Track",
-      "indoor": false,
-      "place": 6,
-      "mark": "2:01.94",
-      "result_score": 1154,
-      "placing_score": 34,
-      "performance_score": 1188,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-02-19",
-      "date_raw": "19 FEB 2026",
-      "competition": "Meeting Hauts-de-France Pas-de-Calais Trophée EDF, Arena Stade Couvert, Liévin (i)",
-      "category": "A",
-      "discipline_code": "800sh",
-      "discipline": "800 Metres Short Track",
-      "indoor": false,
-      "place": 12,
-      "mark": "2:02.03",
-      "result_score": 1152,
-      "placing_score": 24,
-      "performance_score": 1176,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-12",
-      "date_raw": "12 JUL 2025",
-      "competition": "Moore-Guldensporenmeeting, Sportcentrum Wembley, Kortrijk",
-      "category": "C",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "2:01.59",
-      "result_score": 1134,
-      "placing_score": 35,
-      "performance_score": 1169,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-05",
-      "date_raw": "05 JUL 2025",
-      "competition": "Meeting National Est Lyonnais, Stade Raymond Troussier, Decines",
-      "category": "D",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 3,
-      "mark": "2:01.38",
-      "result_score": 1138,
-      "placing_score": 21,
-      "performance_score": 1159,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-05-31",
-      "date_raw": "31 MAY 2026",
-      "competition": "Meeting International de Forbach, Stade Omnisports Schlossberg, Forbach",
-      "category": "C",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 5,
-      "mark": "2:01.74",
-      "result_score": 1131,
-      "placing_score": 25,
-      "performance_score": 1156,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-06-16"
-   },
-   {
-    "competitor_id": "131249217",
+    "competitor_id": "131736343",
     "slug": "/athletes/united-states/rachel-gearing-014857199",
     "rank": 93,
     "name": "Rachel GEARING",
@@ -8097,10 +8097,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249218",
+    "competitor_id": "131736344",
     "slug": "/athletes/australia/tess-kirsopp-cole-14611631",
     "rank": 94,
     "name": "Tess KIRSOPP-COLE",
@@ -8184,188 +8184,14 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249219",
-    "slug": "/athletes/belgium/mariska-parewyck-14270260",
-    "rank": 95,
-    "name": "Mariska PAREWYCK",
-    "dob": "13 DEC 1988",
-    "country": "BEL",
-    "ranking_score": 1168.0,
-    "performances": [
-     {
-      "date": "2026-02-04",
-      "date_raw": "04 FEB 2026",
-      "competition": "IFAM Louvain-La-Neuve Indoor, Complexe Sportif de Blocry, Louvain-La-Neuve (i)",
-      "category": "D",
-      "discipline_code": "800sh",
-      "discipline": "800 Metres Short Track",
-      "indoor": false,
-      "place": 1,
-      "mark": "2:01.81",
-      "result_score": 1156,
-      "placing_score": 28,
-      "performance_score": 1184,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-09",
-      "date_raw": "09 AUG 2025",
-      "competition": "IFAM Oordegem, Putbosstadion, Oordegem",
-      "category": "C",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 4,
-      "mark": "2:00.40",
-      "result_score": 1155,
-      "placing_score": 28,
-      "performance_score": 1183,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-01-31",
-      "date_raw": "31 JAN 2026",
-      "competition": "IFAM Gent Indoor, Topsporthal Vlaanderen, Gent (i)",
-      "category": "D",
-      "discipline_code": "800sh",
-      "discipline": "800 Metres Short Track",
-      "indoor": false,
-      "place": 1,
-      "mark": "2:02.40",
-      "result_score": 1146,
-      "placing_score": 28,
-      "performance_score": 1174,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-05-01",
-      "date_raw": "01 MAY 2026",
-      "competition": "VS open meeting, Putbosstadion, Oordegem",
-      "category": "F",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "2:00.47",
-      "result_score": 1154,
-      "placing_score": 7,
-      "performance_score": 1161,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-06-22",
-      "date_raw": "22 JUN 2025",
-      "competition": "Meeting International d'Athlétisme de Troyes Aube, Stade d'Athletisme Pierre Voillequin, Troyes",
-      "category": "C",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 6,
-      "mark": "2:02.50",
-      "result_score": 1118,
-      "placing_score": 22,
-      "performance_score": 1140,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-06-16"
-   },
-   {
-    "competitor_id": "131249220",
-    "slug": "/athletes/italy/laura-pellicoro-14739185",
-    "rank": 96,
-    "name": "Laura PELLICORO",
-    "dob": "24 DEC 2000",
-    "country": "ITA",
-    "ranking_score": 1168.0,
-    "performances": [
-     {
-      "date": "2025-07-11",
-      "date_raw": "11 JUL 2025",
-      "competition": "Morton Games, Morton Stadium, Santry, Dublin",
-      "category": "C",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "2:01.33",
-      "result_score": 1139,
-      "placing_score": 42,
-      "performance_score": 1181,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-03-07",
-      "date_raw": "07 MAR 2026",
-      "competition": "The PRTC Indoor Classic, Ott Center for Track & Field, Philadelphia, PA (i)",
-      "category": "F",
-      "discipline_code": "800sh",
-      "discipline": "800 Metres Short Track",
-      "indoor": false,
-      "place": 1,
-      "mark": "2:00.93",
-      "result_score": 1170,
-      "placing_score": 11,
-      "performance_score": 1181,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-02-14",
-      "date_raw": "14 FEB 2026",
-      "competition": "Sound Invite, JDL Fast Track, Winston Salem, NC (i)",
-      "category": "B",
-      "discipline_code": "800sh",
-      "discipline": "800 Metres Short Track",
-      "indoor": false,
-      "place": 7,
-      "mark": "2:02.19",
-      "result_score": 1150,
-      "placing_score": 30,
-      "performance_score": 1180,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-03",
-      "date_raw": "03 AUG 2025",
-      "competition": "Italian Championships, Giovanni Chiggiato Stadium, Caorle",
-      "category": "B",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 5,
-      "mark": "2:01.35",
-      "result_score": 1138,
-      "placing_score": 38,
-      "performance_score": 1176,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-06-21",
-      "date_raw": "21 JUN 2025",
-      "competition": "Trofeo Bracco Atletica, Stadio Besana Brianza Via De Gasperi, Besana Brianza",
-      "category": "F",
-      "discipline_code": "800",
-      "discipline": "800 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "2:02.51",
-      "result_score": 1118,
-      "placing_score": 7,
-      "performance_score": 1125,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-06-16"
-   },
-   {
-    "competitor_id": "131249221",
+    "competitor_id": "131736345",
     "slug": "/athletes/kenya/emmaculate-jemutai-15130272",
-    "rank": 97,
+    "rank": 95,
     "name": "Emmaculate JEMUTAI",
-    "dob": "06 FEB 2000",
+    "dob": "28 AUG 2002",
     "country": "KEN",
     "ranking_score": 1167.0,
     "performances": [
@@ -8445,12 +8271,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249222",
+    "competitor_id": "131736346",
     "slug": "/athletes/united-states/veronica-hargrave-15194481",
-    "rank": 98,
+    "rank": 96,
     "name": "Veronica HARGRAVE",
     "dob": "",
     "country": "USA",
@@ -8532,12 +8358,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249223",
+    "competitor_id": "131736347",
     "slug": "/athletes/kenya/janet-jepkemoi-15169266",
-    "rank": 99,
+    "rank": 97,
     "name": "Janet JEPKEMOI",
     "dob": "20 AUG 2005",
     "country": "KEN",
@@ -8619,12 +8445,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
    },
    {
-    "competitor_id": "131249224",
+    "competitor_id": "131736348",
     "slug": "/athletes/japan/ayano-shiomi-14728006",
-    "rank": 100,
+    "rank": 98,
     "name": "Ayano SHIOMI",
     "dob": "26 NOV 1999",
     "country": "JPN",
@@ -8706,7 +8532,181 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-16"
+    "rank_date": "2026-06-23"
+   },
+   {
+    "competitor_id": "131736349",
+    "slug": "/athletes/poland/aleksandra-formella-14844866",
+    "rank": 99,
+    "name": "Aleksandra FORMELLA",
+    "dob": "27 OCT 2001",
+    "country": "POL",
+    "ranking_score": 1167.0,
+    "performances": [
+     {
+      "date": "2026-06-07",
+      "date_raw": "07 JUN 2026",
+      "competition": "Halina Konopacka Classic, Stadion Podskarbińska, Warszawa",
+      "category": "C",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 3,
+      "mark": "2:00.52",
+      "result_score": 1153,
+      "placing_score": 31,
+      "performance_score": 1184,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-05-29",
+      "date_raw": "29 MAY 2026",
+      "competition": "8th Irena Szewińska Memorial, Zdzisław Krzyszkowiak Stadium, Bydgoszcz",
+      "category": "A",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 6,
+      "mark": "2:02.54",
+      "result_score": 1117,
+      "placing_score": 56,
+      "performance_score": 1173,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-01-31",
+      "date_raw": "31 JAN 2026",
+      "competition": "Halowy mityng KS Dynamic Łódź, Hala COS OPO, Spala (i)",
+      "category": "F",
+      "discipline_code": "600sh",
+      "discipline": "600 Metres Short Track",
+      "indoor": false,
+      "place": 1,
+      "mark": "1:26.04",
+      "result_score": 1156,
+      "placing_score": 11,
+      "performance_score": 1167,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-16",
+      "date_raw": "16 JUN 2026",
+      "competition": "65th Ostrava Golden Spike, Mestský Stadion, Ostrava",
+      "category": "A",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 10,
+      "mark": "2:01.80",
+      "result_score": 1130,
+      "placing_score": 31,
+      "performance_score": 1161,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-02-28",
+      "date_raw": "28 FEB 2026",
+      "competition": "Polish Indoor Championships, Kujawsko-Pomorska Arena, Toruń (i)",
+      "category": "D",
+      "discipline_code": "800sh",
+      "discipline": "800 Metres Short Track",
+      "indoor": false,
+      "place": 1,
+      "mark": "2:02.19",
+      "result_score": 1150,
+      "placing_score": 0,
+      "performance_score": 1150,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-06-23"
+   },
+   {
+    "competitor_id": "131736350",
+    "slug": "/athletes/italy/laura-pellicoro-14739185",
+    "rank": 100,
+    "name": "Laura PELLICORO",
+    "dob": "24 DEC 2000",
+    "country": "ITA",
+    "ranking_score": 1167.0,
+    "performances": [
+     {
+      "date": "2025-07-11",
+      "date_raw": "11 JUL 2025",
+      "competition": "Morton Games, Morton Stadium, Santry, Dublin",
+      "category": "C",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "2:01.33",
+      "result_score": 1139,
+      "placing_score": 42,
+      "performance_score": 1181,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-03-07",
+      "date_raw": "07 MAR 2026",
+      "competition": "The PRTC Indoor Classic, Ott Center for Track & Field, Philadelphia, PA (i)",
+      "category": "F",
+      "discipline_code": "800sh",
+      "discipline": "800 Metres Short Track",
+      "indoor": false,
+      "place": 1,
+      "mark": "2:00.93",
+      "result_score": 1170,
+      "placing_score": 11,
+      "performance_score": 1181,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-02-14",
+      "date_raw": "14 FEB 2026",
+      "competition": "Sound Invite, JDL Fast Track, Winston Salem, NC (i)",
+      "category": "B",
+      "discipline_code": "800sh",
+      "discipline": "800 Metres Short Track",
+      "indoor": false,
+      "place": 7,
+      "mark": "2:02.19",
+      "result_score": 1150,
+      "placing_score": 30,
+      "performance_score": 1180,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-08-03",
+      "date_raw": "03 AUG 2025",
+      "competition": "Italian Championships, Giovanni Chiggiato Stadium, Caorle",
+      "category": "B",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 5,
+      "mark": "2:01.35",
+      "result_score": 1138,
+      "placing_score": 38,
+      "performance_score": 1176,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-13",
+      "date_raw": "13 JUN 2026",
+      "competition": "USATF LA Grand Prix, USC Allyson Felix at Loker Track Stadium, Los Angeles, CA",
+      "category": "F",
+      "discipline_code": "800",
+      "discipline": "800 Metres",
+      "indoor": false,
+      "place": 5,
+      "mark": "2:02.46",
+      "result_score": 1119,
+      "placing_score": 0,
+      "performance_score": 1119,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-06-23"
    }
   ]
  }
