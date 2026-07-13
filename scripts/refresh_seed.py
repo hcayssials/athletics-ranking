@@ -20,6 +20,9 @@ from wa_ranking.config import CACHE_DIR, SEED_DIR, load_championships, load_even
 
 def main(argv: list[str]) -> int:
     champs = [argv[0]] if argv else list(load_championships())
+    # A data_source championship (e.g. road_to_ultimate) shares another championship's
+    # list/cache — refreshing the source covers it, so skip to avoid duplicate fetches.
+    champs = [c for c in champs if not load_championships()[c].get("data_source")]
     SEED_DIR.mkdir(parents=True, exist_ok=True)
     copied = 0
     for champ in champs:

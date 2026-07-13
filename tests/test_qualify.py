@@ -58,6 +58,27 @@ def test_champion_exempt_from_own_country_cap():
     assert field["slots"][0]["name"] == "Ingebrigtsen"  # champ on top of the 3
 
 
+def test_multiple_wildcards_seed_the_top_slots():
+    # Ultimate-Championship style: Olympic + World champions enter by wildcard; one of them
+    # (Nader) is also on the ranking list and must not consume a ranking place too.
+    invites = [{"name": "Ingebrigtsen", "country": "NOR", "reason": "Olympic champion"},
+               {"name": "Nader", "country": "POR", "reason": "World champion"}]
+    field = qualifying_field(RANKED, quota=6, max_per_country=None, auto_invites=invites)
+    assert [s["name"] for s in field["slots"][:2]] == ["Ingebrigtsen", "Nader"]
+    assert field["slots"][0]["reason"] == "Olympic champion"
+    ranking = [s["name"] for s in field["slots"] if s["reason"] == "ranking"]
+    assert ranking == ["Habz", "Wightman", "Coscoran", "Mornet"]  # 6 - 2 wildcards = 4 places
+    assert field["cutoff_score"] == 1257
+    assert field["auto_invites"] == invites
+
+
+def test_no_country_cap_when_max_per_country_is_none():
+    field = qualifying_field(RANKED, quota=7, max_per_country=None)
+    assert field["blocked"] == []
+    assert "Dubois" in [s["name"] for s in field["slots"]]   # FRA's 4th gets in
+    assert field["counts"]["FRA"] == 4
+
+
 def test_athlete_status():
     field = qualifying_field(RANKED, quota=7, max_per_country=3)
     assert athlete_status(field, "Nader")[0] == "qualified"

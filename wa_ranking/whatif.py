@@ -65,16 +65,26 @@ def what_if(event: str, athlete: str, new_time: str | float,
         new_time: e.g. '3:29.50'.
         category: meet category code (default 'GW' = Diamond League / World Indoors).
         place: projected finishing place (default 2).
-        championship: key in championships.json ('world' or 'road_to_birmingham').
+        championship: key in championships.json ('world', 'road_to_birmingham' or
+            'road_to_ultimate').
         as_of: ranking date to evaluate against (default: today).
-        qualify: also resolve championship qualification (quota + 3-per-country cap +
-            defending-champion bye). Requires the championship to declare a quota for the event.
+        qualify: also resolve championship qualification (quota + optional per-country cap +
+            wildcard byes). Requires the championship to declare a quota for the event.
         indoor / qualification_window / force_refresh / verbose: see README.
     """
     as_of = as_of or date.today()
     champ = load_championship(championship)
     ev = load_event(event)
     champ_event = championship_event_config(championship, event)
+    if qualify and "quota" not in champ_event:
+        if champ.get("contested_events_only"):
+            raise ValueError(
+                f"{ev.get('label', event)} is not on the "
+                f"{champ.get('label', championship)} programme. "
+                + champ.get("not_contested_note", ""))
+        raise ValueError(
+            f"Championship '{championship}' has no quota for event '{event}'; --qualify is "
+            "only meaningful for a qualification championship (e.g. road_to_birmingham).")
     best_n, window = ev["best_n"], ev["window_months"]
     inp = _resolve_input_event(ev, sub_event)
     placing_group = inp["placing_event_group"]
@@ -130,6 +140,7 @@ def what_if(event: str, athlete: str, new_time: str | float,
         "date": as_of.isoformat(),
         "competition": "(hypothetical)",
         "category": category.upper(),
+        "discipline": inp["label"],          # clean event label for the counting-table display
         "discipline_code": inp["discipline_code"],
         "indoor": indoor or inp["indoor"],
         "place": place,
@@ -210,27 +221,28 @@ def what_if(event: str, athlete: str, new_time: str | float,
     new_rank = rank_position(others, new_score)
     old_rank = ath.get("rank")
 
-    # Optional championship qualification (quota + per-country cap + defending-champion bye).
+    # Optional championship qualification (quota + optional per-country cap + wildcard byes).
+    # The "championship declares no quota for this event" case was rejected up front.
     qualification = None
     if qualify:
-        if "quota" not in champ_event:
-            raise ValueError(
-                f"Championship '{championship}' has no quota for event '{event}'; --qualify is "
-                "only meaningful for a qualification championship (e.g. road_to_birmingham)."
-            )
         quota = champ_event["quota"]
-        max_pc = champ.get("max_per_country", 3)
+        max_pc = champ.get("max_per_country", 3)  # explicit null in JSON -> None -> no cap
         champion = champ_event.get("defending_champion")
+        invites = champ_event.get("auto_invites")
+        invite_list = invites or ([{**champion, "reason": "defending champion (bye)"}]
+                                  if champion else [])
         athletes = data["athletes"]
         if profile_info:  # unranked athlete isn't in the list — add him so he can slot in
             athletes = athletes + [{"name": ath["name"], "country": ath["country"],
                                     "ranking_score": None}]
-        is_champion = bool(champion) and ath["name"].upper() == champion["name"].upper()
+        is_invited = any(ath["name"].upper() == i["name"].upper() for i in invite_list)
 
         ranked_old = build_ranked(athletes)
         ranked_new = build_ranked(athletes, override_name=ath["name"], override_score=new_score)
-        field_old = qualifying_field(ranked_old, quota, max_per_country=max_pc, defending_champion=champion)
-        field_new = qualifying_field(ranked_new, quota, max_per_country=max_pc, defending_champion=champion)
+        field_old = qualifying_field(ranked_old, quota, max_per_country=max_pc,
+                                     defending_champion=champion, auto_invites=invites)
+        field_new = qualifying_field(ranked_new, quota, max_per_country=max_pc,
+                                     defending_champion=champion, auto_invites=invites)
         status_old, slot_old = athlete_status(field_old, ath["name"])
         status_new, slot_new = athlete_status(field_new, ath["name"])
 
@@ -243,8 +255,10 @@ def what_if(event: str, athlete: str, new_time: str | float,
             "quota_is_total_field": champ.get("quota_is_total_field", False),
             "max_per_country": max_pc,
             "defending_champion": champion,
-            "is_defending_champion": is_champion,
-            "ranking_places": quota - (1 if champion else 0),
+            "auto_invites": invite_list,
+            "is_defending_champion": bool(champion) and is_invited,
+            "is_auto_invited": is_invited,
+            "ranking_places": quota - len(invite_list),
             "cutoff_score": cutoff,
             "above_cutoff": (new_score is not None and cutoff is not None and new_score >= cutoff),
             "status_old": status_old,
@@ -348,6 +362,7 @@ def what_if(event: str, athlete: str, new_time: str | float,
         "new_perf_counts": recompute["new_perf_counts"],
         "old_rank": old_rank,
         "new_rank": new_rank,
+        "list_size": len(data["athletes"]),  # how many athletes we actually track (≈ top 100)
         "rank_delta": (None if old_rank is None else old_rank - new_rank),
         "old_counting": recompute["old_counting"],
         "new_counting": recompute["new_counting"],
@@ -422,7 +437,8 @@ def required_targets(event: str, athlete: str, *, championship: str = "road_to_b
     if "quota" in champ_event:
         field = qualifying_field(build_ranked(data["athletes"]), champ_event["quota"],
                                  max_per_country=champ.get("max_per_country", 3),
-                                 defending_champion=champ_event.get("defending_champion"))
+                                 defending_champion=champ_event.get("defending_champion"),
+                                 auto_invites=champ_event.get("auto_invites"))
         cutoff = field["cutoff_score"]
 
     targets = []
@@ -539,20 +555,25 @@ _STATUS_LABEL = {
 
 def _format_qualification(q: dict) -> list[str]:
     lines = ["", "QUALIFICATION"]
-    champ = q["defending_champion"]
+    invites = q.get("auto_invites") or []
     quota_tag = "  (TOTAL field; ranking fills what's left after entry standards - see note)" if q["quota_is_total_field"] else ""
     lines.append(f"  Quota           : {q['quota']} places{quota_tag}")
-    if champ:
-        lines.append(f"  Defending champ : {champ['name']} ({champ.get('country')}) "
-                     f"- bye at #1, exempt from country cap; {q['ranking_places']} ranking places remain")
-    lines.append(f"  Country cap     : max {q['max_per_country']} per country "
-                 f"(this athlete's country currently fills {q['country_count']})")
+    for inv in invites:
+        lines.append(f"  Wildcard        : {inv['name']} ({inv.get('country')}) "
+                     f"- {inv.get('reason', 'bye')}, exempt from any country cap")
+    if invites:
+        lines.append(f"                    {q['ranking_places']} ranking places remain")
+    if q["max_per_country"] is not None:
+        lines.append(f"  Country cap     : max {q['max_per_country']} per country "
+                     f"(this athlete's country currently fills {q['country_count']})")
+    else:
+        lines.append("  Country cap     : none — no limit per country")
     cut = q["cutoff_score"]
     cc = q.get("country_count", 0)
     lines.append(f"  Ranking cutoff  : {cut if cut is not None else 'n/a'} "
                  "(score of the last ranking qualifier)")
-    if q["is_defending_champion"]:
-        lines.append("  Status          : QUALIFIES as defending champion (bye) regardless of ranking")
+    if q.get("is_auto_invited"):
+        lines.append("  Status          : QUALIFIES by wildcard (bye) regardless of ranking")
     elif q.get("above_cutoff") and q["status_new"] == "qualified":
         pos = q["qual_position_new"]
         lines.append(f"  Status          : ABOVE THE CUTOFF — auto-confirmed at qual position {pos}")

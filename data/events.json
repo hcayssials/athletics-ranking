@@ -95,7 +95,7 @@
     "result_table": "scoring_tables/10000m_men.csv",
     "placing_event_group": "10000m", "entry_standard": "27:50.00",
     "alt_events": [
-      {"key": "10km", "label": "10km (road)", "discipline_code": "10RR", "result_table": "scoring_tables/10km_men.csv"}
+      {"key": "10km", "label": "10km (road)", "discipline_code": "10RR", "result_table": "scoring_tables/10km_men.csv", "road": true}
     ]
   },
   "10000m_women": {
@@ -106,7 +106,7 @@
     "result_table": "scoring_tables/10000m_women.csv",
     "placing_event_group": "10000m", "entry_standard": "32:00.00",
     "alt_events": [
-      {"key": "10km", "label": "10km (road)", "discipline_code": "10RR", "result_table": "scoring_tables/10km_women.csv"}
+      {"key": "10km", "label": "10km (road)", "discipline_code": "10RR", "result_table": "scoring_tables/10km_women.csv", "road": true}
     ]
   },
 

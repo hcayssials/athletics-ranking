@@ -18,6 +18,8 @@
       ::placeholder { color: #9aa1ac; }
       @keyframes wf-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
       @keyframes wf-bar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+      @keyframes wf-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
+      .wf-skel { display: inline-block; height: 10px; border-radius: 5px; background: #e7eaef; animation: wf-pulse 1.2s ease-in-out infinite; }
     </style>
   </head>
   <body>

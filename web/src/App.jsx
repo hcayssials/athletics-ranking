@@ -27,55 +27,111 @@ const CAT_INFO = [
   ["F", "Local / club meetings"],
 ];
 const WA_RULES_URL = "https://worldathletics.org/world-ranking-rules/track-field-events-2026";
+const WA_RANKINGS_URL = "https://worldathletics.org/world-rankings";
+const WA_SCORING_URL = "https://worldathletics.org/about-iaaf/documents/technical-information";
+const FEEDBACK_URL = "https://docs.google.com/forms/d/e/1FAIpQLSelCKe92h_KXJKFuVZH-ohaSDNzgUSSZd0KV6fPlyRjA-ETYw/viewform";
+const FOOT_LINK = { color: "#6b7480", textDecoration: "underline", textUnderlineOffset: 2 };
 
 // ---------- small helpers ----------
+// rank_date is an ISO day string ("2026-06-16"); show it human-readably plus how long ago.
+const fmtDate = (s) => {
+  if (!s) return "";
+  const d = new Date(s + "T00:00:00");
+  return Number.isNaN(d.getTime()) ? s : d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+};
+const daysAgo = (s) => {
+  if (!s) return "…";
+  const d = new Date(s + "T00:00:00");
+  if (Number.isNaN(d.getTime())) return s;
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const n = Math.round((today - d) / 86400000);
+  if (n <= 0) return "today";
+  if (n === 1) return "yesterday";
+  return `${n} days ago`;
+};
+
+// Scenario ↔ URL query, so a what-if can be linked/bookmarked. `a` is the athlete name;
+// `pf` carries the World Athletics slug when the athlete was looked up off-list (unranked).
+function scenarioToQuery({ champ, ev, name, profile, time, place, category, subEvent, qualify, hasQual }) {
+  const p = new URLSearchParams();
+  p.set("c", champ);
+  p.set("e", ev);
+  p.set("a", name);
+  if (profile) p.set("pf", profile);
+  p.set("t", time);
+  p.set("p", String(place));
+  p.set("cat", category);
+  if (subEvent && subEvent !== "main") p.set("se", subEvent);
+  if (hasQual) p.set("q", qualify ? "1" : "0");
+  return p.toString();
+}
+
 const shortMeet = (s) => {
   if (!s || s === "(hypothetical)") return "Hypothetical";
   const head = s.split(",")[0].trim();
   return head.length > 42 ? head.slice(0, 40) + "…" : head;
 };
 
-// Indicative qualifying zone for the table: champion bye consumes one place, then fill
-// quota-1 by descending score with a 3-per-country cap. Mirrors the design's shading.
+// Short event label for a counting performance — distinguishes indoor/outdoor and similar
+// events (e.g. a 3000m counting toward a 5000m ranking). Falls back to the discipline code.
+const shortEvent = (p) => {
+  let d = (p.discipline || p.discipline_code || "").toString()
+    .replace(/\bMetres\b/gi, "m").replace(/\bKilometres\b|\bKilometers\b/gi, "km")
+    .replace(/\bRoad\b/gi, "Rd").replace(/\bSteeplechase\b/gi, "SC")
+    .replace(/\bOne Mile\b/gi, "Mile").replace(/\(indoor\)/gi, "(i)")
+    .replace(/(\d)\s+(m|km)\b/g, "$1$2").replace(/\s+/g, " ").trim();
+  if (p.indoor && !/indoor|\(i\)/i.test(d)) d += " (i)";
+  return d || "—";
+};
+
+// Indicative qualifying zone for the table: wildcard byes (a defending champion, or the
+// Olympic/World champions for the Ultimate) consume the first places, then the rest fill by
+// descending score with the championship's per-country cap (null = no cap). Mirrors qualify.py.
 function qualifyingZone(rankings) {
-  const empty = { qualSet: new Set(), qualPos: {}, lastQualName: null, cutoff: null };
+  const empty = { qualSet: new Set(), qualPos: {}, lastQualName: null, cutoff: null, invites: [] };
   if (!rankings) return empty;
-  const quota = rankings.quota || 30, maxPer = 3;
-  const champ = rankings.defending_champion?.name || null;
+  const quota = rankings.quota || 30;
+  const maxPer = rankings.max_per_country == null ? Infinity : rankings.max_per_country;
+  const invites = rankings.auto_invites
+    ? rankings.auto_invites.map((i) => i.name)
+    : rankings.defending_champion ? [rankings.defending_champion.name] : [];
+  const inviteSet = new Set(invites);
   const sorted = [...rankings.athletes].sort((a, b) => b.ranking_score - a.ranking_score);
-  // Walk by descending score, filling `quota` slots: the champion qualifies by bye (exempt from
-  // the country cap); everyone else is subject to max 3 per country. qualPos = the slot number
-  // in the actual qualifying field (which can differ from the raw rank once the cap bites).
-  const cc = {}; let pos = 0, last = null, cutoff = null;
+  // Wildcards hold slots 1..k (exempt from the country cap, wherever they sit on the list);
+  // the ranking walk fills the remaining quota-k slots. qualPos = the slot number in the
+  // actual qualifying field (which can differ from the raw rank once byes/caps bite).
+  const cc = {}; let pos = invites.length, last = null, cutoff = null;
   const qualSet = new Set(), qualPos = {};
+  for (const nm of invites) { qualSet.add(nm); qualPos[nm] = invites.indexOf(nm) + 1; }
   for (const a of sorted) {
+    if (inviteSet.has(a.name)) continue;              // already in by wildcard
     if (pos >= quota) break;
-    const isChamp = champ && a.name === champ;
-    if (!isChamp) {
-      if ((cc[a.country] || 0) >= maxPer) continue;   // country already full → blocked
-      cc[a.country] = (cc[a.country] || 0) + 1;
-    }
+    if ((cc[a.country] || 0) >= maxPer) continue;     // country already full → blocked
+    cc[a.country] = (cc[a.country] || 0) + 1;
     pos++; qualPos[a.name] = pos; qualSet.add(a.name); last = a.name; cutoff = a.ranking_score;
   }
-  return { qualSet, qualPos, lastQualName: last, cutoff };
+  return { qualSet, qualPos, lastQualName: last, cutoff, invites };
 }
 
 // Map a /api/whatif response into the result-panel view model.
-function buildResultView(r, isRoad, qualifyOn, methodOpen) {
+function buildResultView(r, champCfg, qualifyOn, methodOpen) {
   const rowKey = (p) => `${p.date_raw || p.date}|${p.mark}|${p.performance_score}`;
   const newKeys = new Set(r.new_counting.filter((p) => !p.hypothetical).map(rowKey));
   const display = r.new_counting.map((p) => ({ ...p, state: p.hypothetical ? "new" : "kept" }));
   for (const p of r.old_counting || []) if (!newKeys.has(rowKey(p))) display.push({ ...p, state: "dropped" });
 
-  const q = (isRoad && qualifyOn && r.qualification) ? r.qualification : null;
+  const q = (champCfg.has_qualification && qualifyOn && r.qualification) ? r.qualification : null;
   let qual = null;
   if (q) {
     const inField = (q.field_new || []).some((e) => e.name === r.athlete && e.reason === "ranking");
     const blocked = (q.blocked_new || []).some((e) => e.name === r.athlete);
-    const status = q.is_defending_champion ? "champion" : inField ? "in" : blocked ? "blocked" : "below";
+    const status = q.is_auto_invited ? "champion" : inField ? "in" : blocked ? "blocked" : "below";
+    const invite = (q.auto_invites || []).find((i) => i.name.toUpperCase() === (r.athlete || "").toUpperCase());
     qual = {
       status, cutoff: q.cutoff_score, position: q.qual_position_new, quota: q.quota,
       country: r.country, countryAhead: q.country_ahead || 0,
+      maxPerCountry: q.max_per_country,                       // null = no country cap
+      inviteReason: invite ? invite.reason : null,            // why this athlete holds a wildcard
       needPts: Math.max(0, Math.round((q.cutoff_score || 0) - r.new_score)),
     };
   }
@@ -84,9 +140,12 @@ function buildResultView(r, isRoad, qualifyOn, methodOpen) {
   const sd = r.score_delta || 0, rd = r.rank_delta || 0;
   return {
     name: r.athlete, country: r.country,
-    scopeLabel: (isRoad ? "Road to Birmingham" : "World Ranking") + " · " + r.rank_date,
-    rankLabel: isRoad ? "European rank" : "World rank",
+    scopeLabel: (champCfg.scope_label || "World Ranking") + " · " + r.rank_date,
+    rankLabel: champCfg.rank_label || "World rank",
     oldRank: r.old_rank, newRank: r.new_rank, rankDelta: rd,
+    // An unranked athlete who lands past the tracked list isn't "101st" — we only know they'd
+    // miss the top N (new_rank maxes out at list_size + 1).
+    listSize: r.list_size, outsideList: unranked && r.list_size != null && r.new_rank > r.list_size,
     oldScore: unranked ? r.recomputed_old_score : r.official_ranking_score, newScore: r.new_score, scoreDelta: sd,
     hypo: r.hypothetical_performance,
     counts: r.new_perf_counts,
@@ -143,8 +202,15 @@ export default function App() {
   const [candidates, setCandidates] = useState(null); // WA search matches for an unlisted name
   const [searching, setSearching] = useState(false);
   const [pending, setPending] = useState(null); // a queued natural-language run, executed once its list loads
+  const [pendingShare, setPendingShare] = useState(null); // a scenario restored from the URL, run once its list loads
+  const [copiedLink, setCopiedLink] = useState(false);
 
-  const isRoad = championship === "road_to_birmingham";
+  // Everything championship-specific (labels, qualification, contested events) is meta-driven.
+  const champCfg = meta ? (meta.championships.find((c) => c.key === championship) || {}) : {};
+  const hasQual = !!champCfg.has_qualification;
+  // An event absent from an invitational's programme (e.g. the steeplechase at the Ultimate
+  // Championship) — show a notice instead of a ranking list.
+  const notContested = (champCfg.not_contested || []).includes(event);
   const narrow = useIsNarrow();
 
   const entryStandardFor = (ev) => (meta && (meta.events.find((e) => e.key === ev) || {}).entry_standard) || "";
@@ -152,6 +218,23 @@ export default function App() {
   useEffect(() => {
     getMeta().then((m) => {
       setMeta(m);
+      const sp = new URLSearchParams(window.location.search);
+      if (sp.get("a")) {
+        // A shared scenario in the URL — restore it and queue a run once its list loads.
+        const champ = m.championships.some((c) => c.key === sp.get("c")) ? sp.get("c") : championship;
+        const ev = m.events.some((e) => e.key === sp.get("e")) ? sp.get("e") : event;
+        const f = {
+          athlete: sp.get("a"),
+          time: sp.get("t") || "3:30.00",
+          place: parseInt(sp.get("p"), 10) || 1,
+          category: m.categories.includes(sp.get("cat")) ? sp.get("cat") : "GW",
+          qualify: sp.get("q") !== "0",
+          subEvent: sp.get("se") || "main",
+        };
+        setChampionship(champ); setEvent(ev); setForm(f);
+        setPendingShare({ f, champ, ev, profile: sp.get("pf") || null });
+        return;
+      }
       const es = (m.events.find((e) => e.key === event) || {}).entry_standard;
       if (es) setForm((s) => ({ ...s, time: es }));   // sensible starting time for the initial event
     }).catch((e) => setRankErr(e.message));
@@ -159,8 +242,19 @@ export default function App() {
   }, []);
   useEffect(() => {
     setRankings(null); setRankErr("");
+    if (notContested) return;                 // no list to load — the notice panel shows instead
     getRankings(championship, event).then(setRankings).catch((e) => setRankErr(e.message));
-  }, [championship, event]);
+  }, [championship, event, notContested]);
+
+  // Execute a URL-restored scenario once the ranking list for its event/championship has loaded.
+  useEffect(() => {
+    if (!pendingShare || !rankings) return;
+    if (rankings.championship !== pendingShare.champ || rankings.event !== pendingShare.ev) return;
+    const { f, champ, ev, profile } = pendingShare;
+    setPendingShare(null);
+    run(f, champ, ev, profile);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pendingShare, rankings]);
 
   // Manual selector changes start fresh; NL changes (via `pending`) keep their queued run alive.
   const changeChampionship = (c) => { setChampionship(c); setResult(null); setSelected(null); setAthleteInfo(null); setError(""); setCandidates(null); };
@@ -171,7 +265,7 @@ export default function App() {
     setForm((s) => ({ ...s, time: entryStandardFor(e), place: 1, subEvent: "main" }));
   };
 
-  const zone = useMemo(() => (isRoad ? qualifyingZone(rankings) : qualifyingZone(null)), [rankings, isRoad]);
+  const zone = useMemo(() => (hasQual ? qualifyingZone(rankings) : qualifyingZone(null)), [rankings, hasQual]);
   const list = rankings ? rankings.athletes : [];
   const selCountry = selected ? (list.find((a) => a.name === selected) || {}).country : null;
 
@@ -191,14 +285,23 @@ export default function App() {
     if (!parseTime(f.time)) { setError("Enter a time like 3:29.00."); setResult(null); return; }
     setBusy(true); setError(""); setCandidates(null);
     try {
+      const champQual = !!((meta.championships.find((x) => x.key === champ) || {}).has_qualification);
       const r = await runWhatIf({
         event: ev, championship: champ, athlete: name, time: f.time,
         category: f.category, place: Math.max(1, parseInt(f.place) || 1),
-        qualify: champ === "road_to_birmingham" && f.qualify,
+        qualify: champQual && f.qualify,
         ...(f.subEvent && f.subEvent !== "main" ? { sub_event: f.subEvent } : {}),
         ...(profile ? { profile } : {}),
       });
       setResult(r); setSelected(r.athlete);
+      // Reflect the scenario in the address bar so it can be copied / bookmarked / shared.
+      const q = scenarioToQuery({
+        champ, ev, name: r.athlete || name, profile,
+        time: f.time, place: Math.max(1, parseInt(f.place) || 1),
+        category: f.category, subEvent: f.subEvent, qualify: f.qualify, hasQual: champQual,
+      });
+      window.history.replaceState(null, "", `${window.location.pathname}?${q}`);
+      setCopiedLink(false);
     } catch (e) {
       setResult(null);
       // A ranked lookup that isn't on the list → auto-search World Athletics for that name.
@@ -206,6 +309,16 @@ export default function App() {
       if (notFound) { await searchFor(name, ev); }
       else { setError(e.message); }
     } finally { setBusy(false); }
+  }
+
+  // Copy the current scenario's URL (already in the address bar after a run) to the clipboard.
+  function copyLink() {
+    const url = window.location.href;
+    if (!navigator.clipboard) return;
+    navigator.clipboard.writeText(url).then(() => {
+      setCopiedLink(true);
+      setTimeout(() => setCopiedLink(false), 1800);
+    }).catch(() => {});
   }
 
   // Auto-search WA for an unlisted name and surface matches the user can pick from.
@@ -294,17 +407,49 @@ export default function App() {
   const inputStyle = { width: "100%", padding: "11px 12px", border: "1px solid #d8dce2", borderRadius: 9, fontSize: 14, background: "#fff" };
   const thCell = (align, padding) => ({ textAlign: align, padding, fontSize: 10.5, letterSpacing: "0.08em", color: MUTE, fontWeight: 600, textTransform: "uppercase" });
 
-  const bestOfLine = `Best ${eventCfg.best_n || 5} of ${eventCfg.window_months || 12} mo`;
-  const assumptionLine = isRoad
-    ? `${bestOfLine} · floored mean · Quota 30 (whole field) · champion takes a bye · max 3 per country · Europe only`
-    : `${bestOfLine} · floored mean · all nations · no quota or qualification caps`;
+  const scoreSentence = `Ranking score: average of the best ${eventCfg.best_n || 5} results from the last ${eventCfg.window_months || 12} months, rounded down.`;
+  const quota = (rankings && rankings.quota) || 30;
+  const champClause = rankings && rankings.defending_champion ? ", champion auto-qualifies" : "";
+  const isUltimate = championship === "road_to_ultimate";
+  const assumptionLine = notContested
+    ? champCfg.not_contested_note
+    : isUltimate
+      ? `${scoreSentence} Ultimate qualifying is worldwide: ${quota} places, no country cap, Olympic & World champions get wildcards.`
+      : hasQual
+        ? `${scoreSentence} Birmingham qualifying (Europe only): ${quota} places, max 3 per country${champClause}.`
+        : `${scoreSentence} All nations — no quota or qualifying caps.`;
 
-  // Examples built from the athletes actually in the current list (no hard-coded names/times).
-  const examples = list.length >= 5 ? [
-    `What if ${surnameOf(list[0].name)} wins a Diamond League final?`,
-    `What if ${surnameOf(list[2].name)} finishes 2nd at the European Champs?`,
-    `How does ${surnameOf(list[4].name)} look on the world ranking with a win?`,
-  ] : [];
+  // Examples target the qualifying bubble (qualification tabs) or athletes climbing the list
+  // (world) — not the top names who are essentially safe. That's where a what-if actually tells
+  // you something. (Phrasings are kept parseable by parseQuery: meet → category, "win"/"2nd" → place.)
+  const exName = (a) => a && surnameOf(a.name);
+  const at = (i) => list[Math.max(0, Math.min(list.length - 1, i))];
+  let examples = [];
+  if (list.length >= 6) {
+    if (isUltimate) {
+      const cut = list.findIndex((a) => a.name === zone.lastQualName);
+      const i = cut >= 0 ? cut : Math.min(list.length - 1, quota - 1);
+      examples = [
+        `What if ${exName(at(i + 1))} wins a Diamond League meeting?`,
+        `Does ${exName(at(i + 3))} make the Ultimate by winning their national champs?`,
+        `What if ${exName(at(i))} finishes 2nd in a Diamond League final?`,
+      ];
+    } else if (hasQual) {
+      const cut = list.findIndex((a) => a.name === zone.lastQualName);
+      const i = cut >= 0 ? cut : Math.min(list.length - 1, quota - 1);
+      examples = [
+        `What if ${exName(at(i + 1))} finishes 2nd at the European Champs?`,
+        `Does ${exName(at(i + 4))} make the team by winning their national champs?`,
+        `What if ${exName(at(i))} wins a Diamond League meeting?`,
+      ];
+    } else {
+      examples = [
+        `What if ${exName(at(12))} wins a Diamond League meeting?`,
+        `How far does ${exName(at(22))} climb with a Diamond League win?`,
+        `What if ${exName(at(35))} finishes 2nd at the World Championships?`,
+      ];
+    }
+  }
 
   return (
     <div style={{ fontFamily: "'Archivo', system-ui, sans-serif", color: INK, background: SURFACE, minHeight: "100vh" }}>
@@ -318,22 +463,32 @@ export default function App() {
           </div>
           <div style={{ textAlign: "right", fontFamily: MONO, fontSize: 11, color: MUTE, lineHeight: 1.5 }}>
             <div>RANKINGS UPDATED</div>
-            <div style={{ color: INK, fontWeight: 600, fontSize: 13 }}>{rankings ? rankings.rank_date : "…"}</div>
+            <div style={{ color: INK, fontWeight: 600, fontSize: 13 }}>{rankings ? daysAgo(rankings.rank_date) : notContested ? "—" : "…"}</div>
+            {rankings && <div style={{ fontSize: 11 }}>{fmtDate(rankings.rank_date)}</div>}
           </div>
         </header>
 
         {/* TOGGLE + EVENT + ASSUMPTIONS */}
         <section style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 14, padding: "18px 0" }}>
-          <div style={{ display: "inline-flex", padding: 4, background: "#eceef2", borderRadius: 10, gap: 4 }}>
-            <button onClick={() => changeChampionship("world")} style={tab(!isRoad)}>World Ranking</button>
-            <button onClick={() => changeChampionship("road_to_birmingham")} style={tab(isRoad)}>Road to Birmingham</button>
+          <div style={{ display: "inline-flex", padding: 4, background: "#eceef2", borderRadius: 10, gap: 4, flexWrap: "wrap" }}>
+            {meta.championships.map((c) => (
+              <button key={c.key} onClick={() => changeChampionship(c.key)} style={tab(championship === c.key)}>{c.short_label || c.label}</button>
+            ))}
           </div>
           <select value={event} onChange={(e) => changeEvent(e.target.value)} style={{ padding: "10px 14px", border: "1px solid #d8dce2", borderRadius: 9, background: "#fff", fontSize: 14, fontWeight: 600, color: INK }}>
-            {meta.events.map((ev) => <option key={ev.key} value={ev.key}>{ev.label}</option>)}
+            {meta.events.map((ev) => {
+              const off = (champCfg.not_contested || []).includes(ev.key);
+              return <option key={ev.key} value={ev.key}>{ev.label}{off ? " — not contested" : ""}</option>;
+            })}
           </select>
           <div style={{ flex: 1 }} />
           <div style={{ fontFamily: MONO, fontSize: 11.5, color: "#6b7480", textAlign: "right", maxWidth: 460, lineHeight: 1.5 }}>{assumptionLine}</div>
         </section>
+
+        {notContested ? (
+          <NotContestedPanel eventLabel={eventLabel} champCfg={champCfg} events={meta.events}
+            onWorld={() => changeChampionship("world")} onEvent={changeEvent} />
+        ) : (<>
 
         {/* ASK BAR */}
         <section style={{ background: INK, borderRadius: 14, padding: "20px 22px", color: SURFACE, marginBottom: 22 }}>
@@ -359,10 +514,18 @@ export default function App() {
 
         {/* RESULT PANEL */}
         <section style={{ marginBottom: 24 }}>
+          {result && (
+            <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 8 }}>
+              <button onClick={copyLink}
+                style={{ padding: "6px 12px", border: "1px solid #d8dce2", borderRadius: 8, background: "#fff", color: copiedLink ? "#1f6b43" : "#6b7480", fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: MONO }}>
+                {copiedLink ? "Link copied ✓" : "Copy share link"}
+              </button>
+            </div>
+          )}
           {result
-            ? <ResultPanel rv={buildResultView(result, isRoad, form.qualify, methodOpen)} onToggle={() => setMethodOpen((v) => !v)} />
+            ? <ResultPanel rv={buildResultView(result, champCfg, form.qualify, methodOpen)} onToggle={() => setMethodOpen((v) => !v)} />
             : athleteInfo
-              ? <AthletePreview info={athleteInfo} eventCfg={eventCfg} isRoad={isRoad} rankDate={rankings ? rankings.rank_date : null}
+              ? <AthletePreview info={athleteInfo} eventCfg={eventCfg} champCfg={champCfg} rankDate={rankings ? rankings.rank_date : null}
                   event={event} championship={championship} categories={categories} />
               : (
                 <div style={{ border: "1.5px dashed #d8dce2", borderRadius: 14, padding: "40px 28px", textAlign: "center", color: MUTE }}>
@@ -378,7 +541,7 @@ export default function App() {
           {/* RANKINGS TABLE */}
           <div style={{ background: BG, border: "1px solid #e7eaef", borderRadius: 14, overflow: "hidden" }}>
             <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", padding: "16px 18px 12px" }}>
-              <h2 style={{ margin: 0, fontSize: 16, fontWeight: 700 }}>{(isRoad ? "Road to Birmingham" : "World Ranking") + " — " + eventLabel}</h2>
+              <h2 style={{ margin: 0, fontSize: 16, fontWeight: 700 }}>{(champCfg.scope_label || "World Ranking") + " — " + eventLabel}</h2>
               <span style={{ fontFamily: MONO, fontSize: 11, color: MUTE }}>{rankings ? `${list.length} athletes` : "loading…"}</span>
             </div>
             <div style={{ maxHeight: 560, overflow: "auto" }}>
@@ -387,16 +550,25 @@ export default function App() {
                 <thead>
                   <tr style={{ position: "sticky", top: 0, background: "#f2f4f7", zIndex: 1 }}>
                     <th style={thCell("right", "9px 10px 9px 18px")}>#</th>
-                    {isRoad && <th style={thCell("right", "9px 10px")} title="Position in the qualifying field after the champion bye and 3-per-country cap">Quota</th>}
+                    {hasQual && <th style={thCell("right", "9px 10px")} title="Position in the qualifying field after wildcard byes and any per-country cap">Quota</th>}
                     <th style={thCell("left", "9px 10px")}>Athlete</th>
                     <th style={thCell("left", "9px 10px")}>Nat</th>
                     <th style={thCell("right", "9px 18px 9px 10px")}>Score</th>
                   </tr>
                 </thead>
                 <tbody>
+                  {!rankings && !rankErr && Array.from({ length: 12 }).map((_, i) => (
+                    <tr key={`sk-${i}`} style={{ borderBottom: "1px solid #f2f4f7" }}>
+                      <td style={{ padding: "10px 10px 10px 18px", textAlign: "right" }}><span className="wf-skel" style={{ width: 16, animationDelay: `${(i % 6) * 0.08}s` }} /></td>
+                      {hasQual && <td style={{ padding: "10px" }}><span className="wf-skel" style={{ width: 16, animationDelay: `${(i % 6) * 0.08}s` }} /></td>}
+                      <td style={{ padding: "10px" }}><span className="wf-skel" style={{ width: 96 + (i % 4) * 24, animationDelay: `${(i % 6) * 0.08}s` }} /></td>
+                      <td style={{ padding: "10px" }}><span className="wf-skel" style={{ width: 26, animationDelay: `${(i % 6) * 0.08}s` }} /></td>
+                      <td style={{ padding: "10px 18px 10px 10px", textAlign: "right" }}><span className="wf-skel" style={{ width: 34, animationDelay: `${(i % 6) * 0.08}s` }} /></td>
+                    </tr>
+                  ))}
                   {list.map((a) => {
                     const isSel = selected === a.name;
-                    const inZone = isRoad && zone.qualSet.has(a.name);
+                    const inZone = hasQual && zone.qualSet.has(a.name);
                     const compat = selCountry && a.country === selCountry && !isSel;
                     const bg = isSel ? INK : compat ? "#f2f4f7" : inZone ? "rgba(47,125,82,0.05)" : BG;
                     const fg = isSel ? SURFACE : INK;
@@ -405,7 +577,7 @@ export default function App() {
                         <tr onClick={() => selectAthlete(a.name)}
                           style={{ cursor: "pointer", background: bg, color: fg, borderBottom: "1px solid #f2f4f7", transition: "background 0.12s" }}>
                           <td style={{ textAlign: "right", padding: "8px 10px 8px 18px", fontFamily: MONO, fontWeight: 600, color: isSel ? ACCENT : inZone ? "#1f8a4c" : "#9aa1ac" }}>{a.rank}</td>
-                          {isRoad && (
+                          {hasQual && (
                             <td style={{ textAlign: "right", padding: "8px 10px", fontFamily: MONO, fontSize: 12, fontWeight: 600, color: isSel ? ACCENT : zone.qualPos[a.name] ? "#1f8a4c" : "#c4c9d0" }}>
                               {zone.qualPos[a.name] || "—"}
                             </td>
@@ -417,11 +589,11 @@ export default function App() {
                           <td style={{ padding: "8px 10px", fontFamily: MONO, fontSize: 12, color: "#6b7480" }}>{a.country}</td>
                           <td style={{ padding: "8px 18px 8px 10px", textAlign: "right", fontFamily: MONO, fontWeight: 600 }}>{Math.round(a.ranking_score)}</td>
                         </tr>
-                        {isRoad && zone.lastQualName === a.name && (
+                        {hasQual && zone.lastQualName === a.name && (
                           <tr><td colSpan={5} style={{ padding: 0 }}>
                             <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "3px 18px", background: INK, color: ACCENT, fontFamily: MONO, fontSize: 10.5, letterSpacing: "0.08em" }}>
                               <span style={{ flex: 1, height: 1, background: "#2a313b" }} />
-                              {`QUALIFYING CUTOFF · ${rankings.quota} places${rankings.defending_champion ? " · 1 to champion" : ""} · ≈ ${zone.cutoff != null ? Math.round(zone.cutoff) : "—"} pts`}
+                              {`QUALIFYING CUTOFF · ${rankings.quota} places${zone.invites.length ? (rankings.auto_invites ? ` · ${zone.invites.length} to wildcard${zone.invites.length > 1 ? "s" : ""}` : " · 1 to champion") : ""} · ≈ ${zone.cutoff != null ? Math.round(zone.cutoff) : "—"} pts`}
                               <span style={{ flex: 1, height: 1, background: "#2a313b" }} />
                             </div>
                           </td></tr>
@@ -467,6 +639,12 @@ export default function App() {
                     results must be the {(eventCfg.input_events.find((ie) => ie.is_main) || {}).label}, so it can only fill a non-main slot.
                   </p>
                 )}
+                {(eventCfg.input_events.find((ie) => ie.key === form.subEvent) || {}).road && (
+                  <p style={{ margin: "6px 0 0", fontSize: 11.5, color: "#6b7480", lineHeight: 1.4 }}>
+                    Scored as a standard road 10K. World Athletics adjusts for course difficulty — a downhill or short course
+                    can score a bit lower — so a specific race may come out below this.
+                  </p>
+                )}
               </div>
             )}
 
@@ -507,10 +685,10 @@ export default function App() {
               </div>
             )}
 
-            {isRoad && (
+            {hasQual && (
               <label onClick={() => setForm((s) => ({ ...s, qualify: !s.qualify }))} style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer", padding: "10px 0 0", userSelect: "none" }}>
                 <span style={{ width: 38, height: 22, borderRadius: 11, background: form.qualify ? "#1f8a4c" : "#d8dce2", position: "relative", flex: "none", boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.06)", transition: "background 0.15s", backgroundImage: form.qualify ? "radial-gradient(circle at 27px 11px, #fff 7px, transparent 7px)" : "radial-gradient(circle at 11px 11px, #fff 7px, transparent 7px)" }} />
-                <span style={{ fontSize: 13.5, fontWeight: 600 }}>Resolve Birmingham qualification</span>
+                <span style={{ fontSize: 13.5, fontWeight: 600 }}>Resolve {(champCfg.short_label || "").replace(/^Road to /, "")} qualification</span>
               </label>
             )}
 
@@ -536,11 +714,58 @@ export default function App() {
           </div>
         </section>
 
+        </>)}
+
         <footer style={{ marginTop: 28, paddingTop: 14, borderTop: "1px solid #e7eaef", fontSize: 11, color: "#9aa1ac", fontFamily: MONO, lineHeight: 1.6 }}>
-          Live data from the World Athletics ranking API · {eventLabel} · edition {rankings ? rankings.rank_date : "…"}. Result scores from the WA 2025 Scoring Tables; placing points from the 2026 World Ranking placing table. Other athletes held at current scores — only the chosen athlete moves.
+          <div>
+            Live data from the World Athletics ranking API · {eventLabel} · edition {rankings ? rankings.rank_date : notContested ? "—" : "…"}. Result scores from the WA 2025 Scoring Tables; placing points from the 2026 World Ranking placing table. Other athletes held at current scores — only the chosen athlete moves.
+          </div>
+          <div style={{ marginTop: 8 }}>
+            Sources:{" "}
+            <a href={WA_RANKINGS_URL} target="_blank" rel="noreferrer" style={FOOT_LINK}>World Rankings</a> ·{" "}
+            <a href={WA_SCORING_URL} target="_blank" rel="noreferrer" style={FOOT_LINK}>Scoring Tables</a> ·{" "}
+            <a href={WA_RULES_URL} target="_blank" rel="noreferrer" style={FOOT_LINK}>Ranking Rules</a>
+          </div>
+          <div style={{ marginTop: 6 }}>
+            Spot any issues?{" "}
+            <a href={FEEDBACK_URL} target="_blank" rel="noreferrer" style={FOOT_LINK}>Let me know!</a>
+          </div>
         </footer>
       </div>
     </div>
+  );
+}
+
+// Shown when the selected event isn't on the championship's programme (e.g. the steeplechase
+// or 10000m at the Ultimate Championship): a clear notice plus escape routes, in place of the
+// ranking list and console. The event stays selectable so users learn it's absent by design.
+function NotContestedPanel({ eventLabel, champCfg, events, onWorld, onEvent }) {
+  const offKeys = new Set(champCfg.not_contested || []);
+  const contested = events.filter((e) => !offKeys.has(e.key));
+  const alsoOff = events.filter((e) => offKeys.has(e.key)).map((e) => e.label);
+  return (
+    <section style={{ border: "1.5px dashed #d8dce2", borderRadius: 16, padding: "48px 28px 40px", textAlign: "center", background: BG, animation: "wf-rise 0.4s ease both" }}>
+      <div style={{ fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: MUTE, fontWeight: 600 }}>{champCfg.scope_label}</div>
+      <h2 style={{ margin: "10px 0 8px", fontSize: 22, fontWeight: 800, letterSpacing: "-0.01em" }}>{eventLabel} — not on the programme</h2>
+      <p style={{ margin: "0 auto", maxWidth: 620, fontSize: 14.5, color: "#3a414c", lineHeight: 1.6 }}>
+        {champCfg.not_contested_note || "This event is not contested at this championship."}
+      </p>
+      <p style={{ margin: "8px auto 24px", maxWidth: 620, fontSize: 12.5, color: MUTE, lineHeight: 1.6 }}>
+        Events without a place on the programme: {alsoOff.join(" · ")}.
+      </p>
+      <button onClick={onWorld} style={{ padding: "12px 22px", border: "none", borderRadius: 10, background: INK, color: SURFACE, fontSize: 14, fontWeight: 700, cursor: "pointer" }}>
+        View {eventLabel} in the World Ranking →
+      </button>
+      <div style={{ marginTop: 24, fontSize: 11.5, letterSpacing: "0.1em", textTransform: "uppercase", color: MUTE, fontWeight: 600 }}>or pick a contested event</div>
+      <div style={{ display: "flex", gap: 8, justifyContent: "center", flexWrap: "wrap", marginTop: 10 }}>
+        {contested.map((e) => (
+          <button key={e.key} onClick={() => onEvent(e.key)}
+            style={{ padding: "7px 13px", border: "1px solid #d8dce2", borderRadius: 20, background: "#fff", color: INK, fontSize: 12.5, fontWeight: 600, cursor: "pointer" }}>
+            {e.label}
+          </button>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -573,10 +798,10 @@ function TargetRows({ rows }) {
 function PerfTable({ rows }) {
   return (
     <div style={{ overflow: "auto" }}>
-      <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12.5, minWidth: 480 }}>
+      <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12.5, minWidth: 540 }}>
         <thead>
           <tr style={{ color: MUTE, fontSize: 10.5, letterSpacing: "0.06em", textTransform: "uppercase" }}>
-            {[["Meet", "left"], ["Cat", "left"], ["Pl", "right"], ["Mark", "right"], ["Result", "right"], ["Place pts", "right"], ["Perf score", "right"]].map(([h, al]) => (
+            {[["Meet", "left"], ["Event", "left"], ["Cat", "left"], ["Pl", "right"], ["Mark", "right"], ["Result", "right"], ["Place pts", "right"], ["Perf score", "right"]].map(([h, al]) => (
               <th key={h} style={{ textAlign: al, padding: "6px 8px", fontWeight: 600 }}>{h}</th>
             ))}
           </tr>
@@ -592,6 +817,7 @@ function PerfTable({ rows }) {
                   {tag && <span style={{ display: "inline-block", fontSize: 9, fontWeight: 700, padding: "1px 5px", borderRadius: 4, marginRight: 7, background: tagBg, color: "#fff", verticalAlign: "middle", fontFamily: MONO }}>{tag}</span>}
                   {shortMeet(p.competition)}
                 </td>
+                <td style={{ padding: "7px 8px", color: "#6b7480" }}>{shortEvent(p)}</td>
                 <td style={{ padding: "7px 8px", fontFamily: MONO }}>{p.category}</td>
                 <td style={{ padding: "7px 8px", textAlign: "right", fontFamily: MONO }}>{p.place}</td>
                 <td style={{ padding: "7px 8px", textAlign: "right", fontFamily: MONO }}>{p.mark}</td>
@@ -609,7 +835,7 @@ function PerfTable({ rows }) {
 
 // Read-only card shown when an athlete is clicked (before any what-if): current standing +
 // their counting performances. Running a what-if replaces this with the full ResultPanel.
-function AthletePreview({ info, eventCfg, isRoad, rankDate, event, championship, categories }) {
+function AthletePreview({ info, eventCfg, champCfg, rankDate, event, championship, categories }) {
   const lbl = { fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: MUTE, fontWeight: 600 };
   // Reverse solver: the time this athlete would need (at a chosen place/category) to reach the
   // cutoff / #1 — fetched live so it updates as the place/category controls change.
@@ -632,11 +858,11 @@ function AthletePreview({ info, eventCfg, isRoad, rankDate, event, championship,
           <span style={{ fontSize: 19, fontWeight: 800, letterSpacing: "-0.01em" }}>{info.name}</span>
           <span style={{ fontFamily: MONO, fontSize: 12, padding: "3px 8px", borderRadius: 5, background: "#14181f", color: ACCENT }}>{info.country}</span>
         </div>
-        <span style={{ fontFamily: MONO, fontSize: 11, color: "#9aa1ac" }}>{(isRoad ? "Road to Birmingham" : "World Ranking") + (rankDate ? " · " + rankDate : "")}</span>
+        <span style={{ fontFamily: MONO, fontSize: 11, color: "#9aa1ac" }}>{(champCfg.scope_label || "World Ranking") + (rankDate ? " · " + rankDate : "")}</span>
       </div>
       <div style={{ display: "flex", gap: 32, padding: "16px 24px", flexWrap: "wrap", borderBottom: "1px solid #d8dce2" }}>
         <div>
-          <div style={lbl}>{isRoad ? "European rank" : "World rank"}</div>
+          <div style={lbl}>{champCfg.rank_label || "World rank"}</div>
           <div style={{ fontSize: 34, fontWeight: 800, marginTop: 4 }}>{info.rank != null ? `#${info.rank}` : "—"}</div>
         </div>
         <div>
@@ -687,9 +913,11 @@ function ResultPanel({ rv, onToggle }) {
   let verdict = null;
   if (rv.qual) {
     const q = rv.qual;
-    if (q.status === "champion") verdict = { mark: "★", title: "QUALIFIES — DEFENDING CHAMPION BYE", detail: "Enters by wildcard, exempt from the country cap, and consumes one place.", bg: "#e7eef6", fg: "#1c3a5e", bar: "#2f4a6b" };
-    else if (q.status === "in") verdict = { mark: "✓", title: "INSIDE THE QUALIFYING ZONE", detail: `Auto-confirmed on score — qualifying position #${q.position} of ${q.quota} (champion bye + 3-per-country cap applied).`, bg: "#e3f3e9", fg: "#1b3d2a", bar: "#1f8a4c" };
-    else if (q.status === "blocked") verdict = { mark: "≈", title: "ELIGIBLE — BUT FEDERATION'S CALL", detail: `Above the cutoff, yet ${q.countryAhead} higher-ranked ${q.country} athletes already hold the 3 places. The cap is a maximum — selection is ${q.country}'s decision.`, bg: "#fdebed", fg: "#2f4a6b", bar: "#2f4a6b" };
+    const cap = q.maxPerCountry;   // null = no country cap (e.g. the Ultimate Championship)
+    const fieldRules = cap != null ? `wildcard byes + ${cap}-per-country cap applied` : "wildcard byes applied; no country cap";
+    if (q.status === "champion") verdict = { mark: "★", title: q.inviteReason ? `QUALIFIES — WILDCARD (${q.inviteReason.toUpperCase()})` : "QUALIFIES — DEFENDING CHAMPION BYE", detail: "Enters by wildcard regardless of ranking, exempt from any country cap, and consumes one place.", bg: "#e7eef6", fg: "#1c3a5e", bar: "#2f4a6b" };
+    else if (q.status === "in") verdict = { mark: "✓", title: "INSIDE THE QUALIFYING ZONE", detail: `Auto-confirmed on score — qualifying position #${q.position} of ${q.quota} (${fieldRules}).`, bg: "#e3f3e9", fg: "#1b3d2a", bar: "#1f8a4c" };
+    else if (q.status === "blocked") verdict = { mark: "≈", title: "ELIGIBLE — BUT FEDERATION'S CALL", detail: `Above the cutoff, yet ${q.countryAhead} higher-ranked ${q.country} athletes already hold the ${cap} places. The cap is a maximum — selection is ${q.country}'s decision.`, bg: "#fdebed", fg: "#2f4a6b", bar: "#2f4a6b" };
     else verdict = { mark: "✕", title: "OUTSIDE THE QUALIFYING ZONE", detail: `Below the cutoff by ${q.needPts} pts at this score.`, bg: "#fbe4e1", fg: "#8a2b22", bar: "#c62b35" };
   }
 
@@ -726,7 +954,14 @@ function ResultPanel({ rv, onToggle }) {
         <div style={{ padding: "22px 24px", borderRight: narrow ? "none" : "1px solid #d8dce2", borderBottom: narrow ? "1px solid #d8dce2" : "none" }}>
           <div style={{ fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: MUTE, fontWeight: 600 }}>{rv.rankLabel}</div>
           <div style={{ display: "flex", alignItems: "center", gap: 14, marginTop: 8, flexWrap: "wrap" }}>
-            {rv.unranked ? (
+            {rv.unranked && rv.outsideList ? (
+              <>
+                <span style={{ fontSize: narrow ? 22 : 26, fontWeight: 800, color: "#9aa1ac", letterSpacing: "-0.01em" }}>UNRANKED</span>
+                <span style={{ fontSize: narrow ? 22 : 28, color: ACCENT }}>→</span>
+                <span style={{ fontSize: narrow ? 26 : 34, fontWeight: 800, lineHeight: 1, letterSpacing: "-0.02em" }}>Outside the top {rv.listSize}</span>
+                <span style={{ marginLeft: 6, alignSelf: "center", fontSize: 12.5, fontWeight: 700, padding: "4px 11px", borderRadius: 20, background: "#eceef2", color: "#6b7480", whiteSpace: "nowrap" }}>wouldn’t break into the list</span>
+              </>
+            ) : rv.unranked ? (
               <>
                 <span style={{ fontSize: narrow ? 22 : 26, fontWeight: 800, color: "#9aa1ac", letterSpacing: "-0.01em" }}>UNRANKED</span>
                 <span style={{ fontSize: narrow ? 22 : 28, color: ACCENT }}>→</span>

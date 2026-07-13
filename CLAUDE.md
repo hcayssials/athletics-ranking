@@ -39,6 +39,21 @@ image; `cache.read()` falls back to it when the live cache is cold. `api.py:_pre
 force-refreshes live data on boot. A weekly GitHub Action (`.github/workflows/refresh-seed.yml`)
 regenerates the seed and pushes (also runnable manually: `python -m scripts.refresh_seed`).
 
+## Championships (world / Birmingham / Ultimate)
+- `data/championships.json` drives everything: presentation strings (`short_label`,
+  `scope_label`, `rank_label`), qualification (`quota`, `max_per_country` — explicit `null`
+  = no cap), and byes (`defending_champion`, or an `auto_invites` list of wildcards).
+  The UI tabs and all qualification wording are meta-driven from `/api/meta` — don't
+  hardcode a championship key in `App.jsx`.
+- **`road_to_ultimate` shares the world list**: its `data_source: "world"` makes
+  `fetch_championship` delegate (same cache key, no extra scraping, no extra seed files;
+  `refresh_seed` skips it). It's `contested_events_only`: events absent from its `events`
+  dict (10000m, both steeples) get the `not_contested_note` landing panel in the UI, and
+  `qualify=True` for them is a 400.
+- **Ultimate wildcards need a manual update after the 2026 DL Final (Sep 2026)**: add the
+  Brussels winners to `auto_invites` (source: WA's road-to feed
+  `getChampionshipQualifications`, competitionId 7212925 — labels like "Olympic Champion").
+
 ## Scoring tables & similar-event what-ifs
 - **`data/scoring_tables/*.csv` are generated, not hand-made.** `python -m scripts.build_scoring_tables`
   regenerates every running event × gender × indoor/outdoor table from a published parse of WA's

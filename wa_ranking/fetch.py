@@ -126,8 +126,18 @@ def fetch_championship(championship: str, event: str, *, force: bool = False,
     The rankings URL is built from the championship's `rankings_url_template` using the
     event's discipline + gender. Returns {championship, event, fetched, rank_date,
     athletes:[...]}. Cached under a per-(championship, event) key.
+
+    A championship with `data_source` (e.g. road_to_ultimate → world) shares another
+    championship's ranking list: same athletes/scores, different qualification overlay —
+    so the fetch (and cache key) is delegated rather than duplicated.
     """
     from .config import load_event
+
+    source = load_championship(championship).get("data_source")
+    if source and source != championship:
+        data = fetch_championship(source, event, force=force,
+                                  ttl_seconds=ttl_seconds, limit=limit)
+        return {**data, "championship": championship}
 
     key = f"{championship}__{event}"
     if not force:

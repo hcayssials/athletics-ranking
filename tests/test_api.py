@@ -45,8 +45,48 @@ def test_meta_lists_events_and_championships():
     m = client.get("/api/meta").json()
     keys = {e["key"] for e in m["events"]}
     assert {"1500m_men", "3000mSC_women"} <= keys
-    assert {c["key"] for c in m["championships"]} == {"world", "road_to_birmingham"}
+    assert {c["key"] for c in m["championships"]} == {"world", "road_to_birmingham",
+                                                      "road_to_ultimate"}
     assert "GW" in m["categories"]
+    champs = {c["key"]: c for c in m["championships"]}
+    assert champs["road_to_birmingham"]["has_qualification"] is True
+    assert champs["road_to_birmingham"]["not_contested"] == []
+    assert champs["world"]["has_qualification"] is False
+    ult = champs["road_to_ultimate"]
+    assert ult["has_qualification"] is True
+    assert set(ult["not_contested"]) == {"10000m_men", "10000m_women",
+                                         "3000mSC_men", "3000mSC_women"}
+    assert ult["not_contested_note"]
+    assert ult["max_per_country"] is None
+
+
+def test_rankings_ultimate_includes_wildcards():
+    r = client.get("/api/rankings", params={"championship": "road_to_ultimate",
+                                            "event": "1500m_men"}).json()
+    assert r["quota"] == 12
+    assert r["max_per_country"] is None
+    assert {i["name"] for i in r["auto_invites"]} == {"Cole HOCKER", "Isaac NADER"}
+
+
+def test_whatif_ultimate_qualification_no_cap():
+    body = {"event": "1500m_men", "athlete": "Alpha", "time": "3:28.80",
+            "category": "GW", "place": 1, "as_of": "2026-06-16",
+            "championship": "road_to_ultimate", "qualify": True}
+    w = client.post("/api/whatif", json=body).json()
+    q = w["qualification"]
+    assert q["quota"] == 12 and q["max_per_country"] is None
+    assert len(q["auto_invites"]) == 2
+    assert q["ranking_places"] == 10
+    # wildcards hold the first slots of the resolved field
+    assert [s["reason"] for s in q["field_new"][:2]] == ["Olympic champion", "World champion"]
+
+
+def test_whatif_ultimate_not_contested_event_is_400():
+    body = {"event": "3000mSC_men", "athlete": "Alpha", "time": "8:10.00",
+            "championship": "road_to_ultimate", "qualify": True}
+    resp = client.post("/api/whatif", json=body)
+    assert resp.status_code == 400
+    assert "not be competed" in resp.json()["error"]
 
 
 def test_rankings_returns_slim_rows():

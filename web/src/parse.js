@@ -89,7 +89,7 @@ export function extractName(query) {
   // colon actually names an event/gender (so a time like "3:34" doesn't trigger it).
   const ci = s.indexOf(":");
   if (ci > 0 && ci < 40 &&
-      /\b(men|women|ladies|mixed)\b|steeple|\bmile\b|metre|\b\d{3,}\s?m(sc)?\b|road to|\bworld\b|\beuro|birmingham/i.test(s.slice(0, ci)))
+      /\b(men|women|ladies|mixed)\b|steeple|\bmile\b|metre|\b\d{3,}\s?m(sc)?\b|road to|\bworld\b|\beuro|birmingham|ultimate|budapest/i.test(s.slice(0, ci)))
     s = s.slice(ci + 1).trim();
   const cut = s.search(/\b(wins?|winning|won|finish\w*|runs?|running|ran|places?|placing|placed|scores?|gets?|clocks?|goes?|going|looks?|with|at|in|on|to)\b|\d/i);
   if (cut > 0) s = s.slice(0, cut);
@@ -101,8 +101,9 @@ export function parseQuery(query, currentEvent) {
   const nq = norm(query);
   const out = { athlete: query };
 
-  // championship
-  if (/\bworld\b|globally|world rank|world list/.test(nq)) out.championship = "world";
+  // championship ("ultimate"/"budapest" first — "World Athletics Ultimate" contains "world")
+  if (/ultimate|budapest/.test(nq)) out.championship = "road_to_ultimate";
+  else if (/\bworld\b|globally|world rank|world list/.test(nq)) out.championship = "world";
   else if (/birmingham|european|\beuros?\b|road to|qualif|make the team|\bthe team\b/.test(nq)) out.championship = "road_to_birmingham";
 
   // event (distance + gender); distance alone keeps the current event's gender

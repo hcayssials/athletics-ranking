@@ -69,5 +69,28 @@ def test_road_to_birmingham_has_quota_and_champion_per_event():
 
 def test_championships_are_region_level():
     champs = load_championships()
-    assert {"world", "road_to_birmingham"} <= set(champs)
+    assert {"world", "road_to_birmingham", "road_to_ultimate"} <= set(champs)
     assert "rankings_url_template" in champs["world"]
+
+
+ULTIMATE_EVENTS = ["800m_men", "800m_women", "1500m_men", "1500m_women",
+                   "5000m_men", "5000m_women"]
+
+
+def test_road_to_ultimate_is_invitational_with_wildcards():
+    champ = load_championships()["road_to_ultimate"]
+    assert champ["data_source"] == "world"          # shares the world ranking list/cache
+    assert champ["max_per_country"] is None         # no country cap
+    assert champ["contested_events_only"] is True
+    assert champ["not_contested_note"]
+    assert set(champ["events"]) == set(ULTIMATE_EVENTS)
+    for ek in ULTIMATE_EVENTS:
+        cfg = championship_event_config("road_to_ultimate", ek)
+        # WA field sizes: 16 for the 800m, 12 for the 1500m/5000m
+        assert cfg["quota"] == (16 if ek.startswith("800m") else 12)
+        assert 1 <= len(cfg["auto_invites"]) <= 3
+        for inv in cfg["auto_invites"]:
+            assert {"name", "country", "reason"} <= set(inv)
+    # 10000m and steeplechase are not on the Ultimate programme
+    for absent in ("10000m_men", "10000m_women", "3000mSC_men", "3000mSC_women"):
+        assert championship_event_config("road_to_ultimate", absent) == {}

@@ -12,3 +12,4 @@ web/dist/
 
 # Upstream scoring-table source (regenerated via scripts/build_scoring_tables.py)
 data/scoring_tables/_source/
+.claude/launch.json

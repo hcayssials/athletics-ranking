@@ -18,8 +18,8 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from . import fetch, graphql
-from .config import (championship_event_config, load_championships, load_event,
-                     load_events, load_placing_scores)
+from .config import (championship_event_config, load_championship, load_championships,
+                     load_event, load_events, load_placing_scores)
 from .profile import _main_discipline_name
 from .whatif import required_targets, what_if
 
@@ -98,13 +98,27 @@ def meta():
              # The discipline a hypothetical can be entered in: the main event plus similar /
              # indoor events. The UI builds the input-event picker from this.
              "input_events": [{"key": "main", "label": e.get("discipline"), "is_main": True,
-                               "indoor": False}]
+                               "indoor": False, "road": False}]
                             + [{"key": a["key"], "label": a["label"], "is_main": False,
-                                "indoor": a.get("indoor", False)}
+                                "indoor": a.get("indoor", False), "road": a.get("road", False)}
                                for a in e.get("alt_events", ())]}
             for k, e in events.items()
         ],
-        "championships": [{"key": k, "label": c.get("label")} for k, c in champs.items()],
+        # Per-championship presentation + qualification info so the UI stays config-driven:
+        # not_contested lists events absent from an invitational's programme (the UI shows
+        # not_contested_note for them instead of a ranking list).
+        "championships": [
+            {"key": k, "label": c.get("label"),
+             "short_label": c.get("short_label", c.get("label")),
+             "scope_label": c.get("scope_label", c.get("label")),
+             "rank_label": c.get("rank_label", "Rank"),
+             "max_per_country": c.get("max_per_country"),
+             "has_qualification": any("quota" in e for e in (c.get("events") or {}).values()),
+             "not_contested": ([ek for ek in events if ek not in (c.get("events") or {})]
+                               if c.get("contested_events_only") else []),
+             "not_contested_note": c.get("not_contested_note")}
+            for k, c in champs.items()
+        ],
         "categories": cats,
     }
 
@@ -123,6 +137,8 @@ def rankings(championship: str, event: str, limit: int | None = None):
         "rank_date": data["rank_date"],
         "quota": ce.get("quota"),
         "defending_champion": ce.get("defending_champion"),
+        "auto_invites": ce.get("auto_invites"),
+        "max_per_country": load_championship(championship).get("max_per_country"),
         "athletes": [{f: a.get(f) for f in _RANKING_FIELDS} for a in data["athletes"]],
     }
 
