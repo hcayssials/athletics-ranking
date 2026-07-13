@@ -116,7 +116,8 @@ def meta():
              "has_qualification": any("quota" in e for e in (c.get("events") or {}).values()),
              "not_contested": ([ek for ek in events if ek not in (c.get("events") or {})]
                                if c.get("contested_events_only") else []),
-             "not_contested_note": c.get("not_contested_note")}
+             "not_contested_note": c.get("not_contested_note"),
+             "qualification_footnote": c.get("qualification_footnote")}
             for k, c in champs.items()
         ],
         "categories": cats,

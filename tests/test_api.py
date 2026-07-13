@@ -58,6 +58,7 @@ def test_meta_lists_events_and_championships():
                                          "3000mSC_men", "3000mSC_women"}
     assert ult["not_contested_note"]
     assert ult["max_per_country"] is None
+    assert "Diamond League Final" in ult["qualification_footnote"]
 
 
 def test_rankings_ultimate_includes_wildcards():

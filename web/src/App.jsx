@@ -544,6 +544,12 @@ export default function App() {
               <h2 style={{ margin: 0, fontSize: 16, fontWeight: 700 }}>{(champCfg.scope_label || "World Ranking") + " — " + eventLabel}</h2>
               <span style={{ fontFamily: MONO, fontSize: 11, color: MUTE }}>{rankings ? `${list.length} athletes` : "loading…"}</span>
             </div>
+            {/* e.g. "the DL Final winner also gets a wildcard" — a pending bye the list can't show yet */}
+            {champCfg.qualification_footnote && (
+              <div style={{ padding: "0 18px 10px", fontSize: 11.5, color: "#6b7480", lineHeight: 1.45 }}>
+                ⓘ {champCfg.qualification_footnote}
+              </div>
+            )}
             <div style={{ maxHeight: 560, overflow: "auto" }}>
               {rankErr && <div style={{ padding: 18, color: "#9c352a", fontSize: 13 }}>{rankErr}</div>}
               <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13.5 }}>
