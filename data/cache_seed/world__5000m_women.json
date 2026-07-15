@@ -1,74 +1,17 @@
 {
- "_fetched_at": 1783512189.8573494,
+ "_fetched_at": 1784114511.3198192,
  "_key": "world__5000m_women",
  "data": {
   "championship": "world",
   "event": "5000m_women",
   "rankings_url": "https://worldathletics.org/world-rankings/5000m/women",
-  "fetched": "2026-07-08T12:03:09",
-  "rank_date": "2026-06-30",
+  "fetched": "2026-07-15T11:21:51",
+  "rank_date": "2026-07-07",
   "athletes": [
    {
-    "competitor_id": "132243461",
-    "slug": "/athletes/kenya/beatrice-chebet-14749924",
-    "rank": 1,
-    "name": "Beatrice CHEBET",
-    "dob": "05 MAR 2000",
-    "country": "KEN",
-    "ranking_score": 1365.0,
-    "performances": [
-     {
-      "date": "2025-07-05",
-      "date_raw": "05 JUL 2025",
-      "competition": "Prefontaine Classic, Hayward Field, Eugene, OR",
-      "category": "GW",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "13:58.06",
-      "result_score": 1286,
-      "placing_score": 115,
-      "performance_score": 1401,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-09-20",
-      "date_raw": "20 SEP 2025",
-      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
-      "category": "OW",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "14:54.36",
-      "result_score": 1174,
-      "placing_score": 215,
-      "performance_score": 1389,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-09-18",
-      "date_raw": "18 SEP 2025",
-      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
-      "category": "OW",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "14:45.59",
-      "result_score": 1191,
-      "placing_score": 56,
-      "performance_score": 1247,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-06-30"
-   },
-   {
-    "competitor_id": "132243462",
+    "competitor_id": "132779178",
     "slug": "/athletes/kenya/faith-kipyegon-14413305",
-    "rank": 2,
+    "rank": 1,
     "name": "Faith KIPYEGON",
     "dob": "10 JAN 1994",
     "country": "KEN",
@@ -120,12 +63,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243463",
+    "competitor_id": "132779179",
     "slug": "/athletes/ethiopia/likina-amebaw-14877871",
-    "rank": 3,
+    "rank": 2,
     "name": "Likina AMEBAW",
     "dob": "30 NOV 1997",
     "country": "ETH",
@@ -177,12 +120,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243464",
+    "competitor_id": "132779180",
     "slug": "/athletes/ethiopia/aleshign-baweke-15172866",
-    "rank": 4,
+    "rank": 3,
     "name": "Aleshign BAWEKE",
     "dob": "23 JAN 2006",
     "country": "ETH",
@@ -234,12 +177,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243465",
+    "competitor_id": "132779181",
     "slug": "/athletes/italy/nadia-battocletti-14700830",
-    "rank": 5,
+    "rank": 4,
     "name": "Nadia BATTOCLETTI",
     "dob": "12 APR 2000",
     "country": "ITA",
@@ -291,69 +234,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243466",
-    "slug": "/athletes/kenya/agnes-jebet-ngetich-14758189",
-    "rank": 6,
-    "name": "Agnes Jebet NGETICH",
-    "dob": "23 JAN 2001",
-    "country": "KEN",
-    "ranking_score": 1315.0,
-    "performances": [
-     {
-      "date": "2025-07-05",
-      "date_raw": "05 JUL 2025",
-      "competition": "Prefontaine Classic, Hayward Field, Eugene, OR",
-      "category": "GW",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "14:01.29",
-      "result_score": 1280,
-      "placing_score": 95,
-      "performance_score": 1375,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-22",
-      "date_raw": "22 AUG 2025",
-      "competition": "Memorial van Damme, Boudewijnstadion, Bruxelles",
-      "category": "GW",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "14:24.99",
-      "result_score": 1232,
-      "placing_score": 115,
-      "performance_score": 1347,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-09-18",
-      "date_raw": "18 SEP 2025",
-      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
-      "category": "OW",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 16,
-      "mark": "14:57.90",
-      "result_score": 1167,
-      "placing_score": 56,
-      "performance_score": 1223,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-06-30"
-   },
-   {
-    "competitor_id": "132243467",
+    "competitor_id": "132779182",
     "slug": "/athletes/ethiopia/medina-eisa-14985841",
-    "rank": 7,
+    "rank": 5,
     "name": "Medina EISA",
     "dob": "17 OCT 2002",
     "country": "ETH",
@@ -405,12 +291,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243468",
+    "competitor_id": "132779183",
     "slug": "/athletes/ethiopia/senayet-getachew-15046190",
-    "rank": 8,
+    "rank": 6,
     "name": "Senayet GETACHEW",
     "dob": "01 OCT 2005",
     "country": "ETH",
@@ -462,12 +348,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243469",
+    "competitor_id": "132779184",
     "slug": "/athletes/ethiopia/fantaye-belayneh-14977672",
-    "rank": 9,
+    "rank": 7,
     "name": "Fantaye BELAYNEH",
     "dob": "11 SEP 2000",
     "country": "ETH",
@@ -519,69 +405,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243470",
-    "slug": "/athletes/ethiopia/gudaf-tsegay-14595214",
-    "rank": 10,
-    "name": "Gudaf TSEGAY",
-    "dob": "23 JAN 1997",
-    "country": "ETH",
-    "ranking_score": 1297.0,
-    "performances": [
-     {
-      "date": "2025-07-05",
-      "date_raw": "05 JUL 2025",
-      "competition": "Prefontaine Classic, Hayward Field, Eugene, OR",
-      "category": "GW",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 3,
-      "mark": "14:04.41",
-      "result_score": 1273,
-      "placing_score": 85,
-      "performance_score": 1358,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-09-20",
-      "date_raw": "20 SEP 2025",
-      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
-      "category": "OW",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 5,
-      "mark": "14:57.82",
-      "result_score": 1167,
-      "placing_score": 140,
-      "performance_score": 1307,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-09-18",
-      "date_raw": "18 SEP 2025",
-      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
-      "category": "OW",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 9,
-      "mark": "14:56.46",
-      "result_score": 1170,
-      "placing_score": 56,
-      "performance_score": 1226,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-06-30"
-   },
-   {
-    "competitor_id": "132243471",
+    "competitor_id": "132779185",
     "slug": "/athletes/united-states/josette-andrews-14574966",
-    "rank": 11,
+    "rank": 8,
     "name": "Josette ANDREWS",
     "dob": "15 DEC 1995",
     "country": "USA",
@@ -633,12 +462,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243472",
+    "competitor_id": "132779186",
     "slug": "/athletes/ethiopia/hirut-meshesha-14805826",
-    "rank": 12,
+    "rank": 9,
     "name": "Hirut MESHESHA",
     "dob": "20 JAN 2001",
     "country": "ETH",
@@ -690,12 +519,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243473",
+    "competitor_id": "132779187",
     "slug": "/athletes/spain/marta-garcia-14635475",
-    "rank": 13,
+    "rank": 10,
     "name": "Marta GARCÍA",
     "dob": "01 JAN 1998",
     "country": "ESP",
@@ -747,12 +576,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243474",
+    "competitor_id": "132779188",
     "slug": "/athletes/netherlands/maureen-koster-14372338",
-    "rank": 14,
+    "rank": 11,
     "name": "Maureen KOSTER",
     "dob": "03 JUL 1992",
     "country": "NED",
@@ -804,12 +633,69 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243475",
+    "competitor_id": "132779189",
+    "slug": "/athletes/united-states/shelby-houlihan-14368938",
+    "rank": 12,
+    "name": "Shelby HOULIHAN",
+    "dob": "08 FEB 1993",
+    "country": "USA",
+    "ranking_score": 1272.0,
+    "performances": [
+     {
+      "date": "2025-09-20",
+      "date_raw": "20 SEP 2025",
+      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
+      "category": "OW",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 4,
+      "mark": "14:57.42",
+      "result_score": 1168,
+      "placing_score": 155,
+      "performance_score": 1323,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-07-04",
+      "date_raw": "04 JUL 2026",
+      "competition": "Prefontaine Classic, Hayward Field, Eugene, OR",
+      "category": "GW",
+      "discipline_code": "2MLS",
+      "discipline": "2 Miles",
+      "indoor": false,
+      "place": 3,
+      "mark": "9:21.42",
+      "result_score": 1164,
+      "placing_score": 85,
+      "performance_score": 1249,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-09-18",
+      "date_raw": "18 SEP 2025",
+      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
+      "category": "OW",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 3,
+      "mark": "14:46.52",
+      "result_score": 1189,
+      "placing_score": 56,
+      "performance_score": 1245,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-07-07"
+   },
+   {
+    "competitor_id": "132779190",
     "slug": "/athletes/great-britain-ni/hannah-nuttall-14523341",
-    "rank": 15,
+    "rank": 13,
     "name": "Hannah NUTTALL",
     "dob": "07 JUL 1997",
     "country": "GBR",
@@ -861,69 +747,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243476",
-    "slug": "/athletes/united-states/shelby-houlihan-14368938",
-    "rank": 16,
-    "name": "Shelby HOULIHAN",
-    "dob": "08 FEB 1993",
-    "country": "USA",
-    "ranking_score": 1264.0,
-    "performances": [
-     {
-      "date": "2025-09-20",
-      "date_raw": "20 SEP 2025",
-      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
-      "category": "OW",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 4,
-      "mark": "14:57.42",
-      "result_score": 1168,
-      "placing_score": 155,
-      "performance_score": 1323,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-09-18",
-      "date_raw": "18 SEP 2025",
-      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
-      "category": "OW",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 3,
-      "mark": "14:46.52",
-      "result_score": 1189,
-      "placing_score": 56,
-      "performance_score": 1245,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-02-14",
-      "date_raw": "14 FEB 2026",
-      "competition": "Sound Invite, JDL Fast Track, Winston Salem, NC (i)",
-      "category": "B",
-      "discipline_code": "3000sh",
-      "discipline": "3000 Metres Short Track",
-      "indoor": false,
-      "place": 5,
-      "mark": "8:39.97",
-      "result_score": 1197,
-      "placing_score": 27,
-      "performance_score": 1224,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-06-30"
-   },
-   {
-    "competitor_id": "132243477",
+    "competitor_id": "132779191",
     "slug": "/athletes/australia/rose-davies-14517594",
-    "rank": 17,
+    "rank": 14,
     "name": "Rose DAVIES",
     "dob": "21 DEC 1999",
     "country": "AUS",
@@ -975,126 +804,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243478",
-    "slug": "/athletes/kenya/margaret-akidor-14798242",
-    "rank": 18,
-    "name": "Margaret AKIDOR",
-    "dob": "26 JUN 2002",
-    "country": "KEN",
-    "ranking_score": 1262.0,
-    "performances": [
-     {
-      "date": "2025-07-05",
-      "date_raw": "05 JUL 2025",
-      "competition": "Prefontaine Classic, Hayward Field, Eugene, OR",
-      "category": "GW",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 4,
-      "mark": "14:30.34",
-      "result_score": 1221,
-      "placing_score": 77,
-      "performance_score": 1298,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-06-04",
-      "date_raw": "04 JUN 2026",
-      "competition": "Golden Gala Pietro Mennea, Stadio Olimpico, Roma",
-      "category": "GW",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 10,
-      "mark": "14:34.01",
-      "result_score": 1214,
-      "placing_score": 32,
-      "performance_score": 1246,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-19",
-      "date_raw": "19 JUL 2025",
-      "competition": "London Athletics Meet, Olympic Stadium, London",
-      "category": "GW",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 9,
-      "mark": "14:38.45",
-      "result_score": 1205,
-      "placing_score": 39,
-      "performance_score": 1244,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-06-30"
-   },
-   {
-    "competitor_id": "132243479",
-    "slug": "/athletes/kenya/caroline-nyaga-14814043",
-    "rank": 19,
-    "name": "Caroline NYAGA",
-    "dob": "07 OCT 1993",
-    "country": "KEN",
-    "ranking_score": 1260.0,
-    "performances": [
-     {
-      "date": "2025-07-05",
-      "date_raw": "05 JUL 2025",
-      "competition": "Prefontaine Classic, Hayward Field, Eugene, OR",
-      "category": "GW",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 5,
-      "mark": "14:30.45",
-      "result_score": 1221,
-      "placing_score": 70,
-      "performance_score": 1291,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-22",
-      "date_raw": "22 AUG 2025",
-      "competition": "Memorial van Damme, Boudewijnstadion, Bruxelles",
-      "category": "GW",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 8,
-      "mark": "14:36.90",
-      "result_score": 1208,
-      "placing_score": 49,
-      "performance_score": 1257,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-05-16",
-      "date_raw": "16 MAY 2026",
-      "competition": "Wanda Diamond League, China Textile City Sports Centre, Shaoxing/Keqiao",
-      "category": "A",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 9,
-      "mark": "14:36.55",
-      "result_score": 1209,
-      "placing_score": 24,
-      "performance_score": 1233,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-06-30"
-   },
-   {
-    "competitor_id": "132243480",
+    "competitor_id": "132779192",
     "slug": "/athletes/ethiopia/marta-alemayo-15131346",
-    "rank": 20,
+    "rank": 15,
     "name": "Marta ALEMAYO",
     "dob": "08 APR 2008",
     "country": "ETH",
@@ -1146,12 +861,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243481",
+    "competitor_id": "132779193",
     "slug": "/athletes/ethiopia/hawi-abera-15058804",
-    "rank": 21,
+    "rank": 16,
     "name": "Hawi ABERA",
     "dob": "17 DEC 2006",
     "country": "ETH",
@@ -1203,12 +918,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243482",
+    "competitor_id": "132779194",
     "slug": "/athletes/japan/nozomi-tanaka-14632538",
-    "rank": 22,
+    "rank": 17,
     "name": "Nozomi TANAKA",
     "dob": "04 SEP 1999",
     "country": "JPN",
@@ -1260,12 +975,69 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243483",
+    "competitor_id": "132779195",
+    "slug": "/athletes/kenya/agnes-jebet-ngetich-14758189",
+    "rank": 18,
+    "name": "Agnes Jebet NGETICH",
+    "dob": "23 JAN 2001",
+    "country": "KEN",
+    "ranking_score": 1250.0,
+    "performances": [
+     {
+      "date": "2025-08-22",
+      "date_raw": "22 AUG 2025",
+      "competition": "Memorial van Damme, Boudewijnstadion, Bruxelles",
+      "category": "GW",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "14:24.99",
+      "result_score": 1232,
+      "placing_score": 115,
+      "performance_score": 1347,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-09-18",
+      "date_raw": "18 SEP 2025",
+      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
+      "category": "OW",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 16,
+      "mark": "14:57.90",
+      "result_score": 1167,
+      "placing_score": 56,
+      "performance_score": 1223,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-09-20",
+      "date_raw": "20 SEP 2025",
+      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
+      "category": "OW",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 15,
+      "mark": "15:13.78",
+      "result_score": 1136,
+      "placing_score": 46,
+      "performance_score": 1182,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-07-07"
+   },
+   {
+    "competitor_id": "132779196",
     "slug": "/athletes/australia/linden-hall-14272002",
-    "rank": 23,
+    "rank": 19,
     "name": "Linden HALL",
     "dob": "20 JUN 1991",
     "country": "AUS",
@@ -1317,12 +1089,69 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243484",
+    "competitor_id": "132779197",
+    "slug": "/athletes/kenya/caroline-nyaga-14814043",
+    "rank": 20,
+    "name": "Caroline NYAGA",
+    "dob": "07 OCT 1993",
+    "country": "KEN",
+    "ranking_score": 1240.0,
+    "performances": [
+     {
+      "date": "2025-08-22",
+      "date_raw": "22 AUG 2025",
+      "competition": "Memorial van Damme, Boudewijnstadion, Bruxelles",
+      "category": "GW",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 8,
+      "mark": "14:36.90",
+      "result_score": 1208,
+      "placing_score": 49,
+      "performance_score": 1257,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-05-16",
+      "date_raw": "16 MAY 2026",
+      "competition": "Wanda Diamond League, China Textile City Sports Centre, Shaoxing/Keqiao",
+      "category": "A",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 9,
+      "mark": "14:36.55",
+      "result_score": 1209,
+      "placing_score": 24,
+      "performance_score": 1233,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-04",
+      "date_raw": "04 JUN 2026",
+      "competition": "Golden Gala Pietro Mennea, Stadio Olimpico, Roma",
+      "category": "GW",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 12,
+      "mark": "14:38.10",
+      "result_score": 1206,
+      "placing_score": 25,
+      "performance_score": 1231,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-07-07"
+   },
+   {
+    "competitor_id": "132779198",
     "slug": "/athletes/ethiopia/yenawa-nbret-15090391",
-    "rank": 24,
+    "rank": 21,
     "name": "Yenawa NBRET",
     "dob": "18 MAY 2007",
     "country": "ETH",
@@ -1374,12 +1203,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243485",
+    "competitor_id": "132779199",
     "slug": "/athletes/australia/lauren-ryan-14667446",
-    "rank": 25,
+    "rank": 22,
     "name": "Lauren RYAN",
     "dob": "15 MAR 1998",
     "country": "AUS",
@@ -1431,12 +1260,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243486",
+    "competitor_id": "132779200",
     "slug": "/athletes/great-britain-ni/megan-keith-14918707",
-    "rank": 26,
+    "rank": 23,
     "name": "Megan KEITH",
     "dob": "23 APR 2002",
     "country": "GBR",
@@ -1488,12 +1317,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243487",
+    "competitor_id": "132779201",
     "slug": "/athletes/australia/georgia-griffith-14549778",
-    "rank": 27,
+    "rank": 24,
     "name": "Georgia GRIFFITH",
     "dob": "05 DEC 1996",
     "country": "AUS",
@@ -1545,12 +1374,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243488",
+    "competitor_id": "132779202",
     "slug": "/athletes/france/sarah-madeleine-14683883",
-    "rank": 28,
+    "rank": 25,
     "name": "Sarah MADELEINE",
     "dob": "20 SEP 1998",
     "country": "FRA",
@@ -1602,16 +1431,73 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243489",
+    "competitor_id": "132779203",
+    "slug": "/athletes/kenya/margaret-akidor-14798242",
+    "rank": 26,
+    "name": "Margaret AKIDOR",
+    "dob": "26 JUN 2002",
+    "country": "KEN",
+    "ranking_score": 1218.0,
+    "performances": [
+     {
+      "date": "2026-06-04",
+      "date_raw": "04 JUN 2026",
+      "competition": "Golden Gala Pietro Mennea, Stadio Olimpico, Roma",
+      "category": "GW",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 10,
+      "mark": "14:34.01",
+      "result_score": 1214,
+      "placing_score": 32,
+      "performance_score": 1246,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-07-19",
+      "date_raw": "19 JUL 2025",
+      "competition": "London Athletics Meet, Olympic Stadium, London",
+      "category": "GW",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 9,
+      "mark": "14:38.45",
+      "result_score": 1205,
+      "placing_score": 39,
+      "performance_score": 1244,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-04-29",
+      "date_raw": "29 APR 2026",
+      "competition": "60th Oda Mikio Memorial, Municipal Stadium, Hiroshima",
+      "category": "F",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "15:01.44",
+      "result_score": 1160,
+      "placing_score": 5,
+      "performance_score": 1165,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-07-07"
+   },
+   {
+    "competitor_id": "132779204",
     "slug": "/athletes/belgium/jana-van-lent-14704113",
-    "rank": 29,
+    "rank": 27,
     "name": "Jana VAN LENT",
     "dob": "22 APR 2001",
     "country": "BEL",
-    "ranking_score": 1218.0,
+    "ranking_score": 1216.0,
     "performances": [
      {
       "date": "2025-08-22",
@@ -1644,27 +1530,27 @@
       "month_correction_applied": false
      },
      {
-      "date": "2025-07-03",
-      "date_raw": "03 JUL 2025",
-      "competition": "Folksam Grand Prix Karlstad, Sola Arena, Karlstad",
-      "category": "C",
+      "date": "2025-07-19",
+      "date_raw": "19 JUL 2025",
+      "competition": "London Athletics Meet, Olympic Stadium, London",
+      "category": "GW",
       "discipline_code": "5000",
       "discipline": "5000 Metres",
       "indoor": false,
-      "place": 1,
-      "mark": "14:58.68",
-      "result_score": 1166,
-      "placing_score": 35,
-      "performance_score": 1201,
+      "place": 14,
+      "mark": "14:42.93",
+      "result_score": 1196,
+      "placing_score": 0,
+      "performance_score": 1196,
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243490",
+    "competitor_id": "132779205",
     "slug": "/athletes/great-britain-ni/innes-fitzgerald-15033317",
-    "rank": 30,
+    "rank": 28,
     "name": "Innes FITZGERALD",
     "dob": "06 APR 2006",
     "country": "GBR",
@@ -1716,12 +1602,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243491",
+    "competitor_id": "132779206",
     "slug": "/athletes/uganda/joy-cheptoyek-14818058",
-    "rank": 31,
+    "rank": 29,
     "name": "Joy CHEPTOYEK",
     "dob": "15 MAY 2002",
     "country": "UGA",
@@ -1773,30 +1659,45 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243492",
-    "slug": "/athletes/united-states/weini-kelati-frezghi-14877184",
-    "rank": 32,
-    "name": "Weini KELATI FREZGHI",
-    "dob": "01 DEC 1996",
+    "competitor_id": "132779207",
+    "slug": "/athletes/united-states/karissa-schweizer-14470567",
+    "rank": 30,
+    "name": "Karissa SCHWEIZER",
+    "dob": "04 MAY 1996",
     "country": "USA",
-    "ranking_score": 1212.0,
+    "ranking_score": 1211.0,
     "performances": [
      {
-      "date": "2025-07-05",
-      "date_raw": "05 JUL 2025",
+      "date": "2026-07-04",
+      "date_raw": "04 JUL 2026",
       "competition": "Prefontaine Classic, Hayward Field, Eugene, OR",
       "category": "GW",
+      "discipline_code": "2MLS",
+      "discipline": "2 Miles",
+      "indoor": false,
+      "place": 6,
+      "mark": "9:22.79",
+      "result_score": 1160,
+      "placing_score": 63,
+      "performance_score": 1223,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-07-12",
+      "date_raw": "12 JUL 2025",
+      "competition": "Sunset Tour, Jack Kemp Stadium - Occidental College, Los Angeles, CA",
+      "category": "B",
       "discipline_code": "5000",
       "discipline": "5000 Metres",
       "indoor": false,
-      "place": 10,
-      "mark": "14:38.15",
-      "result_score": 1206,
-      "placing_score": 32,
-      "performance_score": 1238,
+      "place": 3,
+      "mark": "14:54.94",
+      "result_score": 1173,
+      "placing_score": 35,
+      "performance_score": 1208,
       "month_correction_applied": false
      },
      {
@@ -1807,35 +1708,20 @@
       "discipline_code": "5000",
       "discipline": "5000 Metres",
       "indoor": false,
-      "place": 11,
-      "mark": "14:37.77",
-      "result_score": 1207,
-      "placing_score": 28,
-      "performance_score": 1235,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-03",
-      "date_raw": "03 AUG 2025",
-      "competition": "USA Championships, Hayward Field, Eugene, OR",
-      "category": "B",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 4,
-      "mark": "15:15.89",
-      "result_score": 1132,
-      "placing_score": 31,
-      "performance_score": 1163,
+      "place": 13,
+      "mark": "14:39.30",
+      "result_score": 1204,
+      "placing_score": 0,
+      "performance_score": 1204,
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243493",
+    "competitor_id": "132779208",
     "slug": "/athletes/canada/gabriela-debues-stafford-14501531",
-    "rank": 33,
+    "rank": 31,
     "name": "Gabriela DEBUES-STAFFORD",
     "dob": "13 SEP 1995",
     "country": "CAN",
@@ -1887,12 +1773,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243494",
+    "competitor_id": "132779209",
     "slug": "/athletes/australia/maudie-skyring-14609597",
-    "rank": 34,
+    "rank": 32,
     "name": "Maudie SKYRING",
     "dob": "09 APR 1997",
     "country": "AUS",
@@ -1944,12 +1830,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243495",
+    "competitor_id": "132779210",
     "slug": "/athletes/kenya/janet-jepkoech-chepkemoi-15018098",
-    "rank": 35,
+    "rank": 33,
     "name": "Janet Jepkoech CHEPKEMOI",
     "dob": "29 NOV 2006",
     "country": "KEN",
@@ -2001,69 +1887,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243496",
-    "slug": "/athletes/united-states/karissa-schweizer-14470567",
-    "rank": 36,
-    "name": "Karissa SCHWEIZER",
-    "dob": "04 MAY 1996",
-    "country": "USA",
-    "ranking_score": 1205.0,
-    "performances": [
-     {
-      "date": "2025-07-12",
-      "date_raw": "12 JUL 2025",
-      "competition": "Sunset Tour, Jack Kemp Stadium - Occidental College, Los Angeles, CA",
-      "category": "B",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 3,
-      "mark": "14:54.94",
-      "result_score": 1173,
-      "placing_score": 35,
-      "performance_score": 1208,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-22",
-      "date_raw": "22 AUG 2025",
-      "competition": "Memorial van Damme, Boudewijnstadion, Bruxelles",
-      "category": "GW",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 13,
-      "mark": "14:39.30",
-      "result_score": 1204,
-      "placing_score": 0,
-      "performance_score": 1204,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-02-14",
-      "date_raw": "14 FEB 2026",
-      "competition": "Boston University David Hemery Valentine Invitational, Boston Univ. Track & Tennis Center, Boston, MA (i)",
-      "category": "F",
-      "discipline_code": "5000sh",
-      "discipline": "5000 Metres Short Track",
-      "indoor": false,
-      "place": 2,
-      "mark": "14:54.15",
-      "result_score": 1199,
-      "placing_score": 5,
-      "performance_score": 1204,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-06-30"
-   },
-   {
-    "competitor_id": "132243497",
+    "competitor_id": "132779211",
     "slug": "/athletes/united-states/elise-cranny-14531083",
-    "rank": 37,
+    "rank": 34,
     "name": "Elise CRANNY",
     "dob": "09 MAY 1996",
     "country": "USA",
@@ -2115,12 +1944,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243498",
+    "competitor_id": "132779212",
     "slug": "/athletes/belgium/elise-vanderelst-14526691",
-    "rank": 38,
+    "rank": 35,
     "name": "Elise VANDERELST",
     "dob": "27 JAN 1998",
     "country": "BEL",
@@ -2172,12 +2001,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243499",
+    "competitor_id": "132779213",
     "slug": "/athletes/kenya/caroline-kariba-14965231",
-    "rank": 39,
+    "rank": 36,
     "name": "Caroline KARIBA",
     "dob": "22 APR 2004",
     "country": "KEN",
@@ -2229,12 +2058,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243500",
+    "competitor_id": "132779214",
     "slug": "/athletes/united-states/jane-hedengren-15090151",
-    "rank": 40,
+    "rank": 37,
     "name": "Jane HEDENGREN",
     "dob": "23 SEP 2006",
     "country": "USA",
@@ -2286,12 +2115,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243501",
+    "competitor_id": "132779215",
     "slug": "/athletes/united-states/parker-valby-14903214",
-    "rank": 41,
+    "rank": 38,
     "name": "Parker VALBY",
     "dob": "27 SEP 2002",
     "country": "USA",
@@ -2343,12 +2172,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243502",
+    "competitor_id": "132779216",
     "slug": "/athletes/netherlands/diane-van-es-14625026",
-    "rank": 42,
+    "rank": 39,
     "name": "Diane VAN ES",
     "dob": "22 MAR 1999",
     "country": "NED",
@@ -2400,12 +2229,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243503",
+    "competitor_id": "132779217",
     "slug": "/athletes/pr-of-china/wuga-he-14862415",
-    "rank": 43,
+    "rank": 40,
     "name": "Wuga HE",
     "dob": "28 JUL 1998",
     "country": "CHN",
@@ -2457,12 +2286,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243504",
+    "competitor_id": "132779218",
     "slug": "/athletes/djibouti/samiya-hassan-nour-14786622",
-    "rank": 44,
+    "rank": 41,
     "name": "Samiya HASSAN NOUR",
     "dob": "05 DEC 1999",
     "country": "DJI",
@@ -2514,12 +2343,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243505",
+    "competitor_id": "132779219",
     "slug": "/athletes/united-states/bailey-hertenstein-14798031",
-    "rank": 45,
+    "rank": 42,
     "name": "Bailey HERTENSTEIN",
     "dob": "20 APR 2000",
     "country": "USA",
@@ -2571,12 +2400,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243506",
+    "competitor_id": "132779220",
     "slug": "/athletes/united-states/elise-stearns-14839139",
-    "rank": 46,
+    "rank": 43,
     "name": "Elise STEARNS",
     "dob": "08 MAY 2000",
     "country": "USA",
@@ -2628,12 +2457,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243507",
+    "competitor_id": "132779221",
     "slug": "/athletes/canada/regan-yee-14501254",
-    "rank": 47,
+    "rank": 44,
     "name": "Regan YEE",
     "dob": "04 JUL 1995",
     "country": "CAN",
@@ -2685,12 +2514,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243508",
+    "competitor_id": "132779222",
     "slug": "/athletes/ethiopia/mastewal-mehabaw-15308109",
-    "rank": 48,
+    "rank": 45,
     "name": "Mastewal MEHABAW",
     "dob": "31 DEC 2006",
     "country": "ETH",
@@ -2742,12 +2571,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243509",
+    "competitor_id": "132779223",
     "slug": "/athletes/kenya/doris-lemngole-15128594",
-    "rank": 49,
+    "rank": 46,
     "name": "Doris LEMNGOLE",
     "dob": "05 FEB 2002",
     "country": "KEN",
@@ -2799,12 +2628,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243510",
+    "competitor_id": "132779224",
     "slug": "/athletes/united-states/alicia-monson-14708276",
-    "rank": 50,
+    "rank": 47,
     "name": "Alicia MONSON",
     "dob": "13 MAY 1998",
     "country": "USA",
@@ -2856,12 +2685,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243511",
+    "competitor_id": "132779225",
     "slug": "/athletes/finland/nathalie-blomqvist-14719529",
-    "rank": 51,
+    "rank": 48,
     "name": "Nathalie BLOMQVIST",
     "dob": "20 APR 2001",
     "country": "FIN",
@@ -2913,12 +2742,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243512",
+    "competitor_id": "132779226",
     "slug": "/athletes/italy/micol-majori-14632353",
-    "rank": 52,
+    "rank": 49,
     "name": "Micol MAJORI",
     "dob": "04 JUN 1998",
     "country": "ITA",
@@ -2970,12 +2799,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243513",
+    "competitor_id": "132779227",
     "slug": "/athletes/uganda/charity-cherop-15058751",
-    "rank": 53,
+    "rank": 50,
     "name": "Charity CHEROP",
     "dob": "04 JUL 2007",
     "country": "UGA",
@@ -3027,69 +2856,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243514",
-    "slug": "/athletes/japan/yuma-yamamoto-14899665",
-    "rank": 54,
-    "name": "Yuma YAMAMOTO",
-    "dob": "01 MAY 2000",
-    "country": "JPN",
-    "ranking_score": 1181.0,
-    "performances": [
-     {
-      "date": "2026-06-12",
-      "date_raw": "12 JUN 2026",
-      "competition": "Japanese Championships, Municipal Mizuho Stadium, Nagoya",
-      "category": "B",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "14:59.89",
-      "result_score": 1163,
-      "placing_score": 50,
-      "performance_score": 1213,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-05-31",
-      "date_raw": "31 MAY 2025",
-      "competition": "26th Asian Athletics Championships, Gumi Civic Stadium, Gumi",
-      "category": "GL",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 3,
-      "mark": "15:16.86",
-      "result_score": 1131,
-      "placing_score": 77,
-      "performance_score": 1208,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-04",
-      "date_raw": "04 JUL 2025",
-      "competition": "Japanese Championships, National Stadium, Tokyo",
-      "category": "B",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 7,
-      "mark": "15:31.56",
-      "result_score": 1103,
-      "placing_score": 21,
-      "performance_score": 1124,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-06-30"
-   },
-   {
-    "competitor_id": "132243515",
+    "competitor_id": "132779228",
     "slug": "/athletes/italy/federica-del-buono-14480247",
-    "rank": 55,
+    "rank": 51,
     "name": "Federica DEL BUONO",
     "dob": "12 DEC 1994",
     "country": "ITA",
@@ -3141,12 +2913,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243516",
+    "competitor_id": "132779229",
     "slug": "/athletes/united-states/kayley-delay-14802030",
-    "rank": 56,
+    "rank": 52,
     "name": "Kayley DELAY",
     "dob": "07 JUN 1999",
     "country": "USA",
@@ -3198,69 +2970,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243517",
-    "slug": "/athletes/kenya/maurine-jepkoech-chebor-14989691",
-    "rank": 57,
-    "name": "Maurine Jepkoech CHEBOR",
-    "dob": "28 MAY 2004",
-    "country": "KEN",
-    "ranking_score": 1179.0,
-    "performances": [
-     {
-      "date": "2026-05-16",
-      "date_raw": "16 MAY 2026",
-      "competition": "Wanda Diamond League, China Textile City Sports Centre, Shaoxing/Keqiao",
-      "category": "A",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 11,
-      "mark": "14:39.31",
-      "result_score": 1203,
-      "placing_score": 18,
-      "performance_score": 1221,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-05",
-      "date_raw": "05 JUL 2025",
-      "competition": "Prefontaine Classic, Hayward Field, Eugene, OR",
-      "category": "GW",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 15,
-      "mark": "14:50.68",
-      "result_score": 1181,
-      "placing_score": 0,
-      "performance_score": 1181,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-04-18",
-      "date_raw": "18 APR 2026",
-      "competition": "Seven Hills Record Run, Nijmegen",
-      "category": "F",
-      "discipline_code": "5RR",
-      "discipline": "5 Kilometres Road",
-      "indoor": false,
-      "place": 3,
-      "mark": "15:15",
-      "result_score": 1134,
-      "placing_score": 3,
-      "performance_score": 1137,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-06-30"
-   },
-   {
-    "competitor_id": "132243518",
+    "competitor_id": "132779230",
     "slug": "/athletes/spain/idaira-prieto-14592926",
-    "rank": 58,
+    "rank": 53,
     "name": "Idaira PRIETO",
     "dob": "17 AUG 1997",
     "country": "ESP",
@@ -3312,12 +3027,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243519",
+    "competitor_id": "132779231",
     "slug": "/athletes/kenya/pamela-kosgei-15041996",
-    "rank": 59,
+    "rank": 54,
     "name": "Pamela KOSGEI",
     "dob": "05 JUL 2004",
     "country": "KEN",
@@ -3369,12 +3084,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243520",
+    "competitor_id": "132779232",
     "slug": "/athletes/united-states/sydney-vaught-14765580",
-    "rank": 60,
+    "rank": 55,
     "name": "Sydney VAUGHT",
     "dob": "07 MAR 2003",
     "country": "USA",
@@ -3426,12 +3141,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243521",
+    "competitor_id": "132779233",
     "slug": "/athletes/kenya/lucy-nduta-15018122",
-    "rank": 61,
+    "rank": 56,
     "name": "Lucy NDUTA",
     "dob": "16 DEC 2005",
     "country": "KEN",
@@ -3483,12 +3198,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243522",
+    "competitor_id": "132779234",
     "slug": "/athletes/great-britain-ni/eloise-walker-14655138",
-    "rank": 62,
+    "rank": 57,
     "name": "Eloise WALKER",
     "dob": "27 MAY 2001",
     "country": "GBR",
@@ -3540,12 +3255,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243523",
+    "competitor_id": "132779235",
     "slug": "/athletes/kenya/marion-jepngetich-14989690",
-    "rank": 63,
+    "rank": 58,
     "name": "Marion JEPNGETICH",
     "dob": "04 SEP 2005",
     "country": "KEN",
@@ -3597,12 +3312,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243524",
+    "competitor_id": "132779236",
     "slug": "/athletes/italy/elisa-palmero-14701876",
-    "rank": 64,
+    "rank": 59,
     "name": "Elisa PALMERO",
     "dob": "10 JUL 1999",
     "country": "ITA",
@@ -3654,12 +3369,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243525",
+    "competitor_id": "132779237",
     "slug": "/athletes/kenya/tabithanjeri-kamau-014767078",
-    "rank": 65,
+    "rank": 60,
     "name": "Tabithanjeri KAMAU",
     "dob": "03 JUL 2000",
     "country": "KEN",
@@ -3711,69 +3426,69 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243526",
-    "slug": "/athletes/pr-of-china/tiantian-liang-14950779",
-    "rank": 66,
-    "name": "Tiantian LIANG",
-    "dob": "31 AUG 2004",
-    "country": "CHN",
+    "competitor_id": "132779238",
+    "slug": "/athletes/japan/yuma-yamamoto-14899665",
+    "rank": 61,
+    "name": "Yuma YAMAMOTO",
+    "dob": "01 MAY 2000",
+    "country": "JPN",
     "ranking_score": 1171.0,
     "performances": [
      {
-      "date": "2025-09-07",
-      "date_raw": "07 SEP 2025",
-      "competition": "World Athletics Continental Tour - Beijing, National Stadium, Beijing",
-      "category": "A",
-      "discipline_code": "3000",
-      "discipline": "3000 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "8:57.65",
-      "result_score": 1113,
-      "placing_score": 70,
-      "performance_score": 1183,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-02",
-      "date_raw": "02 AUG 2025",
-      "competition": "Chinese Championships, Sports Center, Quzhou",
+      "date": "2026-06-12",
+      "date_raw": "12 JUN 2026",
+      "competition": "Japanese Championships, Municipal Mizuho Stadium, Nagoya",
       "category": "B",
       "discipline_code": "5000",
       "discipline": "5000 Metres",
       "indoor": false,
       "place": 1,
-      "mark": "15:21.66",
-      "result_score": 1121,
+      "mark": "14:59.89",
+      "result_score": 1163,
       "placing_score": 50,
-      "performance_score": 1171,
+      "performance_score": 1213,
       "month_correction_applied": false
      },
      {
-      "date": "2026-06-26",
-      "date_raw": "26 JUN 2026",
-      "competition": "Chinese Athletics Meet, Kuishan Sports Center, Rizhao",
-      "category": "B",
+      "date": "2025-05-31",
+      "date_raw": "31 MAY 2025",
+      "competition": "26th Asian Athletics Championships, Gumi Civic Stadium, Gumi",
+      "category": "GL",
       "discipline_code": "5000",
       "discipline": "5000 Metres",
       "indoor": false,
-      "place": 1,
-      "mark": "15:27.54",
-      "result_score": 1110,
-      "placing_score": 50,
-      "performance_score": 1160,
+      "place": 3,
+      "mark": "15:16.86",
+      "result_score": 1131,
+      "placing_score": 77,
+      "performance_score": 1208,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-09-18",
+      "date_raw": "18 SEP 2025",
+      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
+      "category": "OW",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 37,
+      "mark": "15:36.29",
+      "result_score": 1094,
+      "placing_score": 0,
+      "performance_score": 1094,
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243527",
+    "competitor_id": "132779239",
     "slug": "/athletes/kenya/betty-kipkore-15135704",
-    "rank": 67,
+    "rank": 62,
     "name": "Betty KIPKORE",
     "dob": "22 JUL 2003",
     "country": "KEN",
@@ -3825,12 +3540,69 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243528",
+    "competitor_id": "132779240",
+    "slug": "/athletes/pr-of-china/tiantian-liang-14950779",
+    "rank": 63,
+    "name": "Tiantian LIANG",
+    "dob": "31 AUG 2004",
+    "country": "CHN",
+    "ranking_score": 1168.0,
+    "performances": [
+     {
+      "date": "2025-09-07",
+      "date_raw": "07 SEP 2025",
+      "competition": "World Athletics Continental Tour - Beijing, National Stadium, Beijing",
+      "category": "A",
+      "discipline_code": "3000",
+      "discipline": "3000 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "8:57.65",
+      "result_score": 1113,
+      "placing_score": 70,
+      "performance_score": 1183,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-08-02",
+      "date_raw": "02 AUG 2025",
+      "competition": "Chinese Championships, Sports Center, Quzhou",
+      "category": "B",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "15:21.66",
+      "result_score": 1121,
+      "placing_score": 50,
+      "performance_score": 1171,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-11-18",
+      "date_raw": "18 NOV 2025",
+      "competition": "The 15th Games of People's Republic of China, Guangdong Ersha Sports Training Center, Guangzhou",
+      "category": "F",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "15:09.85",
+      "result_score": 1144,
+      "placing_score": 8,
+      "performance_score": 1152,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-07-07"
+   },
+   {
+    "competitor_id": "132779241",
     "slug": "/athletes/burundi/francine-niyomukunzi-14786755",
-    "rank": 68,
+    "rank": 64,
     "name": "Francine NIYOMUKUNZI",
     "dob": "01 AUG 1999",
     "country": "BDI",
@@ -3882,12 +3654,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243529",
+    "competitor_id": "132779242",
     "slug": "/athletes/united-states/katie-camarena-14696756",
-    "rank": 69,
+    "rank": 65,
     "name": "Katie CAMARENA",
     "dob": "09 SEP 1997",
     "country": "USA",
@@ -3939,12 +3711,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243530",
+    "competitor_id": "132779243",
     "slug": "/athletes/spain/maria-forero-14850944",
-    "rank": 70,
+    "rank": 66,
     "name": "Maria FORERO",
     "dob": "24 MAR 2003",
     "country": "ESP",
@@ -3996,69 +3768,69 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243531",
-    "slug": "/athletes/japan/kana-mizumoto-14955419",
-    "rank": 71,
-    "name": "Kana MIZUMOTO",
-    "dob": "26 JAN 2005",
-    "country": "JPN",
-    "ranking_score": 1165.0,
+    "competitor_id": "132779244",
+    "slug": "/athletes/united-states/weini-kelati-frezghi-14877184",
+    "rank": 67,
+    "name": "Weini KELATI FREZGHI",
+    "dob": "01 DEC 1996",
+    "country": "USA",
+    "ranking_score": 1164.0,
     "performances": [
      {
-      "date": "2025-07-04",
-      "date_raw": "04 JUL 2025",
-      "competition": "Japanese Championships, National Stadium, Tokyo",
-      "category": "B",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 3,
-      "mark": "15:13.19",
-      "result_score": 1138,
-      "placing_score": 35,
-      "performance_score": 1173,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-06-12",
-      "date_raw": "12 JUN 2026",
-      "competition": "Japanese Championships, Municipal Mizuho Stadium, Nagoya",
-      "category": "B",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 5,
-      "mark": "15:14.25",
-      "result_score": 1136,
-      "placing_score": 27,
-      "performance_score": 1163,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-12",
-      "date_raw": "12 JUL 2025",
-      "competition": "Sunset Tour, Jack Kemp Stadium - Occidental College, Los Angeles, CA",
-      "category": "B",
+      "date": "2025-08-22",
+      "date_raw": "22 AUG 2025",
+      "competition": "Memorial van Damme, Boudewijnstadion, Bruxelles",
+      "category": "GW",
       "discipline_code": "5000",
       "discipline": "5000 Metres",
       "indoor": false,
       "place": 11,
-      "mark": "15:06.98",
-      "result_score": 1150,
+      "mark": "14:37.77",
+      "result_score": 1207,
+      "placing_score": 28,
+      "performance_score": 1235,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-08-03",
+      "date_raw": "03 AUG 2025",
+      "competition": "USA Championships, Hayward Field, Eugene, OR",
+      "category": "B",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 4,
+      "mark": "15:15.89",
+      "result_score": 1132,
+      "placing_score": 31,
+      "performance_score": 1163,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-11-01",
+      "date_raw": "01 NOV 2025",
+      "competition": "Abbott Dash to the Finish Line 5K, New York, NY",
+      "category": "E",
+      "discipline_code": "5RR",
+      "discipline": "5 Kilometres Road",
+      "indoor": false,
+      "place": 2,
+      "mark": "15:34",
+      "result_score": 1083,
       "placing_score": 11,
-      "performance_score": 1161,
+      "performance_score": 1094,
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243532",
+    "competitor_id": "132779245",
     "slug": "/athletes/united-states/ella-donaghu-014582269",
-    "rank": 72,
+    "rank": 68,
     "name": "Ella DONAGHU",
     "dob": "13 APR 1998",
     "country": "USA",
@@ -4110,12 +3882,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243533",
+    "competitor_id": "132779246",
     "slug": "/athletes/ethiopia/yenenesh-shimket-15043002",
-    "rank": 73,
+    "rank": 69,
     "name": "Yenenesh SHIMKET",
     "dob": "09 FEB 2007",
     "country": "ETH",
@@ -4167,69 +3939,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243534",
-    "slug": "/athletes/japan/ririka-hironaka-14766617",
-    "rank": 74,
-    "name": "Ririka HIRONAKA",
-    "dob": "24 NOV 2000",
-    "country": "JPN",
-    "ranking_score": 1161.0,
-    "performances": [
-     {
-      "date": "2025-07-04",
-      "date_raw": "04 JUL 2025",
-      "competition": "Japanese Championships, National Stadium, Tokyo",
-      "category": "B",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "15:12.61",
-      "result_score": 1139,
-      "placing_score": 42,
-      "performance_score": 1181,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-12",
-      "date_raw": "12 JUL 2025",
-      "competition": "HOKUREN Distance Challenge 2025 in Chitose, Aoba Park Athletic Field, Chitose",
-      "category": "F",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 5,
-      "mark": "15:04.11",
-      "result_score": 1155,
-      "placing_score": 0,
-      "performance_score": 1155,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-16",
-      "date_raw": "16 JUL 2025",
-      "competition": "HOKUREN Distance Challenge 2025 in KITAMI, Municipal Stadium, Kitami",
-      "category": "F",
-      "discipline_code": "3000",
-      "discipline": "3000 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "8:48.90",
-      "result_score": 1143,
-      "placing_score": 5,
-      "performance_score": 1148,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-06-30"
-   },
-   {
-    "competitor_id": "132243535",
+    "competitor_id": "132779247",
     "slug": "/athletes/kenya/edna-chelulei-15211010",
-    "rank": 75,
+    "rank": 70,
     "name": "Edna CHELULEI",
     "dob": "",
     "country": "KEN",
@@ -4281,12 +3996,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243536",
+    "competitor_id": "132779248",
     "slug": "/athletes/finland/ilona-mononen-14914640",
-    "rank": 76,
+    "rank": 71,
     "name": "Ilona MONONEN",
     "dob": "18 DEC 2003",
     "country": "FIN",
@@ -4338,12 +4053,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243537",
+    "competitor_id": "132779249",
     "slug": "/athletes/kenya/judy-chepkoech-15166120",
-    "rank": 77,
+    "rank": 72,
     "name": "Judy CHEPKOECH",
     "dob": "2004",
     "country": "KEN",
@@ -4395,12 +4110,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243538",
+    "competitor_id": "132779250",
     "slug": "/athletes/france/alessia-zarbo-14761053",
-    "rank": 78,
+    "rank": 73,
     "name": "Alessia ZARBO",
     "dob": "11 SEP 2001",
     "country": "FRA",
@@ -4452,12 +4167,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243539",
+    "competitor_id": "132779251",
     "slug": "/athletes/kenya/mirriam-cherop-14700573",
-    "rank": 79,
+    "rank": 74,
     "name": "Mirriam CHEROP",
     "dob": "25 JUN 1999",
     "country": "KEN",
@@ -4509,12 +4224,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243540",
+    "competitor_id": "132779252",
     "slug": "/athletes/kenya/agnes-mwikali-mutuku-14915503",
-    "rank": 80,
+    "rank": 75,
     "name": "Agnes Mwikali MUTUKU",
     "dob": "15 DEC 2002",
     "country": "KEN",
@@ -4566,12 +4281,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243541",
+    "competitor_id": "132779253",
     "slug": "/athletes/kenya/iska-chelangat-14989689",
-    "rank": 81,
+    "rank": 76,
     "name": "Iska CHELANGAT",
     "dob": "20 APR 2004",
     "country": "KEN",
@@ -4623,12 +4338,69 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243542",
+    "competitor_id": "132779254",
+    "slug": "/athletes/kenya/maurine-jepkoech-chebor-14989691",
+    "rank": 77,
+    "name": "Maurine Jepkoech CHEBOR",
+    "dob": "28 MAY 2004",
+    "country": "KEN",
+    "ranking_score": 1155.0,
+    "performances": [
+     {
+      "date": "2026-05-16",
+      "date_raw": "16 MAY 2026",
+      "competition": "Wanda Diamond League, China Textile City Sports Centre, Shaoxing/Keqiao",
+      "category": "A",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 11,
+      "mark": "14:39.31",
+      "result_score": 1203,
+      "placing_score": 18,
+      "performance_score": 1221,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-04-18",
+      "date_raw": "18 APR 2026",
+      "competition": "Seven Hills Record Run, Nijmegen",
+      "category": "F",
+      "discipline_code": "5RR",
+      "discipline": "5 Kilometres Road",
+      "indoor": false,
+      "place": 3,
+      "mark": "15:15",
+      "result_score": 1134,
+      "placing_score": 3,
+      "performance_score": 1137,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-05-27",
+      "date_raw": "27 MAY 2026",
+      "competition": "Athletics Kenya National Police Service Track and Field Championships, Ulinzi Sports Complex, Langata, Nairobi",
+      "category": "F",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "15:33.06",
+      "result_score": 1100,
+      "placing_score": 8,
+      "performance_score": 1108,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-07-07"
+   },
+   {
+    "competitor_id": "132779255",
     "slug": "/athletes/norway/amalie-saeten-14602791",
-    "rank": 82,
+    "rank": 78,
     "name": "Amalie SÆTEN",
     "dob": "01 DEC 1997",
     "country": "NOR",
@@ -4680,12 +4452,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243543",
+    "competitor_id": "132779256",
     "slug": "/athletes/netherlands/amina-maatoug-14763372",
-    "rank": 83,
+    "rank": 79,
     "name": "Amina MAATOUG",
     "dob": "17 NOV 2002",
     "country": "NED",
@@ -4737,12 +4509,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243544",
+    "competitor_id": "132779257",
     "slug": "/athletes/france/aude-clavier-14758312",
-    "rank": 84,
+    "rank": 80,
     "name": "Aude CLAVIER",
     "dob": "10 JAN 1999",
     "country": "FRA",
@@ -4794,12 +4566,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243545",
+    "competitor_id": "132779258",
     "slug": "/athletes/canada/chloe-thomas-14910518",
-    "rank": 85,
+    "rank": 81,
     "name": "Chloe THOMAS",
     "dob": "17 OCT 2003",
     "country": "CAN",
@@ -4851,12 +4623,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243546",
+    "competitor_id": "132779259",
     "slug": "/athletes/netherlands/jennifer-gulikers-14911316",
-    "rank": 86,
+    "rank": 82,
     "name": "Jennifer GULIKERS",
     "dob": "18 AUG 1994",
     "country": "NED",
@@ -4908,12 +4680,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243547",
+    "competitor_id": "132779260",
     "slug": "/athletes/sweden/vera-sjoberg-14775610",
-    "rank": 87,
+    "rank": 83,
     "name": "Vera SJÖBERG",
     "dob": "19 MAY 2001",
     "country": "SWE",
@@ -4965,12 +4737,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243548",
+    "competitor_id": "132779261",
     "slug": "/athletes/great-britain-ni/alexandra-millard-14715650",
-    "rank": 88,
+    "rank": 84,
     "name": "Alexandra MILLARD",
     "dob": "31 DEC 2001",
     "country": "GBR",
@@ -5022,12 +4794,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243549",
+    "competitor_id": "132779262",
     "slug": "/athletes/russia/svetlana-aplachkina-14442634",
-    "rank": 89,
+    "rank": 85,
     "name": "Svetlana APLACHKINA",
     "dob": "28 NOV 1992",
     "country": "RUS",
@@ -5079,12 +4851,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243550",
+    "competitor_id": "132779263",
     "slug": "/athletes/kenya/mercyline-jepkemei-kirwa-15205630",
-    "rank": 90,
+    "rank": 86,
     "name": "Mercyline Jepkemei KIRWA",
     "dob": "23 FEB 2000",
     "country": "KEN",
@@ -5136,12 +4908,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243551",
+    "competitor_id": "132779264",
     "slug": "/athletes/kenya/daisy-jerop-14974967",
-    "rank": 91,
+    "rank": 87,
     "name": "Daisy JEROP",
     "dob": "26 APR 2006",
     "country": "KEN",
@@ -5193,12 +4965,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243552",
+    "competitor_id": "132779265",
     "slug": "/athletes/kenya/hilda-olemomoi-15014437",
-    "rank": 92,
+    "rank": 88,
     "name": "Hilda OLEMOMOI",
     "dob": "02 DEC 2003",
     "country": "KEN",
@@ -5250,12 +5022,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243553",
+    "competitor_id": "132779266",
     "slug": "/athletes/great-britain-ni/india-weir-14587874",
-    "rank": 93,
+    "rank": 89,
     "name": "India WEIR",
     "dob": "05 NOV 1999",
     "country": "GBR",
@@ -5307,12 +5079,69 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243554",
+    "competitor_id": "132779267",
+    "slug": "/athletes/japan/ririka-hironaka-14766617",
+    "rank": 90,
+    "name": "Ririka HIRONAKA",
+    "dob": "24 NOV 2000",
+    "country": "JPN",
+    "ranking_score": 1148.0,
+    "performances": [
+     {
+      "date": "2025-07-12",
+      "date_raw": "12 JUL 2025",
+      "competition": "HOKUREN Distance Challenge 2025 in Chitose, Aoba Park Athletic Field, Chitose",
+      "category": "F",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 5,
+      "mark": "15:04.11",
+      "result_score": 1155,
+      "placing_score": 0,
+      "performance_score": 1155,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-07-16",
+      "date_raw": "16 JUL 2025",
+      "competition": "HOKUREN Distance Challenge 2025 in KITAMI, Municipal Stadium, Kitami",
+      "category": "F",
+      "discipline_code": "3000",
+      "discipline": "3000 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "8:48.90",
+      "result_score": 1143,
+      "placing_score": 5,
+      "performance_score": 1148,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-09-18",
+      "date_raw": "18 SEP 2025",
+      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
+      "category": "OW",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 26,
+      "mark": "15:10.68",
+      "result_score": 1142,
+      "placing_score": 0,
+      "performance_score": 1142,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-07-07"
+   },
+   {
+    "competitor_id": "132779268",
     "slug": "/athletes/kenya/esther-muthoni-14962711",
-    "rank": 94,
+    "rank": 91,
     "name": "Esther MUTHONI",
     "dob": "27 DEC 2001",
     "country": "KEN",
@@ -5364,12 +5193,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243555",
+    "competitor_id": "132779269",
     "slug": "/athletes/belgium/lisa-rooms-14527618",
-    "rank": 95,
+    "rank": 92,
     "name": "Lisa ROOMS",
     "dob": "17 JUN 1996",
     "country": "BEL",
@@ -5421,12 +5250,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243556",
+    "competitor_id": "132779270",
     "slug": "/athletes/united-states/sophia-kennedy-14988602",
-    "rank": 96,
+    "rank": 93,
     "name": "Sophia KENNEDY",
     "dob": "11 JAN 2005",
     "country": "USA",
@@ -5478,69 +5307,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243557",
-    "slug": "/athletes/japan/nanaka-izawa-14335034",
-    "rank": 97,
-    "name": "Nanaka IZAWA",
-    "dob": "13 APR 1991",
-    "country": "JPN",
-    "ranking_score": 1146.0,
-    "performances": [
-     {
-      "date": "2026-06-12",
-      "date_raw": "12 JUN 2026",
-      "competition": "Japanese Championships, Municipal Mizuho Stadium, Nagoya",
-      "category": "B",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 6,
-      "mark": "15:14.29",
-      "result_score": 1135,
-      "placing_score": 24,
-      "performance_score": 1159,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-04-29",
-      "date_raw": "29 APR 2026",
-      "competition": "60th Oda Mikio Memorial, Municipal Stadium, Hiroshima",
-      "category": "C",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 4,
-      "mark": "15:22.42",
-      "result_score": 1120,
-      "placing_score": 21,
-      "performance_score": 1141,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-04",
-      "date_raw": "04 JUL 2025",
-      "competition": "Japanese Championships, National Stadium, Tokyo",
-      "category": "B",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 6,
-      "mark": "15:24.76",
-      "result_score": 1116,
-      "placing_score": 24,
-      "performance_score": 1140,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-06-30"
-   },
-   {
-    "competitor_id": "132243558",
+    "competitor_id": "132779271",
     "slug": "/athletes/germany/hanna-klein-14360692",
-    "rank": 98,
+    "rank": 94,
     "name": "Hanna KLEIN",
     "dob": "06 APR 1993",
     "country": "GER",
@@ -5592,12 +5364,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243559",
+    "competitor_id": "132779272",
     "slug": "/athletes/austria/lisa-redlinger-15006261",
-    "rank": 99,
+    "rank": 95,
     "name": "Lisa REDLINGER",
     "dob": "13 NOV 2002",
     "country": "AUT",
@@ -5649,12 +5421,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
    },
    {
-    "competitor_id": "132243560",
+    "competitor_id": "132779273",
     "slug": "/athletes/pr-of-china/xia-luo-14892675",
-    "rank": 100,
+    "rank": 96,
     "name": "Xia LUO",
     "dob": "10 MAY 2000",
     "country": "CHN",
@@ -5706,7 +5478,235 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-06-30"
+    "rank_date": "2026-07-07"
+   },
+   {
+    "competitor_id": "132779274",
+    "slug": "/athletes/kenya/yvonne-jepchirchir-chepkoskei-15019926",
+    "rank": 97,
+    "name": "Yvonne Jepchirchir CHEPKOSKEI",
+    "dob": "25 MAR 2006",
+    "country": "KEN",
+    "ranking_score": 1145.0,
+    "performances": [
+     {
+      "date": "2025-07-19",
+      "date_raw": "19 JUL 2025",
+      "competition": "HOKUREN Distance Challenge 2025 in ABASHIRI, Athletic Track, Abashiri",
+      "category": "F",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "15:09.06",
+      "result_score": 1146,
+      "placing_score": 8,
+      "performance_score": 1154,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-04-11",
+      "date_raw": "11 APR 2026",
+      "competition": "34rd Kanakuri Memorial Middle and Long Distance Invitational Meet, Egao Kenko Stadium, Kumamoto",
+      "category": "F",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 5,
+      "mark": "15:11.28",
+      "result_score": 1141,
+      "placing_score": 0,
+      "performance_score": 1141,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-04-29",
+      "date_raw": "29 APR 2026",
+      "competition": "60th Oda Mikio Memorial, Municipal Stadium, Hiroshima",
+      "category": "F",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 3,
+      "mark": "15:13.33",
+      "result_score": 1137,
+      "placing_score": 3,
+      "performance_score": 1140,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-07-07"
+   },
+   {
+    "competitor_id": "132779275",
+    "slug": "/athletes/japan/mikuni-yada-14747887",
+    "rank": 98,
+    "name": "Mikuni YADA",
+    "dob": "29 OCT 1999",
+    "country": "JPN",
+    "ranking_score": 1142.0,
+    "performances": [
+     {
+      "date": "2026-05-17",
+      "date_raw": "17 MAY 2026",
+      "competition": "SEIKO Golden Grand Prix, National Stadium, Tokyo",
+      "category": "A",
+      "discipline_code": "3000",
+      "discipline": "3000 Metres",
+      "indoor": false,
+      "place": 4,
+      "mark": "8:54.56",
+      "result_score": 1124,
+      "placing_score": 49,
+      "performance_score": 1173,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-12",
+      "date_raw": "12 JUN 2026",
+      "competition": "Japanese Championships, Municipal Mizuho Stadium, Nagoya",
+      "category": "B",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 9,
+      "mark": "15:25.63",
+      "result_score": 1114,
+      "placing_score": 15,
+      "performance_score": 1129,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-04-29",
+      "date_raw": "29 APR 2026",
+      "competition": "60th Oda Mikio Memorial, Municipal Stadium, Hiroshima",
+      "category": "C",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 8,
+      "mark": "15:26.44",
+      "result_score": 1112,
+      "placing_score": 13,
+      "performance_score": 1125,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-07-07"
+   },
+   {
+    "competitor_id": "132779276",
+    "slug": "/athletes/canada/jadyn-keeler-14847671",
+    "rank": 99,
+    "name": "Jadyn KEELER",
+    "dob": "16 JUN 2003",
+    "country": "CAN",
+    "ranking_score": 1142.0,
+    "performances": [
+     {
+      "date": "2026-02-14",
+      "date_raw": "14 FEB 2026",
+      "competition": "Boston University David Hemery Valentine Invitational, Boston Univ. Track & Tennis Center, Boston, MA (i)",
+      "category": "F",
+      "discipline_code": "3000sh",
+      "discipline": "3000 Metres Short Track",
+      "indoor": false,
+      "place": 7,
+      "mark": "8:50.45",
+      "result_score": 1161,
+      "placing_score": 0,
+      "performance_score": 1161,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-18",
+      "date_raw": "18 JUN 2026",
+      "competition": "Canadian Championships, Terry Fox AF, Ottawa",
+      "category": "B",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "15:30.49",
+      "result_score": 1105,
+      "placing_score": 42,
+      "performance_score": 1147,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-13",
+      "date_raw": "13 JUN 2026",
+      "competition": "NCAA Division I Outdoor Track and Field Championships, Hayward Field, Eugene, OR",
+      "category": "B",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 12,
+      "mark": "15:27.43",
+      "result_score": 1110,
+      "placing_score": 9,
+      "performance_score": 1119,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-07-07"
+   },
+   {
+    "competitor_id": "132779277",
+    "slug": "/athletes/japan/momoka-kawaguchi-14668328",
+    "rank": 100,
+    "name": "Momoka KAWAGUCHI",
+    "dob": "28 JUN 1998",
+    "country": "JPN",
+    "ranking_score": 1142.0,
+    "performances": [
+     {
+      "date": "2026-06-12",
+      "date_raw": "12 JUN 2026",
+      "competition": "Japanese Championships, Municipal Mizuho Stadium, Nagoya",
+      "category": "B",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 7,
+      "mark": "15:15.00",
+      "result_score": 1134,
+      "placing_score": 21,
+      "performance_score": 1155,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-05-17",
+      "date_raw": "17 MAY 2026",
+      "competition": "SEIKO Golden Grand Prix, National Stadium, Tokyo",
+      "category": "A",
+      "discipline_code": "3000",
+      "discipline": "3000 Metres",
+      "indoor": false,
+      "place": 6,
+      "mark": "8:59.05",
+      "result_score": 1109,
+      "placing_score": 35,
+      "performance_score": 1144,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-04-29",
+      "date_raw": "29 APR 2026",
+      "competition": "60th Oda Mikio Memorial, Municipal Stadium, Hiroshima",
+      "category": "C",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 7,
+      "mark": "15:26.21",
+      "result_score": 1113,
+      "placing_score": 14,
+      "performance_score": 1127,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-07-07"
    }
   ]
  }
