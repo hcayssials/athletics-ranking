@@ -1,0 +1,99 @@
+name: Build & deploy static site
+
+# The whole deployment story (replaces the old refresh-seed workflow + the Railway server):
+#   - Weekly (Wednesdays 06:00 UTC — World Athletics updates rankings ~Tuesdays) and on
+#     manual dispatch: re-scrape data/cache_seed/ from World Athletics, commit it if it
+#     changed, then build + deploy.
+#   - On push to main (code changes): build from the committed seed and deploy.
+# Every deploy is gated on the Python tests AND the JS/Python golden-vector parity check —
+# the browser engine must reproduce the Python engine's output exactly or nothing ships.
+
+on:
+  schedule:
+    - cron: "0 6 * * 3"   # Wednesdays 06:00 UTC
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+
+permissions:
+  contents: write   # committing the refreshed seed on scheduled runs
+  pages: write
+  id-token: write
+
+# Avoid overlapping runs racing on the seed commit / Pages deployment.
+concurrency:
+  group: deploy-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      # Scheduled/manual runs refresh the data first (~20-40 min: polite scraping).
+      # Push-triggered runs build from the committed seed — no scraping.
+      - name: Refresh the ranking seed from World Athletics
+        if: github.event_name != 'push'
+        run: python -m scripts.refresh_seed
+
+      - name: Commit & push the seed if it changed
+        if: github.event_name != 'push'
+        run: |
+          if [ -n "$(git status --porcelain data/cache_seed)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add data/cache_seed
+            git commit -m "Weekly seed refresh ($(date -u +%Y-%m-%d))"
+            git pull --rebase origin main
+            git push
+          else
+            echo "No seed changes — nothing to commit."
+          fi
+
+      - name: Python tests
+        run: python -m pytest -q
+
+      - name: Build the static data bundle + parity vectors
+        run: python -m scripts.build_static
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Install frontend dependencies
+        working-directory: web
+        run: npm ci
+
+      - name: Parity gate (JS engine must match the Python engine exactly)
+        working-directory: web
+        run: |
+          node src/engine/parity.test.mjs
+          node src/parse.test.mjs
+
+      - name: Build the site
+        working-directory: web
+        run: npm run build
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
