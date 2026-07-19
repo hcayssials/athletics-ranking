@@ -273,7 +273,7 @@ export default function App() {
   const eventLabel = eventCfg.label || event;
   const categories = meta ? meta.categories : ["GW"];
 
-  async function run(overrideForm, champ = championship, ev = event, profile = null) {
+  async function run(overrideForm, champ = championship, ev = event, profile = null, profileCountry = null) {
     const f = overrideForm || form;
     let name = (f.athlete || "").trim();
     // A pasted World Athletics link/slug in the athlete field → unranked profile path.
@@ -291,7 +291,9 @@ export default function App() {
         category: f.category, place: Math.max(1, parseInt(f.place) || 1),
         qualify: champQual && f.qualify,
         ...(f.subEvent && f.subEvent !== "main" ? { sub_event: f.subEvent } : {}),
-        ...(profile ? { profile } : {}),
+        // profile_country: the CORS-blocked profile page used to provide nationality
+        // server-side; now it rides along from the search candidate that led here.
+        ...(profile ? { profile, profile_country: profileCountry } : {}),
       });
       setResult(r); setSelected(r.athlete);
       // Reflect the scenario in the address bar so it can be copied / bookmarked / shared.
@@ -336,7 +338,7 @@ export default function App() {
   // Pick a search match → run the unranked analysis from that athlete's profile.
   function pickCandidate(c) {
     setCandidates(null);
-    run({ ...form, athlete: c.name }, championship, event, c.slug);
+    run({ ...form, athlete: c.name }, championship, event, c.slug, c.country);
   }
 
   // Click/pick an athlete → select it, preview their performances, and seed Time/Place/Category
