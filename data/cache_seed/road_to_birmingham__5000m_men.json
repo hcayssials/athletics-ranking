@@ -1,131 +1,17 @@
 {
- "_fetched_at": 1784114925.0251112,
+ "_fetched_at": 1784722961.6136866,
  "_key": "road_to_birmingham__5000m_men",
  "data": {
   "championship": "road_to_birmingham",
   "event": "5000m_men",
   "rankings_url": "https://worldathletics.org/world-rankings/5000m/men?regionType=area&region=europe",
-  "fetched": "2026-07-15T11:28:45",
-  "rank_date": "2026-07-07",
+  "fetched": "2026-07-22T12:22:41",
+  "rank_date": "2026-07-14",
   "athletes": [
    {
-    "competitor_id": "132730776",
-    "slug": "/athletes/france/jimmy-gressier-14694062",
-    "rank": 1,
-    "name": "Jimmy GRESSIER",
-    "dob": "04 MAY 1997",
-    "country": "FRA",
-    "ranking_score": 1345.0,
-    "performances": [
-     {
-      "date": "2025-09-21",
-      "date_raw": "21 SEP 2025",
-      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
-      "category": "OW",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 3,
-      "mark": "12:59.33",
-      "result_score": 1212,
-      "placing_score": 170,
-      "performance_score": 1382,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-11",
-      "date_raw": "11 JUL 2025",
-      "competition": "Meeting International d’Athlétisme Herculis EBS, Stade Louis II, Monaco",
-      "category": "GW",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "12:53.36",
-      "result_score": 1234,
-      "placing_score": 95,
-      "performance_score": 1329,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-28",
-      "date_raw": "28 AUG 2025",
-      "competition": "Weltklasse Zürich, Letzigrund, Zürich",
-      "category": "DF",
-      "discipline_code": "3000",
-      "discipline": "3000 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "7:36.78",
-      "result_score": 1196,
-      "placing_score": 130,
-      "performance_score": 1326,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-07-07"
-   },
-   {
-    "competitor_id": "132730778",
-    "slug": "/athletes/germany/mohamed-abdilaahi-14753471",
-    "rank": 2,
-    "name": "Mohamed ABDILAAHI",
-    "dob": "24 MAR 1999",
-    "country": "GER",
-    "ranking_score": 1334.0,
-    "performances": [
-     {
-      "date": "2026-05-16",
-      "date_raw": "16 MAY 2026",
-      "competition": "Wanda Diamond League, China Textile City Sports Centre, Shaoxing/Keqiao",
-      "category": "GW",
-      "discipline_code": "3000",
-      "discipline": "3000 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "7:25.77",
-      "result_score": 1266,
-      "placing_score": 115,
-      "performance_score": 1381,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-05-23",
-      "date_raw": "23 MAY 2026",
-      "competition": "Wanda Diamond League Xiamen, Egret Stadium, Xiamen",
-      "category": "GW",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "12:57.90",
-      "result_score": 1217,
-      "placing_score": 95,
-      "performance_score": 1312,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-11",
-      "date_raw": "11 JUL 2025",
-      "competition": "Meeting International d’Athlétisme Herculis EBS, Stade Louis II, Monaco",
-      "category": "GW",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 4,
-      "mark": "12:53.63",
-      "result_score": 1233,
-      "placing_score": 77,
-      "performance_score": 1310,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-07-07"
-   },
-   {
-    "competitor_id": "132730780",
+    "competitor_id": "133264545",
     "slug": "/athletes/sweden/andreas-almgren-14460738",
-    "rank": 3,
+    "rank": 1,
     "name": "Andreas ALMGREN",
     "dob": "12 JUN 1995",
     "country": "SWE",
@@ -177,12 +63,69 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730784",
+    "competitor_id": "133264547",
+    "slug": "/athletes/france/jimmy-gressier-14694062",
+    "rank": 2,
+    "name": "Jimmy GRESSIER",
+    "dob": "04 MAY 1997",
+    "country": "FRA",
+    "ranking_score": 1327.0,
+    "performances": [
+     {
+      "date": "2025-09-21",
+      "date_raw": "21 SEP 2025",
+      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
+      "category": "OW",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 3,
+      "mark": "12:59.33",
+      "result_score": 1212,
+      "placing_score": 170,
+      "performance_score": 1382,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-08-28",
+      "date_raw": "28 AUG 2025",
+      "competition": "Weltklasse Zürich, Letzigrund, Zürich",
+      "category": "DF",
+      "discipline_code": "3000",
+      "discipline": "3000 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "7:36.78",
+      "result_score": 1196,
+      "placing_score": 130,
+      "performance_score": 1326,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-28",
+      "date_raw": "28 JUN 2026",
+      "competition": "Meeting de Paris, Stade Charléty, Paris",
+      "category": "GW",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 7,
+      "mark": "12:57.79",
+      "result_score": 1218,
+      "placing_score": 56,
+      "performance_score": 1274,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-07-14"
+   },
+   {
+    "competitor_id": "133264551",
     "slug": "/athletes/belgium/isaac-kimeli-14482919",
-    "rank": 4,
+    "rank": 3,
     "name": "Isaac KIMELI",
     "dob": "09 MAR 1994",
     "country": "BEL",
@@ -234,12 +177,126 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730796",
-    "slug": "/athletes/france/yann-schrub-14528844",
+    "competitor_id": "133264560",
+    "slug": "/athletes/germany/mohamed-abdilaahi-14753471",
+    "rank": 4,
+    "name": "Mohamed ABDILAAHI",
+    "dob": "24 MAR 1999",
+    "country": "GER",
+    "ranking_score": 1258.0,
+    "performances": [
+     {
+      "date": "2026-05-16",
+      "date_raw": "16 MAY 2026",
+      "competition": "Wanda Diamond League, China Textile City Sports Centre, Shaoxing/Keqiao",
+      "category": "GW",
+      "discipline_code": "3000",
+      "discipline": "3000 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "7:25.77",
+      "result_score": 1266,
+      "placing_score": 115,
+      "performance_score": 1381,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-05-23",
+      "date_raw": "23 MAY 2026",
+      "competition": "Wanda Diamond League Xiamen, Egret Stadium, Xiamen",
+      "category": "GW",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "12:57.90",
+      "result_score": 1217,
+      "placing_score": 95,
+      "performance_score": 1312,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-08-01",
+      "date_raw": "01 AUG 2025",
+      "competition": "German Championships, Heinz-Steyer-Stadion, Dresden",
+      "category": "B",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "13:50.28",
+      "result_score": 1032,
+      "placing_score": 50,
+      "performance_score": 1082,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-07-14"
+   },
+   {
+    "competitor_id": "133264563",
+    "slug": "/athletes/switzerland/dominic-lokinyomo-lobalu-14792211",
     "rank": 5,
+    "name": "Dominic Lokinyomo LOBALU",
+    "dob": "16 AUG 1998",
+    "country": "SUI",
+    "ranking_score": 1249.0,
+    "performances": [
+     {
+      "date": "2026-07-10",
+      "date_raw": "10 JUL 2026",
+      "competition": "Meeting International d’Athlétisme Herculis EBS, Stade Louis II, Monaco",
+      "category": "GW",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "12:52.54",
+      "result_score": 1237,
+      "placing_score": 115,
+      "performance_score": 1352,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2024-06-08",
+      "date_raw": "08 JUN 2024",
+      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
+      "category": "GL",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 3,
+      "mark": "13:21.61",
+      "result_score": 1132,
+      "placing_score": 77,
+      "performance_score": 1209,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-20",
+      "date_raw": "20 JUN 2026",
+      "competition": "Track Night Vienna, LAZ Wien, Wien",
+      "category": "D",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "13:12.80",
+      "result_score": 1163,
+      "placing_score": 25,
+      "performance_score": 1188,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-07-14"
+   },
+   {
+    "competitor_id": "133264564",
+    "slug": "/athletes/france/yann-schrub-14528844",
+    "rank": 6,
     "name": "Yann SCHRUB",
     "dob": "20 MAR 1996",
     "country": "FRA",
@@ -291,12 +348,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730799",
+    "competitor_id": "133264566",
     "slug": "/athletes/germany/florian-bremm-14755523",
-    "rank": 6,
+    "rank": 7,
     "name": "Florian BREMM",
     "dob": "14 AUG 2000",
     "country": "GER",
@@ -348,30 +405,30 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730801",
+    "competitor_id": "133264570",
     "slug": "/athletes/france/etienne-daguinos-14756540",
-    "rank": 7,
+    "rank": 8,
     "name": "Etienne DAGUINOS",
     "dob": "15 FEB 2000",
     "country": "FRA",
-    "ranking_score": 1241.0,
+    "ranking_score": 1229.0,
     "performances": [
      {
-      "date": "2025-07-11",
-      "date_raw": "11 JUL 2025",
+      "date": "2026-07-10",
+      "date_raw": "10 JUL 2026",
       "competition": "Meeting International d’Athlétisme Herculis EBS, Stade Louis II, Monaco",
       "category": "GW",
       "discipline_code": "5000",
       "discipline": "5000 Metres",
       "indoor": false,
-      "place": 5,
-      "mark": "12:55.76",
-      "result_score": 1225,
-      "placing_score": 70,
-      "performance_score": 1295,
+      "place": 7,
+      "mark": "13:01.92",
+      "result_score": 1203,
+      "placing_score": 56,
+      "performance_score": 1259,
       "month_correction_applied": false
      },
      {
@@ -405,67 +462,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730805",
-    "slug": "/athletes/switzerland/dominic-lokinyomo-lobalu-14792211",
-    "rank": 8,
-    "name": "Dominic Lokinyomo LOBALU",
-    "dob": "16 AUG 1998",
-    "country": "SUI",
-    "ranking_score": 1227.0,
-    "performances": [
-     {
-      "date": "2025-07-11",
-      "date_raw": "11 JUL 2025",
-      "competition": "Meeting International d’Athlétisme Herculis EBS, Stade Louis II, Monaco",
-      "category": "GW",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 6,
-      "mark": "12:56.42",
-      "result_score": 1223,
-      "placing_score": 63,
-      "performance_score": 1286,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2024-06-08",
-      "date_raw": "08 JUN 2024",
-      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
-      "category": "GL",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 3,
-      "mark": "13:21.61",
-      "result_score": 1132,
-      "placing_score": 77,
-      "performance_score": 1209,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-06-20",
-      "date_raw": "20 JUN 2026",
-      "competition": "Track Night Vienna, LAZ Wien, Wien",
-      "category": "D",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "13:12.80",
-      "result_score": 1163,
-      "placing_score": 25,
-      "performance_score": 1188,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-07-07"
-   },
-   {
-    "competitor_id": "132730806",
+    "competitor_id": "133264575",
     "slug": "/athletes/ireland/nicholas-griggs-14982087",
     "rank": 9,
     "name": "Nicholas GRIGGS",
@@ -519,73 +519,16 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730808",
-    "slug": "/athletes/netherlands/mike-foppen-14631296",
-    "rank": 10,
-    "name": "Mike FOPPEN",
-    "dob": "29 NOV 1996",
-    "country": "NED",
-    "ranking_score": 1223.0,
-    "performances": [
-     {
-      "date": "2025-09-21",
-      "date_raw": "21 SEP 2025",
-      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
-      "category": "OW",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 12,
-      "mark": "13:05.94",
-      "result_score": 1188,
-      "placing_score": 56,
-      "performance_score": 1244,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-09-19",
-      "date_raw": "19 SEP 2025",
-      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
-      "category": "OW",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 7,
-      "mark": "13:13.97",
-      "result_score": 1159,
-      "placing_score": 56,
-      "performance_score": 1215,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-11",
-      "date_raw": "11 JUL 2025",
-      "competition": "Meeting International d’Athlétisme Herculis EBS, Stade Louis II, Monaco",
-      "category": "GW",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 11,
-      "mark": "13:06.95",
-      "result_score": 1184,
-      "placing_score": 28,
-      "performance_score": 1212,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-07-07"
-   },
-   {
-    "competitor_id": "132730813",
+    "competitor_id": "133264581",
     "slug": "/athletes/ireland/darragh-mcelhinney-14757536",
-    "rank": 11,
+    "rank": 10,
     "name": "Darragh MCELHINNEY",
     "dob": "09 NOV 2000",
     "country": "IRL",
-    "ranking_score": 1213.0,
+    "ranking_score": 1214.0,
     "performances": [
      {
       "date": "2026-02-14",
@@ -618,25 +561,82 @@
       "month_correction_applied": false
      },
      {
-      "date": "2025-07-19",
-      "date_raw": "19 JUL 2025",
-      "competition": "Night of Athletics, Stadion De Veen, Heusden-Zolder",
+      "date": "2026-07-10",
+      "date_raw": "10 JUL 2026",
+      "competition": "Morton Games, Morton Stadium, Santry, Dublin",
       "category": "C",
       "discipline_code": "5000",
       "discipline": "5000 Metres",
       "indoor": false,
-      "place": 8,
-      "mark": "13:12.17",
-      "result_score": 1165,
-      "placing_score": 13,
-      "performance_score": 1178,
+      "place": 2,
+      "mark": "13:15.90",
+      "result_score": 1152,
+      "placing_score": 28,
+      "performance_score": 1180,
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730817",
+    "competitor_id": "133264582",
+    "slug": "/athletes/netherlands/mike-foppen-14631296",
+    "rank": 11,
+    "name": "Mike FOPPEN",
+    "dob": "29 NOV 1996",
+    "country": "NED",
+    "ranking_score": 1213.0,
+    "performances": [
+     {
+      "date": "2025-09-21",
+      "date_raw": "21 SEP 2025",
+      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
+      "category": "OW",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 12,
+      "mark": "13:05.94",
+      "result_score": 1188,
+      "placing_score": 56,
+      "performance_score": 1244,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-09-19",
+      "date_raw": "19 SEP 2025",
+      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
+      "category": "OW",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 7,
+      "mark": "13:13.97",
+      "result_score": 1159,
+      "placing_score": 56,
+      "performance_score": 1215,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-07-03",
+      "date_raw": "03 JUL 2026",
+      "competition": "Prefontaine Classic, Hayward Field, Eugene, OR",
+      "category": "A",
+      "discipline_code": "2MLS",
+      "discipline": "2 Miles",
+      "indoor": false,
+      "place": 15,
+      "mark": "8:14.81",
+      "result_score": 1181,
+      "placing_score": 0,
+      "performance_score": 1181,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-07-14"
+   },
+   {
+    "competitor_id": "133264586",
     "slug": "/athletes/norway/jakob-ingebrigtsen-14653717",
     "rank": 12,
     "name": "Jakob INGEBRIGTSEN",
@@ -690,10 +690,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730825",
+    "competitor_id": "133264591",
     "slug": "/athletes/great-britain-ni/david-mullarkey-14769889",
     "rank": 13,
     "name": "David MULLARKEY",
@@ -747,10 +747,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730826",
+    "competitor_id": "133264592",
     "slug": "/athletes/netherlands/tim-verbaandert-14790169",
     "rank": 14,
     "name": "Tim VERBAANDERT",
@@ -804,10 +804,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730827",
+    "competitor_id": "133264593",
     "slug": "/athletes/norway/magnus-tuv-myhre-14910807",
     "rank": 15,
     "name": "Magnus Tuv MYHRE",
@@ -861,10 +861,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730828",
+    "competitor_id": "133264594",
     "slug": "/athletes/ireland/brian-fay-14781522",
     "rank": 16,
     "name": "Brian FAY",
@@ -918,10 +918,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730830",
+    "competitor_id": "133264596",
     "slug": "/athletes/great-britain-ni/george-mills-14646350",
     "rank": 17,
     "name": "George MILLS",
@@ -975,10 +975,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730831",
+    "competitor_id": "133264597",
     "slug": "/athletes/norway/narve-gilje-nordas-14705412",
     "rank": 18,
     "name": "Narve Gilje NORDÅS",
@@ -1032,10 +1032,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730833",
+    "competitor_id": "133264598",
     "slug": "/athletes/netherlands/mahadi-abdi-ali-14647173",
     "rank": 19,
     "name": "Mahadi ABDI ALI",
@@ -1089,30 +1089,45 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730844",
-    "slug": "/athletes/germany/sam-parsons-14628221",
+    "competitor_id": "133264601",
+    "slug": "/athletes/switzerland/jonas-raess-14427180",
     "rank": 20,
-    "name": "Sam PARSONS",
-    "dob": "18 JUN 1994",
-    "country": "GER",
-    "ranking_score": 1169.0,
+    "name": "Jonas RAESS",
+    "dob": "08 MAR 1994",
+    "country": "SUI",
+    "ranking_score": 1186.0,
     "performances": [
      {
-      "date": "2025-07-12",
-      "date_raw": "12 JUL 2025",
-      "competition": "Sunset Tour, Jack Kemp Stadium - Occidental College, Los Angeles, CA",
-      "category": "B",
+      "date": "2025-08-12",
+      "date_raw": "12 AUG 2025",
+      "competition": "Gyulai István Memorial - Hungarian Athletics Grand Prix, Nemzeti Atlétikai Központ, Budapest",
+      "category": "A",
+      "discipline_code": "3000",
+      "discipline": "3000 Metres",
+      "indoor": false,
+      "place": 8,
+      "mark": "7:36.13",
+      "result_score": 1200,
+      "placing_score": 27,
+      "performance_score": 1227,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-07-10",
+      "date_raw": "10 JUL 2026",
+      "competition": "Morton Games, Morton Stadium, Santry, Dublin",
+      "category": "C",
       "discipline_code": "5000",
       "discipline": "5000 Metres",
       "indoor": false,
       "place": 4,
-      "mark": "13:15.09",
-      "result_score": 1155,
-      "placing_score": 31,
-      "performance_score": 1186,
+      "mark": "13:17.32",
+      "result_score": 1147,
+      "placing_score": 21,
+      "performance_score": 1168,
       "month_correction_applied": false
      },
      {
@@ -1123,35 +1138,77 @@
       "discipline_code": "5000",
       "discipline": "5000 Metres",
       "indoor": false,
-      "place": 21,
-      "mark": "13:12.69",
+      "place": 20,
+      "mark": "13:12.52",
       "result_score": 1164,
       "placing_score": 0,
       "performance_score": 1164,
       "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-07-14"
+   },
+   {
+    "competitor_id": "133264609",
+    "slug": "/athletes/great-britain-ni/scott-beattie-14706588",
+    "rank": 21,
+    "name": "Scott BEATTIE",
+    "dob": "04 DEC 1998",
+    "country": "GBR",
+    "ranking_score": 1171.0,
+    "performances": [
+     {
+      "date": "2026-01-31",
+      "date_raw": "31 JAN 2026",
+      "competition": "Boston University John Thomas Terrier Classic, Boston Univ. Track & Tennis Center, Boston, MA (i)",
+      "category": "F",
+      "discipline_code": "5000sh",
+      "discipline": "5000 Metres Short Track",
+      "indoor": false,
+      "place": 2,
+      "mark": "13:13.19",
+      "result_score": 1213,
+      "placing_score": 5,
+      "performance_score": 1218,
+      "month_correction_applied": false
      },
      {
-      "date": "2025-08-16",
-      "date_raw": "16 AUG 2025",
-      "competition": "Meeting voor Mon, AtletiekArena Gaston Roelants Kessel-Lo / Hal 5, Leuven",
-      "category": "D",
-      "discipline_code": "3000",
-      "discipline": "3000 Metres",
+      "date": "2026-07-10",
+      "date_raw": "10 JUL 2026",
+      "competition": "Morton Games, Morton Stadium, Santry, Dublin",
+      "category": "C",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
       "indoor": false,
-      "place": 6,
-      "mark": "7:44.49",
-      "result_score": 1149,
-      "placing_score": 9,
-      "performance_score": 1158,
+      "place": 5,
+      "mark": "13:17.77",
+      "result_score": 1145,
+      "placing_score": 18,
+      "performance_score": 1163,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-21",
+      "date_raw": "21 JUN 2026",
+      "competition": "Novuna UK Athletics Championships, Alexander Stadium, Birmingham",
+      "category": "B",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 4,
+      "mark": "13:30.28",
+      "result_score": 1101,
+      "placing_score": 31,
+      "performance_score": 1132,
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730845",
+    "competitor_id": "133264614",
     "slug": "/athletes/portugal/jose-carlos-pinto-14685821",
-    "rank": 21,
+    "rank": 22,
     "name": "José Carlos PINTO",
     "dob": "03 MAY 1997",
     "country": "POR",
@@ -1203,12 +1260,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730849",
+    "competitor_id": "133264617",
     "slug": "/athletes/spain/thierry-ndikumwenayo-14661449",
-    "rank": 22,
+    "rank": 23,
     "name": "Thierry NDIKUMWENAYO",
     "dob": "26 MAR 1997",
     "country": "ESP",
@@ -1260,12 +1317,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730850",
+    "competitor_id": "133264618",
     "slug": "/athletes/belgium/john-heymans-14793417",
-    "rank": 23,
+    "rank": 24,
     "name": "John HEYMANS",
     "dob": "09 JAN 1998",
     "country": "BEL",
@@ -1317,183 +1374,69 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730851",
-    "slug": "/athletes/switzerland/jonas-raess-14427180",
-    "rank": 24,
-    "name": "Jonas RAESS",
-    "dob": "08 MAR 1994",
-    "country": "SUI",
-    "ranking_score": 1165.0,
+    "competitor_id": "133264620",
+    "slug": "/athletes/france/baptiste-guyon-14789002",
+    "rank": 25,
+    "name": "Baptiste GUYON",
+    "dob": "17 JAN 2001",
+    "country": "FRA",
+    "ranking_score": 1164.0,
     "performances": [
      {
-      "date": "2025-08-12",
-      "date_raw": "12 AUG 2025",
+      "date": "2026-07-14",
+      "date_raw": "14 JUL 2026",
       "competition": "Gyulai István Memorial - Hungarian Athletics Grand Prix, Nemzeti Atlétikai Központ, Budapest",
       "category": "A",
       "discipline_code": "3000",
       "discipline": "3000 Metres",
       "indoor": false,
-      "place": 8,
-      "mark": "7:36.13",
-      "result_score": 1200,
-      "placing_score": 27,
-      "performance_score": 1227,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-09",
-      "date_raw": "09 AUG 2025",
-      "competition": "IFAM Oordegem, Putbosstadion, Oordegem",
-      "category": "C",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 20,
-      "mark": "13:12.52",
-      "result_score": 1164,
-      "placing_score": 0,
-      "performance_score": 1164,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-20",
-      "date_raw": "20 AUG 2025",
-      "competition": "Athletissima Lausanne, Stade Olympique de la Pontaise, Lausanne",
-      "category": "GW",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 15,
-      "mark": "13:28.89",
-      "result_score": 1106,
-      "placing_score": 0,
-      "performance_score": 1106,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-07-07"
-   },
-   {
-    "competitor_id": "132730854",
-    "slug": "/athletes/serbia/elzan-bibic-14645235",
-    "rank": 25,
-    "name": "Elzan BIBIĆ",
-    "dob": "08 JAN 1999",
-    "country": "SRB",
-    "ranking_score": 1164.0,
-    "performances": [
-     {
-      "date": "2024-06-08",
-      "date_raw": "08 JUN 2024",
-      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
-      "category": "GL",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
       "place": 6,
-      "mark": "13:24.54",
-      "result_score": 1121,
-      "placing_score": 56,
-      "performance_score": 1177,
+      "mark": "7:34.58",
+      "result_score": 1210,
+      "placing_score": 35,
+      "performance_score": 1245,
       "month_correction_applied": false
      },
      {
-      "date": "2025-08-09",
-      "date_raw": "09 AUG 2025",
-      "competition": "IFAM Oordegem, Putbosstadion, Oordegem",
-      "category": "C",
+      "date": "2026-07-04",
+      "date_raw": "04 JUL 2026",
+      "competition": "Meeting National Est Lyonnais, Stade Raymond Troussier, Decines",
+      "category": "D",
       "discipline_code": "5000",
       "discipline": "5000 Metres",
       "indoor": false,
-      "place": 22,
-      "mark": "13:13.06",
-      "result_score": 1162,
-      "placing_score": 0,
-      "performance_score": 1162,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-13",
-      "date_raw": "13 JUL 2025",
-      "competition": "Meeting International de Marseille, Stade Delort, Marseille",
-      "category": "C",
-      "discipline_code": "3000",
-      "discipline": "3000 Metres",
-      "indoor": false,
-      "place": 4,
-      "mark": "7:47.31",
-      "result_score": 1132,
-      "placing_score": 21,
+      "place": 3,
+      "mark": "13:19.79",
+      "result_score": 1138,
+      "placing_score": 15,
       "performance_score": 1153,
       "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-07-07"
-   },
-   {
-    "competitor_id": "132730857",
-    "slug": "/athletes/great-britain-ni/scott-beattie-14706588",
-    "rank": 26,
-    "name": "Scott BEATTIE",
-    "dob": "04 DEC 1998",
-    "country": "GBR",
-    "ranking_score": 1158.0,
-    "performances": [
+     },
      {
-      "date": "2026-01-31",
-      "date_raw": "31 JAN 2026",
-      "competition": "Boston University John Thomas Terrier Classic, Boston Univ. Track & Tennis Center, Boston, MA (i)",
+      "date": "2025-07-19",
+      "date_raw": "19 JUL 2025",
+      "competition": "Night of Athletics, Stadion De Veen, Heusden-Zolder",
       "category": "F",
-      "discipline_code": "5000sh",
-      "discipline": "5000 Metres Short Track",
-      "indoor": false,
-      "place": 2,
-      "mark": "13:13.19",
-      "result_score": 1213,
-      "placing_score": 5,
-      "performance_score": 1218,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-06-21",
-      "date_raw": "21 JUN 2026",
-      "competition": "Novuna UK Athletics Championships, Alexander Stadium, Birmingham",
-      "category": "B",
       "discipline_code": "5000",
       "discipline": "5000 Metres",
       "indoor": false,
-      "place": 4,
-      "mark": "13:30.28",
-      "result_score": 1101,
-      "placing_score": 31,
-      "performance_score": 1132,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-06-03",
-      "date_raw": "03 JUN 2026",
-      "competition": "Paavo Nurmi Games, Paavo Nurmen Stadion, Turku",
-      "category": "A",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 10,
-      "mark": "13:29.41",
-      "result_score": 1104,
-      "placing_score": 21,
-      "performance_score": 1125,
+      "place": 5,
+      "mark": "13:32.10",
+      "result_score": 1095,
+      "placing_score": 0,
+      "performance_score": 1095,
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730860",
+    "competitor_id": "133264625",
     "slug": "/athletes/norway/andreas-fjeld-halvorsen-14945313",
-    "rank": 27,
+    "rank": 26,
     "name": "Andreas FJELD HALVORSEN",
     "dob": "14 SEP 2005",
     "country": "NOR",
@@ -1545,12 +1488,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730861",
+    "competitor_id": "133264626",
     "slug": "/athletes/ireland/andrew-coscoran-14595170",
-    "rank": 28,
+    "rank": 27,
     "name": "Andrew COSCORAN",
     "dob": "18 JUN 1996",
     "country": "IRL",
@@ -1602,183 +1545,69 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730874",
-    "slug": "/athletes/ireland/jack-oleary-14648669",
-    "rank": 29,
-    "name": "Jack O'LEARY",
-    "dob": "04 NOV 1997",
-    "country": "IRL",
-    "ranking_score": 1143.0,
+    "competitor_id": "133264632",
+    "slug": "/athletes/serbia/elzan-bibic-14645235",
+    "rank": 28,
+    "name": "Elzan BIBIĆ",
+    "dob": "08 JAN 1999",
+    "country": "SRB",
+    "ranking_score": 1151.0,
     "performances": [
      {
-      "date": "2026-01-31",
-      "date_raw": "31 JAN 2026",
-      "competition": "Boston University John Thomas Terrier Classic, Boston Univ. Track & Tennis Center, Boston, MA (i)",
-      "category": "F",
-      "discipline_code": "3000sh",
-      "discipline": "3000 Metres Short Track",
+      "date": "2024-06-08",
+      "date_raw": "08 JUN 2024",
+      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
+      "category": "GL",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
       "indoor": false,
-      "place": 8,
-      "mark": "7:42.57",
-      "result_score": 1185,
+      "place": 6,
+      "mark": "13:24.54",
+      "result_score": 1121,
+      "placing_score": 56,
+      "performance_score": 1177,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-08-09",
+      "date_raw": "09 AUG 2025",
+      "competition": "IFAM Oordegem, Putbosstadion, Oordegem",
+      "category": "C",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 22,
+      "mark": "13:13.06",
+      "result_score": 1162,
       "placing_score": 0,
-      "performance_score": 1185,
+      "performance_score": 1162,
       "month_correction_applied": false
      },
      {
-      "date": "2025-07-11",
-      "date_raw": "11 JUL 2025",
-      "competition": "Morton Games, Morton Stadium, Santry, Dublin",
+      "date": "2025-07-19",
+      "date_raw": "19 JUL 2025",
+      "competition": "Meeting Maia Cidade do Desporto, Estádio José Vieira de Carvalho, Maia",
       "category": "C",
       "discipline_code": "5000",
       "discipline": "5000 Metres",
       "indoor": false,
-      "place": 4,
-      "mark": "13:22.67",
-      "result_score": 1128,
-      "placing_score": 21,
-      "performance_score": 1149,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-03",
-      "date_raw": "03 AUG 2025",
-      "competition": "Irish Championships, Morton Stadium, Santry, Dublin",
-      "category": "B",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 3,
-      "mark": "13:41.47",
-      "result_score": 1062,
+      "place": 1,
+      "mark": "13:36.29",
+      "result_score": 1080,
       "placing_score": 35,
-      "performance_score": 1097,
+      "performance_score": 1115,
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730875",
-    "slug": "/athletes/spain/miguel-angel-martinez-14834111",
-    "rank": 30,
-    "name": "Miguel Angel MARTÍNEZ",
-    "dob": "22 MAY 2002",
-    "country": "ESP",
-    "ranking_score": 1142.0,
-    "performances": [
-     {
-      "date": "2025-07-11",
-      "date_raw": "11 JUL 2025",
-      "competition": "Morton Games, Morton Stadium, Santry, Dublin",
-      "category": "C",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 3,
-      "mark": "13:21.61",
-      "result_score": 1132,
-      "placing_score": 24,
-      "performance_score": 1156,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-01-24",
-      "date_raw": "24 JAN 2026",
-      "competition": "Meeting Indoor de Lyon, Halle Stéphane Diagana, Lyon (i)",
-      "category": "C",
-      "discipline_code": "3000sh",
-      "discipline": "3000 Metres Short Track",
-      "indoor": false,
-      "place": 2,
-      "mark": "7:52.25",
-      "result_score": 1125,
-      "placing_score": 28,
-      "performance_score": 1153,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-05-23",
-      "date_raw": "23 MAY 2026",
-      "competition": "IFAM Outdoor, Boudewijnstadion, Bruxelles",
-      "category": "C",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 4,
-      "mark": "13:31.42",
-      "result_score": 1097,
-      "placing_score": 21,
-      "performance_score": 1118,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-07-07"
-   },
-   {
-    "competitor_id": "132730877",
-    "slug": "/athletes/lithuania/simas-bertasius-14513653",
-    "rank": 31,
-    "name": "Simas BERTAŠIUS",
-    "dob": "31 OCT 1993",
-    "country": "LTU",
-    "ranking_score": 1141.0,
-    "performances": [
-     {
-      "date": "2025-07-12",
-      "date_raw": "12 JUL 2025",
-      "competition": "British Milers Club Grand Prix, Woodside Stadium, Watford",
-      "category": "D",
-      "discipline_code": "3000",
-      "discipline": "3000 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "7:42.07",
-      "result_score": 1164,
-      "placing_score": 25,
-      "performance_score": 1189,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-06-20",
-      "date_raw": "20 JUN 2026",
-      "competition": "Track Night Vienna, LAZ Wien, Wien",
-      "category": "D",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 4,
-      "mark": "13:25.92",
-      "result_score": 1116,
-      "placing_score": 13,
-      "performance_score": 1129,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-06-07",
-      "date_raw": "07 JUN 2026",
-      "competition": "Vilnius 5000m, Vingis Park Stadium, Vilnius",
-      "category": "F",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "13:31.17",
-      "result_score": 1098,
-      "placing_score": 8,
-      "performance_score": 1106,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-07-07"
-   },
-   {
-    "competitor_id": "132730878",
+    "competitor_id": "133264640",
     "slug": "/athletes/norway/awet-nftalem-kibrab-14579463",
-    "rank": 32,
+    "rank": 29,
     "name": "Awet Nftalem KIBRAB",
     "dob": "09 MAY 1995",
     "country": "NOR",
@@ -1830,12 +1659,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730885",
+    "competitor_id": "133264647",
     "slug": "/athletes/great-britain-ni/george-couttie-15034457",
-    "rank": 33,
+    "rank": 30,
     "name": "George COUTTIE",
     "dob": "15 JAN 2005",
     "country": "GBR",
@@ -1887,12 +1716,69 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730889",
+    "competitor_id": "133264650",
+    "slug": "/athletes/lithuania/simas-bertasius-14513653",
+    "rank": 31,
+    "name": "Simas BERTAŠIUS",
+    "dob": "31 OCT 1993",
+    "country": "LTU",
+    "ranking_score": 1134.0,
+    "performances": [
+     {
+      "date": "2026-01-31",
+      "date_raw": "31 JAN 2026",
+      "competition": "Boston University John Thomas Terrier Classic, Boston Univ. Track & Tennis Center, Boston, MA (i)",
+      "category": "F",
+      "discipline_code": "5000sh",
+      "discipline": "5000 Metres Short Track",
+      "indoor": false,
+      "place": 1,
+      "mark": "13:27.00",
+      "result_score": 1161,
+      "placing_score": 8,
+      "performance_score": 1169,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-20",
+      "date_raw": "20 JUN 2026",
+      "competition": "Track Night Vienna, LAZ Wien, Wien",
+      "category": "D",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 4,
+      "mark": "13:25.92",
+      "result_score": 1116,
+      "placing_score": 13,
+      "performance_score": 1129,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-07",
+      "date_raw": "07 JUN 2026",
+      "competition": "Vilnius 5000m, Vingis Park Stadium, Vilnius",
+      "category": "F",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "13:31.17",
+      "result_score": 1098,
+      "placing_score": 8,
+      "performance_score": 1106,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-07-14"
+   },
+   {
+    "competitor_id": "133264652",
     "slug": "/athletes/great-britain-ni/james-west-14525705",
-    "rank": 34,
+    "rank": 32,
     "name": "James WEST",
     "dob": "30 JAN 1996",
     "country": "GBR",
@@ -1944,240 +1830,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730890",
-    "slug": "/athletes/france/simon-bedard-14643587",
-    "rank": 35,
-    "name": "Simon BEDARD",
-    "dob": "03 JAN 1997",
-    "country": "FRA",
-    "ranking_score": 1133.0,
-    "performances": [
-     {
-      "date": "2026-07-04",
-      "date_raw": "04 JUL 2026",
-      "competition": "Meeting National Est Lyonnais, Stade Raymond Troussier, Decines",
-      "category": "D",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "13:18.81",
-      "result_score": 1142,
-      "placing_score": 19,
-      "performance_score": 1161,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-13",
-      "date_raw": "13 JUL 2025",
-      "competition": "Meeting International de Marseille, Stade Delort, Marseille",
-      "category": "C",
-      "discipline_code": "3000",
-      "discipline": "3000 Metres",
-      "indoor": false,
-      "place": 5,
-      "mark": "7:47.58",
-      "result_score": 1130,
-      "placing_score": 18,
-      "performance_score": 1148,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-19",
-      "date_raw": "19 JUL 2025",
-      "competition": "Night of Athletics, Stadion De Veen, Heusden-Zolder",
-      "category": "C",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 22,
-      "mark": "13:33.11",
-      "result_score": 1091,
-      "placing_score": 0,
-      "performance_score": 1091,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-07-07"
-   },
-   {
-    "competitor_id": "132730891",
-    "slug": "/athletes/belgium/thomas-vanoppen-14759004",
-    "rank": 36,
-    "name": "Thomas VANOPPEN",
-    "dob": "19 SEP 1999",
-    "country": "BEL",
-    "ranking_score": 1132.0,
-    "performances": [
-     {
-      "date": "2025-07-09",
-      "date_raw": "09 JUL 2025",
-      "competition": "Cork City Sports, Munster Technological University Track, Cork",
-      "category": "C",
-      "discipline_code": "3000",
-      "discipline": "3000 Metres",
-      "indoor": false,
-      "place": 4,
-      "mark": "7:38.96",
-      "result_score": 1183,
-      "placing_score": 21,
-      "performance_score": 1204,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-06-03",
-      "date_raw": "03 JUN 2026",
-      "competition": "Paavo Nurmi Games, Paavo Nurmen Stadion, Turku",
-      "category": "A",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 11,
-      "mark": "13:30.24",
-      "result_score": 1101,
-      "placing_score": 18,
-      "performance_score": 1119,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-19",
-      "date_raw": "19 JUL 2025",
-      "competition": "Night of Athletics, Stadion De Veen, Heusden-Zolder",
-      "category": "C",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 25,
-      "mark": "13:38.45",
-      "result_score": 1073,
-      "placing_score": 0,
-      "performance_score": 1073,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-07-07"
-   },
-   {
-    "competitor_id": "132730893",
-    "slug": "/athletes/spain/abdessamad-oukhelfen-14708418",
-    "rank": 37,
-    "name": "Abdessamad OUKHELFEN",
-    "dob": "18 DEC 1998",
-    "country": "ESP",
-    "ranking_score": 1132.0,
-    "performances": [
-     {
-      "date": "2026-06-06",
-      "date_raw": "06 JUN 2026",
-      "competition": "The Lightning 10.000, Herrenwaldhalle, Stadtallendorf",
-      "category": "D",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "13:25.48",
-      "result_score": 1118,
-      "placing_score": 25,
-      "performance_score": 1143,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-13",
-      "date_raw": "13 JUL 2025",
-      "competition": "Meeting International de Marseille, Stade Delort, Marseille",
-      "category": "C",
-      "discipline_code": "3000",
-      "discipline": "3000 Metres",
-      "indoor": false,
-      "place": 8,
-      "mark": "7:49.94",
-      "result_score": 1116,
-      "placing_score": 13,
-      "performance_score": 1129,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-11",
-      "date_raw": "11 JUL 2025",
-      "competition": "Meeting International d’Athlétisme Herculis EBS, Stade Louis II, Monaco",
-      "category": "GW",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 12,
-      "mark": "13:30.94",
-      "result_score": 1099,
-      "placing_score": 25,
-      "performance_score": 1124,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-07-07"
-   },
-   {
-    "competitor_id": "132730899",
-    "slug": "/athletes/france/fabien-palcau-14592082",
-    "rank": 38,
-    "name": "Fabien PALCAU",
-    "dob": "22 JUN 1997",
-    "country": "FRA",
-    "ranking_score": 1129.0,
-    "performances": [
-     {
-      "date": "2025-08-09",
-      "date_raw": "09 AUG 2025",
-      "competition": "IFAM Oordegem, Putbosstadion, Oordegem",
-      "category": "C",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 23,
-      "mark": "13:13.24",
-      "result_score": 1162,
-      "placing_score": 0,
-      "performance_score": 1162,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-01-31",
-      "date_raw": "31 JAN 2026",
-      "competition": "Boston University John Thomas Terrier Classic, Boston Univ. Track & Tennis Center, Boston, MA (i)",
-      "category": "F",
-      "discipline_code": "5000sh",
-      "discipline": "5000 Metres Short Track",
-      "indoor": false,
-      "place": 8,
-      "mark": "13:30.87",
-      "result_score": 1147,
-      "placing_score": 0,
-      "performance_score": 1147,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-11",
-      "date_raw": "11 JUL 2025",
-      "competition": "Meeting International d’Athlétisme Herculis EBS, Stade Louis II, Monaco",
-      "category": "GW",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 13,
-      "mark": "13:36.36",
-      "result_score": 1080,
-      "placing_score": 0,
-      "performance_score": 1080,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-07-07"
-   },
-   {
-    "competitor_id": "132730903",
+    "competitor_id": "133264662",
     "slug": "/athletes/ireland/callum-morgan-14903471",
-    "rank": 39,
+    "rank": 33,
     "name": "Callum MORGAN",
     "dob": "18 JUN 2003",
     "country": "IRL",
@@ -2229,12 +1887,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730905",
+    "competitor_id": "133264664",
     "slug": "/athletes/italy/francesco-guerra-14780698",
-    "rank": 40,
+    "rank": 34,
     "name": "Francesco GUERRA",
     "dob": "17 JUL 2001",
     "country": "ITA",
@@ -2286,12 +1944,69 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730907",
+    "competitor_id": "133264665",
+    "slug": "/athletes/germany/sam-parsons-14628221",
+    "rank": 35,
+    "name": "Sam PARSONS",
+    "dob": "18 JUN 1994",
+    "country": "GER",
+    "ranking_score": 1126.0,
+    "performances": [
+     {
+      "date": "2025-08-09",
+      "date_raw": "09 AUG 2025",
+      "competition": "IFAM Oordegem, Putbosstadion, Oordegem",
+      "category": "C",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 21,
+      "mark": "13:12.69",
+      "result_score": 1164,
+      "placing_score": 0,
+      "performance_score": 1164,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-08-16",
+      "date_raw": "16 AUG 2025",
+      "competition": "Meeting voor Mon, AtletiekArena Gaston Roelants Kessel-Lo / Hal 5, Leuven",
+      "category": "D",
+      "discipline_code": "3000",
+      "discipline": "3000 Metres",
+      "indoor": false,
+      "place": 6,
+      "mark": "7:44.49",
+      "result_score": 1149,
+      "placing_score": 9,
+      "performance_score": 1158,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-08-01",
+      "date_raw": "01 AUG 2025",
+      "competition": "German Championships, Heinz-Steyer-Stadion, Dresden",
+      "category": "B",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 4,
+      "mark": "13:52.30",
+      "result_score": 1025,
+      "placing_score": 31,
+      "performance_score": 1056,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-07-14"
+   },
+   {
+    "competitor_id": "133264667",
     "slug": "/athletes/belgium/guillaume-grimard-14706091",
-    "rank": 41,
+    "rank": 36,
     "name": "Guillaume GRIMARD",
     "dob": "18 FEB 1999",
     "country": "BEL",
@@ -2343,69 +2058,126 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730908",
-    "slug": "/athletes/great-britain-ni/charles-wheeler-14769121",
-    "rank": 42,
-    "name": "Charles WHEELER",
-    "dob": "04 JUL 1998",
-    "country": "GBR",
-    "ranking_score": 1125.0,
+    "competitor_id": "133264669",
+    "slug": "/athletes/ireland/jack-oleary-14648669",
+    "rank": 37,
+    "name": "Jack O'LEARY",
+    "dob": "04 NOV 1997",
+    "country": "IRL",
+    "ranking_score": 1124.0,
     "performances": [
      {
-      "date": "2025-07-09",
-      "date_raw": "09 JUL 2025",
-      "competition": "Cork City Sports, Munster Technological University Track, Cork",
-      "category": "C",
-      "discipline_code": "3000",
-      "discipline": "3000 Metres",
+      "date": "2026-01-31",
+      "date_raw": "31 JAN 2026",
+      "competition": "Boston University John Thomas Terrier Classic, Boston Univ. Track & Tennis Center, Boston, MA (i)",
+      "category": "F",
+      "discipline_code": "3000sh",
+      "discipline": "3000 Metres Short Track",
       "indoor": false,
-      "place": 6,
-      "mark": "7:42.49",
-      "result_score": 1161,
-      "placing_score": 16,
-      "performance_score": 1177,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-09",
-      "date_raw": "09 AUG 2025",
-      "competition": "IFAM Oordegem, Putbosstadion, Oordegem",
-      "category": "C",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 26,
-      "mark": "13:14.51",
-      "result_score": 1157,
+      "place": 8,
+      "mark": "7:42.57",
+      "result_score": 1185,
       "placing_score": 0,
-      "performance_score": 1157,
+      "performance_score": 1185,
       "month_correction_applied": false
      },
      {
       "date": "2025-08-03",
       "date_raw": "03 AUG 2025",
-      "competition": "UK Championships, Alexander Stadium, Birmingham",
+      "competition": "Irish Championships, Morton Stadium, Santry, Dublin",
+      "category": "B",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 3,
+      "mark": "13:41.47",
+      "result_score": 1062,
+      "placing_score": 35,
+      "performance_score": 1097,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-07-10",
+      "date_raw": "10 JUL 2026",
+      "competition": "Morton Games, Morton Stadium, Santry, Dublin",
+      "category": "C",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 10,
+      "mark": "13:35.99",
+      "result_score": 1081,
+      "placing_score": 9,
+      "performance_score": 1090,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-07-14"
+   },
+   {
+    "competitor_id": "133264670",
+    "slug": "/athletes/spain/miguel-angel-martinez-14834111",
+    "rank": 38,
+    "name": "Miguel Angel MARTÍNEZ",
+    "dob": "22 MAY 2002",
+    "country": "ESP",
+    "ranking_score": 1124.0,
+    "performances": [
+     {
+      "date": "2026-01-24",
+      "date_raw": "24 JAN 2026",
+      "competition": "Meeting Indoor de Lyon, Halle Stéphane Diagana, Lyon (i)",
+      "category": "C",
+      "discipline_code": "3000sh",
+      "discipline": "3000 Metres Short Track",
+      "indoor": false,
+      "place": 2,
+      "mark": "7:52.25",
+      "result_score": 1125,
+      "placing_score": 28,
+      "performance_score": 1153,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-05-23",
+      "date_raw": "23 MAY 2026",
+      "competition": "IFAM Outdoor, Boudewijnstadion, Bruxelles",
+      "category": "C",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 4,
+      "mark": "13:31.42",
+      "result_score": 1097,
+      "placing_score": 21,
+      "performance_score": 1118,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-08-02",
+      "date_raw": "02 AUG 2025",
+      "competition": "Spanish Championships, Estadi Natalia Rodríguez, Tarragona",
       "category": "B",
       "discipline_code": "5000",
       "discipline": "5000 Metres",
       "indoor": false,
       "place": 5,
-      "mark": "13:55.61",
-      "result_score": 1014,
+      "mark": "13:38.21",
+      "result_score": 1074,
       "placing_score": 27,
-      "performance_score": 1041,
+      "performance_score": 1101,
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730910",
+    "competitor_id": "133264671",
     "slug": "/athletes/netherlands/juan-zijderlaan-14989318",
-    "rank": 43,
+    "rank": 39,
     "name": "Juan ZIJDERLAAN",
     "dob": "27 SEP 2005",
     "country": "NED",
@@ -2457,12 +2229,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730911",
+    "competitor_id": "133264672",
     "slug": "/athletes/sweden/emil-danielsson-14593994",
-    "rank": 44,
+    "rank": 40,
     "name": "Emil DANIELSSON",
     "dob": "05 SEP 1997",
     "country": "SWE",
@@ -2514,12 +2286,69 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730913",
+    "competitor_id": "133264673",
+    "slug": "/athletes/france/fabien-palcau-14592082",
+    "rank": 41,
+    "name": "Fabien PALCAU",
+    "dob": "22 JUN 1997",
+    "country": "FRA",
+    "ranking_score": 1123.0,
+    "performances": [
+     {
+      "date": "2025-08-09",
+      "date_raw": "09 AUG 2025",
+      "competition": "IFAM Oordegem, Putbosstadion, Oordegem",
+      "category": "C",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 23,
+      "mark": "13:13.24",
+      "result_score": 1162,
+      "placing_score": 0,
+      "performance_score": 1162,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-01-31",
+      "date_raw": "31 JAN 2026",
+      "competition": "Boston University John Thomas Terrier Classic, Boston Univ. Track & Tennis Center, Boston, MA (i)",
+      "category": "F",
+      "discipline_code": "5000sh",
+      "discipline": "5000 Metres Short Track",
+      "indoor": false,
+      "place": 8,
+      "mark": "13:30.87",
+      "result_score": 1147,
+      "placing_score": 0,
+      "performance_score": 1147,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-08-01",
+      "date_raw": "01 AUG 2025",
+      "competition": "French Championships, Stade Pierre Paul Bernard, Talence",
+      "category": "B",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 5,
+      "mark": "13:49.46",
+      "result_score": 1035,
+      "placing_score": 27,
+      "performance_score": 1062,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-07-14"
+   },
+   {
+    "competitor_id": "133264675",
     "slug": "/athletes/france/bastien-augusto-14869306",
-    "rank": 45,
+    "rank": 42,
     "name": "Bastien AUGUSTO",
     "dob": "10 AUG 1999",
     "country": "FRA",
@@ -2571,12 +2400,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730917",
+    "competitor_id": "133264678",
     "slug": "/athletes/spain/aleix-vives-14968296",
-    "rank": 46,
+    "rank": 43,
     "name": "Aleix VIVES",
     "dob": "27 SEP 2004",
     "country": "ESP",
@@ -2628,12 +2457,126 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730921",
+    "competitor_id": "133264682",
+    "slug": "/athletes/france/simon-bedard-14643587",
+    "rank": 44,
+    "name": "Simon BEDARD",
+    "dob": "03 JAN 1997",
+    "country": "FRA",
+    "ranking_score": 1118.0,
+    "performances": [
+     {
+      "date": "2026-07-04",
+      "date_raw": "04 JUL 2026",
+      "competition": "Meeting National Est Lyonnais, Stade Raymond Troussier, Decines",
+      "category": "D",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "13:18.81",
+      "result_score": 1142,
+      "placing_score": 19,
+      "performance_score": 1161,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-01-31",
+      "date_raw": "31 JAN 2026",
+      "competition": "Boston University John Thomas Terrier Classic, Boston Univ. Track & Tennis Center, Boston, MA (i)",
+      "category": "F",
+      "discipline_code": "5000sh",
+      "discipline": "5000 Metres Short Track",
+      "indoor": false,
+      "place": 14,
+      "mark": "13:43.44",
+      "result_score": 1102,
+      "placing_score": 0,
+      "performance_score": 1102,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-07-19",
+      "date_raw": "19 JUL 2025",
+      "competition": "Night of Athletics, Stadion De Veen, Heusden-Zolder",
+      "category": "C",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 22,
+      "mark": "13:33.11",
+      "result_score": 1091,
+      "placing_score": 0,
+      "performance_score": 1091,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-07-14"
+   },
+   {
+    "competitor_id": "133264683",
+    "slug": "/athletes/spain/abdessamad-oukhelfen-14708418",
+    "rank": 45,
+    "name": "Abdessamad OUKHELFEN",
+    "dob": "18 DEC 1998",
+    "country": "ESP",
+    "ranking_score": 1118.0,
+    "performances": [
+     {
+      "date": "2026-06-06",
+      "date_raw": "06 JUN 2026",
+      "competition": "The Lightning 10.000, Herrenwaldhalle, Stadtallendorf",
+      "category": "D",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "13:25.48",
+      "result_score": 1118,
+      "placing_score": 25,
+      "performance_score": 1143,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-08-02",
+      "date_raw": "02 AUG 2025",
+      "competition": "Spanish Championships, Estadi Natalia Rodríguez, Tarragona",
+      "category": "B",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "13:35.96",
+      "result_score": 1081,
+      "placing_score": 42,
+      "performance_score": 1123,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-07-04",
+      "date_raw": "04 JUL 2026",
+      "competition": "Meeting National Est Lyonnais, Stade Raymond Troussier, Decines",
+      "category": "D",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 4,
+      "mark": "13:37.66",
+      "result_score": 1075,
+      "placing_score": 13,
+      "performance_score": 1088,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-07-14"
+   },
+   {
+    "competitor_id": "133264684",
     "slug": "/athletes/finland/tuomas-heikkila-14945287",
-    "rank": 47,
+    "rank": 46,
     "name": "Tuomas HEIKKILÄ",
     "dob": "08 FEB 1998",
     "country": "FIN",
@@ -2685,12 +2628,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730922",
+    "competitor_id": "133264685",
     "slug": "/athletes/denmark/joel-ibler-lilleso-14884913",
-    "rank": 48,
+    "rank": 47,
     "name": "Joel Ibler LILLESØ",
     "dob": "17 NOV 2003",
     "country": "DEN",
@@ -2742,12 +2685,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730923",
+    "competitor_id": "133264686",
     "slug": "/athletes/germany/maximilian-thorwirth-14507787",
-    "rank": 49,
+    "rank": 48,
     "name": "Maximilian THORWIRTH",
     "dob": "09 JAN 1995",
     "country": "GER",
@@ -2799,10 +2742,67 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730926",
+    "competitor_id": "133264688",
+    "slug": "/athletes/great-britain-ni/charles-wheeler-14769121",
+    "rank": 49,
+    "name": "Charles WHEELER",
+    "dob": "04 JUL 1998",
+    "country": "GBR",
+    "ranking_score": 1116.0,
+    "performances": [
+     {
+      "date": "2025-08-09",
+      "date_raw": "09 AUG 2025",
+      "competition": "IFAM Oordegem, Putbosstadion, Oordegem",
+      "category": "C",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 26,
+      "mark": "13:14.51",
+      "result_score": 1157,
+      "placing_score": 0,
+      "performance_score": 1157,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-02-13",
+      "date_raw": "13 FEB 2026",
+      "competition": "Boston University David Hemery Valentine Invitational, Boston Univ. Track & Tennis Center, Boston, MA (i)",
+      "category": "F",
+      "discipline_code": "5000sh",
+      "discipline": "5000 Metres Short Track",
+      "indoor": false,
+      "place": 11,
+      "mark": "13:30.08",
+      "result_score": 1150,
+      "placing_score": 0,
+      "performance_score": 1150,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-08-03",
+      "date_raw": "03 AUG 2025",
+      "competition": "UK Championships, Alexander Stadium, Birmingham",
+      "category": "B",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 5,
+      "mark": "13:55.61",
+      "result_score": 1014,
+      "placing_score": 27,
+      "performance_score": 1041,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-07-14"
+   },
+   {
+    "competitor_id": "133264690",
     "slug": "/athletes/france/martin-desmidt-14842524",
     "rank": 50,
     "name": "Martin DESMIDT",
@@ -2856,10 +2856,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730927",
+    "competitor_id": "133264691",
     "slug": "/athletes/france/aurelien-radja-14951653",
     "rank": 51,
     "name": "Aurélien RADJA",
@@ -2913,10 +2913,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730928",
+    "competitor_id": "133264692",
     "slug": "/athletes/great-britain-ni/andrew-butchart-14377202",
     "rank": 52,
     "name": "Andrew BUTCHART",
@@ -2970,69 +2970,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730929",
-    "slug": "/athletes/russia/vladimir-nikitin-14442497",
-    "rank": 53,
-    "name": "Vladimir NIKITIN",
-    "dob": "05 AUG 1992",
-    "country": "RUS",
-    "ranking_score": 1115.0,
-    "performances": [
-     {
-      "date": "2026-01-24",
-      "date_raw": "24 JAN 2026",
-      "competition": "Orenburg Mile, IFKiS OGPU Arena, Orenburg (i)",
-      "category": "F",
-      "discipline_code": "2MLSsh",
-      "discipline": "2 Miles Short Track",
-      "indoor": false,
-      "place": 1,
-      "mark": "8:29.79",
-      "result_score": 1137,
-      "placing_score": 8,
-      "performance_score": 1145,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-07",
-      "date_raw": "07 AUG 2025",
-      "competition": "Russian Championships, Central Stadium, Kazan",
-      "category": "B",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "13:36.63",
-      "result_score": 1079,
-      "placing_score": 50,
-      "performance_score": 1129,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-13",
-      "date_raw": "13 JUL 2025",
-      "competition": "The Cup of the Strongest Athletes, Regional Sport Complex, Brest",
-      "category": "F",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "13:40.78",
-      "result_score": 1065,
-      "placing_score": 8,
-      "performance_score": 1073,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-07-07"
-   },
-   {
-    "competitor_id": "132730931",
+    "competitor_id": "133264694",
     "slug": "/athletes/spain/yahya-aouina-el-karboubi-15036694",
-    "rank": 54,
+    "rank": 53,
     "name": "Yahya AOUINA EL KARBOUBI",
     "dob": "17 JUL 1996",
     "country": "ESP",
@@ -3084,12 +3027,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730934",
+    "competitor_id": "133264697",
     "slug": "/athletes/norway/per-svela-14704734",
-    "rank": 55,
+    "rank": 54,
     "name": "Per SVELA",
     "dob": "19 MAR 1992",
     "country": "NOR",
@@ -3141,10 +3084,67 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730942",
+    "competitor_id": "133264703",
+    "slug": "/athletes/russia/vladimir-nikitin-14442497",
+    "rank": 55,
+    "name": "Vladimir NIKITIN",
+    "dob": "05 AUG 1992",
+    "country": "RUS",
+    "ranking_score": 1108.0,
+    "performances": [
+     {
+      "date": "2026-01-24",
+      "date_raw": "24 JAN 2026",
+      "competition": "Orenburg Mile, IFKiS OGPU Arena, Orenburg (i)",
+      "category": "F",
+      "discipline_code": "2MLSsh",
+      "discipline": "2 Miles Short Track",
+      "indoor": false,
+      "place": 1,
+      "mark": "8:29.79",
+      "result_score": 1137,
+      "placing_score": 8,
+      "performance_score": 1145,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-08-07",
+      "date_raw": "07 AUG 2025",
+      "competition": "Russian Championships, Central Stadium, Kazan",
+      "category": "B",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "13:36.63",
+      "result_score": 1079,
+      "placing_score": 50,
+      "performance_score": 1129,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-07-05",
+      "date_raw": "05 JUL 2026",
+      "competition": "Cup of the Strongest Athletes of Russia and Belarus, Meteor, Zhukovskiy",
+      "category": "F",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "13:46.95",
+      "result_score": 1044,
+      "placing_score": 8,
+      "performance_score": 1052,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-07-14"
+   },
+   {
+    "competitor_id": "133264706",
     "slug": "/athletes/great-britain-ni/jacob-cann-14983004",
     "rank": 56,
     "name": "Jacob CANN",
@@ -3198,10 +3198,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730947",
+    "competitor_id": "133264711",
     "slug": "/athletes/poland/kamil-herzyk-14918294",
     "rank": 57,
     "name": "Kamil HERZYK",
@@ -3255,10 +3255,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730948",
+    "competitor_id": "133264712",
     "slug": "/athletes/france/arthur-gervais-14798932",
     "rank": 58,
     "name": "Arthur GERVAIS",
@@ -3312,10 +3312,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730949",
+    "competitor_id": "133264713",
     "slug": "/athletes/sweden/jonathan-grahn-14944276",
     "rank": 59,
     "name": "Jonathan GRAHN",
@@ -3369,10 +3369,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730956",
+    "competitor_id": "133264721",
     "slug": "/athletes/great-britain-ni/tomer-tarragano-14951981",
     "rank": 60,
     "name": "Tomer TARRAGANO",
@@ -3426,10 +3426,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730962",
+    "competitor_id": "133264726",
     "slug": "/athletes/austria/kevin-kamenschak-14910863",
     "rank": 61,
     "name": "Kevin KAMENSCHAK",
@@ -3483,10 +3483,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730963",
+    "competitor_id": "133264727",
     "slug": "/athletes/netherlands/nik-lemmink-14989281",
     "rank": 62,
     "name": "Nik LEMMINK",
@@ -3540,10 +3540,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730968",
+    "competitor_id": "133264732",
     "slug": "/athletes/france/edouard-morin-luzuy-14925661",
     "rank": 63,
     "name": "Edouard MORIN-LUZUY",
@@ -3597,10 +3597,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730972",
+    "competitor_id": "133264736",
     "slug": "/athletes/israel/matan-ivri-14943253",
     "rank": 64,
     "name": "Matan IVRI",
@@ -3654,10 +3654,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730973",
+    "competitor_id": "133264737",
     "slug": "/athletes/germany/theodor-schucht-14988386",
     "rank": 65,
     "name": "Theodor SCHUCHT",
@@ -3711,10 +3711,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730980",
+    "competitor_id": "133264744",
     "slug": "/athletes/norway/magnus-oyen-15044764",
     "rank": 66,
     "name": "Magnus ØYEN",
@@ -3768,10 +3768,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730981",
+    "competitor_id": "133264745",
     "slug": "/athletes/italy/sebastiano-parolini-14702996",
     "rank": 67,
     "name": "Sebastiano PAROLINI",
@@ -3825,10 +3825,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730983",
+    "competitor_id": "133264747",
     "slug": "/athletes/great-britain-ni/bradley-giblin-15030973",
     "rank": 68,
     "name": "Bradley GIBLIN",
@@ -3882,10 +3882,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730984",
+    "competitor_id": "133264748",
     "slug": "/athletes/spain/adam-maijo-14826040",
     "rank": 69,
     "name": "Adam MAIJO",
@@ -3939,67 +3939,67 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730990",
-    "slug": "/athletes/france/baptiste-guyon-14789002",
+    "competitor_id": "133264756",
+    "slug": "/athletes/spain/eduardo-menacho-14677463",
     "rank": 70,
-    "name": "Baptiste GUYON",
-    "dob": "17 JAN 2001",
-    "country": "FRA",
+    "name": "Eduardo MENACHO",
+    "dob": "25 NOV 1999",
+    "country": "ESP",
     "ranking_score": 1089.0,
     "performances": [
      {
-      "date": "2026-07-04",
-      "date_raw": "04 JUL 2026",
-      "competition": "Meeting National Est Lyonnais, Stade Raymond Troussier, Decines",
-      "category": "D",
+      "date": "2025-08-02",
+      "date_raw": "02 AUG 2025",
+      "competition": "Spanish Championships, Estadi Natalia Rodríguez, Tarragona",
+      "category": "B",
       "discipline_code": "5000",
       "discipline": "5000 Metres",
       "indoor": false,
       "place": 3,
-      "mark": "13:19.79",
-      "result_score": 1138,
-      "placing_score": 15,
-      "performance_score": 1153,
+      "mark": "13:36.17",
+      "result_score": 1081,
+      "placing_score": 35,
+      "performance_score": 1116,
       "month_correction_applied": false
      },
      {
-      "date": "2025-07-19",
-      "date_raw": "19 JUL 2025",
-      "competition": "Night of Athletics, Stadion De Veen, Heusden-Zolder",
-      "category": "F",
+      "date": "2026-07-11",
+      "date_raw": "11 JUL 2026",
+      "competition": "Meeting of Braga, Estádio 1o de Maio, Braga",
+      "category": "C",
       "discipline_code": "5000",
       "discipline": "5000 Metres",
       "indoor": false,
-      "place": 5,
-      "mark": "13:32.10",
-      "result_score": 1095,
-      "placing_score": 0,
-      "performance_score": 1095,
+      "place": 1,
+      "mark": "13:41.76",
+      "result_score": 1061,
+      "placing_score": 35,
+      "performance_score": 1096,
       "month_correction_applied": false
      },
      {
-      "date": "2025-10-26",
-      "date_raw": "26 OCT 2025",
-      "competition": "French Senior 5 km Road Running Championships & U23 Women, Fréjus",
+      "date": "2026-02-28",
+      "date_raw": "28 FEB 2026",
+      "competition": "Spanish Indoor Championships, Velódromo Luis Puig, Valencia (i)",
       "category": "D",
-      "discipline_code": "5RR",
-      "discipline": "5 Kilometres Road",
+      "discipline_code": "3000sh",
+      "discipline": "3000 Metres Short Track",
       "indoor": false,
-      "place": 2,
-      "mark": "14:00",
-      "result_score": 1000,
-      "placing_score": 19,
-      "performance_score": 1019,
+      "place": 9,
+      "mark": "8:03.70",
+      "result_score": 1056,
+      "placing_score": 0,
+      "performance_score": 1056,
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730995",
+    "competitor_id": "133264757",
     "slug": "/athletes/great-britain-ni/jack-kavanagh-15083615",
     "rank": 71,
     "name": "Jack KAVANAGH",
@@ -4053,17 +4053,32 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132730997",
-    "slug": "/athletes/norway/henrik-ingebrigtsen-14215338",
+    "competitor_id": "133264759",
+    "slug": "/athletes/belgium/thomas-vanoppen-14759004",
     "rank": 72,
-    "name": "Henrik INGEBRIGTSEN",
-    "dob": "24 FEB 1991",
-    "country": "NOR",
+    "name": "Thomas VANOPPEN",
+    "dob": "19 SEP 1999",
+    "country": "BEL",
     "ranking_score": 1088.0,
     "performances": [
+     {
+      "date": "2026-06-03",
+      "date_raw": "03 JUN 2026",
+      "competition": "Paavo Nurmi Games, Paavo Nurmen Stadion, Turku",
+      "category": "A",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 11,
+      "mark": "13:30.24",
+      "result_score": 1101,
+      "placing_score": 18,
+      "performance_score": 1119,
+      "month_correction_applied": false
+     },
      {
       "date": "2025-07-19",
       "date_raw": "19 JUL 2025",
@@ -4072,50 +4087,92 @@
       "discipline_code": "5000",
       "discipline": "5000 Metres",
       "indoor": false,
-      "place": 17,
-      "mark": "13:19.80",
-      "result_score": 1138,
+      "place": 25,
+      "mark": "13:38.45",
+      "result_score": 1073,
       "placing_score": 0,
-      "performance_score": 1138,
+      "performance_score": 1073,
       "month_correction_applied": false
      },
      {
-      "date": "2025-07-10",
-      "date_raw": "10 JUL 2025",
-      "competition": "XXVIII Meeting Internazionale \"Citta' di Nembro\", Centro Sportivo Saletti, Nembro",
+      "date": "2026-01-24",
+      "date_raw": "24 JAN 2026",
+      "competition": "Meeting Indoor de Lyon, Halle Stéphane Diagana, Lyon (i)",
+      "category": "C",
+      "discipline_code": "3000sh",
+      "discipline": "3000 Metres Short Track",
+      "indoor": false,
+      "place": 7,
+      "mark": "8:03.21",
+      "result_score": 1059,
+      "placing_score": 14,
+      "performance_score": 1073,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-07-14"
+   },
+   {
+    "competitor_id": "133264760",
+    "slug": "/athletes/spain/jaime-migallon-14909200",
+    "rank": 73,
+    "name": "Jaime MIGALLON",
+    "dob": "22 MAR 2003",
+    "country": "ESP",
+    "ranking_score": 1088.0,
+    "performances": [
+     {
+      "date": "2026-06-20",
+      "date_raw": "20 JUN 2026",
+      "competition": "Track Night Vienna, LAZ Wien, Wien",
+      "category": "D",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 7,
+      "mark": "13:32.28",
+      "result_score": 1094,
+      "placing_score": 8,
+      "performance_score": 1102,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-05-30",
+      "date_raw": "30 MAY 2026",
+      "competition": "10. PUMA NITRO Lange Laufnacht, Carl-Kaufmann-Stadion, Karlsruhe",
+      "category": "D",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 4,
+      "mark": "13:39.47",
+      "result_score": 1069,
+      "placing_score": 13,
+      "performance_score": 1082,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-07-11",
+      "date_raw": "11 JUL 2026",
+      "competition": "British Milers Club Grand Prix, Woodside Stadium, Watford",
       "category": "D",
       "discipline_code": "3000",
       "discipline": "3000 Metres",
       "indoor": false,
-      "place": 4,
-      "mark": "7:54.06",
-      "result_score": 1091,
-      "placing_score": 13,
-      "performance_score": 1104,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2024-06-08",
-      "date_raw": "08 JUN 2024",
-      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
-      "category": "GL",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 25,
-      "mark": "13:52.71",
-      "result_score": 1024,
-      "placing_score": 0,
-      "performance_score": 1024,
+      "place": 5,
+      "mark": "7:57.54",
+      "result_score": 1070,
+      "placing_score": 11,
+      "performance_score": 1081,
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132731000",
+    "competitor_id": "133264762",
     "slug": "/athletes/slovenia/vid-botolin-14855056",
-    "rank": 73,
+    "rank": 74,
     "name": "Vid BOTOLIN",
     "dob": "15 AUG 2002",
     "country": "SLO",
@@ -4167,12 +4224,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132731001",
+    "competitor_id": "133264763",
     "slug": "/athletes/israel/adisu-guadia-14804786",
-    "rank": 74,
+    "rank": 75,
     "name": "Adisu GUADIA",
     "dob": "11 SEP 2002",
     "country": "ISR",
@@ -4224,12 +4281,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132731007",
+    "competitor_id": "133264767",
     "slug": "/athletes/lithuania/giedrius-valincius-14804770",
-    "rank": 75,
+    "rank": 76,
     "name": "Giedrius VALINČIUS",
     "dob": "20 JAN 2000",
     "country": "LTU",
@@ -4281,12 +4338,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132731014",
+    "competitor_id": "133264774",
     "slug": "/athletes/great-britain-ni/jake-smith-14793405",
-    "rank": 76,
+    "rank": 77,
     "name": "Jake SMITH",
     "dob": "19 MAY 1998",
     "country": "GBR",
@@ -4338,12 +4395,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132731018",
+    "competitor_id": "133264779",
     "slug": "/athletes/belgium/willem-renders-15089531",
-    "rank": 77,
+    "rank": 78,
     "name": "Willem RENDERS",
     "dob": "07 FEB 2007",
     "country": "BEL",
@@ -4395,12 +4452,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132731019",
+    "competitor_id": "133264780",
     "slug": "/athletes/france/romain-legendre-14798941",
-    "rank": 78,
+    "rank": 79,
     "name": "Romain LEGENDRE",
     "dob": "06 JAN 2000",
     "country": "FRA",
@@ -4452,12 +4509,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132731027",
+    "competitor_id": "133264788",
     "slug": "/athletes/great-britain-ni/isaac-theo-hirshman-14909197",
-    "rank": 79,
+    "rank": 80,
     "name": "Isaac Theo HIRSHMAN",
     "dob": "01 OCT 2002",
     "country": "GBR",
@@ -4509,12 +4566,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132731028",
+    "competitor_id": "133264789",
     "slug": "/athletes/spain/adrian-diaz-14912810",
-    "rank": 80,
+    "rank": 81,
     "name": "Adrian DIAZ",
     "dob": "18 OCT 2000",
     "country": "ESP",
@@ -4566,67 +4623,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132731037",
-    "slug": "/athletes/great-britain-ni/harry-wakefield-014976510",
-    "rank": 81,
-    "name": "Harry WAKEFIELD",
-    "dob": "",
-    "country": "GBR",
-    "ranking_score": 1078.0,
-    "performances": [
-     {
-      "date": "2025-07-12",
-      "date_raw": "12 JUL 2025",
-      "competition": "British Milers Club Grand Prix, Woodside Stadium, Watford",
-      "category": "D",
-      "discipline_code": "3000",
-      "discipline": "3000 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "7:47.20",
-      "result_score": 1132,
-      "placing_score": 19,
-      "performance_score": 1151,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-09",
-      "date_raw": "09 AUG 2025",
-      "competition": "British Milers Club Grand Prix, Longford Stadium Trafford, Manchester",
-      "category": "D",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "13:48.85",
-      "result_score": 1037,
-      "placing_score": 19,
-      "performance_score": 1056,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-03",
-      "date_raw": "03 AUG 2025",
-      "competition": "UK Championships, Alexander Stadium, Birmingham",
-      "category": "B",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 7,
-      "mark": "13:57.95",
-      "result_score": 1006,
-      "placing_score": 21,
-      "performance_score": 1027,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-07-07"
-   },
-   {
-    "competitor_id": "132731039",
+    "competitor_id": "133264799",
     "slug": "/athletes/sweden/sebastian-lorstad-15094429",
     "rank": 82,
     "name": "Sebastian LÖRSTAD",
@@ -4680,67 +4680,67 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132731043",
-    "slug": "/athletes/italy/konjoneh-maggi-14949044",
+    "competitor_id": "133264802",
+    "slug": "/athletes/finland/mika-kotiranta-14810532",
     "rank": 83,
-    "name": "Konjoneh MAGGI",
-    "dob": "31 DEC 2003",
-    "country": "ITA",
+    "name": "Mika KOTIRANTA",
+    "dob": "28 JUL 2000",
+    "country": "FIN",
     "ranking_score": 1077.0,
     "performances": [
      {
-      "date": "2026-06-20",
-      "date_raw": "20 JUN 2026",
-      "competition": "Track Night Vienna, LAZ Wien, Wien",
-      "category": "F",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "13:30.53",
-      "result_score": 1100,
-      "placing_score": 8,
-      "performance_score": 1108,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-10",
-      "date_raw": "10 JUL 2025",
-      "competition": "XXVIII Meeting Internazionale \"Citta' di Nembro\", Centro Sportivo Saletti, Nembro",
-      "category": "D",
+      "date": "2026-07-08",
+      "date_raw": "08 JUL 2026",
+      "competition": "Joensuu Motonet GP, Keskusurheilukenttä, Joensuu",
+      "category": "C",
       "discipline_code": "3000",
       "discipline": "3000 Metres",
       "indoor": false,
-      "place": 9,
-      "mark": "7:58.72",
-      "result_score": 1063,
-      "placing_score": 0,
+      "place": 3,
+      "mark": "7:51.19",
+      "result_score": 1108,
+      "placing_score": 24,
+      "performance_score": 1132,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-08-13",
+      "date_raw": "13 AUG 2025",
+      "competition": "Motonet GP Oulu, Raatin Stadion, Oulu",
+      "category": "D",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 3,
+      "mark": "13:45.71",
+      "result_score": 1048,
+      "placing_score": 15,
       "performance_score": 1063,
       "month_correction_applied": false
      },
      {
-      "date": "2026-06-03",
-      "date_raw": "03 JUN 2026",
-      "competition": "Meeting Città della Quintana, Stadio Enzo Blasone, Foligno",
-      "category": "F",
+      "date": "2026-05-23",
+      "date_raw": "23 MAY 2026",
+      "competition": "IFAM Outdoor, Boudewijnstadion, Bruxelles",
+      "category": "C",
       "discipline_code": "5000",
       "discipline": "5000 Metres",
       "indoor": false,
-      "place": 1,
-      "mark": "13:44.04",
-      "result_score": 1053,
-      "placing_score": 8,
-      "performance_score": 1061,
+      "place": 35,
+      "mark": "13:48.67",
+      "result_score": 1038,
+      "placing_score": 0,
+      "performance_score": 1038,
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132731044",
+    "competitor_id": "133264805",
     "slug": "/athletes/ireland/oisin-o-gailin-14752416",
     "rank": 84,
     "name": "Oisín Ó GAILÍN",
@@ -4794,12 +4794,69 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132731050",
-    "slug": "/athletes/great-britain-ni/edward-bird-14987420",
+    "competitor_id": "133264809",
+    "slug": "/athletes/italy/konjoneh-maggi-14949044",
     "rank": 85,
+    "name": "Konjoneh MAGGI",
+    "dob": "31 DEC 2003",
+    "country": "ITA",
+    "ranking_score": 1075.0,
+    "performances": [
+     {
+      "date": "2026-06-20",
+      "date_raw": "20 JUN 2026",
+      "competition": "Track Night Vienna, LAZ Wien, Wien",
+      "category": "F",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "13:30.53",
+      "result_score": 1100,
+      "placing_score": 8,
+      "performance_score": 1108,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-03",
+      "date_raw": "03 JUN 2026",
+      "competition": "Meeting Città della Quintana, Stadio Enzo Blasone, Foligno",
+      "category": "F",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "13:44.04",
+      "result_score": 1053,
+      "placing_score": 8,
+      "performance_score": 1061,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-07-11",
+      "date_raw": "11 JUL 2026",
+      "competition": "6° Meeting della Leonessa, 10° memorial Davide Boroni, Centro Gabre Gabric, Brescia",
+      "category": "F",
+      "discipline_code": "3000",
+      "discipline": "3000 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "8:01.02",
+      "result_score": 1050,
+      "placing_score": 8,
+      "performance_score": 1058,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-07-14"
+   },
+   {
+    "competitor_id": "133264812",
+    "slug": "/athletes/great-britain-ni/edward-bird-14987420",
+    "rank": 86,
     "name": "Edward BIRD",
     "dob": "11 JAN 2005",
     "country": "GBR",
@@ -4851,12 +4908,69 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132731051",
+    "competitor_id": "133264813",
+    "slug": "/athletes/great-britain-ni/will-barnicoat-14843524",
+    "rank": 87,
+    "name": "Will BARNICOAT",
+    "dob": "24 MAR 2003",
+    "country": "GBR",
+    "ranking_score": 1074.0,
+    "performances": [
+     {
+      "date": "2026-07-11",
+      "date_raw": "11 JUL 2026",
+      "competition": "British Milers Club Grand Prix, Woodside Stadium, Watford",
+      "category": "D",
+      "discipline_code": "3000",
+      "discipline": "3000 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "7:54.76",
+      "result_score": 1087,
+      "placing_score": 19,
+      "performance_score": 1106,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-07-19",
+      "date_raw": "19 JUL 2025",
+      "competition": "European Athletics U23 Championships, Fana Stadion, Bergen",
+      "category": "C",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 3,
+      "mark": "13:46.11",
+      "result_score": 1046,
+      "placing_score": 24,
+      "performance_score": 1070,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-08-03",
+      "date_raw": "03 AUG 2025",
+      "competition": "UK Championships, Alexander Stadium, Birmingham",
+      "category": "B",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 4,
+      "mark": "13:55.44",
+      "result_score": 1015,
+      "placing_score": 31,
+      "performance_score": 1046,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-07-14"
+   },
+   {
+    "competitor_id": "133264814",
     "slug": "/athletes/turkiye/mert-selek-15159950",
-    "rank": 86,
+    "rank": 88,
     "name": "Mert SELEK",
     "dob": "15 JUN 2005",
     "country": "TUR",
@@ -4908,181 +5022,67 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132731059",
-    "slug": "/athletes/finland/mika-kotiranta-14810532",
-    "rank": 87,
-    "name": "Mika KOTIRANTA",
-    "dob": "28 JUL 2000",
-    "country": "FIN",
+    "competitor_id": "133264822",
+    "slug": "/athletes/spain/david-de-la-fuente-14583440",
+    "rank": 89,
+    "name": "David DE LA FUENTE",
+    "dob": "03 APR 1997",
+    "country": "ESP",
     "ranking_score": 1070.0,
     "performances": [
      {
-      "date": "2026-02-01",
-      "date_raw": "01 FEB 2026",
-      "competition": "Nordic Indoor Match, Eva Lisa Holtz Arena, Karlstad (i)",
+      "date": "2026-02-28",
+      "date_raw": "28 FEB 2026",
+      "competition": "Spanish Indoor Championships, Velódromo Luis Puig, Valencia (i)",
       "category": "D",
       "discipline_code": "3000sh",
       "discipline": "3000 Metres Short Track",
       "indoor": false,
-      "place": 4,
-      "mark": "7:56.69",
-      "result_score": 1098,
-      "placing_score": 13,
-      "performance_score": 1111,
+      "place": 8,
+      "mark": "7:59.33",
+      "result_score": 1082,
+      "placing_score": 7,
+      "performance_score": 1089,
       "month_correction_applied": false
      },
      {
-      "date": "2025-08-13",
-      "date_raw": "13 AUG 2025",
-      "competition": "Motonet GP Oulu, Raatin Stadion, Oulu",
-      "category": "D",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 3,
-      "mark": "13:45.71",
-      "result_score": 1048,
-      "placing_score": 15,
-      "performance_score": 1063,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-05-23",
-      "date_raw": "23 MAY 2026",
-      "competition": "IFAM Outdoor, Boudewijnstadion, Bruxelles",
+      "date": "2026-07-11",
+      "date_raw": "11 JUL 2026",
+      "competition": "Meeting of Braga, Estádio 1o de Maio, Braga",
       "category": "C",
       "discipline_code": "5000",
       "discipline": "5000 Metres",
       "indoor": false,
-      "place": 35,
-      "mark": "13:48.67",
-      "result_score": 1038,
-      "placing_score": 0,
-      "performance_score": 1038,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-07-07"
-   },
-   {
-    "competitor_id": "132731063",
-    "slug": "/athletes/great-britain-ni/george-wheeler-14769127",
-    "rank": 88,
-    "name": "George WHEELER",
-    "dob": "04 JUL 1998",
-    "country": "GBR",
-    "ranking_score": 1070.0,
-    "performances": [
-     {
-      "date": "2025-07-09",
-      "date_raw": "09 JUL 2025",
-      "competition": "Cork City Sports, Munster Technological University Track, Cork",
-      "category": "C",
-      "discipline_code": "3000",
-      "discipline": "3000 Metres",
-      "indoor": false,
-      "place": 11,
-      "mark": "7:55.81",
-      "result_score": 1080,
-      "placing_score": 8,
-      "performance_score": 1088,
+      "place": 2,
+      "mark": "13:46.47",
+      "result_score": 1045,
+      "placing_score": 28,
+      "performance_score": 1073,
       "month_correction_applied": false
      },
      {
-      "date": "2025-07-11",
-      "date_raw": "11 JUL 2025",
-      "competition": "Morton Games, Morton Stadium, Santry, Dublin",
-      "category": "C",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 10,
-      "mark": "13:37.22",
-      "result_score": 1077,
-      "placing_score": 9,
-      "performance_score": 1086,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-03",
-      "date_raw": "03 AUG 2025",
-      "competition": "UK Championships, Alexander Stadium, Birmingham",
+      "date": "2025-08-02",
+      "date_raw": "02 AUG 2025",
+      "competition": "Spanish Championships, Estadi Natalia Rodríguez, Tarragona",
       "category": "B",
       "discipline_code": "5000",
       "discipline": "5000 Metres",
       "indoor": false,
-      "place": 6,
-      "mark": "13:56.25",
-      "result_score": 1012,
-      "placing_score": 24,
-      "performance_score": 1036,
+      "place": 8,
+      "mark": "13:50.25",
+      "result_score": 1032,
+      "placing_score": 18,
+      "performance_score": 1050,
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132731065",
-    "slug": "/athletes/finland/eemil-helander-14755714",
-    "rank": 89,
-    "name": "Eemil HELANDER",
-    "dob": "28 MAY 2001",
-    "country": "FIN",
-    "ranking_score": 1069.0,
-    "performances": [
-     {
-      "date": "2025-07-12",
-      "date_raw": "12 JUL 2025",
-      "competition": "Motonet GP Joensuu, Keskusurheilukenttä, Joensuu",
-      "category": "C",
-      "discipline_code": "3000",
-      "discipline": "3000 Metres",
-      "indoor": false,
-      "place": 4,
-      "mark": "7:57.34",
-      "result_score": 1071,
-      "placing_score": 21,
-      "performance_score": 1092,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-23",
-      "date_raw": "23 AUG 2025",
-      "competition": "Finnkampen, Olympiastadion, Stockholm",
-      "category": "D",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 4,
-      "mark": "13:45.67",
-      "result_score": 1048,
-      "placing_score": 13,
-      "performance_score": 1061,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-13",
-      "date_raw": "13 AUG 2025",
-      "competition": "Motonet GP Oulu, Raatin Stadion, Oulu",
-      "category": "D",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 4,
-      "mark": "13:47.02",
-      "result_score": 1043,
-      "placing_score": 13,
-      "performance_score": 1056,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-07-07"
-   },
-   {
-    "competitor_id": "132731067",
+    "competitor_id": "133264825",
     "slug": "/athletes/great-britain-ni/jacob-deacon-15009712",
     "rank": 90,
     "name": "Jacob DEACON",
@@ -5136,12 +5136,69 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132731071",
-    "slug": "/athletes/russia/danil-prokushev-14969657",
+    "competitor_id": "133264829",
+    "slug": "/athletes/ireland/cormac-dalton-14705225",
     "rank": 91,
+    "name": "Cormac DALTON",
+    "dob": "01 SEP 1998",
+    "country": "IRL",
+    "ranking_score": 1067.0,
+    "performances": [
+     {
+      "date": "2026-07-08",
+      "date_raw": "08 JUL 2026",
+      "competition": "Cork City Sports, Munster Technological University Track, Cork",
+      "category": "C",
+      "discipline_code": "3000",
+      "discipline": "3000 Metres",
+      "indoor": false,
+      "place": 5,
+      "mark": "7:54.88",
+      "result_score": 1086,
+      "placing_score": 18,
+      "performance_score": 1104,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-08-03",
+      "date_raw": "03 AUG 2025",
+      "competition": "Irish Championships, Morton Stadium, Santry, Dublin",
+      "category": "B",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 4,
+      "mark": "13:43.65",
+      "result_score": 1055,
+      "placing_score": 31,
+      "performance_score": 1086,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-07-10",
+      "date_raw": "10 JUL 2026",
+      "competition": "Morton Games, Morton Stadium, Santry, Dublin",
+      "category": "C",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 15,
+      "mark": "13:55.85",
+      "result_score": 1013,
+      "placing_score": 0,
+      "performance_score": 1013,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-07-14"
+   },
+   {
+    "competitor_id": "133264830",
+    "slug": "/athletes/russia/danil-prokushev-14969657",
+    "rank": 92,
     "name": "Danil PROKUSHEV",
     "dob": "02 OCT 2004",
     "country": "RUS",
@@ -5193,12 +5250,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132731072",
+    "competitor_id": "133264831",
     "slug": "/athletes/netherlands/luca-poppe-15028574",
-    "rank": 92,
+    "rank": 93,
     "name": "Luca POPPE",
     "dob": "2000",
     "country": "NED",
@@ -5250,67 +5307,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132731073",
-    "slug": "/athletes/spain/jaime-migallon-14909200",
-    "rank": 93,
-    "name": "Jaime MIGALLON",
-    "dob": "22 MAR 2003",
-    "country": "ESP",
-    "ranking_score": 1066.0,
-    "performances": [
-     {
-      "date": "2026-06-20",
-      "date_raw": "20 JUN 2026",
-      "competition": "Track Night Vienna, LAZ Wien, Wien",
-      "category": "D",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 7,
-      "mark": "13:32.28",
-      "result_score": 1094,
-      "placing_score": 8,
-      "performance_score": 1102,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-05-30",
-      "date_raw": "30 MAY 2026",
-      "competition": "10. PUMA NITRO Lange Laufnacht, Carl-Kaufmann-Stadion, Karlsruhe",
-      "category": "D",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 4,
-      "mark": "13:39.47",
-      "result_score": 1069,
-      "placing_score": 13,
-      "performance_score": 1082,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-19",
-      "date_raw": "19 JUL 2025",
-      "competition": "European Athletics U23 Championships, Fana Stadion, Bergen",
-      "category": "C",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 13,
-      "mark": "13:55.15",
-      "result_score": 1016,
-      "placing_score": 0,
-      "performance_score": 1016,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-07-07"
-   },
-   {
-    "competitor_id": "132731075",
+    "competitor_id": "133264834",
     "slug": "/athletes/norway/tore-akerlie-14985628",
     "rank": 94,
     "name": "Tore AKERLIE",
@@ -5364,10 +5364,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132731082",
+    "competitor_id": "133264842",
     "slug": "/athletes/great-britain-ni/oscar-bell-15015986",
     "rank": 95,
     "name": "Oscar BELL",
@@ -5421,12 +5421,69 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132731085",
-    "slug": "/athletes/france/imad-el-goumri-14950306",
+    "competitor_id": "133264843",
+    "slug": "/athletes/great-britain-ni/harry-wakefield-014976510",
     "rank": 96,
+    "name": "Harry WAKEFIELD",
+    "dob": "",
+    "country": "GBR",
+    "ranking_score": 1064.0,
+    "performances": [
+     {
+      "date": "2026-02-15",
+      "date_raw": "15 FEB 2026",
+      "competition": "Novuna UK Athletics Indoor Championships, Arena Birmingham, Birmingham (i)",
+      "category": "D",
+      "discipline_code": "3000sh",
+      "discipline": "3000 Metres Short Track",
+      "indoor": false,
+      "place": 8,
+      "mark": "7:55.98",
+      "result_score": 1102,
+      "placing_score": 7,
+      "performance_score": 1109,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-08-09",
+      "date_raw": "09 AUG 2025",
+      "competition": "British Milers Club Grand Prix, Longford Stadium Trafford, Manchester",
+      "category": "D",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "13:48.85",
+      "result_score": 1037,
+      "placing_score": 19,
+      "performance_score": 1056,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-08-03",
+      "date_raw": "03 AUG 2025",
+      "competition": "UK Championships, Alexander Stadium, Birmingham",
+      "category": "B",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 7,
+      "mark": "13:57.95",
+      "result_score": 1006,
+      "placing_score": 21,
+      "performance_score": 1027,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-07-14"
+   },
+   {
+    "competitor_id": "133264846",
+    "slug": "/athletes/france/imad-el-goumri-14950306",
+    "rank": 97,
     "name": "Imad EL GOUMRI",
     "dob": "07 JUL 2004",
     "country": "FRA",
@@ -5478,12 +5535,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132731088",
+    "competitor_id": "133264849",
     "slug": "/athletes/france/florian-le-pallec-14796770",
-    "rank": 97,
+    "rank": 98,
     "name": "Florian LE PALLEC",
     "dob": "31 MAY 1999",
     "country": "FRA",
@@ -5535,12 +5592,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132731091",
+    "competitor_id": "133264852",
     "slug": "/athletes/great-britain-ni/joseph-tuffin-14717619",
-    "rank": 98,
+    "rank": 99,
     "name": "Joseph TUFFIN",
     "dob": "24 JUN 1999",
     "country": "GBR",
@@ -5592,121 +5649,64 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    },
    {
-    "competitor_id": "132731093",
-    "slug": "/athletes/great-britain-ni/matthew-ramsden-14843604",
-    "rank": 99,
-    "name": "Matthew RAMSDEN",
-    "dob": "07 JUL 2003",
-    "country": "GBR",
-    "ranking_score": 1061.0,
+    "competitor_id": "133264854",
+    "slug": "/athletes/finland/eemil-helander-14755714",
+    "rank": 100,
+    "name": "Eemil HELANDER",
+    "dob": "28 MAY 2001",
+    "country": "FIN",
+    "ranking_score": 1062.0,
     "performances": [
      {
-      "date": "2026-05-09",
-      "date_raw": "09 MAY 2026",
-      "competition": "The Belfast Classic - formerly the Belfast Irish milers meet, Mary Peters Track, Belfast",
-      "category": "D",
+      "date": "2026-07-08",
+      "date_raw": "08 JUL 2026",
+      "competition": "Joensuu Motonet GP, Keskusurheilukenttä, Joensuu",
+      "category": "C",
       "discipline_code": "3000",
       "discipline": "3000 Metres",
       "indoor": false,
-      "place": 4,
-      "mark": "7:50.48",
-      "result_score": 1112,
+      "place": 8,
+      "mark": "7:59.88",
+      "result_score": 1056,
       "placing_score": 13,
-      "performance_score": 1125,
+      "performance_score": 1069,
       "month_correction_applied": false
      },
      {
-      "date": "2026-06-21",
-      "date_raw": "21 JUN 2026",
-      "competition": "Novuna UK Athletics Championships, Alexander Stadium, Birmingham",
-      "category": "B",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 10,
-      "mark": "13:41.55",
-      "result_score": 1062,
-      "placing_score": 13,
-      "performance_score": 1075,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-03",
-      "date_raw": "03 AUG 2025",
-      "competition": "UK Championships, Alexander Stadium, Birmingham",
-      "category": "B",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 10,
-      "mark": "14:08.54",
-      "result_score": 971,
-      "placing_score": 13,
-      "performance_score": 984,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-07-07"
-   },
-   {
-    "competitor_id": "132731094",
-    "slug": "/athletes/great-britain-ni/finlay-ross-davie-15028305",
-    "rank": 100,
-    "name": "Finlay ROSS-DAVIE",
-    "dob": "09 JAN 2004",
-    "country": "GBR",
-    "ranking_score": 1061.0,
-    "performances": [
-     {
-      "date": "2026-02-15",
-      "date_raw": "15 FEB 2026",
-      "competition": "Novuna UK Athletics Indoor Championships, Arena Birmingham, Birmingham (i)",
+      "date": "2025-08-23",
+      "date_raw": "23 AUG 2025",
+      "competition": "Finnkampen, Olympiastadion, Stockholm",
       "category": "D",
-      "discipline_code": "3000sh",
-      "discipline": "3000 Metres Short Track",
-      "indoor": false,
-      "place": 6,
-      "mark": "7:55.26",
-      "result_score": 1107,
-      "placing_score": 9,
-      "performance_score": 1116,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-09",
-      "date_raw": "09 AUG 2025",
-      "competition": "IFAM Oordegem, Putbosstadion, Oordegem",
-      "category": "F",
       "discipline_code": "5000",
       "discipline": "5000 Metres",
       "indoor": false,
-      "place": 2,
-      "mark": "13:49.40",
-      "result_score": 1035,
-      "placing_score": 5,
-      "performance_score": 1040,
+      "place": 4,
+      "mark": "13:45.67",
+      "result_score": 1048,
+      "placing_score": 13,
+      "performance_score": 1061,
       "month_correction_applied": false
      },
      {
-      "date": "2026-05-04",
-      "date_raw": "04 MAY 2026",
-      "competition": "BUCS Athletics: Outdoor Championships, Cardiff Athletic Stadium, Cardiff",
-      "category": "F",
+      "date": "2025-08-13",
+      "date_raw": "13 AUG 2025",
+      "competition": "Motonet GP Oulu, Raatin Stadion, Oulu",
+      "category": "D",
       "discipline_code": "5000",
       "discipline": "5000 Metres",
       "indoor": false,
-      "place": 1,
-      "mark": "13:53.78",
-      "result_score": 1020,
-      "placing_score": 8,
-      "performance_score": 1028,
+      "place": 4,
+      "mark": "13:47.02",
+      "result_score": 1043,
+      "placing_score": 13,
+      "performance_score": 1056,
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-07-07"
+    "rank_date": "2026-07-14"
    }
   ]
  }
