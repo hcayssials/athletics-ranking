@@ -64,28 +64,31 @@ print(result["new_score"], result["new_rank"], result["qualification"]["status_n
 
 ## Web UI (online)
 
-A hosted web app exposes the tool to people online. Architecture: a thin **FastAPI** wrapper
-(`wa_ranking/api.py`) reusing `what_if()` / `fetch_championship()` / `fetch_profile()`, and a
-**React** front-end (designed in **Claude Design**) that calls it. (Claude *Artifacts* are
-sandboxed — no external fetch — so the UI must be a normally-hosted site, not an artifact.)
+A **fully static site** (GitHub Pages) exposes the tool to people online. The Python engine
+runs at *build* time — a weekly GitHub Action scrapes World Athletics, regenerates the data
+bundle and deploys — and a line-for-line **JS port of the engine** (`web/src/engine/`) runs
+the what-if math in the visitor's browser over that bundle. A golden-vector parity gate
+(568 scenarios generated from the Python engine) must pass before any deploy, so the two
+engines cannot drift. The two live features — name search and unranked-athlete profiles —
+call World Athletics' GraphQL API directly from the browser (the endpoint is CORS-open).
 
 ```bash
-# 1. Backend (reuses the cache; first call per event is slow, then weekly)
+# 1. Generate the static data bundle + parity vectors (reads the cache/seed; no server)
 pip install -r requirements.txt
-uvicorn wa_ranking.api:app --reload            # http://localhost:8000/api/...
+python -m scripts.build_static
 
-# 2. Front-end (minimal working starter; restyle in Claude Design)
-cd web && npm install && npm run dev           # http://localhost:5173 (proxies /api)
+# 2. Front-end
+cd web && npm install && npm run dev           # http://localhost:5173
 ```
 
-Endpoints: `GET /api/meta`, `GET /api/rankings`, `GET /api/athlete`, `POST /api/whatif`
-(errors as `{"error": ...}`). **`web/CONTRACT.md`** has the exact shapes + a ready-to-paste
-**Claude Design prompt** — generate the polished UI there, drop the components into `web/src`,
-`npm run build`, and FastAPI serves `web/dist`.
+The old FastAPI wrapper (`wa_ranking/api.py`) still works for local use
+(`uvicorn wa_ranking.api:app --reload`) and its response shapes remain the contract the
+static bundle and JS engine reproduce — see **`web/CONTRACT.md`**.
 
-**Deploy** (single service): the `Dockerfile` builds the React app and serves it alongside
-`/api` from one container — push to Render/Fly/Railway, set optional `WA_API_KEY`, share the
-URL. Note: hosts with ephemeral disk re-fetch (per the 7-day cache) on redeploy.
+**Deploy**: `.github/workflows/deploy-pages.yml` — weekly cron (Wed 06:00 UTC, after WA's
+~Tuesday ranking update) re-scrapes and commits `data/cache_seed/`, and every push to `main`
+rebuilds the site from the committed seed. Both paths run the Python tests + the JS/Python
+parity gate, then publish `web/dist` to GitHub Pages. No server, no cost.
 
 ## How it works
 

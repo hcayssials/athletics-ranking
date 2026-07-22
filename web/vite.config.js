@@ -1,10 +1,12 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// In dev, proxy /api to the local FastAPI (uvicorn on :8000).
-// In prod the built files are served by FastAPI itself, so same-origin /api just works.
+// Static site (GitHub Pages): no backend. The data layer reads web/public/data/ — generate
+// it first with `python -m scripts.build_static` (dev server and build both serve public/).
+// base "./" keeps asset + data URLs relative, so the site works at any mount path
+// (username.github.io/repo/, a custom domain, or a local file server).
 export default defineConfig({
   plugins: [react()],
-  server: { proxy: { "/api": "http://localhost:8000" } },
+  base: "./",
   build: { outDir: "dist" },
 });
