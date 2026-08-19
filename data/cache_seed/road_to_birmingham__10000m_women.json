@@ -1,21 +1,21 @@
 {
- "_fetched_at": 1786520510.819693,
+ "_fetched_at": 1787122776.5920906,
  "_key": "road_to_birmingham__10000m_women",
  "data": {
   "championship": "road_to_birmingham",
   "event": "10000m_women",
   "rankings_url": "https://worldathletics.org/world-rankings/10000m/women?regionType=area&region=europe",
-  "fetched": "2026-08-12T07:41:50",
-  "rank_date": "2026-08-04",
+  "fetched": "2026-08-19T06:59:36",
+  "rank_date": "2026-08-11",
   "athletes": [
    {
-    "competitor_id": "135385939",
+    "competitor_id": "135756752",
     "slug": "/athletes/italy/nadia-battocletti-14700830",
     "rank": 1,
     "name": "Nadia BATTOCLETTI",
     "dob": "12 APR 2000",
     "country": "ITA",
-    "ranking_score": 1334.0,
+    "ranking_score": 1313.0,
     "performances": [
      {
       "date": "2025-09-13",
@@ -33,69 +33,27 @@
       "month_correction_applied": false
      },
      {
-      "date": "2024-06-11",
-      "date_raw": "11 JUN 2024",
-      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
-      "category": "GL",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "30:51.32",
-      "result_score": 1201,
-      "placing_score": 80,
-      "performance_score": 1281,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-04"
-   },
-   {
-    "competitor_id": "135385946",
-    "slug": "/athletes/great-britain-ni/megan-keith-14918707",
-    "rank": 2,
-    "name": "Megan KEITH",
-    "dob": "23 APR 2002",
-    "country": "GBR",
-    "ranking_score": 1242.0,
-    "performances": [
-     {
-      "date": "2024-06-11",
-      "date_raw": "11 JUN 2024",
-      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
-      "category": "GL",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 3,
-      "mark": "31:04.77",
-      "result_score": 1188,
-      "placing_score": 55,
-      "performance_score": 1243,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-02-22",
-      "date_raw": "22 FEB 2026",
-      "competition": "10K Facsa Castellón, Castellón",
-      "category": "E",
+      "date": "2026-04-04",
+      "date_raw": "04 APR 2026",
+      "competition": "Urban Trail de Lille - 5 et 10km, Lille",
+      "category": "F",
       "discipline_code": "10RR",
       "discipline": "10 Kilometres Road",
       "indoor": false,
       "place": 4,
-      "mark": "30:07",
-      "result_score": 1241,
+      "mark": "30:08",
+      "result_score": 1240,
       "placing_score": 0,
-      "performance_score": 1241,
+      "performance_score": 1240,
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135385947",
+    "competitor_id": "135756758",
     "slug": "/athletes/belgium/jana-van-lent-14704113",
-    "rank": 3,
+    "rank": 2,
     "name": "Jana VAN LENT",
     "dob": "22 APR 2001",
     "country": "BEL",
@@ -132,54 +90,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135385950",
-    "slug": "/athletes/netherlands/diane-van-es-14625026",
-    "rank": 4,
-    "name": "Diane VAN ES",
-    "dob": "22 MAR 1999",
-    "country": "NED",
-    "ranking_score": 1233.0,
-    "performances": [
-     {
-      "date": "2024-06-11",
-      "date_raw": "11 JUN 2024",
-      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
-      "category": "GL",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "30:57.24",
-      "result_score": 1195,
-      "placing_score": 65,
-      "performance_score": 1260,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-06-11",
-      "date_raw": "11 JUN 2025",
-      "competition": "Oslo Bislett Games, Bislett Stadion, Oslo",
-      "category": "A",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 8,
-      "mark": "31:08.05",
-      "result_score": 1185,
-      "placing_score": 21,
-      "performance_score": 1206,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-04"
-   },
-   {
-    "competitor_id": "135385951",
+    "competitor_id": "135756761",
     "slug": "/athletes/slovenia/klara-lukan-14605811",
-    "rank": 5,
+    "rank": 3,
     "name": "Klara LUKAN",
     "dob": "08 SEP 2000",
     "country": "SLO",
@@ -216,12 +132,54 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135385955",
+    "competitor_id": "135756764",
+    "slug": "/athletes/great-britain-ni/megan-keith-14918707",
+    "rank": 4,
+    "name": "Megan KEITH",
+    "dob": "23 APR 2002",
+    "country": "GBR",
+    "ranking_score": 1231.0,
+    "performances": [
+     {
+      "date": "2026-02-22",
+      "date_raw": "22 FEB 2026",
+      "competition": "10K Facsa Castellón, Castellón",
+      "category": "E",
+      "discipline_code": "10RR",
+      "discipline": "10 Kilometres Road",
+      "indoor": false,
+      "place": 4,
+      "mark": "30:07",
+      "result_score": 1241,
+      "placing_score": 0,
+      "performance_score": 1241,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-09-13",
+      "date_raw": "13 SEP 2025",
+      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
+      "category": "OW",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 10,
+      "mark": "31:33.85",
+      "result_score": 1162,
+      "placing_score": 60,
+      "performance_score": 1222,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-11"
+   },
+   {
+    "competitor_id": "135756766",
     "slug": "/athletes/great-britain-ni/calli-hauger-thackery-14276523",
-    "rank": 6,
+    "rank": 5,
     "name": "Calli HAUGER-THACKERY",
     "dob": "09 JAN 1993",
     "country": "GBR",
@@ -258,12 +216,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135385965",
+    "competitor_id": "135756776",
     "slug": "/athletes/netherlands/maureen-koster-14372338",
-    "rank": 7,
+    "rank": 6,
     "name": "Maureen KOSTER",
     "dob": "03 JUL 1992",
     "country": "NED",
@@ -300,10 +258,52 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135385979",
+    "competitor_id": "135756786",
+    "slug": "/athletes/netherlands/diane-van-es-14625026",
+    "rank": 7,
+    "name": "Diane VAN ES",
+    "dob": "22 MAR 1999",
+    "country": "NED",
+    "ranking_score": 1200.0,
+    "performances": [
+     {
+      "date": "2025-06-11",
+      "date_raw": "11 JUN 2025",
+      "competition": "Oslo Bislett Games, Bislett Stadion, Oslo",
+      "category": "A",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 8,
+      "mark": "31:08.05",
+      "result_score": 1185,
+      "placing_score": 21,
+      "performance_score": 1206,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-02-16",
+      "date_raw": "16 FEB 2025",
+      "competition": "10K Facsa Castellón, Castellón",
+      "category": "E",
+      "discipline_code": "10RR",
+      "discipline": "10 Kilometres Road",
+      "indoor": false,
+      "place": 9,
+      "mark": "30:58",
+      "result_score": 1195,
+      "placing_score": 0,
+      "performance_score": 1195,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-11"
+   },
+   {
+    "competitor_id": "135756791",
     "slug": "/athletes/france/mekdes-woldu-14419455",
     "rank": 8,
     "name": "Mekdes WOLDU",
@@ -342,96 +342,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135385980",
-    "slug": "/athletes/italy/federica-del-buono-14480247",
-    "rank": 9,
-    "name": "Federica DEL BUONO",
-    "dob": "12 DEC 1994",
-    "country": "ITA",
-    "ranking_score": 1190.0,
-    "performances": [
-     {
-      "date": "2024-06-11",
-      "date_raw": "11 JUN 2024",
-      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
-      "category": "GL",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 4,
-      "mark": "31:25.41",
-      "result_score": 1170,
-      "placing_score": 46,
-      "performance_score": 1216,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-06-13",
-      "date_raw": "13 JUN 2026",
-      "competition": "Gouden Spike, Sportcomplex De Leidse Hout, Leiden",
-      "category": "D",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 3,
-      "mark": "31:46.35",
-      "result_score": 1151,
-      "placing_score": 13,
-      "performance_score": 1164,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-04"
-   },
-   {
-    "competitor_id": "135385983",
-    "slug": "/athletes/italy/elisa-palmero-14701876",
-    "rank": 10,
-    "name": "Elisa PALMERO",
-    "dob": "10 JUL 1999",
-    "country": "ITA",
-    "ranking_score": 1188.0,
-    "performances": [
-     {
-      "date": "2024-06-11",
-      "date_raw": "11 JUN 2024",
-      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
-      "category": "GL",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 6,
-      "mark": "31:38.45",
-      "result_score": 1158,
-      "placing_score": 35,
-      "performance_score": 1193,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-06-14",
-      "date_raw": "14 JUN 2025",
-      "competition": "University of Birmingham Track & Field Festival, Birmingham University Athletics Track, Birmingham",
-      "category": "F",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "31:18.03",
-      "result_score": 1176,
-      "placing_score": 7,
-      "performance_score": 1183,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-04"
-   },
-   {
-    "competitor_id": "135385984",
+    "competitor_id": "135756794",
     "slug": "/athletes/france/alessia-zarbo-14761053",
-    "rank": 11,
+    "rank": 9,
     "name": "Alessia ZARBO",
     "dob": "11 SEP 2001",
     "country": "FRA",
@@ -468,12 +384,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135385985",
+    "competitor_id": "135756795",
     "slug": "/athletes/germany/lisa-merkel-14878272",
-    "rank": 12,
+    "rank": 10,
     "name": "Lisa MERKEL",
     "dob": "20 JAN 2003",
     "country": "GER",
@@ -510,12 +426,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135385986",
+    "competitor_id": "135756796",
     "slug": "/athletes/great-britain-ni/izzy-fry-14653034",
-    "rank": 13,
+    "rank": 11,
     "name": "Izzy FRY",
     "dob": "04 MAY 2000",
     "country": "GBR",
@@ -552,12 +468,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135385987",
+    "competitor_id": "135756797",
     "slug": "/athletes/germany/eva-dieterich-14752369",
-    "rank": 14,
+    "rank": 12,
     "name": "Eva DIETERICH",
     "dob": "29 MAR 1999",
     "country": "GER",
@@ -594,12 +510,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135385989",
+    "competitor_id": "135756799",
     "slug": "/athletes/germany/konstanze-klosterhalfen-14496249",
-    "rank": 15,
+    "rank": 13,
     "name": "Konstanze KLOSTERHALFEN",
     "dob": "18 FEB 1997",
     "country": "GER",
@@ -636,12 +552,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135385993",
+    "competitor_id": "135756803",
     "slug": "/athletes/poland/elzbieta-glinka-15080748",
-    "rank": 16,
+    "rank": 14,
     "name": "Elżbieta GLINKA",
     "dob": "30 OCT 1993",
     "country": "POL",
@@ -678,12 +594,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135385994",
+    "competitor_id": "135756804",
     "slug": "/athletes/belgium/chloe-herbiet-14763815",
-    "rank": 17,
+    "rank": 15,
     "name": "Chloé HERBIET",
     "dob": "03 DEC 1998",
     "country": "BEL",
@@ -720,12 +636,54 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135385996",
+    "competitor_id": "135756806",
+    "slug": "/athletes/italy/elisa-palmero-14701876",
+    "rank": 16,
+    "name": "Elisa PALMERO",
+    "dob": "10 JUL 1999",
+    "country": "ITA",
+    "ranking_score": 1177.0,
+    "performances": [
+     {
+      "date": "2025-06-14",
+      "date_raw": "14 JUN 2025",
+      "competition": "University of Birmingham Track & Field Festival, Birmingham University Athletics Track, Birmingham",
+      "category": "F",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "31:18.03",
+      "result_score": 1176,
+      "placing_score": 7,
+      "performance_score": 1183,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-05-23",
+      "date_raw": "23 MAY 2026",
+      "competition": "European 10,000m Cup, Centro Sportivo A. Montagna, La Spezia",
+      "category": "B",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 3,
+      "mark": "31:59.49",
+      "result_score": 1140,
+      "placing_score": 31,
+      "performance_score": 1171,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-11"
+   },
+   {
+    "competitor_id": "135756807",
     "slug": "/athletes/germany/elena-burkard-14420240",
-    "rank": 18,
+    "rank": 17,
     "name": "Elena BURKARD",
     "dob": "10 FEB 1992",
     "country": "GER",
@@ -762,12 +720,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135385998",
+    "competitor_id": "135756809",
     "slug": "/athletes/spain/carla-gallardo-14688215",
-    "rank": 19,
+    "rank": 18,
     "name": "Carla GALLARDO",
     "dob": "09 FEB 1999",
     "country": "ESP",
@@ -804,12 +762,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386000",
+    "competitor_id": "135756811",
     "slug": "/athletes/portugal/mariana-machado-14737874",
-    "rank": 20,
+    "rank": 19,
     "name": "Mariana MACHADO",
     "dob": "12 NOV 2000",
     "country": "POR",
@@ -846,12 +804,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386004",
+    "competitor_id": "135756815",
     "slug": "/athletes/sweden/sarah-lahti-14403185",
-    "rank": 21,
+    "rank": 20,
     "name": "Sarah LAHTI",
     "dob": "18 FEB 1995",
     "country": "SWE",
@@ -888,12 +846,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386013",
+    "competitor_id": "135756824",
     "slug": "/athletes/germany/blanka-dorfel-014706228",
-    "rank": 22,
+    "rank": 21,
     "name": "Blanka DÖRFEL",
     "dob": "24 APR 2002",
     "country": "GER",
@@ -930,12 +888,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386016",
+    "competitor_id": "135756827",
     "slug": "/athletes/spain/alicia-berzosa-14812892",
-    "rank": 23,
+    "rank": 22,
     "name": "Alicia BERZOSA",
     "dob": "10 SEP 2000",
     "country": "ESP",
@@ -972,12 +930,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386017",
+    "competitor_id": "135756828",
     "slug": "/athletes/netherlands/jennifer-gulikers-14911316",
-    "rank": 24,
+    "rank": 23,
     "name": "Jennifer GULIKERS",
     "dob": "18 AUG 1994",
     "country": "NED",
@@ -1014,12 +972,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386019",
+    "competitor_id": "135756830",
     "slug": "/athletes/norway/anna-marie-nordengen-sirevag-14804467",
-    "rank": 25,
+    "rank": 24,
     "name": "Anna Marie Nordengen SIREVÅG",
     "dob": "24 MAY 2004",
     "country": "NOR",
@@ -1056,12 +1014,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386020",
+    "competitor_id": "135756831",
     "slug": "/athletes/spain/idaira-prieto-14592926",
-    "rank": 26,
+    "rank": 25,
     "name": "Idaira PRIETO",
     "dob": "17 AUG 1997",
     "country": "ESP",
@@ -1098,12 +1056,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386024",
+    "competitor_id": "135756835",
     "slug": "/athletes/great-britain-ni/hannah-irwin-14798392",
-    "rank": 27,
+    "rank": 26,
     "name": "Hannah IRWIN",
     "dob": "23 JUN 1998",
     "country": "GBR",
@@ -1140,10 +1098,52 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386028",
+    "competitor_id": "135756837",
+    "slug": "/athletes/italy/federica-del-buono-14480247",
+    "rank": 27,
+    "name": "Federica DEL BUONO",
+    "dob": "12 DEC 1994",
+    "country": "ITA",
+    "ranking_score": 1156.0,
+    "performances": [
+     {
+      "date": "2026-06-13",
+      "date_raw": "13 JUN 2026",
+      "competition": "Gouden Spike, Sportcomplex De Leidse Hout, Leiden",
+      "category": "D",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 3,
+      "mark": "31:46.35",
+      "result_score": 1151,
+      "placing_score": 13,
+      "performance_score": 1164,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-05-24",
+      "date_raw": "24 MAY 2025",
+      "competition": "European 10,000m Cup, Stade Complexe Sportif Jean-Paul Chasseboeuf, Pacé",
+      "category": "B",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 6,
+      "mark": "32:12.72",
+      "result_score": 1128,
+      "placing_score": 21,
+      "performance_score": 1149,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-11"
+   },
+   {
+    "competitor_id": "135756840",
     "slug": "/athletes/great-britain-ni/poppy-tank-14473353",
     "rank": 28,
     "name": "Poppy TANK",
@@ -1182,10 +1182,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386038",
+    "competitor_id": "135756850",
     "slug": "/athletes/czechia/tereza-hrochova-14463763",
     "rank": 29,
     "name": "Tereza HROCHOVÁ",
@@ -1224,10 +1224,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386042",
+    "competitor_id": "135756854",
     "slug": "/athletes/great-britain-ni/clara-evans-graham-14455103",
     "rank": 30,
     "name": "Clara EVANS-GRAHAM",
@@ -1266,10 +1266,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386043",
+    "competitor_id": "135756855",
     "slug": "/athletes/belgium/roxane-cleppe-14994955",
     "rank": 31,
     "name": "Roxane CLEPPE",
@@ -1308,10 +1308,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386050",
+    "competitor_id": "135756862",
     "slug": "/athletes/great-britain-ni/abbie-donnelly-14473973",
     "rank": 32,
     "name": "Abbie DONNELLY",
@@ -1350,10 +1350,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386052",
+    "competitor_id": "135756864",
     "slug": "/athletes/spain/isabel-barreiro-14590904",
     "rank": 33,
     "name": "Isabel BARREIRO",
@@ -1392,10 +1392,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386056",
+    "competitor_id": "135756868",
     "slug": "/athletes/norway/kristine-lande-dommersnes-14707372",
     "rank": 34,
     "name": "Kristine Lande DOMMERSNES",
@@ -1434,10 +1434,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386059",
+    "competitor_id": "135756871",
     "slug": "/athletes/turkiye/bahar-yildirim-14540328",
     "rank": 35,
     "name": "Bahar YILDIRIM",
@@ -1476,10 +1476,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386062",
+    "competitor_id": "135756874",
     "slug": "/athletes/norway/hanne-mjoen-maridal-14630180",
     "rank": 36,
     "name": "Hanne Mjøen MARIDAL",
@@ -1518,10 +1518,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386063",
+    "competitor_id": "135756875",
     "slug": "/athletes/russia/maria-yermakova-15015777",
     "rank": 37,
     "name": "Maria YERMAKOVA",
@@ -1560,54 +1560,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386067",
-    "slug": "/athletes/finland/nina-chydenius-14409624",
-    "rank": 38,
-    "name": "Nina CHYDENIUS",
-    "dob": "28 JAN 1990",
-    "country": "FIN",
-    "ranking_score": 1132.0,
-    "performances": [
-     {
-      "date": "2024-06-11",
-      "date_raw": "11 JUN 2024",
-      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
-      "category": "GL",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 8,
-      "mark": "32:16.85",
-      "result_score": 1124,
-      "placing_score": 28,
-      "performance_score": 1152,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-11-15",
-      "date_raw": "15 NOV 2025",
-      "competition": "Urban Trail de Lille - 5 et 10km, Lille",
-      "category": "F",
-      "discipline_code": "10RR",
-      "discipline": "10 Kilometres Road",
-      "indoor": false,
-      "place": 6,
-      "mark": "32:30",
-      "result_score": 1113,
-      "placing_score": 0,
-      "performance_score": 1113,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-04"
-   },
-   {
-    "competitor_id": "135386073",
+    "competitor_id": "135756884",
     "slug": "/athletes/ireland/niamh-allen-14905623",
-    "rank": 39,
+    "rank": 38,
     "name": "Niamh ALLEN",
     "dob": "19 APR 1995",
     "country": "IRL",
@@ -1644,12 +1602,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386078",
+    "competitor_id": "135756889",
     "slug": "/athletes/spain/beatriz-alvarez-14410910",
-    "rank": 40,
+    "rank": 39,
     "name": "Beatriz ÁLVAREZ",
     "dob": "16 DEC 1994",
     "country": "ESP",
@@ -1686,12 +1644,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386080",
+    "competitor_id": "135756891",
     "slug": "/athletes/germany/fabienne-konigstein-014390193",
-    "rank": 41,
+    "rank": 40,
     "name": "Fabienne KÖNIGSTEIN",
     "dob": "25 NOV 1992",
     "country": "GER",
@@ -1728,12 +1686,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386083",
+    "competitor_id": "135756894",
     "slug": "/athletes/ireland/fiona-everard-14589087",
-    "rank": 42,
+    "rank": 41,
     "name": "Fiona EVERARD",
     "dob": "30 SEP 1998",
     "country": "IRL",
@@ -1770,12 +1728,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386085",
+    "competitor_id": "135756896",
     "slug": "/athletes/belgium/hanne-verbruggen-14599545",
-    "rank": 43,
+    "rank": 42,
     "name": "Hanne VERBRUGGEN",
     "dob": "27 MAY 1993",
     "country": "BEL",
@@ -1812,12 +1770,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386089",
+    "competitor_id": "135756900",
     "slug": "/athletes/italy/sara-nestola-14777740",
-    "rank": 44,
+    "rank": 43,
     "name": "Sara NESTOLA",
     "dob": "08 MAY 2001",
     "country": "ITA",
@@ -1854,12 +1812,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386091",
+    "competitor_id": "135756902",
     "slug": "/athletes/ukraine/viktoriia-kaliuzhna-14421044",
-    "rank": 45,
+    "rank": 44,
     "name": "Viktoriia KALIUZHNA",
     "dob": "11 JUL 1994",
     "country": "UKR",
@@ -1896,12 +1854,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386092",
+    "competitor_id": "135756903",
     "slug": "/athletes/germany/alina-reh-14507612",
-    "rank": 46,
+    "rank": 45,
     "name": "Alina REH",
     "dob": "23 MAY 1997",
     "country": "GER",
@@ -1938,12 +1896,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386093",
+    "competitor_id": "135756904",
     "slug": "/athletes/hungary/lili-anna-vindics-toth-14391972",
-    "rank": 47,
+    "rank": 46,
     "name": "Lili Anna VINDICS-TÓTH",
     "dob": "17 SEP 1998",
     "country": "HUN",
@@ -1980,12 +1938,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386096",
+    "competitor_id": "135756908",
     "slug": "/athletes/turkiye/derya-kunur-14671694",
-    "rank": 48,
+    "rank": 47,
     "name": "Derya KUNUR",
     "dob": "01 SEP 1999",
     "country": "TUR",
@@ -2022,12 +1980,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386102",
+    "competitor_id": "135756913",
     "slug": "/athletes/slovenia/liza-sajn-14917501",
-    "rank": 49,
+    "rank": 48,
     "name": "Liza ŠAJN",
     "dob": "05 MAY 2002",
     "country": "SLO",
@@ -2064,12 +2022,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386104",
+    "competitor_id": "135756915",
     "slug": "/athletes/spain/ester-navarrete-14426782",
-    "rank": 50,
+    "rank": 49,
     "name": "Ester NAVARRETE",
     "dob": "16 MAR 1990",
     "country": "ESP",
@@ -2106,12 +2064,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386106",
+    "competitor_id": "135756917",
     "slug": "/athletes/spain/irene-sanchez-escribano-14438470",
-    "rank": 51,
+    "rank": 50,
     "name": "Irene SÁNCHEZ-ESCRIBANO",
     "dob": "25 AUG 1992",
     "country": "ESP",
@@ -2148,12 +2106,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386107",
+    "competitor_id": "135756918",
     "slug": "/athletes/poland/julia-koralewska-14877305",
-    "rank": 52,
+    "rank": 51,
     "name": "Julia KORALEWSKA",
     "dob": "17 FEB 2002",
     "country": "POL",
@@ -2190,12 +2148,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386109",
+    "competitor_id": "135756920",
     "slug": "/athletes/turkiye/nursena-ceto-15099689",
-    "rank": 53,
+    "rank": 52,
     "name": "Nursena ÇETO",
     "dob": "01 MAY 2002",
     "country": "TUR",
@@ -2232,12 +2190,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386119",
+    "competitor_id": "135756930",
     "slug": "/athletes/poland/olimpia-breza-14823627",
-    "rank": 54,
+    "rank": 53,
     "name": "Olimpia BREZA",
     "dob": "14 FEB 2002",
     "country": "POL",
@@ -2274,12 +2232,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386122",
+    "competitor_id": "135756933",
     "slug": "/athletes/france/celia-tabet-14702015",
-    "rank": 55,
+    "rank": 54,
     "name": "Célia TABET",
     "dob": "29 AUG 1999",
     "country": "FRA",
@@ -2316,12 +2274,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386136",
+    "competitor_id": "135756946",
     "slug": "/athletes/germany/kira-weis-14844381",
-    "rank": 56,
+    "rank": 55,
     "name": "Kira WEIS",
     "dob": "16 MAR 2004",
     "country": "GER",
@@ -2358,12 +2316,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386137",
+    "competitor_id": "135756947",
     "slug": "/athletes/hungary/nora-szabo-14602703",
-    "rank": 57,
+    "rank": 56,
     "name": "Nóra SZABÓ",
     "dob": "01 MAR 1988",
     "country": "HUN",
@@ -2400,12 +2358,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386138",
+    "competitor_id": "135756948",
     "slug": "/athletes/norway/madelene-wanvik-holum-15105003",
-    "rank": 58,
+    "rank": 57,
     "name": "Madelène WANVIK HOLUM",
     "dob": "24 SEP 1994",
     "country": "NOR",
@@ -2442,96 +2400,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386139",
-    "slug": "/athletes/greece/anastasia-marinakou-14514769",
-    "rank": 59,
-    "name": "Anastasia MARINAKOU",
-    "dob": "12 JUN 1996",
-    "country": "GRE",
-    "ranking_score": 1111.0,
-    "performances": [
-     {
-      "date": "2026-01-11",
-      "date_raw": "11 JAN 2026",
-      "competition": "10K Valencia Ibercaja by Kiprun, Valencia",
-      "category": "E",
-      "discipline_code": "10RR",
-      "discipline": "10 Kilometres Road",
-      "indoor": false,
-      "place": 36,
-      "mark": "32:20",
-      "result_score": 1121,
-      "placing_score": 0,
-      "performance_score": 1121,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2024-06-11",
-      "date_raw": "11 JUN 2024",
-      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
-      "category": "GL",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 16,
-      "mark": "32:42.34",
-      "result_score": 1102,
-      "placing_score": 0,
-      "performance_score": 1102,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-04"
-   },
-   {
-    "competitor_id": "135386142",
-    "slug": "/athletes/italy/valentina-gemetto-14652046",
-    "rank": 60,
-    "name": "Valentina GEMETTO",
-    "dob": "04 FEB 1998",
-    "country": "ITA",
-    "ranking_score": 1110.0,
-    "performances": [
-     {
-      "date": "2025-04-13",
-      "date_raw": "13 APR 2025",
-      "competition": "European Running Championships, Brussels-Leuven",
-      "category": "A",
-      "discipline_code": "10RR",
-      "discipline": "10 Kilometres Road",
-      "indoor": false,
-      "place": 9,
-      "mark": "31:44",
-      "result_score": 1153,
-      "placing_score": 0,
-      "performance_score": 1153,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2024-06-11",
-      "date_raw": "11 JUN 2024",
-      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
-      "category": "GL",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 21,
-      "mark": "33:23.43",
-      "result_score": 1067,
-      "placing_score": 0,
-      "performance_score": 1067,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-04"
-   },
-   {
-    "competitor_id": "135386145",
+    "competitor_id": "135756953",
     "slug": "/athletes/great-britain-ni/charlotte-dannatt-14647130",
-    "rank": 61,
+    "rank": 58,
     "name": "Charlotte DANNATT",
     "dob": "12 MAY 1999",
     "country": "GBR",
@@ -2568,12 +2442,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386147",
+    "competitor_id": "135756955",
     "slug": "/athletes/italy/elvanie-nimbona-14660411",
-    "rank": 62,
+    "rank": 59,
     "name": "Elvanie NIMBONA",
     "dob": "15 MAR 1998",
     "country": "ITA",
@@ -2610,12 +2484,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386151",
+    "competitor_id": "135756959",
     "slug": "/athletes/france/ophelie-serra-boxberger-14258049",
-    "rank": 63,
+    "rank": 60,
     "name": "Ophélie SERRA-BOXBERGER",
     "dob": "18 OCT 1988",
     "country": "FRA",
@@ -2652,12 +2526,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386152",
+    "competitor_id": "135756960",
     "slug": "/athletes/sweden/carolina-johnson-14573780",
-    "rank": 64,
+    "rank": 61,
     "name": "Carolina JOHNSON",
     "dob": "15 APR 1996",
     "country": "SWE",
@@ -2694,12 +2568,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386153",
+    "competitor_id": "135756961",
     "slug": "/athletes/great-britain-ni/jessica-martin-14422104",
-    "rank": 65,
+    "rank": 62,
     "name": "Jessica MARTIN",
     "dob": "01 OCT 1992",
     "country": "GBR",
@@ -2736,12 +2610,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386154",
+    "competitor_id": "135756962",
     "slug": "/athletes/israel/maor-tiyouri-14283592",
-    "rank": 66,
+    "rank": 63,
     "name": "Maor TIYOURI",
     "dob": "13 AUG 1990",
     "country": "ISR",
@@ -2778,12 +2652,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386155",
+    "competitor_id": "135756963",
     "slug": "/athletes/ukraine/viktoriia-shkurko-14803067",
-    "rank": 67,
+    "rank": 64,
     "name": "Viktoriia SHKURKO",
     "dob": "25 DEC 1997",
     "country": "UKR",
@@ -2820,12 +2694,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386156",
+    "competitor_id": "135756964",
     "slug": "/athletes/germany/carolina-schafer-14927808",
-    "rank": 68,
+    "rank": 65,
     "name": "Carolina SCHÄFER",
     "dob": "25 JUL 2004",
     "country": "GER",
@@ -2862,54 +2736,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386157",
-    "slug": "/athletes/ireland/anika-thompson-15016394",
-    "rank": 69,
-    "name": "Anika THOMPSON",
-    "dob": "22 FEB 2003",
-    "country": "IRL",
-    "ranking_score": 1106.0,
-    "performances": [
-     {
-      "date": "2025-07-18",
-      "date_raw": "18 JUL 2025",
-      "competition": "European Athletics U23 Championships, Fana Stadion, Bergen",
-      "category": "C",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "32:31.47",
-      "result_score": 1111,
-      "placing_score": 32,
-      "performance_score": 1143,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2024-06-11",
-      "date_raw": "11 JUN 2024",
-      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
-      "category": "GL",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 20,
-      "mark": "33:19.42",
-      "result_score": 1070,
-      "placing_score": 0,
-      "performance_score": 1070,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-04"
-   },
-   {
-    "competitor_id": "135386160",
+    "competitor_id": "135756967",
     "slug": "/athletes/germany/pia-schlattmann-14910283",
-    "rank": 70,
+    "rank": 66,
     "name": "Pia SCHLATTMANN",
     "dob": "22 SEP 2004",
     "country": "GER",
@@ -2946,54 +2778,96 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386167",
-    "slug": "/athletes/spain/laura-priego-14704520",
-    "rank": 71,
-    "name": "Laura PRIEGO",
-    "dob": "15 JUL 1998",
-    "country": "ESP",
+    "competitor_id": "135756973",
+    "slug": "/athletes/finland/nina-chydenius-14409624",
+    "rank": 67,
+    "name": "Nina CHYDENIUS",
+    "dob": "28 JAN 1990",
+    "country": "FIN",
     "ranking_score": 1104.0,
     "performances": [
      {
-      "date": "2024-06-11",
-      "date_raw": "11 JUN 2024",
-      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
-      "category": "GL",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 14,
-      "mark": "32:40.25",
-      "result_score": 1104,
-      "placing_score": 0,
-      "performance_score": 1104,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-04-18",
-      "date_raw": "18 APR 2026",
-      "competition": "10 km en Ruta Villa de Laredo, Laredo",
-      "category": "E",
+      "date": "2025-11-15",
+      "date_raw": "15 NOV 2025",
+      "competition": "Urban Trail de Lille - 5 et 10km, Lille",
+      "category": "F",
       "discipline_code": "10RR",
       "discipline": "10 Kilometres Road",
       "indoor": false,
-      "place": 19,
-      "mark": "32:40",
-      "result_score": 1104,
+      "place": 6,
+      "mark": "32:30",
+      "result_score": 1113,
       "placing_score": 0,
-      "performance_score": 1104,
+      "performance_score": 1113,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-07-24",
+      "date_raw": "24 JUL 2026",
+      "competition": "Finnish Championships, Harjun stadion, Jyväskylä",
+      "category": "B",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "33:38.32",
+      "result_score": 1054,
+      "placing_score": 42,
+      "performance_score": 1096,
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386170",
+    "competitor_id": "135756975",
+    "slug": "/athletes/ireland/anika-thompson-15016394",
+    "rank": 68,
+    "name": "Anika THOMPSON",
+    "dob": "22 FEB 2003",
+    "country": "IRL",
+    "ranking_score": 1103.0,
+    "performances": [
+     {
+      "date": "2025-07-18",
+      "date_raw": "18 JUL 2025",
+      "competition": "European Athletics U23 Championships, Fana Stadion, Bergen",
+      "category": "C",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "32:31.47",
+      "result_score": 1111,
+      "placing_score": 32,
+      "performance_score": 1143,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-05-03",
+      "date_raw": "03 MAY 2025",
+      "competition": "Oregon State High Performance, Oregon State Whyte Track and Field Center, Corvallis, OR",
+      "category": "F",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "33:35.01",
+      "result_score": 1057,
+      "placing_score": 7,
+      "performance_score": 1064,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-11"
+   },
+   {
+    "competitor_id": "135756978",
     "slug": "/athletes/belgium/victoria-warpy-15020610",
-    "rank": 72,
+    "rank": 69,
     "name": "Victoria WARPY",
     "dob": "06 JUN 1997",
     "country": "BEL",
@@ -3030,12 +2904,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386173",
+    "competitor_id": "135756980",
     "slug": "/athletes/russia/anna-mokina-14401318",
-    "rank": 73,
+    "rank": 70,
     "name": "Anna MOKINA",
     "dob": "15 JUL 1994",
     "country": "RUS",
@@ -3072,12 +2946,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386178",
+    "competitor_id": "135756987",
     "slug": "/athletes/germany/kiara-nahen-14813036",
-    "rank": 74,
+    "rank": 71,
     "name": "Kiara NAHEN",
     "dob": "25 MAY 2002",
     "country": "GER",
@@ -3114,12 +2988,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386183",
+    "competitor_id": "135756991",
     "slug": "/athletes/france/philippine-de-la-bigne-14755654",
-    "rank": 75,
+    "rank": 72,
     "name": "Philippine DE LA BIGNE",
     "dob": "29 MAR 1998",
     "country": "FRA",
@@ -3156,12 +3030,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386187",
+    "competitor_id": "135756995",
     "slug": "/athletes/italy/rebecca-lonedo-14533436",
-    "rank": 76,
+    "rank": 73,
     "name": "Rebecca LONEDO",
     "dob": "05 DEC 1996",
     "country": "ITA",
@@ -3198,12 +3072,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386189",
+    "competitor_id": "135756997",
     "slug": "/athletes/turkiye/yonca-kutluk-14590142",
-    "rank": 77,
+    "rank": 74,
     "name": "Yonca KUTLUK",
     "dob": "15 AUG 2000",
     "country": "TUR",
@@ -3240,12 +3114,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386192",
+    "competitor_id": "135757000",
     "slug": "/athletes/germany/mia-jurenka-14943814",
-    "rank": 78,
+    "rank": 75,
     "name": "Mia JURENKA",
     "dob": "08 NOV 2002",
     "country": "GER",
@@ -3282,12 +3156,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386195",
+    "competitor_id": "135757003",
     "slug": "/athletes/great-britain-ni/sarah-astin-14428082",
-    "rank": 79,
+    "rank": 76,
     "name": "Sarah ASTIN",
     "dob": "22 OCT 1993",
     "country": "GBR",
@@ -3324,12 +3198,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386197",
+    "competitor_id": "135757005",
     "slug": "/athletes/russia/albina-gadelshina-14823208",
-    "rank": 80,
+    "rank": 77,
     "name": "Albina GADELSHINA",
     "dob": "29 JUL 1998",
     "country": "RUS",
@@ -3366,12 +3240,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386199",
+    "competitor_id": "135757007",
     "slug": "/athletes/ireland/sorcha-nic-dhomhnaill-14646319",
-    "rank": 81,
+    "rank": 78,
     "name": "Sorcha NIC DHOMHNAILL",
     "dob": "27 FEB 1990",
     "country": "IRL",
@@ -3408,12 +3282,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386201",
+    "competitor_id": "135757009",
     "slug": "/athletes/spain/marta-galimany-14329379",
-    "rank": 82,
+    "rank": 79,
     "name": "Marta GALIMANY",
     "dob": "05 OCT 1985",
     "country": "ESP",
@@ -3450,12 +3324,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386202",
+    "competitor_id": "135757010",
     "slug": "/athletes/slovenia/marusa-mismas-zrimsek-14375060",
-    "rank": 83,
+    "rank": 80,
     "name": "Maruša MIŠMAŠ ZRIMŠEK",
     "dob": "24 OCT 1994",
     "country": "SLO",
@@ -3492,12 +3366,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386206",
+    "competitor_id": "135757014",
     "slug": "/athletes/israel/karawan-halabi-kablan-14897473",
-    "rank": 84,
+    "rank": 81,
     "name": "Karawan HALABI KABLAN",
     "dob": "18 JAN 1995",
     "country": "ISR",
@@ -3534,12 +3408,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386212",
+    "competitor_id": "135757019",
     "slug": "/athletes/belgium/charlotte-van-hese-014527619",
-    "rank": 85,
+    "rank": 82,
     "name": "Charlotte VAN HESE",
     "dob": "27 NOV 1995",
     "country": "BEL",
@@ -3576,12 +3450,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386213",
+    "competitor_id": "135757020",
     "slug": "/athletes/ukraine/mariia-mazurenko-14822864",
-    "rank": 86,
+    "rank": 83,
     "name": "Mariia MAZURENKO",
     "dob": "28 MAY 1997",
     "country": "UKR",
@@ -3618,54 +3492,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386218",
-    "slug": "/athletes/netherlands/veerle-bakker-14513285",
-    "rank": 87,
-    "name": "Veerle BAKKER",
-    "dob": "29 SEP 1997",
-    "country": "NED",
-    "ranking_score": 1091.0,
-    "performances": [
-     {
-      "date": "2025-12-21",
-      "date_raw": "21 DEC 2025",
-      "competition": "3ème Corrida de Houilles, Houilles",
-      "category": "E",
-      "discipline_code": "10RR",
-      "discipline": "10 Kilometres Road",
-      "indoor": false,
-      "place": 6,
-      "mark": "32:43",
-      "result_score": 1101,
-      "placing_score": 0,
-      "performance_score": 1101,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2024-06-11",
-      "date_raw": "11 JUN 2024",
-      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
-      "category": "GL",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 18,
-      "mark": "33:07.14",
-      "result_score": 1081,
-      "placing_score": 0,
-      "performance_score": 1081,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-04"
-   },
-   {
-    "competitor_id": "135386219",
+    "competitor_id": "135757025",
     "slug": "/athletes/ukraine/olga-nyzhnyk-14304208",
-    "rank": 88,
+    "rank": 84,
     "name": "Olga NYZHNYK",
     "dob": "02 DEC 1990",
     "country": "UKR",
@@ -3702,12 +3534,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386223",
+    "competitor_id": "135757029",
     "slug": "/athletes/great-britain-ni/amelia-quirk-14649327",
-    "rank": 89,
+    "rank": 85,
     "name": "Amelia QUIRK",
     "dob": "18 DEC 1999",
     "country": "GBR",
@@ -3744,12 +3576,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386225",
+    "competitor_id": "135757031",
     "slug": "/athletes/great-britain-ni/holly-weedall-14841159",
-    "rank": 90,
+    "rank": 86,
     "name": "Holly WEEDALL",
     "dob": "31 DEC 2004",
     "country": "GBR",
@@ -3786,12 +3618,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386228",
+    "competitor_id": "135757034",
     "slug": "/athletes/ukraine/nataliya-strebkova-14530014",
-    "rank": 91,
+    "rank": 87,
     "name": "Nataliya STREBKOVA",
     "dob": "06 MAR 1995",
     "country": "UKR",
@@ -3828,12 +3660,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386229",
+    "competitor_id": "135757035",
     "slug": "/athletes/spain/andrea-romero-14744291",
-    "rank": 92,
+    "rank": 88,
     "name": "Andrea ROMERO",
     "dob": "20 APR 2000",
     "country": "ESP",
@@ -3870,12 +3702,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386230",
+    "competitor_id": "135757037",
     "slug": "/athletes/latvia/agate-caune-14852324",
-    "rank": 93,
+    "rank": 89,
     "name": "Agate CAUNE",
     "dob": "07 AUG 2004",
     "country": "LAT",
@@ -3912,12 +3744,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386232",
+    "competitor_id": "135757039",
     "slug": "/athletes/germany/hannah-stegenwallner-14825476",
-    "rank": 94,
+    "rank": 90,
     "name": "Hannah STEGENWALLNER",
     "dob": "20 JAN 2002",
     "country": "GER",
@@ -3954,12 +3786,54 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386233",
+    "competitor_id": "135757040",
+    "slug": "/athletes/italy/valentina-gemetto-14652046",
+    "rank": 91,
+    "name": "Valentina GEMETTO",
+    "dob": "04 FEB 1998",
+    "country": "ITA",
+    "ranking_score": 1086.0,
+    "performances": [
+     {
+      "date": "2025-04-13",
+      "date_raw": "13 APR 2025",
+      "competition": "European Running Championships, Brussels-Leuven",
+      "category": "A",
+      "discipline_code": "10RR",
+      "discipline": "10 Kilometres Road",
+      "indoor": false,
+      "place": 9,
+      "mark": "31:44",
+      "result_score": 1153,
+      "placing_score": 0,
+      "performance_score": 1153,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-03-28",
+      "date_raw": "28 MAR 2026",
+      "competition": "C.D.S. Assoluto di Corsa - 10,000 su Pista S/P/J - Fase Regionale - Camp. Reg. Ind. 30' AM- 20' AF, Stadio Dante Merlo, Vigevano",
+      "category": "F",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": null,
+      "mark": "34:18.18",
+      "result_score": 1020,
+      "placing_score": 0,
+      "performance_score": 1020,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-11"
+   },
+   {
+    "competitor_id": "135757041",
     "slug": "/athletes/france/melody-julien-14812272",
-    "rank": 95,
+    "rank": 92,
     "name": "Mélody JULIEN",
     "dob": "13 MAY 1999",
     "country": "FRA",
@@ -3996,12 +3870,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386236",
+    "competitor_id": "135757044",
     "slug": "/athletes/spain/maria-urena-14481724",
-    "rank": 96,
+    "rank": 93,
     "name": "Maria UREÑA",
     "dob": "16 NOV 1996",
     "country": "ESP",
@@ -4038,12 +3912,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386245",
+    "competitor_id": "135757053",
     "slug": "/athletes/austria/cordula-lassacher-14809828",
-    "rank": 97,
+    "rank": 94,
     "name": "Cordula LASSACHER",
     "dob": "28 NOV 2003",
     "country": "AUT",
@@ -4080,12 +3954,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386250",
+    "competitor_id": "135757058",
     "slug": "/athletes/sweden/evelina-henriksson-14835683",
-    "rank": 98,
+    "rank": 95,
     "name": "Evelina HENRIKSSON",
     "dob": "01 DEC 1999",
     "country": "SWE",
@@ -4122,12 +3996,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386253",
+    "competitor_id": "135757061",
     "slug": "/athletes/russia/nina-byshkina-14681564",
-    "rank": 99,
+    "rank": 96,
     "name": "Nina BYSHKINA",
     "dob": "25 MAY 1996",
     "country": "RUS",
@@ -4164,12 +4038,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135386258",
+    "competitor_id": "135757066",
     "slug": "/athletes/norway/karoline-haugen-15261374",
-    "rank": 100,
+    "rank": 97,
     "name": "Karoline HAUGEN",
     "dob": "22 APR 1995",
     "country": "NOR",
@@ -4206,7 +4080,133 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
+   },
+   {
+    "competitor_id": "135757067",
+    "slug": "/athletes/belgium/julie-voet-14846225",
+    "rank": 98,
+    "name": "Julie VOET",
+    "dob": "22 NOV 2003",
+    "country": "BEL",
+    "ranking_score": 1076.0,
+    "performances": [
+     {
+      "date": "2026-02-08",
+      "date_raw": "08 FEB 2026",
+      "competition": "Groet uit Schoorl Run, Schoorl",
+      "category": "F",
+      "discipline_code": "10RR",
+      "discipline": "10 Kilometres Road",
+      "indoor": false,
+      "place": 4,
+      "mark": "31:54",
+      "result_score": 1144,
+      "placing_score": 0,
+      "performance_score": 1144,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-06-14",
+      "date_raw": "14 JUN 2025",
+      "competition": "Gouden Spike, Sportcomplex De Leidse Hout, Leiden",
+      "category": "D",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 10,
+      "mark": "34:31.18",
+      "result_score": 1009,
+      "placing_score": 0,
+      "performance_score": 1009,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-11"
+   },
+   {
+    "competitor_id": "135757071",
+    "slug": "/athletes/czechia/iva-gieselova-14828808",
+    "rank": 99,
+    "name": "Iva GIESELOVÁ",
+    "dob": "20 MAR 2004",
+    "country": "CZE",
+    "ranking_score": 1076.0,
+    "performances": [
+     {
+      "date": "2026-04-18",
+      "date_raw": "18 APR 2026",
+      "competition": "10 km en Ruta Villa de Laredo, Laredo",
+      "category": "E",
+      "discipline_code": "10RR",
+      "discipline": "10 Kilometres Road",
+      "indoor": false,
+      "place": 22,
+      "mark": "33:04",
+      "result_score": 1083,
+      "placing_score": 0,
+      "performance_score": 1083,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-04-27",
+      "date_raw": "27 APR 2025",
+      "competition": "Czech 10,000m Championships, Atletický štadión, Považská Bystrica",
+      "category": "B",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "34:02.13",
+      "result_score": 1034,
+      "placing_score": 35,
+      "performance_score": 1069,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-11"
+   },
+   {
+    "competitor_id": "135757075",
+    "slug": "/athletes/germany/eva-schultz-14845048",
+    "rank": 100,
+    "name": "Eva SCHULTZ",
+    "dob": "24 MAR 1995",
+    "country": "GER",
+    "ranking_score": 1074.0,
+    "performances": [
+     {
+      "date": "2025-05-03",
+      "date_raw": "03 MAY 2025",
+      "competition": "German 10,000m Championships, Jahnkampfbahn, Hamburg",
+      "category": "B",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 7,
+      "mark": "33:06.09",
+      "result_score": 1081,
+      "placing_score": 18,
+      "performance_score": 1099,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-03-22",
+      "date_raw": "22 MAR 2025",
+      "competition": "Südd. und Bayer. Langstrecken Meisterschaften 10.000m, Sportanlage am Oberen Wöhrd, Regensburg",
+      "category": "F",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "33:51.44",
+      "result_score": 1043,
+      "placing_score": 7,
+      "performance_score": 1050,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-11"
    }
   ]
  }

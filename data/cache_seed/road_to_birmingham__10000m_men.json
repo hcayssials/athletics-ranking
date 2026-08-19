@@ -1,15 +1,15 @@
 {
- "_fetched_at": 1786520467.7070613,
+ "_fetched_at": 1787122739.4613032,
  "_key": "road_to_birmingham__10000m_men",
  "data": {
   "championship": "road_to_birmingham",
   "event": "10000m_men",
   "rankings_url": "https://worldathletics.org/world-rankings/10000m/men?regionType=area&region=europe",
-  "fetched": "2026-08-12T07:41:07",
-  "rank_date": "2026-08-04",
+  "fetched": "2026-08-19T06:58:59",
+  "rank_date": "2026-08-11",
   "athletes": [
    {
-    "competitor_id": "135338017",
+    "competitor_id": "135709194",
     "slug": "/athletes/germany/mohamed-abdilaahi-14753471",
     "rank": 1,
     "name": "Mohamed ABDILAAHI",
@@ -48,10 +48,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338019",
+    "competitor_id": "135709196",
     "slug": "/athletes/sweden/andreas-almgren-14460738",
     "rank": 2,
     "name": "Andreas ALMGREN",
@@ -90,58 +90,16 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338024",
-    "slug": "/athletes/france/yann-schrub-14528844",
-    "rank": 3,
-    "name": "Yann SCHRUB",
-    "dob": "20 MAR 1996",
-    "country": "FRA",
-    "ranking_score": 1225.0,
-    "performances": [
-     {
-      "date": "2026-02-22",
-      "date_raw": "22 FEB 2026",
-      "competition": "10K Facsa Castellón, Castellón",
-      "category": "E",
-      "discipline_code": "10RR",
-      "discipline": "10 Kilometres Road",
-      "indoor": false,
-      "place": 2,
-      "mark": "26:43",
-      "result_score": 1254,
-      "placing_score": 0,
-      "performance_score": 1254,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2024-06-12",
-      "date_raw": "12 JUN 2024",
-      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
-      "category": "GL",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "28:00.48",
-      "result_score": 1131,
-      "placing_score": 65,
-      "performance_score": 1196,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-04"
-   },
-   {
-    "competitor_id": "135338028",
+    "competitor_id": "135709204",
     "slug": "/athletes/france/jimmy-gressier-14694062",
-    "rank": 4,
+    "rank": 3,
     "name": "Jimmy GRESSIER",
     "dob": "04 MAY 1997",
     "country": "FRA",
-    "ranking_score": 1208.0,
+    "ranking_score": 1207.0,
     "performances": [
      {
       "date": "2025-09-14",
@@ -159,27 +117,27 @@
       "month_correction_applied": false
      },
      {
-      "date": "2024-06-12",
-      "date_raw": "12 JUN 2024",
-      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
-      "category": "GL",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
+      "date": "2026-05-10",
+      "date_raw": "10 MAY 2026",
+      "competition": "10km de Troyes - French 10 km Road Running Championships, Troyes",
+      "category": "B",
+      "discipline_code": "10RR",
+      "discipline": "10 Kilometres Road",
       "indoor": false,
-      "place": 5,
-      "mark": "28:01.42",
-      "result_score": 1130,
-      "placing_score": 39,
-      "performance_score": 1169,
+      "place": 1,
+      "mark": "27:47",
+      "result_score": 1152,
+      "placing_score": 14,
+      "performance_score": 1166,
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338033",
+    "competitor_id": "135709209",
     "slug": "/athletes/ireland/efrem-gidey-14842722",
-    "rank": 5,
+    "rank": 4,
     "name": "Efrem GIDEY",
     "dob": "03 SEP 2000",
     "country": "IRL",
@@ -216,12 +174,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338036",
+    "competitor_id": "135709212",
     "slug": "/athletes/netherlands/mike-foppen-14631296",
-    "rank": 6,
+    "rank": 5,
     "name": "Mike FOPPEN",
     "dob": "29 NOV 1996",
     "country": "NED",
@@ -258,12 +216,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338037",
+    "competitor_id": "135709213",
     "slug": "/athletes/great-britain-ni/david-mullarkey-14769889",
-    "rank": 7,
+    "rank": 6,
     "name": "David MULLARKEY",
     "dob": "07 MAR 2000",
     "country": "GBR",
@@ -300,12 +258,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338039",
+    "competitor_id": "135709215",
     "slug": "/athletes/france/valentin-gondouin-14900468",
-    "rank": 8,
+    "rank": 7,
     "name": "Valentin GONDOUIN",
     "dob": "04 MAR 1999",
     "country": "FRA",
@@ -342,54 +300,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338043",
-    "slug": "/athletes/switzerland/dominic-lokinyomo-lobalu-14792211",
-    "rank": 9,
-    "name": "Dominic Lokinyomo LOBALU",
-    "dob": "16 AUG 1998",
-    "country": "SUI",
-    "ranking_score": 1190.0,
-    "performances": [
-     {
-      "date": "2024-06-12",
-      "date_raw": "12 JUN 2024",
-      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
-      "category": "GL",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "28:00.32",
-      "result_score": 1131,
-      "placing_score": 80,
-      "performance_score": 1211,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-03-07",
-      "date_raw": "07 MAR 2026",
-      "competition": "II 10K Internacional de Bilbao, Bilbao",
-      "category": "E",
-      "discipline_code": "10RR",
-      "discipline": "10 Kilometres Road",
-      "indoor": false,
-      "place": 1,
-      "mark": "27:36",
-      "result_score": 1169,
-      "placing_score": 0,
-      "performance_score": 1169,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-04"
-   },
-   {
-    "competitor_id": "135338044",
+    "competitor_id": "135709219",
     "slug": "/athletes/great-britain-ni/scott-beattie-14706588",
-    "rank": 10,
+    "rank": 8,
     "name": "Scott BEATTIE",
     "dob": "04 DEC 1998",
     "country": "GBR",
@@ -426,12 +342,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338049",
+    "competitor_id": "135709224",
     "slug": "/athletes/great-britain-ni/emile-cairess-14644747",
-    "rank": 11,
+    "rank": 9,
     "name": "Emile CAIRESS",
     "dob": "27 DEC 1997",
     "country": "GBR",
@@ -468,12 +384,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338058",
+    "competitor_id": "135709233",
     "slug": "/athletes/russia/vladimir-nikitin-14442497",
-    "rank": 12,
+    "rank": 10,
     "name": "Vladimir NIKITIN",
     "dob": "05 AUG 1992",
     "country": "RUS",
@@ -510,12 +426,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338065",
+    "competitor_id": "135709240",
     "slug": "/athletes/belgium/simon-debognies-14589434",
-    "rank": 13,
+    "rank": 11,
     "name": "Simon DEBOGNIES",
     "dob": "16 JUL 1996",
     "country": "BEL",
@@ -552,12 +468,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338066",
+    "competitor_id": "135709241",
     "slug": "/athletes/france/simon-bedard-14643587",
-    "rank": 14,
+    "rank": 12,
     "name": "Simon BEDARD",
     "dob": "03 JAN 1997",
     "country": "FRA",
@@ -594,12 +510,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338070",
+    "competitor_id": "135709245",
     "slug": "/athletes/spain/said-mechaal-14708419",
-    "rank": 15,
+    "rank": 13,
     "name": "Said MECHAAL",
     "dob": "23 MAY 1998",
     "country": "ESP",
@@ -636,54 +552,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338072",
-    "slug": "/athletes/spain/thierry-ndikumwenayo-14661449",
-    "rank": 16,
-    "name": "Thierry NDIKUMWENAYO",
-    "dob": "26 MAR 1997",
-    "country": "ESP",
-    "ranking_score": 1166.0,
-    "performances": [
-     {
-      "date": "2024-06-12",
-      "date_raw": "12 JUN 2024",
-      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
-      "category": "GL",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 3,
-      "mark": "28:00.96",
-      "result_score": 1130,
-      "placing_score": 55,
-      "performance_score": 1185,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-02-09",
-      "date_raw": "09 FEB 2025",
-      "competition": "10K Ibiza - Platja d'en Bossa, Ibiza",
-      "category": "F",
-      "discipline_code": "10RR",
-      "discipline": "10 Kilometres Road",
-      "indoor": false,
-      "place": 1,
-      "mark": "27:50",
-      "result_score": 1147,
-      "placing_score": 0,
-      "performance_score": 1147,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-04"
-   },
-   {
-    "competitor_id": "135338080",
+    "competitor_id": "135709254",
     "slug": "/athletes/norway/awet-nftalem-kibrab-14579463",
-    "rank": 17,
+    "rank": 14,
     "name": "Awet Nftalem KIBRAB",
     "dob": "09 MAY 1995",
     "country": "NOR",
@@ -720,12 +594,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338081",
+    "competitor_id": "135709255",
     "slug": "/athletes/france/baptiste-guyon-14789002",
-    "rank": 18,
+    "rank": 15,
     "name": "Baptiste GUYON",
     "dob": "17 JAN 2001",
     "country": "FRA",
@@ -762,54 +636,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338082",
-    "slug": "/athletes/great-britain-ni/patrick-dever-14523465",
-    "rank": 19,
-    "name": "Patrick DEVER",
-    "dob": "05 SEP 1996",
-    "country": "GBR",
-    "ranking_score": 1158.0,
-    "performances": [
-     {
-      "date": "2024-06-12",
-      "date_raw": "12 JUN 2024",
-      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
-      "category": "GL",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 6,
-      "mark": "28:04.43",
-      "result_score": 1125,
-      "placing_score": 35,
-      "performance_score": 1160,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-02",
-      "date_raw": "02 AUG 2025",
-      "competition": "TD Beach to Beacon 10K Road Race, 1000 Shore Road, Cape Elizabeth, ME",
-      "category": "C",
-      "discipline_code": "10RR",
-      "discipline": "10 Kilometres Road",
-      "indoor": false,
-      "place": 4,
-      "mark": "27:44",
-      "result_score": 1157,
-      "placing_score": 0,
-      "performance_score": 1157,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-04"
-   },
-   {
-    "competitor_id": "135338083",
+    "competitor_id": "135709256",
     "slug": "/athletes/france/felix-bour-14467653",
-    "rank": 20,
+    "rank": 16,
     "name": "Felix BOUR",
     "dob": "25 MAR 1994",
     "country": "FRA",
@@ -846,12 +678,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338090",
+    "competitor_id": "135709263",
     "slug": "/athletes/spain/eduardo-menacho-14677463",
-    "rank": 21,
+    "rank": 17,
     "name": "Eduardo MENACHO",
     "dob": "25 NOV 1999",
     "country": "ESP",
@@ -888,12 +720,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338096",
+    "competitor_id": "135709269",
     "slug": "/athletes/great-britain-ni/ellis-cross-14530269",
-    "rank": 22,
+    "rank": 18,
     "name": "Ellis CROSS",
     "dob": "22 SEP 1996",
     "country": "GBR",
@@ -930,12 +762,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338097",
+    "competitor_id": "135709270",
     "slug": "/athletes/israel/dereje-chekole-14841868",
-    "rank": 23,
+    "rank": 19,
     "name": "Dereje CHEKOLE",
     "dob": "13 JUL 2000",
     "country": "ISR",
@@ -972,12 +804,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338100",
+    "competitor_id": "135709273",
     "slug": "/athletes/italy/pasquale-selvarolo-14763495",
-    "rank": 24,
+    "rank": 20,
     "name": "Pasquale SELVAROLO",
     "dob": "28 NOV 1999",
     "country": "ITA",
@@ -1014,12 +846,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338103",
+    "competitor_id": "135709276",
     "slug": "/athletes/italy/yemaneberhan-crippa-14513998",
-    "rank": 25,
+    "rank": 21,
     "name": "Yemaneberhan CRIPPA",
     "dob": "15 OCT 1996",
     "country": "ITA",
@@ -1056,54 +888,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338105",
-    "slug": "/athletes/spain/abdessamad-oukhelfen-14708418",
-    "rank": 26,
-    "name": "Abdessamad OUKHELFEN",
-    "dob": "18 DEC 1998",
-    "country": "ESP",
-    "ranking_score": 1150.0,
-    "performances": [
-     {
-      "date": "2026-02-15",
-      "date_raw": "15 FEB 2026",
-      "competition": "Spanish 10 km Road Running Championships, Ibiza",
-      "category": "B",
-      "discipline_code": "10RR",
-      "discipline": "10 Kilometres Road",
-      "indoor": false,
-      "place": 1,
-      "mark": "27:52",
-      "result_score": 1144,
-      "placing_score": 14,
-      "performance_score": 1158,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2024-06-12",
-      "date_raw": "12 JUN 2024",
-      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
-      "category": "GL",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 8,
-      "mark": "28:10.97",
-      "result_score": 1115,
-      "placing_score": 28,
-      "performance_score": 1143,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-04"
-   },
-   {
-    "competitor_id": "135338107",
+    "competitor_id": "135709279",
     "slug": "/athletes/france/bastien-augusto-14869306",
-    "rank": 27,
+    "rank": 22,
     "name": "Bastien AUGUSTO",
     "dob": "10 AUG 1999",
     "country": "FRA",
@@ -1140,12 +930,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338111",
+    "competitor_id": "135709283",
     "slug": "/athletes/germany/nils-voigt-14598243",
-    "rank": 28,
+    "rank": 23,
     "name": "Nils VOIGT",
     "dob": "02 MAY 1997",
     "country": "GER",
@@ -1182,54 +972,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338120",
-    "slug": "/athletes/belgium/isaac-kimeli-14482919",
-    "rank": 29,
-    "name": "Isaac KIMELI",
-    "dob": "09 MAR 1994",
-    "country": "BEL",
-    "ranking_score": 1142.0,
-    "performances": [
-     {
-      "date": "2026-01-11",
-      "date_raw": "11 JAN 2026",
-      "competition": "10K Valencia Ibercaja by Kiprun, Valencia",
-      "category": "E",
-      "discipline_code": "10RR",
-      "discipline": "10 Kilometres Road",
-      "indoor": false,
-      "place": 8,
-      "mark": "27:29",
-      "result_score": 1180,
-      "placing_score": 0,
-      "performance_score": 1180,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2024-06-12",
-      "date_raw": "12 JUN 2024",
-      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
-      "category": "GL",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 14,
-      "mark": "28:17.84",
-      "result_score": 1104,
-      "placing_score": 0,
-      "performance_score": 1104,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-04"
-   },
-   {
-    "competitor_id": "135338122",
+    "competitor_id": "135709293",
     "slug": "/athletes/spain/jesus-ramos-14516175",
-    "rank": 30,
+    "rank": 24,
     "name": "Jesús RAMOS",
     "dob": "29 APR 1996",
     "country": "ESP",
@@ -1266,12 +1014,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338129",
+    "competitor_id": "135709300",
     "slug": "/athletes/germany/davor-aaron-bienenfeld-14716024",
-    "rank": 31,
+    "rank": 25,
     "name": "Davor Aaron BIENENFELD",
     "dob": "25 SEP 1997",
     "country": "GER",
@@ -1308,12 +1056,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338133",
+    "competitor_id": "135709304",
     "slug": "/athletes/italy/iliass-aouani-14585136",
-    "rank": 32,
+    "rank": 26,
     "name": "Iliass AOUANI",
     "dob": "29 SEP 1995",
     "country": "ITA",
@@ -1350,12 +1098,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338135",
+    "competitor_id": "135709306",
     "slug": "/athletes/italy/francesco-guerra-14780698",
-    "rank": 33,
+    "rank": 27,
     "name": "Francesco GUERRA",
     "dob": "17 JUL 2001",
     "country": "ITA",
@@ -1392,58 +1140,16 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338139",
-    "slug": "/athletes/switzerland/jonas-raess-14427180",
-    "rank": 34,
-    "name": "Jonas RAESS",
-    "dob": "08 MAR 1994",
-    "country": "SUI",
-    "ranking_score": 1136.0,
-    "performances": [
-     {
-      "date": "2025-03-29",
-      "date_raw": "29 MAR 2025",
-      "competition": "The TEN, JSerra Catholic HS, San Juan Capistrano, CA",
-      "category": "B",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 15,
-      "mark": "27:36.96",
-      "result_score": 1168,
-      "placing_score": 0,
-      "performance_score": 1168,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2024-06-12",
-      "date_raw": "12 JUN 2024",
-      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
-      "category": "GL",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 13,
-      "mark": "28:17.79",
-      "result_score": 1105,
-      "placing_score": 0,
-      "performance_score": 1105,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-04"
-   },
-   {
-    "competitor_id": "135338143",
+    "competitor_id": "135709318",
     "slug": "/athletes/spain/ilias-fifa-14372018",
-    "rank": 35,
+    "rank": 28,
     "name": "Ilias FIFA",
     "dob": "16 MAY 1989",
     "country": "ESP",
-    "ranking_score": 1135.0,
+    "ranking_score": 1133.0,
     "performances": [
      {
       "date": "2025-09-28",
@@ -1461,27 +1167,27 @@
       "month_correction_applied": false
      },
      {
-      "date": "2024-06-12",
-      "date_raw": "12 JUN 2024",
-      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
-      "category": "GL",
+      "date": "2025-05-10",
+      "date_raw": "10 MAY 2025",
+      "competition": "Spanish 10,000m Championships, Pista Municipal Atletismo, Mao",
+      "category": "B",
       "discipline_code": "10K",
       "discipline": "10,000 Metres",
       "indoor": false,
-      "place": 11,
-      "mark": "28:14.10",
-      "result_score": 1110,
-      "placing_score": 15,
-      "performance_score": 1125,
+      "place": 3,
+      "mark": "28:28.14",
+      "result_score": 1089,
+      "placing_score": 31,
+      "performance_score": 1120,
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338150",
+    "competitor_id": "135709320",
     "slug": "/athletes/netherlands/mahadi-abdi-ali-14647173",
-    "rank": 36,
+    "rank": 29,
     "name": "Mahadi ABDI ALI",
     "dob": "08 NOV 1995",
     "country": "NED",
@@ -1518,12 +1224,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338152",
+    "competitor_id": "135709322",
     "slug": "/athletes/great-britain-ni/andrew-butchart-14377202",
-    "rank": 37,
+    "rank": 30,
     "name": "Andrew BUTCHART",
     "dob": "14 OCT 1991",
     "country": "GBR",
@@ -1560,12 +1266,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338163",
+    "competitor_id": "135709333",
     "slug": "/athletes/ireland/jack-oleary-14648669",
-    "rank": 38,
+    "rank": 31,
     "name": "Jack O'LEARY",
     "dob": "04 NOV 1997",
     "country": "IRL",
@@ -1602,12 +1308,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338175",
+    "competitor_id": "135709345",
     "slug": "/athletes/great-britain-ni/joseph-wigfield-14804900",
-    "rank": 39,
+    "rank": 32,
     "name": "Joseph WIGFIELD",
     "dob": "18 JAN 2000",
     "country": "GBR",
@@ -1644,12 +1350,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338177",
+    "competitor_id": "135709347",
     "slug": "/athletes/great-britain-ni/rory-leonard-14805205",
-    "rank": 40,
+    "rank": 33,
     "name": "Rory LEONARD",
     "dob": "13 FEB 2001",
     "country": "GBR",
@@ -1686,54 +1392,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338186",
-    "slug": "/athletes/great-britain-ni/zakariya-mahamed-014762880",
-    "rank": 41,
-    "name": "Zakariya MAHAMED",
-    "dob": "29 NOV 2000",
-    "country": "GBR",
-    "ranking_score": 1123.0,
-    "performances": [
-     {
-      "date": "2026-01-11",
-      "date_raw": "11 JAN 2026",
-      "competition": "10K Valencia Ibercaja by Kiprun, Valencia",
-      "category": "E",
-      "discipline_code": "10RR",
-      "discipline": "10 Kilometres Road",
-      "indoor": false,
-      "place": 24,
-      "mark": "27:46",
-      "result_score": 1153,
-      "placing_score": 0,
-      "performance_score": 1153,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2024-06-12",
-      "date_raw": "12 JUN 2024",
-      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
-      "category": "GL",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 18,
-      "mark": "28:25.31",
-      "result_score": 1093,
-      "placing_score": 0,
-      "performance_score": 1093,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-04"
-   },
-   {
-    "competitor_id": "135338190",
+    "competitor_id": "135709359",
     "slug": "/athletes/spain/juan-antonio-perez-14426768",
-    "rank": 42,
+    "rank": 34,
     "name": "Juan Antonio PÉREZ",
     "dob": "06 NOV 1988",
     "country": "ESP",
@@ -1770,12 +1434,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338194",
+    "competitor_id": "135709363",
     "slug": "/athletes/spain/pablo-alba-15003302",
-    "rank": 43,
+    "rank": 35,
     "name": "Pablo ALBA",
     "dob": "05 SEP 2002",
     "country": "ESP",
@@ -1812,12 +1476,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338195",
+    "competitor_id": "135709364",
     "slug": "/athletes/israel/zemenu-muchie-14807686",
-    "rank": 44,
+    "rank": 36,
     "name": "Zemenu MUCHIE",
     "dob": "05 DEC 2000",
     "country": "ISR",
@@ -1854,12 +1518,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338199",
+    "competitor_id": "135709368",
     "slug": "/athletes/israel/adisu-guadia-14804786",
-    "rank": 45,
+    "rank": 37,
     "name": "Adisu GUADIA",
     "dob": "11 SEP 2002",
     "country": "ISR",
@@ -1896,12 +1560,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338209",
+    "competitor_id": "135709378",
     "slug": "/athletes/netherlands/noah-schutte-14523635",
-    "rank": 46,
+    "rank": 38,
     "name": "Noah SCHUTTE",
     "dob": "15 MAY 1995",
     "country": "NED",
@@ -1938,12 +1602,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338216",
+    "competitor_id": "135709385",
     "slug": "/athletes/belgium/clement-deflandre-14704524",
-    "rank": 47,
+    "rank": 39,
     "name": "Clément DEFLANDRE",
     "dob": "14 DEC 1997",
     "country": "BEL",
@@ -1980,12 +1644,54 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338220",
+    "competitor_id": "135709388",
+    "slug": "/athletes/switzerland/dominic-lokinyomo-lobalu-14792211",
+    "rank": 40,
+    "name": "Dominic Lokinyomo LOBALU",
+    "dob": "16 AUG 1998",
+    "country": "SUI",
+    "ranking_score": 1115.0,
+    "performances": [
+     {
+      "date": "2026-03-07",
+      "date_raw": "07 MAR 2026",
+      "competition": "II 10K Internacional de Bilbao, Bilbao",
+      "category": "E",
+      "discipline_code": "10RR",
+      "discipline": "10 Kilometres Road",
+      "indoor": false,
+      "place": 1,
+      "mark": "27:36",
+      "result_score": 1169,
+      "placing_score": 0,
+      "performance_score": 1169,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-09-14",
+      "date_raw": "14 SEP 2025",
+      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
+      "category": "OW",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 14,
+      "mark": "29:11.65",
+      "result_score": 1024,
+      "placing_score": 38,
+      "performance_score": 1062,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-11"
+   },
+   {
+    "competitor_id": "135709390",
     "slug": "/athletes/belgium/robin-hendrix-14487481",
-    "rank": 48,
+    "rank": 41,
     "name": "Robin HENDRIX",
     "dob": "14 JAN 1995",
     "country": "BEL",
@@ -2022,12 +1728,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338223",
+    "competitor_id": "135709393",
     "slug": "/athletes/spain/miguel-baidal-14846562",
-    "rank": 49,
+    "rank": 42,
     "name": "Miguel BAIDAL",
     "dob": "20 JUL 2001",
     "country": "ESP",
@@ -2064,12 +1770,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338231",
+    "competitor_id": "135709401",
     "slug": "/athletes/france/florian-le-pallec-14796770",
-    "rank": 50,
+    "rank": 43,
     "name": "Florian LE PALLEC",
     "dob": "31 MAY 1999",
     "country": "FRA",
@@ -2106,54 +1812,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338233",
-    "slug": "/athletes/israel/tadesse-getahon-14737734",
-    "rank": 51,
-    "name": "Tadesse GETAHON",
-    "dob": "20 DEC 1997",
-    "country": "ISR",
-    "ranking_score": 1111.0,
-    "performances": [
-     {
-      "date": "2024-06-12",
-      "date_raw": "12 JUN 2024",
-      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
-      "category": "GL",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 7,
-      "mark": "28:09.87",
-      "result_score": 1117,
-      "placing_score": 31,
-      "performance_score": 1148,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-06-14",
-      "date_raw": "14 JUN 2025",
-      "competition": "Gouden Spike, Sportcomplex De Leidse Hout, Leiden",
-      "category": "D",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 7,
-      "mark": "28:43.48",
-      "result_score": 1066,
-      "placing_score": 8,
-      "performance_score": 1074,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-04"
-   },
-   {
-    "competitor_id": "135338235",
+    "competitor_id": "135709404",
     "slug": "/athletes/france/thomas-termote-14893671",
-    "rank": 52,
+    "rank": 44,
     "name": "Thomas TERMOTE",
     "dob": "27 JUN 2002",
     "country": "FRA",
@@ -2190,12 +1854,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338240",
+    "competitor_id": "135709409",
     "slug": "/athletes/turkiye/ramazan-bastug-14740057",
-    "rank": 53,
+    "rank": 45,
     "name": "Ramazan BAŞTUĞ",
     "dob": "01 DEC 2000",
     "country": "TUR",
@@ -2232,12 +1896,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338254",
+    "competitor_id": "135709423",
     "slug": "/athletes/poland/maciej-megier-14944552",
-    "rank": 54,
+    "rank": 46,
     "name": "Maciej MEGIER",
     "dob": "26 APR 2003",
     "country": "POL",
@@ -2274,12 +1938,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338257",
+    "competitor_id": "135709426",
     "slug": "/athletes/spain/aaron-las-heras-14738293",
-    "rank": 55,
+    "rank": 47,
     "name": "Aarón LAS HERAS",
     "dob": "22 JUN 2000",
     "country": "ESP",
@@ -2316,12 +1980,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338266",
+    "competitor_id": "135709435",
     "slug": "/athletes/ireland/cormac-dalton-14705225",
-    "rank": 56,
+    "rank": 48,
     "name": "Cormac DALTON",
     "dob": "01 SEP 1998",
     "country": "IRL",
@@ -2358,54 +2022,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338267",
-    "slug": "/athletes/sweden/simon-sundstrom-14653682",
-    "rank": 57,
-    "name": "Simon SUNDSTRÖM",
-    "dob": "04 FEB 1998",
-    "country": "SWE",
-    "ranking_score": 1103.0,
-    "performances": [
-     {
-      "date": "2026-03-28",
-      "date_raw": "28 MAR 2026",
-      "competition": "The TEN, JSerra Catholic HS, San Juan Capistrano, CA",
-      "category": "B",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 14,
-      "mark": "28:03.90",
-      "result_score": 1126,
-      "placing_score": 0,
-      "performance_score": 1126,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2024-06-12",
-      "date_raw": "12 JUN 2024",
-      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
-      "category": "GL",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 26,
-      "mark": "28:33.93",
-      "result_score": 1080,
-      "placing_score": 0,
-      "performance_score": 1080,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-04"
-   },
-   {
-    "competitor_id": "135338275",
+    "competitor_id": "135709443",
     "slug": "/athletes/denmark/joel-ibler-lilleso-14884913",
-    "rank": 58,
+    "rank": 49,
     "name": "Joel Ibler LILLESØ",
     "dob": "17 NOV 2003",
     "country": "DEN",
@@ -2442,12 +2064,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338279",
+    "competitor_id": "135709447",
     "slug": "/athletes/ireland/dean-casey-14903472",
-    "rank": 59,
+    "rank": 50,
     "name": "Dean CASEY",
     "dob": "26 JUL 2003",
     "country": "IRL",
@@ -2484,26 +2106,26 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338281",
+    "competitor_id": "135709449",
     "slug": "/athletes/spain/nassim-hassaous-14589500",
-    "rank": 60,
+    "rank": 51,
     "name": "Nassim HASSAOUS",
     "dob": "23 MAR 1994",
     "country": "ESP",
     "ranking_score": 1101.0,
     "performances": [
      {
-      "date": "2025-05-03",
-      "date_raw": "03 MAY 2025",
-      "competition": "Tokyo : Speed : Race, Meijijingu Gaien area, Tokyo",
+      "date": "2026-03-15",
+      "date_raw": "15 MAR 2026",
+      "competition": "10K Camargo, Camargo",
       "category": "F",
       "discipline_code": "10RR",
       "discipline": "10 Kilometres Road",
       "indoor": false,
-      "place": 12,
+      "place": 1,
       "mark": "28:08",
       "result_score": 1120,
       "placing_score": 0,
@@ -2526,54 +2148,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338286",
-    "slug": "/athletes/belgium/dorian-boulvin-14548914",
-    "rank": 61,
-    "name": "Dorian BOULVIN",
-    "dob": "05 JUN 1997",
-    "country": "BEL",
-    "ranking_score": 1099.0,
-    "performances": [
-     {
-      "date": "2025-02-09",
-      "date_raw": "09 FEB 2025",
-      "competition": "Groet uit Schoorl Run, Schoorl",
-      "category": "F",
-      "discipline_code": "10RR",
-      "discipline": "10 Kilometres Road",
-      "indoor": false,
-      "place": 5,
-      "mark": "28:10",
-      "result_score": 1116,
-      "placing_score": 0,
-      "performance_score": 1116,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-05-24",
-      "date_raw": "24 MAY 2025",
-      "competition": "European 10,000m Cup, Stade Complexe Sportif Jean-Paul Chasseboeuf, Pacé",
-      "category": "B",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 14,
-      "mark": "28:32.04",
-      "result_score": 1083,
-      "placing_score": 0,
-      "performance_score": 1083,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-04"
-   },
-   {
-    "competitor_id": "135338292",
+    "competitor_id": "135709459",
     "slug": "/athletes/germany/johannes-motschmann-14429728",
-    "rank": 62,
+    "rank": 52,
     "name": "Johannes MOTSCHMANN",
     "dob": "03 AUG 1994",
     "country": "GER",
@@ -2610,12 +2190,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338293",
+    "competitor_id": "135709460",
     "slug": "/athletes/italy/konjoneh-maggi-14949044",
-    "rank": 63,
+    "rank": 53,
     "name": "Konjoneh MAGGI",
     "dob": "31 DEC 2003",
     "country": "ITA",
@@ -2652,12 +2232,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338294",
+    "competitor_id": "135709461",
     "slug": "/athletes/netherlands/nathan-houwaard-15038002",
-    "rank": 64,
+    "rank": 54,
     "name": "Nathan HOUWAARD",
     "dob": "26 NOV 2005",
     "country": "NED",
@@ -2694,12 +2274,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338299",
+    "competitor_id": "135709466",
     "slug": "/athletes/hungary/gabor-karsai-14724959",
-    "rank": 65,
+    "rank": 55,
     "name": "Gábor KARSAI",
     "dob": "04 MAR 2004",
     "country": "HUN",
@@ -2736,12 +2316,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338300",
+    "competitor_id": "135709467",
     "slug": "/athletes/italy/alberto-mondazzi-14666070",
-    "rank": 66,
+    "rank": 56,
     "name": "Alberto MONDAZZI",
     "dob": "21 FEB 1998",
     "country": "ITA",
@@ -2778,12 +2358,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338302",
+    "competitor_id": "135709469",
     "slug": "/athletes/spain/mesfin-escamilla-14950713",
-    "rank": 67,
+    "rank": 57,
     "name": "Mesfin ESCAMILLA",
     "dob": "19 NOV 2005",
     "country": "ESP",
@@ -2820,12 +2400,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338304",
+    "competitor_id": "135709471",
     "slug": "/athletes/netherlands/bas-van-hooren-14524487",
-    "rank": 68,
+    "rank": 58,
     "name": "Bas VAN HOOREN",
     "dob": "12 JUN 1992",
     "country": "NED",
@@ -2862,12 +2442,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338311",
+    "competitor_id": "135709478",
     "slug": "/athletes/andorra/nahuel-carabana-14759730",
-    "rank": 69,
+    "rank": 59,
     "name": "Nahuel CARABAÑA",
     "dob": "10 NOV 1999",
     "country": "AND",
@@ -2904,12 +2484,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338315",
+    "competitor_id": "135709482",
     "slug": "/athletes/italy/badr-jaafari-14911861",
-    "rank": 70,
+    "rank": 60,
     "name": "Badr JAAFARI",
     "dob": "15 APR 1998",
     "country": "ITA",
@@ -2946,12 +2526,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338316",
+    "competitor_id": "135709483",
     "slug": "/athletes/latvia/arturs-niklavs-medveds-14743578",
-    "rank": 71,
+    "rank": 61,
     "name": "Artūrs Niklāvs MEDVEDS",
     "dob": "17 NOV 1999",
     "country": "LAT",
@@ -2988,12 +2568,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338321",
+    "competitor_id": "135709488",
     "slug": "/athletes/ireland/shay-mcevoy-14828390",
-    "rank": 72,
+    "rank": 62,
     "name": "Shay MCEVOY",
     "dob": "01 JUN 2001",
     "country": "IRL",
@@ -3030,12 +2610,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338326",
+    "competitor_id": "135709493",
     "slug": "/athletes/norway/sondre-nordstad-moen-14215417",
-    "rank": 73,
+    "rank": 63,
     "name": "Sondre Nordstad MOEN",
     "dob": "12 JAN 1991",
     "country": "NOR",
@@ -3072,96 +2652,54 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338330",
-    "slug": "/athletes/ireland/peter-lynch-14701622",
-    "rank": 74,
-    "name": "Peter LYNCH",
-    "dob": "26 NOV 1997",
-    "country": "IRL",
-    "ranking_score": 1089.0,
+    "competitor_id": "135709495",
+    "slug": "/athletes/belgium/dorian-boulvin-14548914",
+    "rank": 64,
+    "name": "Dorian BOULVIN",
+    "dob": "05 JUN 1997",
+    "country": "BEL",
+    "ranking_score": 1090.0,
     "performances": [
      {
-      "date": "2025-08-02",
-      "date_raw": "02 AUG 2025",
-      "competition": "TD Beach to Beacon 10K Road Race, 1000 Shore Road, Cape Elizabeth, ME",
-      "category": "C",
+      "date": "2025-09-06",
+      "date_raw": "06 SEP 2025",
+      "competition": "BIG10, Rotterdam",
+      "category": "F",
       "discipline_code": "10RR",
       "discipline": "10 Kilometres Road",
       "indoor": false,
-      "place": 5,
-      "mark": "27:55",
-      "result_score": 1140,
+      "place": 2,
+      "mark": "28:23",
+      "result_score": 1097,
       "placing_score": 0,
-      "performance_score": 1140,
+      "performance_score": 1097,
       "month_correction_applied": false
      },
      {
-      "date": "2024-06-12",
-      "date_raw": "12 JUN 2024",
-      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
-      "category": "GL",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 32,
-      "mark": "29:02.00",
-      "result_score": 1038,
-      "placing_score": 0,
-      "performance_score": 1038,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-04"
-   },
-   {
-    "competitor_id": "135338332",
-    "slug": "/athletes/germany/tom-forster-14852259",
-    "rank": 75,
-    "name": "Tom FÖRSTER",
-    "dob": "02 FEB 2002",
-    "country": "GER",
-    "ranking_score": 1089.0,
-    "performances": [
-     {
-      "date": "2025-05-03",
-      "date_raw": "03 MAY 2025",
-      "competition": "German 10,000m Championships, Jahnkampfbahn, Hamburg",
+      "date": "2025-05-24",
+      "date_raw": "24 MAY 2025",
+      "competition": "European 10,000m Cup, Stade Complexe Sportif Jean-Paul Chasseboeuf, Pacé",
       "category": "B",
       "discipline_code": "10K",
       "discipline": "10,000 Metres",
       "indoor": false,
-      "place": 2,
-      "mark": "28:36.93",
-      "result_score": 1076,
-      "placing_score": 35,
-      "performance_score": 1111,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2024-06-12",
-      "date_raw": "12 JUN 2024",
-      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
-      "category": "GL",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 28,
-      "mark": "28:41.95",
-      "result_score": 1068,
+      "place": 14,
+      "mark": "28:32.04",
+      "result_score": 1083,
       "placing_score": 0,
-      "performance_score": 1068,
+      "performance_score": 1083,
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338334",
+    "competitor_id": "135709500",
     "slug": "/athletes/france/loic-scomparin-14922855",
-    "rank": 76,
+    "rank": 65,
     "name": "Loic SCOMPARIN",
     "dob": "23 MAY 2001",
     "country": "FRA",
@@ -3198,54 +2736,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338336",
-    "slug": "/athletes/italy/ahmed-ouhda-14593897",
-    "rank": 77,
-    "name": "Ahmed OUHDA",
-    "dob": "10 MAR 1997",
-    "country": "ITA",
-    "ranking_score": 1089.0,
-    "performances": [
-     {
-      "date": "2025-03-16",
-      "date_raw": "16 MAR 2025",
-      "competition": "Semi-Marathon International de Lille - 5km et 10km, Lille",
-      "category": "F",
-      "discipline_code": "10RR",
-      "discipline": "10 Kilometres Road",
-      "indoor": false,
-      "place": 28,
-      "mark": "28:23",
-      "result_score": 1097,
-      "placing_score": 0,
-      "performance_score": 1097,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2024-06-12",
-      "date_raw": "12 JUN 2024",
-      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
-      "category": "GL",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 24,
-      "mark": "28:33.50",
-      "result_score": 1081,
-      "placing_score": 0,
-      "performance_score": 1081,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-04"
-   },
-   {
-    "competitor_id": "135338339",
+    "competitor_id": "135709504",
     "slug": "/athletes/great-britain-ni/alfie-manthorpe-14792906",
-    "rank": 78,
+    "rank": 66,
     "name": "Alfie MANTHORPE",
     "dob": "26 SEP 1999",
     "country": "GBR",
@@ -3282,12 +2778,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338341",
+    "competitor_id": "135709506",
     "slug": "/athletes/france/antonin-saint-peyre-15030445",
-    "rank": 79,
+    "rank": 67,
     "name": "Antonin SAINT-PEYRE",
     "dob": "23 MAY 2003",
     "country": "FRA",
@@ -3324,12 +2820,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338354",
+    "competitor_id": "135709519",
     "slug": "/athletes/russia/yevgeniy-rybakov-14223765",
-    "rank": 80,
+    "rank": 68,
     "name": "Yevgeniy RYBAKOV",
     "dob": "27 FEB 1985",
     "country": "RUS",
@@ -3366,12 +2862,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338358",
+    "competitor_id": "135709523",
     "slug": "/athletes/germany/jona-bodirsky-14905358",
-    "rank": 81,
+    "rank": 69,
     "name": "Jona BODIRSKY",
     "dob": "11 APR 2001",
     "country": "GER",
@@ -3408,12 +2904,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338359",
+    "competitor_id": "135709524",
     "slug": "/athletes/russia/anatoliy-rybakov-014223763",
-    "rank": 82,
+    "rank": 70,
     "name": "Anatoliy RYBAKOV",
     "dob": "27 FEB 1985",
     "country": "RUS",
@@ -3450,12 +2946,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338360",
+    "competitor_id": "135709525",
     "slug": "/athletes/norway/zerei-kbrom-mezngi-14598298",
-    "rank": 83,
+    "rank": 71,
     "name": "Zerei Kbrom MEZNGI",
     "dob": "12 JAN 1986",
     "country": "NOR",
@@ -3492,12 +2988,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338366",
+    "competitor_id": "135709530",
     "slug": "/athletes/lithuania/giedrius-valincius-14804770",
-    "rank": 84,
+    "rank": 72,
     "name": "Giedrius VALINČIUS",
     "dob": "20 JAN 2000",
     "country": "LTU",
@@ -3534,12 +3030,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338370",
+    "competitor_id": "135709534",
     "slug": "/athletes/germany/jan-lukas-becker-14432206",
-    "rank": 85,
+    "rank": 73,
     "name": "Jan Lukas BECKER",
     "dob": "22 SEP 1993",
     "country": "GER",
@@ -3576,12 +3072,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338372",
+    "competitor_id": "135709536",
     "slug": "/athletes/spain/zakaria-boufaljat-14801333",
-    "rank": 86,
+    "rank": 74,
     "name": "Zakaria BOUFALJAT",
     "dob": "21 SEP 1997",
     "country": "ESP",
@@ -3618,12 +3114,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338389",
+    "competitor_id": "135709552",
     "slug": "/athletes/great-britain-ni/joe-hudson-14896611",
-    "rank": 87,
+    "rank": 75,
     "name": "Joe HUDSON",
     "dob": "15 JUN 2001",
     "country": "GBR",
@@ -3660,12 +3156,54 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338396",
+    "competitor_id": "135709557",
+    "slug": "/athletes/germany/tom-forster-14852259",
+    "rank": 76,
+    "name": "Tom FÖRSTER",
+    "dob": "02 FEB 2002",
+    "country": "GER",
+    "ranking_score": 1077.0,
+    "performances": [
+     {
+      "date": "2025-05-03",
+      "date_raw": "03 MAY 2025",
+      "competition": "German 10,000m Championships, Jahnkampfbahn, Hamburg",
+      "category": "B",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "28:36.93",
+      "result_score": 1076,
+      "placing_score": 35,
+      "performance_score": 1111,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-08-01",
+      "date_raw": "01 AUG 2026",
+      "competition": "adidas Runners City Night, Breitscheidplatz, Berlin",
+      "category": "F",
+      "discipline_code": "10RR",
+      "discipline": "10 Kilometres Road",
+      "indoor": false,
+      "place": 7,
+      "mark": "28:58",
+      "result_score": 1044,
+      "placing_score": 0,
+      "performance_score": 1044,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-11"
+   },
+   {
+    "competitor_id": "135709561",
     "slug": "/athletes/sweden/jonathan-grahn-14944276",
-    "rank": 88,
+    "rank": 77,
     "name": "Jonathan GRAHN",
     "dob": "30 DEC 2004",
     "country": "SWE",
@@ -3702,12 +3240,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338399",
+    "competitor_id": "135709564",
     "slug": "/athletes/norway/fredrik-sandvik-14722342",
-    "rank": 89,
+    "rank": 78,
     "name": "Fredrik SANDVIK",
     "dob": "23 MAR 1998",
     "country": "NOR",
@@ -3744,12 +3282,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338403",
+    "competitor_id": "135709568",
     "slug": "/athletes/israel/assaf-harari-14850410",
-    "rank": 90,
+    "rank": 79,
     "name": "Assaf HARARI",
     "dob": "03 JUL 2001",
     "country": "ISR",
@@ -3786,12 +3324,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338405",
+    "competitor_id": "135709570",
     "slug": "/athletes/ireland/abdel-laadjel-14908468",
-    "rank": 91,
+    "rank": 80,
     "name": "Abdel LAADJEL",
     "dob": "09 SEP 2003",
     "country": "IRL",
@@ -3828,12 +3366,54 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338409",
+    "competitor_id": "135709573",
+    "slug": "/athletes/sweden/simon-sundstrom-14653682",
+    "rank": 81,
+    "name": "Simon SUNDSTRÖM",
+    "dob": "04 FEB 1998",
+    "country": "SWE",
+    "ranking_score": 1075.0,
+    "performances": [
+     {
+      "date": "2026-03-28",
+      "date_raw": "28 MAR 2026",
+      "competition": "The TEN, JSerra Catholic HS, San Juan Capistrano, CA",
+      "category": "B",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 14,
+      "mark": "28:03.90",
+      "result_score": 1126,
+      "placing_score": 0,
+      "performance_score": 1126,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-04-26",
+      "date_raw": "26 APR 2026",
+      "competition": "Bålsta Stadslopp, Gröna Dalens IP, Bålsta",
+      "category": "F",
+      "discipline_code": "10RR",
+      "discipline": "10 Kilometres Road",
+      "indoor": false,
+      "place": 3,
+      "mark": "29:12",
+      "result_score": 1024,
+      "placing_score": 0,
+      "performance_score": 1024,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-11"
+   },
+   {
+    "competitor_id": "135709575",
     "slug": "/athletes/spain/mario-priego-14896464",
-    "rank": 92,
+    "rank": 82,
     "name": "Mario PRIEGO",
     "dob": "28 NOV 2002",
     "country": "ESP",
@@ -3870,54 +3450,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338412",
-    "slug": "/athletes/sweden/oliver-lofqvist-14757485",
-    "rank": 93,
-    "name": "Oliver LÖFQVIST",
-    "dob": "05 MAY 1998",
-    "country": "SWE",
-    "ranking_score": 1075.0,
-    "performances": [
-     {
-      "date": "2024-06-12",
-      "date_raw": "12 JUN 2024",
-      "competition": "European Athletics Championships, Stadio Olimpico, Roma",
-      "category": "GL",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 20,
-      "mark": "28:28.42",
-      "result_score": 1088,
-      "placing_score": 0,
-      "performance_score": 1088,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-04-18",
-      "date_raw": "18 APR 2026",
-      "competition": "10 km en Ruta Villa de Laredo, Laredo",
-      "category": "E",
-      "discipline_code": "10RR",
-      "discipline": "10 Kilometres Road",
-      "indoor": false,
-      "place": 21,
-      "mark": "28:46",
-      "result_score": 1062,
-      "placing_score": 0,
-      "performance_score": 1062,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-04"
-   },
-   {
-    "competitor_id": "135338413",
+    "competitor_id": "135709578",
     "slug": "/athletes/spain/yago-rojo-14577127",
-    "rank": 94,
+    "rank": 83,
     "name": "Yago ROJO",
     "dob": "23 MAR 1995",
     "country": "ESP",
@@ -3954,12 +3492,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338414",
+    "competitor_id": "135709579",
     "slug": "/athletes/russia/sergey-sharov-15253752",
-    "rank": 95,
+    "rank": 84,
     "name": "Sergey SHAROV",
     "dob": "27 AUG 2003",
     "country": "RUS",
@@ -3996,12 +3534,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338427",
+    "competitor_id": "135709592",
     "slug": "/athletes/germany/markus-gorger-14655051",
-    "rank": 96,
+    "rank": 85,
     "name": "Markus GÖRGER",
     "dob": "12 JAN 1998",
     "country": "GER",
@@ -4038,12 +3576,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338428",
+    "competitor_id": "135709593",
     "slug": "/athletes/france/edouard-morin-luzuy-14925661",
-    "rank": 97,
+    "rank": 86,
     "name": "Edouard MORIN-LUZUY",
     "dob": "16 OCT 2002",
     "country": "FRA",
@@ -4080,12 +3618,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338432",
+    "competitor_id": "135709597",
     "slug": "/athletes/italy/yohanes-chiappinelli-14577970",
-    "rank": 98,
+    "rank": 87,
     "name": "Yohanes CHIAPPINELLI",
     "dob": "18 AUG 1997",
     "country": "ITA",
@@ -4122,12 +3660,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338440",
+    "competitor_id": "135709605",
     "slug": "/athletes/great-britain-ni/logan-rees-14764567",
-    "rank": 99,
+    "rank": 88,
     "name": "Logan REES",
     "dob": "23 FEB 1997",
     "country": "GBR",
@@ -4164,12 +3702,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
    },
    {
-    "competitor_id": "135338445",
+    "competitor_id": "135709610",
     "slug": "/athletes/italy/luca-ursano-14951761",
-    "rank": 100,
+    "rank": 89,
     "name": "Luca URSANO",
     "dob": "26 APR 1999",
     "country": "ITA",
@@ -4206,7 +3744,469 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-04"
+    "rank_date": "2026-08-11"
+   },
+   {
+    "competitor_id": "135709614",
+    "slug": "/athletes/turkiye/abdulhalik-cagiran-14924525",
+    "rank": 90,
+    "name": "Abdulhalik ÇAĞIRAN",
+    "dob": "15 SEP 2002",
+    "country": "TUR",
+    "ranking_score": 1069.0,
+    "performances": [
+     {
+      "date": "2026-05-03",
+      "date_raw": "03 MAY 2026",
+      "competition": "Turkish 10,000m Championships, Atatürk Stadyumu, Izmir",
+      "category": "B",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "28:53.76",
+      "result_score": 1051,
+      "placing_score": 42,
+      "performance_score": 1093,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-04-18",
+      "date_raw": "18 APR 2026",
+      "competition": "10 km en Ruta Villa de Laredo, Laredo",
+      "category": "E",
+      "discipline_code": "10RR",
+      "discipline": "10 Kilometres Road",
+      "indoor": false,
+      "place": 23,
+      "mark": "28:57",
+      "result_score": 1046,
+      "placing_score": 0,
+      "performance_score": 1046,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-11"
+   },
+   {
+    "competitor_id": "135709621",
+    "slug": "/athletes/germany/jonathan-dahlke-14528639",
+    "rank": 91,
+    "name": "Jonathan DAHLKE",
+    "dob": "14 FEB 1995",
+    "country": "GER",
+    "ranking_score": 1068.0,
+    "performances": [
+     {
+      "date": "2025-03-27",
+      "date_raw": "27 MAR 2025",
+      "competition": "Raleigh Relays, Paul Derr TF Facility, Raleigh, NC",
+      "category": "F",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 19,
+      "mark": "28:27.87",
+      "result_score": 1089,
+      "placing_score": 0,
+      "performance_score": 1089,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-05-02",
+      "date_raw": "02 MAY 2026",
+      "competition": "German 10,000m Championships, Otto Schade Stadium, Celle",
+      "category": "B",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "29:20.20",
+      "result_score": 1012,
+      "placing_score": 35,
+      "performance_score": 1047,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-11"
+   },
+   {
+    "competitor_id": "135709624",
+    "slug": "/athletes/france/igor-bougnot-14422995",
+    "rank": 92,
+    "name": "Igor BOUGNOT",
+    "dob": "01 SEP 1992",
+    "country": "FRA",
+    "ranking_score": 1068.0,
+    "performances": [
+     {
+      "date": "2025-05-24",
+      "date_raw": "24 MAY 2025",
+      "competition": "French 10,000m Championships, Stade Complexe Sportif Jean-Paul Chasseboeuf, Pacé",
+      "category": "B",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "29:02.11",
+      "result_score": 1038,
+      "placing_score": 35,
+      "performance_score": 1073,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-03-16",
+      "date_raw": "16 MAR 2025",
+      "competition": "Semi-Marathon International de Lille - 5km et 10km, Lille",
+      "category": "F",
+      "discipline_code": "10RR",
+      "discipline": "10 Kilometres Road",
+      "indoor": false,
+      "place": 39,
+      "mark": "28:45",
+      "result_score": 1064,
+      "placing_score": 0,
+      "performance_score": 1064,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-11"
+   },
+   {
+    "competitor_id": "135709625",
+    "slug": "/athletes/spain/adria-ceballos-14873348",
+    "rank": 93,
+    "name": "Adria CEBALLOS",
+    "dob": "17 OCT 2002",
+    "country": "ESP",
+    "ranking_score": 1068.0,
+    "performances": [
+     {
+      "date": "2026-05-09",
+      "date_raw": "09 MAY 2026",
+      "competition": "Spanish 10,000m Championships, Pista Municipal Atletismo, Mao",
+      "category": "B",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 7,
+      "mark": "28:52.63",
+      "result_score": 1052,
+      "placing_score": 18,
+      "performance_score": 1070,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-02-15",
+      "date_raw": "15 FEB 2026",
+      "competition": "Spanish 10 km Road Running Championships, Ibiza",
+      "category": "B",
+      "discipline_code": "10RR",
+      "discipline": "10 Kilometres Road",
+      "indoor": false,
+      "place": 7,
+      "mark": "28:43",
+      "result_score": 1067,
+      "placing_score": 0,
+      "performance_score": 1067,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-11"
+   },
+   {
+    "competitor_id": "135709626",
+    "slug": "/athletes/france/nicolas-vitre-14897794",
+    "rank": 94,
+    "name": "Nicolas VITRE",
+    "dob": "06 NOV 1998",
+    "country": "FRA",
+    "ranking_score": 1067.0,
+    "performances": [
+     {
+      "date": "2026-04-04",
+      "date_raw": "04 APR 2026",
+      "competition": "Urban Trail de Lille - 5 et 10km, Lille",
+      "category": "F",
+      "discipline_code": "10RR",
+      "discipline": "10 Kilometres Road",
+      "indoor": false,
+      "place": 28,
+      "mark": "28:05",
+      "result_score": 1124,
+      "placing_score": 0,
+      "performance_score": 1124,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-05-24",
+      "date_raw": "24 MAY 2025",
+      "competition": "French 10,000m Championships, Stade Complexe Sportif Jean-Paul Chasseboeuf, Pacé",
+      "category": "B",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 9,
+      "mark": "29:29.64",
+      "result_score": 998,
+      "placing_score": 13,
+      "performance_score": 1011,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-11"
+   },
+   {
+    "competitor_id": "135709629",
+    "slug": "/athletes/portugal/rui-pinto-14364464",
+    "rank": 95,
+    "name": "Rui PINTO",
+    "dob": "18 NOV 1992",
+    "country": "POR",
+    "ranking_score": 1067.0,
+    "performances": [
+     {
+      "date": "2026-01-17",
+      "date_raw": "17 JAN 2026",
+      "competition": "Figueira da Foz 10km, Figueira da Foz",
+      "category": "B",
+      "discipline_code": "10RR",
+      "discipline": "10 Kilometres Road",
+      "indoor": false,
+      "place": 1,
+      "mark": "28:21",
+      "result_score": 1100,
+      "placing_score": 14,
+      "performance_score": 1114,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-05-23",
+      "date_raw": "23 MAY 2026",
+      "competition": "European 10,000m Cup, Centro Sportivo A. Montagna, La Spezia",
+      "category": "B",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 24,
+      "mark": "29:13.86",
+      "result_score": 1021,
+      "placing_score": 0,
+      "performance_score": 1021,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-11"
+   },
+   {
+    "competitor_id": "135709635",
+    "slug": "/athletes/italy/luca-alfieri-14753342",
+    "rank": 96,
+    "name": "Luca ALFIERI",
+    "dob": "31 OCT 2000",
+    "country": "ITA",
+    "ranking_score": 1067.0,
+    "performances": [
+     {
+      "date": "2026-06-06",
+      "date_raw": "06 JUN 2026",
+      "competition": "The Lightning 10.000, Herrenwaldhalle, Stadtallendorf",
+      "category": "D",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 5,
+      "mark": "28:44.82",
+      "result_score": 1064,
+      "placing_score": 10,
+      "performance_score": 1074,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-05-24",
+      "date_raw": "24 MAY 2025",
+      "competition": "European 10,000m Cup, Stade Complexe Sportif Jean-Paul Chasseboeuf, Pacé",
+      "category": "B",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 20,
+      "mark": "28:46.67",
+      "result_score": 1061,
+      "placing_score": 0,
+      "performance_score": 1061,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-11"
+   },
+   {
+    "competitor_id": "135709641",
+    "slug": "/athletes/france/gaston-rohmer-14986075",
+    "rank": 97,
+    "name": "Gaston ROHMER",
+    "dob": "27 DEC 2005",
+    "country": "FRA",
+    "ranking_score": 1066.0,
+    "performances": [
+     {
+      "date": "2026-06-13",
+      "date_raw": "13 JUN 2026",
+      "competition": "Corrida International de Langueux, Langueux",
+      "category": "E",
+      "discipline_code": "10RR",
+      "discipline": "10 Kilometres Road",
+      "indoor": false,
+      "place": 13,
+      "mark": "28:21",
+      "result_score": 1100,
+      "placing_score": 0,
+      "performance_score": 1100,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-05-24",
+      "date_raw": "24 MAY 2025",
+      "competition": "French 10,000m Championships, Stade Complexe Sportif Jean-Paul Chasseboeuf, Pacé",
+      "category": "B",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 8,
+      "mark": "29:16.73",
+      "result_score": 1017,
+      "placing_score": 15,
+      "performance_score": 1032,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-11"
+   },
+   {
+    "competitor_id": "135709649",
+    "slug": "/athletes/great-britain-ni/jake-smith-14793405",
+    "rank": 98,
+    "name": "Jake SMITH",
+    "dob": "19 MAY 1998",
+    "country": "GBR",
+    "ranking_score": 1065.0,
+    "performances": [
+     {
+      "date": "2026-08-01",
+      "date_raw": "01 AUG 2026",
+      "competition": "adidas Runners City Night, Breitscheidplatz, Berlin",
+      "category": "F",
+      "discipline_code": "10RR",
+      "discipline": "10 Kilometres Road",
+      "indoor": false,
+      "place": 3,
+      "mark": "28:31",
+      "result_score": 1085,
+      "placing_score": 0,
+      "performance_score": 1085,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-06-14",
+      "date_raw": "14 JUN 2025",
+      "competition": "University of Birmingham Track & Field Festival, Birmingham University Athletics Track, Birmingham",
+      "category": "B",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 5,
+      "mark": "29:13.77",
+      "result_score": 1021,
+      "placing_score": 24,
+      "performance_score": 1045,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-11"
+   },
+   {
+    "competitor_id": "135709651",
+    "slug": "/athletes/great-britain-ni/tomer-tarragano-14951981",
+    "rank": 99,
+    "name": "Tomer TARRAGANO",
+    "dob": "04 JAN 2001",
+    "country": "GBR",
+    "ranking_score": 1065.0,
+    "performances": [
+     {
+      "date": "2026-06-10",
+      "date_raw": "10 JUN 2026",
+      "competition": "NCAA Division I Outdoor Track and Field Championships, Hayward Field, Eugene, OR",
+      "category": "B",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 16,
+      "mark": "28:34.74",
+      "result_score": 1079,
+      "placing_score": 0,
+      "performance_score": 1079,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-05-27",
+      "date_raw": "27 MAY 2026",
+      "competition": "NCAA Division I East First Rounds, Un. of Kentucky Outdoor Track Facility, Lexington, KY",
+      "category": "F",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 12,
+      "mark": "28:53.36",
+      "result_score": 1051,
+      "placing_score": 0,
+      "performance_score": 1051,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-11"
+   },
+   {
+    "competitor_id": "135709652",
+    "slug": "/athletes/great-britain-ni/james-kingston-14983213",
+    "rank": 100,
+    "name": "James KINGSTON",
+    "dob": "22 JAN 2002",
+    "country": "GBR",
+    "ranking_score": 1065.0,
+    "performances": [
+     {
+      "date": "2026-05-31",
+      "date_raw": "31 MAY 2026",
+      "competition": "Great Manchester Run, Manchester",
+      "category": "B",
+      "discipline_code": "10RR",
+      "discipline": "10 Kilometres Road",
+      "indoor": false,
+      "place": 4,
+      "mark": "28:46",
+      "result_score": 1062,
+      "placing_score": 6,
+      "performance_score": 1068,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-05-17",
+      "date_raw": "17 MAY 2026",
+      "competition": "Loughborough International, Loughborough University Track, Loughborough",
+      "category": "B",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "29:09.01",
+      "result_score": 1028,
+      "placing_score": 35,
+      "performance_score": 1063,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-11"
    }
   ]
  }
