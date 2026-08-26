@@ -1,15 +1,15 @@
 {
- "_fetched_at": 1787122508.0709496,
+ "_fetched_at": 1787727585.9762473,
  "_key": "world__3000mSC_women",
  "data": {
   "championship": "world",
   "event": "3000mSC_women",
   "rankings_url": "https://worldathletics.org/world-rankings/3000msc/women",
-  "fetched": "2026-08-19T06:55:08",
-  "rank_date": "2026-08-11",
+  "fetched": "2026-08-26T06:59:45",
+  "rank_date": "2026-08-18",
   "athletes": [
    {
-    "competitor_id": "135762605",
+    "competitor_id": "136867803",
     "slug": "/athletes/kenya/faith-cherotich-14989893",
     "rank": 1,
     "name": "Faith CHEROTICH",
@@ -63,10 +63,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762606",
+    "competitor_id": "136867804",
     "slug": "/athletes/bahrain/winfred-yavi-14695622",
     "rank": 2,
     "name": "Winfred YAVI",
@@ -120,10 +120,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762607",
+    "competitor_id": "136867805",
     "slug": "/athletes/tunisia/marwa-bouzayani-14595096",
     "rank": 3,
     "name": "Marwa BOUZAYANI",
@@ -177,10 +177,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762608",
+    "competitor_id": "136867806",
     "slug": "/athletes/uganda/peruth-chemutai-14707661",
     "rank": 4,
     "name": "Peruth CHEMUTAI",
@@ -234,10 +234,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762609",
+    "competitor_id": "136867807",
     "slug": "/athletes/kenya/doris-lemngole-15128594",
     "rank": 5,
     "name": "Doris LEMNGOLE",
@@ -291,10 +291,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762610",
+    "competitor_id": "136867808",
     "slug": "/athletes/kazakhstan/norah-jeruto-14479154",
     "rank": 6,
     "name": "Norah JERUTO",
@@ -348,10 +348,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762611",
+    "competitor_id": "136867809",
     "slug": "/athletes/ethiopia/sembo-almayew-14968520",
     "rank": 7,
     "name": "Sembo ALMAYEW",
@@ -405,12 +405,69 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762612",
-    "slug": "/athletes/ethiopia/kena-tufa-15024115",
+    "competitor_id": "136867810",
+    "slug": "/athletes/germany/gesa-felicitas-krause-14329341",
     "rank": 8,
+    "name": "Gesa Felicitas KRAUSE",
+    "dob": "03 AUG 1992",
+    "country": "GER",
+    "ranking_score": 1307.0,
+    "performances": [
+     {
+      "date": "2025-09-17",
+      "date_raw": "17 SEP 2025",
+      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
+      "category": "OW",
+      "discipline_code": "3KSC",
+      "discipline": "3000 Metres Steeplechase",
+      "indoor": false,
+      "place": 7,
+      "mark": "9:14.27",
+      "result_score": 1208,
+      "placing_score": 120,
+      "performance_score": 1328,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-08-13",
+      "date_raw": "13 AUG 2026",
+      "competition": "European Athletics Championships, Alexander Stadium, Birmingham",
+      "category": "GL",
+      "discipline_code": "3KSC",
+      "discipline": "3000 Metres Steeplechase",
+      "indoor": false,
+      "place": 1,
+      "mark": "9:12.69",
+      "result_score": 1212,
+      "placing_score": 95,
+      "performance_score": 1307,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-07-04",
+      "date_raw": "04 JUL 2026",
+      "competition": "Prefontaine Classic, Hayward Field, Eugene, OR",
+      "category": "GW",
+      "discipline_code": "3KSC",
+      "discipline": "3000 Metres Steeplechase",
+      "indoor": false,
+      "place": 6,
+      "mark": "9:07.50",
+      "result_score": 1225,
+      "placing_score": 63,
+      "performance_score": 1288,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-18"
+   },
+   {
+    "competitor_id": "136867811",
+    "slug": "/athletes/ethiopia/kena-tufa-15024115",
+    "rank": 9,
     "name": "Kena TUFA",
     "dob": "27 DEC 2005",
     "country": "ETH",
@@ -462,12 +519,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762613",
+    "competitor_id": "136867812",
     "slug": "/athletes/great-britain-ni/elise-thorner-14648621",
-    "rank": 9,
+    "rank": 10,
     "name": "Elise THORNER",
     "dob": "16 MAR 2001",
     "country": "GBR",
@@ -519,67 +576,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762614",
-    "slug": "/athletes/germany/gesa-felicitas-krause-14329341",
-    "rank": 10,
-    "name": "Gesa Felicitas KRAUSE",
-    "dob": "03 AUG 1992",
-    "country": "GER",
-    "ranking_score": 1291.0,
-    "performances": [
-     {
-      "date": "2025-09-17",
-      "date_raw": "17 SEP 2025",
-      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
-      "category": "OW",
-      "discipline_code": "3KSC",
-      "discipline": "3000 Metres Steeplechase",
-      "indoor": false,
-      "place": 7,
-      "mark": "9:14.27",
-      "result_score": 1208,
-      "placing_score": 120,
-      "performance_score": 1328,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-07-04",
-      "date_raw": "04 JUL 2026",
-      "competition": "Prefontaine Classic, Hayward Field, Eugene, OR",
-      "category": "GW",
-      "discipline_code": "3KSC",
-      "discipline": "3000 Metres Steeplechase",
-      "indoor": false,
-      "place": 6,
-      "mark": "9:07.50",
-      "result_score": 1225,
-      "placing_score": 63,
-      "performance_score": 1288,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-09-15",
-      "date_raw": "15 SEP 2025",
-      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
-      "category": "OW",
-      "discipline_code": "3KSC",
-      "discipline": "3000 Metres Steeplechase",
-      "indoor": false,
-      "place": 14,
-      "mark": "9:16.76",
-      "result_score": 1202,
-      "placing_score": 56,
-      "performance_score": 1258,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-11"
-   },
-   {
-    "competitor_id": "135762615",
+    "competitor_id": "136867813",
     "slug": "/athletes/united-states/gabrielle-jennings-14490787",
     "rank": 11,
     "name": "Gabrielle JENNINGS",
@@ -633,12 +633,69 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762616",
-    "slug": "/athletes/ethiopia/alemnat-walle-15024112",
+    "competitor_id": "136867814",
+    "slug": "/athletes/germany/lea-meyer-14509240",
     "rank": 12,
+    "name": "Lea MEYER",
+    "dob": "16 SEP 1997",
+    "country": "GER",
+    "ranking_score": 1275.0,
+    "performances": [
+     {
+      "date": "2026-06-07",
+      "date_raw": "07 JUN 2026",
+      "competition": "BAUHAUS-Galan, Olympiastadion, Stockholm",
+      "category": "GW",
+      "discipline_code": "3KSC",
+      "discipline": "3000 Metres Steeplechase",
+      "indoor": false,
+      "place": 5,
+      "mark": "9:13.67",
+      "result_score": 1209,
+      "placing_score": 70,
+      "performance_score": 1279,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-07-04",
+      "date_raw": "04 JUL 2026",
+      "competition": "Prefontaine Classic, Hayward Field, Eugene, OR",
+      "category": "GW",
+      "discipline_code": "3KSC",
+      "discipline": "3000 Metres Steeplechase",
+      "indoor": false,
+      "place": 7,
+      "mark": "9:09.13",
+      "result_score": 1221,
+      "placing_score": 56,
+      "performance_score": 1277,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-08-13",
+      "date_raw": "13 AUG 2026",
+      "competition": "European Athletics Championships, Alexander Stadium, Birmingham",
+      "category": "GL",
+      "discipline_code": "3KSC",
+      "discipline": "3000 Metres Steeplechase",
+      "indoor": false,
+      "place": 4,
+      "mark": "9:17.07",
+      "result_score": 1201,
+      "placing_score": 70,
+      "performance_score": 1271,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-18"
+   },
+   {
+    "competitor_id": "136867815",
+    "slug": "/athletes/ethiopia/alemnat-walle-15024112",
+    "rank": 13,
     "name": "Alemnat WALLE",
     "dob": "29 JAN 2006",
     "country": "ETH",
@@ -690,67 +747,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762617",
-    "slug": "/athletes/germany/lea-meyer-14509240",
-    "rank": 13,
-    "name": "Lea MEYER",
-    "dob": "16 SEP 1997",
-    "country": "GER",
-    "ranking_score": 1274.0,
-    "performances": [
-     {
-      "date": "2026-06-07",
-      "date_raw": "07 JUN 2026",
-      "competition": "BAUHAUS-Galan, Olympiastadion, Stockholm",
-      "category": "GW",
-      "discipline_code": "3KSC",
-      "discipline": "3000 Metres Steeplechase",
-      "indoor": false,
-      "place": 5,
-      "mark": "9:13.67",
-      "result_score": 1209,
-      "placing_score": 70,
-      "performance_score": 1279,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-07-04",
-      "date_raw": "04 JUL 2026",
-      "competition": "Prefontaine Classic, Hayward Field, Eugene, OR",
-      "category": "GW",
-      "discipline_code": "3KSC",
-      "discipline": "3000 Metres Steeplechase",
-      "indoor": false,
-      "place": 7,
-      "mark": "9:09.13",
-      "result_score": 1221,
-      "placing_score": 56,
-      "performance_score": 1277,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-09-15",
-      "date_raw": "15 SEP 2025",
-      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
-      "category": "OW",
-      "discipline_code": "3KSC",
-      "discipline": "3000 Metres Steeplechase",
-      "indoor": false,
-      "place": 4,
-      "mark": "9:13.18",
-      "result_score": 1211,
-      "placing_score": 56,
-      "performance_score": 1267,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-11"
-   },
-   {
-    "competitor_id": "135762618",
+    "competitor_id": "136867816",
     "slug": "/athletes/united-states/lexy-halladay-14741102",
     "rank": 14,
     "name": "Lexy HALLADAY",
@@ -804,10 +804,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762619",
+    "competitor_id": "136867817",
     "slug": "/athletes/india/parul-chaudhary-14497992",
     "rank": 15,
     "name": "Parul CHAUDHARY",
@@ -861,10 +861,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762620",
+    "competitor_id": "136867818",
     "slug": "/athletes/united-states/courtney-wayment-14617090",
     "rank": 16,
     "name": "Courtney WAYMENT",
@@ -918,10 +918,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762621",
+    "competitor_id": "136867819",
     "slug": "/athletes/united-states/angelina-napoleon-14988984",
     "rank": 17,
     "name": "Angelina NAPOLEON",
@@ -975,12 +975,69 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762622",
-    "slug": "/athletes/united-states/olivia-markezich-14846039",
+    "competitor_id": "136867820",
+    "slug": "/athletes/germany/olivia-gurth-14804796",
     "rank": 18,
+    "name": "Olivia GÜRTH",
+    "dob": "31 MAY 2002",
+    "country": "GER",
+    "ranking_score": 1249.0,
+    "performances": [
+     {
+      "date": "2026-08-13",
+      "date_raw": "13 AUG 2026",
+      "competition": "European Athletics Championships, Alexander Stadium, Birmingham",
+      "category": "GL",
+      "discipline_code": "3KSC",
+      "discipline": "3000 Metres Steeplechase",
+      "indoor": false,
+      "place": 3,
+      "mark": "9:15.33",
+      "result_score": 1205,
+      "placing_score": 77,
+      "performance_score": 1282,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-09-15",
+      "date_raw": "15 SEP 2025",
+      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
+      "category": "OW",
+      "discipline_code": "3KSC",
+      "discipline": "3000 Metres Steeplechase",
+      "indoor": false,
+      "place": 16,
+      "mark": "9:15.28",
+      "result_score": 1205,
+      "placing_score": 43,
+      "performance_score": 1248,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-07-26",
+      "date_raw": "26 JUL 2026",
+      "competition": "German Championships, Lohrheidestadion, Wattenscheid, Bochum",
+      "category": "B",
+      "discipline_code": "3KSC",
+      "discipline": "3000 Metres Steeplechase",
+      "indoor": false,
+      "place": 2,
+      "mark": "9:27.08",
+      "result_score": 1176,
+      "placing_score": 42,
+      "performance_score": 1218,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-18"
+   },
+   {
+    "competitor_id": "136867821",
+    "slug": "/athletes/united-states/olivia-markezich-14846039",
+    "rank": 19,
     "name": "Olivia MARKEZICH",
     "dob": "10 AUG 2000",
     "country": "USA",
@@ -1032,12 +1089,69 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762623",
+    "competitor_id": "136867822",
+    "slug": "/athletes/finland/ilona-mononen-14914640",
+    "rank": 20,
+    "name": "Ilona MONONEN",
+    "dob": "18 DEC 2003",
+    "country": "FIN",
+    "ranking_score": 1247.0,
+    "performances": [
+     {
+      "date": "2026-06-07",
+      "date_raw": "07 JUN 2026",
+      "competition": "BAUHAUS-Galan, Olympiastadion, Stockholm",
+      "category": "GW",
+      "discipline_code": "3KSC",
+      "discipline": "3000 Metres Steeplechase",
+      "indoor": false,
+      "place": 6,
+      "mark": "9:15.18",
+      "result_score": 1206,
+      "placing_score": 63,
+      "performance_score": 1269,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-03",
+      "date_raw": "03 JUN 2026",
+      "competition": "Paavo Nurmi Games, Paavo Nurmen Stadion, Turku",
+      "category": "A",
+      "discipline_code": "3KSC",
+      "discipline": "3000 Metres Steeplechase",
+      "indoor": false,
+      "place": 3,
+      "mark": "9:18.50",
+      "result_score": 1197,
+      "placing_score": 56,
+      "performance_score": 1253,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-08-13",
+      "date_raw": "13 AUG 2026",
+      "competition": "European Athletics Championships, Alexander Stadium, Birmingham",
+      "category": "GL",
+      "discipline_code": "3KSC",
+      "discipline": "3000 Metres Steeplechase",
+      "indoor": false,
+      "place": 8,
+      "mark": "9:25.62",
+      "result_score": 1179,
+      "placing_score": 42,
+      "performance_score": 1221,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-18"
+   },
+   {
+    "competitor_id": "136867823",
     "slug": "/athletes/united-states/kaylee-mitchell-14874875",
-    "rank": 19,
+    "rank": 21,
     "name": "Kaylee MITCHELL",
     "dob": "22 OCT 1999",
     "country": "USA",
@@ -1089,12 +1203,69 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762624",
+    "competitor_id": "136867824",
+    "slug": "/athletes/france/flavie-renouard-14753918",
+    "rank": 22,
+    "name": "Flavie RENOUARD",
+    "dob": "10 SEP 2000",
+    "country": "FRA",
+    "ranking_score": 1244.0,
+    "performances": [
+     {
+      "date": "2025-09-15",
+      "date_raw": "15 SEP 2025",
+      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
+      "category": "OW",
+      "discipline_code": "3KSC",
+      "discipline": "3000 Metres Steeplechase",
+      "indoor": false,
+      "place": 8,
+      "mark": "9:14.69",
+      "result_score": 1207,
+      "placing_score": 56,
+      "performance_score": 1263,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-08-13",
+      "date_raw": "13 AUG 2026",
+      "competition": "European Athletics Championships, Alexander Stadium, Birmingham",
+      "category": "GL",
+      "discipline_code": "3KSC",
+      "discipline": "3000 Metres Steeplechase",
+      "indoor": false,
+      "place": 7,
+      "mark": "9:21.88",
+      "result_score": 1189,
+      "placing_score": 49,
+      "performance_score": 1238,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-09-17",
+      "date_raw": "17 SEP 2025",
+      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
+      "category": "OW",
+      "discipline_code": "3KSC",
+      "discipline": "3000 Metres Steeplechase",
+      "indoor": false,
+      "place": 13,
+      "mark": "9:25.15",
+      "result_score": 1181,
+      "placing_score": 52,
+      "performance_score": 1233,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-18"
+   },
+   {
+    "competitor_id": "136867825",
     "slug": "/athletes/united-states/gracie-hyde-14743329",
-    "rank": 20,
+    "rank": 23,
     "name": "Gracie HYDE",
     "dob": "12 DEC 1999",
     "country": "USA",
@@ -1146,45 +1317,45 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762625",
-    "slug": "/athletes/finland/ilona-mononen-14914640",
-    "rank": 21,
-    "name": "Ilona MONONEN",
-    "dob": "18 DEC 2003",
-    "country": "FIN",
-    "ranking_score": 1239.0,
+    "competitor_id": "136867826",
+    "slug": "/athletes/france/alice-finot-14758606",
+    "rank": 24,
+    "name": "Alice FINOT",
+    "dob": "09 FEB 1991",
+    "country": "FRA",
+    "ranking_score": 1234.0,
     "performances": [
      {
-      "date": "2026-06-07",
-      "date_raw": "07 JUN 2026",
-      "competition": "BAUHAUS-Galan, Olympiastadion, Stockholm",
-      "category": "GW",
+      "date": "2026-08-13",
+      "date_raw": "13 AUG 2026",
+      "competition": "European Athletics Championships, Alexander Stadium, Birmingham",
+      "category": "GL",
       "discipline_code": "3KSC",
       "discipline": "3000 Metres Steeplechase",
       "indoor": false,
-      "place": 6,
-      "mark": "9:15.18",
-      "result_score": 1206,
-      "placing_score": 63,
-      "performance_score": 1269,
+      "place": 2,
+      "mark": "9:14.24",
+      "result_score": 1208,
+      "placing_score": 85,
+      "performance_score": 1293,
       "month_correction_applied": false
      },
      {
-      "date": "2026-06-03",
-      "date_raw": "03 JUN 2026",
-      "competition": "Paavo Nurmi Games, Paavo Nurmen Stadion, Turku",
-      "category": "A",
+      "date": "2026-07-24",
+      "date_raw": "24 JUL 2026",
+      "competition": "French Championships, Stadium Municipal, Albi",
+      "category": "B",
       "discipline_code": "3KSC",
       "discipline": "3000 Metres Steeplechase",
       "indoor": false,
-      "place": 3,
-      "mark": "9:18.50",
-      "result_score": 1197,
-      "placing_score": 56,
-      "performance_score": 1253,
+      "place": 1,
+      "mark": "9:26.74",
+      "result_score": 1177,
+      "placing_score": 50,
+      "performance_score": 1227,
       "month_correction_applied": false
      },
      {
@@ -1195,77 +1366,20 @@
       "discipline_code": "3KSC",
       "discipline": "3000 Metres Steeplechase",
       "indoor": false,
-      "place": 4,
-      "mark": "9:32.55",
+      "place": 5,
+      "mark": "9:32.58",
       "result_score": 1162,
-      "placing_score": 35,
-      "performance_score": 1197,
+      "placing_score": 21,
+      "performance_score": 1183,
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762626",
-    "slug": "/athletes/france/flavie-renouard-14753918",
-    "rank": 22,
-    "name": "Flavie RENOUARD",
-    "dob": "10 SEP 2000",
-    "country": "FRA",
-    "ranking_score": 1236.0,
-    "performances": [
-     {
-      "date": "2025-09-15",
-      "date_raw": "15 SEP 2025",
-      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
-      "category": "OW",
-      "discipline_code": "3KSC",
-      "discipline": "3000 Metres Steeplechase",
-      "indoor": false,
-      "place": 8,
-      "mark": "9:14.69",
-      "result_score": 1207,
-      "placing_score": 56,
-      "performance_score": 1263,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-09-17",
-      "date_raw": "17 SEP 2025",
-      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
-      "category": "OW",
-      "discipline_code": "3KSC",
-      "discipline": "3000 Metres Steeplechase",
-      "indoor": false,
-      "place": 13,
-      "mark": "9:25.15",
-      "result_score": 1181,
-      "placing_score": 52,
-      "performance_score": 1233,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-07-18",
-      "date_raw": "18 JUL 2026",
-      "competition": "Night of Athletics, Stadion De Veen, Heusden-Zolder",
-      "category": "C",
-      "discipline_code": "3KSC",
-      "discipline": "3000 Metres Steeplechase",
-      "indoor": false,
-      "place": 3,
-      "mark": "9:21.79",
-      "result_score": 1189,
-      "placing_score": 24,
-      "performance_score": 1213,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-11"
-   },
-   {
-    "competitor_id": "135762627",
+    "competitor_id": "136867827",
     "slug": "/athletes/australia/cara-feain-ryan-14608674",
-    "rank": 23,
+    "rank": 25,
     "name": "Cara FEAIN-RYAN",
     "dob": "05 FEB 1999",
     "country": "AUS",
@@ -1317,69 +1431,69 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762628",
-    "slug": "/athletes/germany/olivia-gurth-14804796",
-    "rank": 24,
-    "name": "Olivia GÜRTH",
-    "dob": "31 MAY 2002",
-    "country": "GER",
-    "ranking_score": 1227.0,
+    "competitor_id": "136867828",
+    "slug": "/athletes/france/clara-entresangle-14986707",
+    "rank": 26,
+    "name": "Clara ENTRESANGLE",
+    "dob": "23 NOV 2004",
+    "country": "FRA",
+    "ranking_score": 1230.0,
     "performances": [
      {
-      "date": "2025-09-15",
-      "date_raw": "15 SEP 2025",
-      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
-      "category": "OW",
+      "date": "2026-08-13",
+      "date_raw": "13 AUG 2026",
+      "competition": "European Athletics Championships, Alexander Stadium, Birmingham",
+      "category": "GL",
       "discipline_code": "3KSC",
       "discipline": "3000 Metres Steeplechase",
       "indoor": false,
-      "place": 16,
-      "mark": "9:15.28",
-      "result_score": 1205,
-      "placing_score": 43,
-      "performance_score": 1248,
+      "place": 6,
+      "mark": "9:21.03",
+      "result_score": 1191,
+      "placing_score": 56,
+      "performance_score": 1247,
       "month_correction_applied": false
      },
      {
-      "date": "2026-07-26",
-      "date_raw": "26 JUL 2026",
-      "competition": "German Championships, Lohrheidestadion, Wattenscheid, Bochum",
-      "category": "B",
+      "date": "2026-07-04",
+      "date_raw": "04 JUL 2026",
+      "competition": "Meeting National Est Lyonnais, Stade Raymond Troussier, Decines",
+      "category": "D",
       "discipline_code": "3KSC",
       "discipline": "3000 Metres Steeplechase",
       "indoor": false,
-      "place": 2,
-      "mark": "9:27.08",
-      "result_score": 1176,
-      "placing_score": 42,
-      "performance_score": 1218,
+      "place": 1,
+      "mark": "9:17.88",
+      "result_score": 1199,
+      "placing_score": 25,
+      "performance_score": 1224,
       "month_correction_applied": false
      },
      {
-      "date": "2026-07-18",
-      "date_raw": "18 JUL 2026",
-      "competition": "Night of Athletics, Stadion De Veen, Heusden-Zolder",
-      "category": "C",
+      "date": "2026-06-03",
+      "date_raw": "03 JUN 2026",
+      "competition": "Paavo Nurmi Games, Paavo Nurmen Stadion, Turku",
+      "category": "A",
       "discipline_code": "3KSC",
       "discipline": "3000 Metres Steeplechase",
       "indoor": false,
-      "place": 2,
-      "mark": "9:21.73",
-      "result_score": 1189,
-      "placing_score": 28,
-      "performance_score": 1217,
+      "place": 6,
+      "mark": "9:23.43",
+      "result_score": 1185,
+      "placing_score": 35,
+      "performance_score": 1220,
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762629",
+    "competitor_id": "136867829",
     "slug": "/athletes/united-states/emma-coburn-14307810",
-    "rank": 25,
+    "rank": 27,
     "name": "Emma COBURN",
     "dob": "19 OCT 1990",
     "country": "USA",
@@ -1431,12 +1545,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762630",
+    "competitor_id": "136867830",
     "slug": "/athletes/united-states/angelina-ellis-14820700",
-    "rank": 26,
+    "rank": 28,
     "name": "Angelina ELLIS",
     "dob": "09 AUG 1998",
     "country": "USA",
@@ -1488,12 +1602,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762631",
+    "competitor_id": "136867831",
     "slug": "/athletes/kazakhstan/daisy-jepkemei-14530633",
-    "rank": 27,
+    "rank": 29,
     "name": "Daisy JEPKEMEI",
     "dob": "13 FEB 1996",
     "country": "KAZ",
@@ -1545,12 +1659,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762632",
+    "competitor_id": "136867832",
     "slug": "/athletes/poland/kinga-krolik-14701702",
-    "rank": 28,
+    "rank": 30,
     "name": "Kinga KRÓLIK",
     "dob": "26 SEP 1999",
     "country": "POL",
@@ -1602,69 +1716,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762633",
-    "slug": "/athletes/france/clara-entresangle-14986707",
-    "rank": 29,
-    "name": "Clara ENTRESANGLE",
-    "dob": "23 NOV 2004",
-    "country": "FRA",
-    "ranking_score": 1217.0,
-    "performances": [
-     {
-      "date": "2026-07-04",
-      "date_raw": "04 JUL 2026",
-      "competition": "Meeting National Est Lyonnais, Stade Raymond Troussier, Decines",
-      "category": "D",
-      "discipline_code": "3KSC",
-      "discipline": "3000 Metres Steeplechase",
-      "indoor": false,
-      "place": 1,
-      "mark": "9:17.88",
-      "result_score": 1199,
-      "placing_score": 25,
-      "performance_score": 1224,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-06-03",
-      "date_raw": "03 JUN 2026",
-      "competition": "Paavo Nurmi Games, Paavo Nurmen Stadion, Turku",
-      "category": "A",
-      "discipline_code": "3KSC",
-      "discipline": "3000 Metres Steeplechase",
-      "indoor": false,
-      "place": 6,
-      "mark": "9:23.43",
-      "result_score": 1185,
-      "placing_score": 35,
-      "performance_score": 1220,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-07-24",
-      "date_raw": "24 JUL 2026",
-      "competition": "French Championships, Stadium Municipal, Albi",
-      "category": "B",
-      "discipline_code": "3KSC",
-      "discipline": "3000 Metres Steeplechase",
-      "indoor": false,
-      "place": 2,
-      "mark": "9:31.37",
-      "result_score": 1165,
-      "placing_score": 42,
-      "performance_score": 1207,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-11"
-   },
-   {
-    "competitor_id": "135762634",
+    "competitor_id": "136867833",
     "slug": "/athletes/united-states/madie-boreman-14585742",
-    "rank": 30,
+    "rank": 31,
     "name": "Madie BOREMAN",
     "dob": "10 JUL 1998",
     "country": "USA",
@@ -1716,12 +1773,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762635",
+    "competitor_id": "136867834",
     "slug": "/athletes/canada/grace-fetherstonhaugh-14659768",
-    "rank": 31,
+    "rank": 32,
     "name": "Grace FETHERSTONHAUGH",
     "dob": "13 OCT 2000",
     "country": "CAN",
@@ -1773,12 +1830,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762636",
+    "competitor_id": "136867835",
     "slug": "/athletes/japan/miu-saito-14931241",
-    "rank": 32,
+    "rank": 33,
     "name": "Miu SAITO",
     "dob": "22 JUN 2002",
     "country": "JPN",
@@ -1830,12 +1887,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762637",
+    "competitor_id": "136867836",
     "slug": "/athletes/denmark/juliane-hvid-15023295",
-    "rank": 33,
+    "rank": 34,
     "name": "Juliane HVID",
     "dob": "08 APR 1998",
     "country": "DEN",
@@ -1887,12 +1944,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762638",
+    "competitor_id": "136867837",
     "slug": "/athletes/tunisia/rihab-dhahri-14911026",
-    "rank": 34,
+    "rank": 35,
     "name": "Rihab DHAHRI",
     "dob": "09 SEP 2003",
     "country": "TUN",
@@ -1944,12 +2001,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762639",
+    "competitor_id": "136867838",
     "slug": "/athletes/ethiopia/almaz-yohannis-15143214",
-    "rank": 35,
+    "rank": 36,
     "name": "Almaz YOHANNIS",
     "dob": "11 DEC 2007",
     "country": "ETH",
@@ -2001,12 +2058,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762640",
+    "competitor_id": "136867839",
     "slug": "/athletes/kenya/celestine-jepkosgei-biwot-14989898",
-    "rank": 36,
+    "rank": 37,
     "name": "Celestine Jepkosgei BIWOT",
     "dob": "24 DEC 2003",
     "country": "KEN",
@@ -2058,12 +2115,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762641",
+    "competitor_id": "136867840",
     "slug": "/athletes/russia/yekaterina-ivonina-014513849",
-    "rank": 37,
+    "rank": 38,
     "name": "Yekaterina IVONINA",
     "dob": "14 JUN 1994",
     "country": "RUS",
@@ -2115,12 +2172,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762642",
+    "competitor_id": "136867841",
     "slug": "/athletes/ethiopia/wosane-asefa-15148796",
-    "rank": 38,
+    "rank": 39,
     "name": "Wosane ASEFA",
     "dob": "03 JAN 2007",
     "country": "ETH",
@@ -2172,12 +2229,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762643",
+    "competitor_id": "136867842",
     "slug": "/athletes/ethiopia/firehiwot-gesese-15009736",
-    "rank": 39,
+    "rank": 40,
     "name": "Firehiwot GESESE",
     "dob": "01 JAN 2006",
     "country": "ETH",
@@ -2229,67 +2286,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762644",
-    "slug": "/athletes/poland/alicja-konieczek-14424786",
-    "rank": 40,
-    "name": "Alicja KONIECZEK",
-    "dob": "02 NOV 1994",
-    "country": "POL",
-    "ranking_score": 1199.0,
-    "performances": [
-     {
-      "date": "2025-08-22",
-      "date_raw": "22 AUG 2025",
-      "competition": "Polish Championships, Zdzisław Krzyszkowiak Stadium, Bydgoszcz",
-      "category": "B",
-      "discipline_code": "3KSC",
-      "discipline": "3000 Metres Steeplechase",
-      "indoor": false,
-      "place": 2,
-      "mark": "9:26.12",
-      "result_score": 1178,
-      "placing_score": 42,
-      "performance_score": 1220,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-08-10",
-      "date_raw": "10 AUG 2026",
-      "competition": "European Athletics Championships, Alexander Stadium, Birmingham",
-      "category": "GL",
-      "discipline_code": "3KSC",
-      "discipline": "3000 Metres Steeplechase",
-      "indoor": false,
-      "place": 10,
-      "mark": "9:33.22",
-      "result_score": 1161,
-      "placing_score": 35,
-      "performance_score": 1196,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-06-28",
-      "date_raw": "28 JUN 2026",
-      "competition": "Czesław Cybulski Memorial, Golęcin Stadion, Poznan",
-      "category": "B",
-      "discipline_code": "2KSC",
-      "discipline": "2000 Metres Steeplechase",
-      "indoor": false,
-      "place": 2,
-      "mark": "6:12.21",
-      "result_score": 1139,
-      "placing_score": 42,
-      "performance_score": 1181,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-11"
-   },
-   {
-    "competitor_id": "135762645",
+    "competitor_id": "136867843",
     "slug": "/athletes/united-states/sophie-novak-14834678",
     "rank": 41,
     "name": "Sophie NOVAK",
@@ -2343,10 +2343,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762646",
+    "competitor_id": "136867844",
     "slug": "/athletes/israel/adva-cohen-14699069",
     "rank": 42,
     "name": "Adva COHEN",
@@ -2400,10 +2400,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762647",
+    "competitor_id": "136867845",
     "slug": "/athletes/united-states/taylor-lovell-15064362",
     "rank": 43,
     "name": "Taylor LOVELL",
@@ -2457,10 +2457,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762648",
+    "competitor_id": "136867846",
     "slug": "/athletes/united-states/rachel-anderson-14926164",
     "rank": 44,
     "name": "Rachel ANDERSON",
@@ -2514,30 +2514,30 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762649",
-    "slug": "/athletes/france/alice-finot-14758606",
+    "competitor_id": "136867847",
+    "slug": "/athletes/poland/alicja-konieczek-14424786",
     "rank": 45,
-    "name": "Alice FINOT",
-    "dob": "09 FEB 1991",
-    "country": "FRA",
+    "name": "Alicja KONIECZEK",
+    "dob": "02 NOV 1994",
+    "country": "POL",
     "ranking_score": 1194.0,
     "performances": [
      {
-      "date": "2026-07-24",
-      "date_raw": "24 JUL 2026",
-      "competition": "French Championships, Stadium Municipal, Albi",
+      "date": "2025-08-22",
+      "date_raw": "22 AUG 2025",
+      "competition": "Polish Championships, Zdzisław Krzyszkowiak Stadium, Bydgoszcz",
       "category": "B",
       "discipline_code": "3KSC",
       "discipline": "3000 Metres Steeplechase",
       "indoor": false,
-      "place": 1,
-      "mark": "9:26.74",
-      "result_score": 1177,
-      "placing_score": 50,
-      "performance_score": 1227,
+      "place": 2,
+      "mark": "9:26.12",
+      "result_score": 1178,
+      "placing_score": 42,
+      "performance_score": 1220,
       "month_correction_applied": false
      },
      {
@@ -2548,33 +2548,33 @@
       "discipline_code": "3KSC",
       "discipline": "3000 Metres Steeplechase",
       "indoor": false,
-      "place": 5,
-      "mark": "9:32.58",
-      "result_score": 1162,
-      "placing_score": 35,
-      "performance_score": 1197,
+      "place": 10,
+      "mark": "9:33.22",
+      "result_score": 1161,
+      "placing_score": 21,
+      "performance_score": 1182,
       "month_correction_applied": false
      },
      {
-      "date": "2026-06-07",
-      "date_raw": "07 JUN 2026",
-      "competition": "BAUHAUS-Galan, Olympiastadion, Stockholm",
-      "category": "GW",
-      "discipline_code": "3KSC",
-      "discipline": "3000 Metres Steeplechase",
+      "date": "2026-06-28",
+      "date_raw": "28 JUN 2026",
+      "competition": "Czesław Cybulski Memorial, Golęcin Stadion, Poznan",
+      "category": "B",
+      "discipline_code": "2KSC",
+      "discipline": "2000 Metres Steeplechase",
       "indoor": false,
-      "place": 13,
-      "mark": "9:34.30",
-      "result_score": 1158,
-      "placing_score": 0,
-      "performance_score": 1158,
+      "place": 2,
+      "mark": "6:12.21",
+      "result_score": 1139,
+      "placing_score": 42,
+      "performance_score": 1181,
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762650",
+    "competitor_id": "136867848",
     "slug": "/athletes/spain/marta-serrano-14812711",
     "rank": 46,
     "name": "Marta SERRANO",
@@ -2613,25 +2613,25 @@
       "month_correction_applied": false
      },
      {
-      "date": "2026-08-10",
-      "date_raw": "10 AUG 2026",
-      "competition": "European Athletics Championships, Alexander Stadium, Birmingham",
-      "category": "GL",
+      "date": "2025-09-15",
+      "date_raw": "15 SEP 2025",
+      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
+      "category": "OW",
       "discipline_code": "3KSC",
       "discipline": "3000 Metres Steeplechase",
       "indoor": false,
-      "place": 13,
-      "mark": "9:34.79",
-      "result_score": 1157,
-      "placing_score": 35,
-      "performance_score": 1192,
+      "place": 18,
+      "mark": "9:21.00",
+      "result_score": 1191,
+      "placing_score": 0,
+      "performance_score": 1191,
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762651",
+    "competitor_id": "136867849",
     "slug": "/athletes/india/ankita-14818406",
     "rank": 47,
     "name": "ANKITA",
@@ -2685,12 +2685,69 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762652",
-    "slug": "/athletes/brazil/tatiane-raquel-da-silva-14269289",
+    "competitor_id": "136867850",
+    "slug": "/athletes/poland/agnieszka-chorzepa-14829123",
     "rank": 48,
+    "name": "Agnieszka CHORZĘPA",
+    "dob": "14 JAN 2001",
+    "country": "POL",
+    "ranking_score": 1190.0,
+    "performances": [
+     {
+      "date": "2026-07-24",
+      "date_raw": "24 JUL 2026",
+      "competition": "Polish Championships, Stadion BOSiR, Białystok",
+      "category": "B",
+      "discipline_code": "3KSC",
+      "discipline": "3000 Metres Steeplechase",
+      "indoor": false,
+      "place": 2,
+      "mark": "9:33.03",
+      "result_score": 1161,
+      "placing_score": 42,
+      "performance_score": 1203,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-08-13",
+      "date_raw": "13 AUG 2026",
+      "competition": "European Athletics Championships, Alexander Stadium, Birmingham",
+      "category": "GL",
+      "discipline_code": "3KSC",
+      "discipline": "3000 Metres Steeplechase",
+      "indoor": false,
+      "place": 9,
+      "mark": "9:36.14",
+      "result_score": 1153,
+      "placing_score": 32,
+      "performance_score": 1185,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-08-10",
+      "date_raw": "10 AUG 2026",
+      "competition": "European Athletics Championships, Alexander Stadium, Birmingham",
+      "category": "GL",
+      "discipline_code": "3KSC",
+      "discipline": "3000 Metres Steeplechase",
+      "indoor": false,
+      "place": 9,
+      "mark": "9:33.06",
+      "result_score": 1161,
+      "placing_score": 21,
+      "performance_score": 1182,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-18"
+   },
+   {
+    "competitor_id": "136867851",
+    "slug": "/athletes/brazil/tatiane-raquel-da-silva-14269289",
+    "rank": 49,
     "name": "Tatiane Raquel DA SILVA",
     "dob": "10 JUN 1990",
     "country": "BRA",
@@ -2742,67 +2799,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762653",
-    "slug": "/athletes/poland/agnieszka-chorzepa-14829123",
-    "rank": 49,
-    "name": "Agnieszka CHORZĘPA",
-    "dob": "14 JAN 2001",
-    "country": "POL",
-    "ranking_score": 1189.0,
-    "performances": [
-     {
-      "date": "2026-07-24",
-      "date_raw": "24 JUL 2026",
-      "competition": "Polish Championships, Stadion BOSiR, Białystok",
-      "category": "B",
-      "discipline_code": "3KSC",
-      "discipline": "3000 Metres Steeplechase",
-      "indoor": false,
-      "place": 2,
-      "mark": "9:33.03",
-      "result_score": 1161,
-      "placing_score": 42,
-      "performance_score": 1203,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-08-10",
-      "date_raw": "10 AUG 2026",
-      "competition": "European Athletics Championships, Alexander Stadium, Birmingham",
-      "category": "GL",
-      "discipline_code": "3KSC",
-      "discipline": "3000 Metres Steeplechase",
-      "indoor": false,
-      "place": 9,
-      "mark": "9:33.06",
-      "result_score": 1161,
-      "placing_score": 35,
-      "performance_score": 1196,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-06-28",
-      "date_raw": "28 JUN 2026",
-      "competition": "Czesław Cybulski Memorial, Golęcin Stadion, Poznan",
-      "category": "B",
-      "discipline_code": "2KSC",
-      "discipline": "2000 Metres Steeplechase",
-      "indoor": false,
-      "place": 3,
-      "mark": "6:13.08",
-      "result_score": 1135,
-      "placing_score": 35,
-      "performance_score": 1170,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-11"
-   },
-   {
-    "competitor_id": "135762654",
+    "competitor_id": "136867852",
     "slug": "/athletes/kenya/diana-chepkemoi-14989668",
     "rank": 50,
     "name": "Diana CHEPKEMOI",
@@ -2856,10 +2856,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762655",
+    "competitor_id": "136867853",
     "slug": "/athletes/morocco/ikram-ouaaziz-14793931",
     "rank": 51,
     "name": "Ikram OUAAZIZ",
@@ -2913,69 +2913,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762656",
-    "slug": "/athletes/moldova/andreea-stavila-grosu-14910357",
-    "rank": 52,
-    "name": "Andreea STAVILA-GROSU",
-    "dob": "13 DEC 2000",
-    "country": "MDA",
-    "ranking_score": 1187.0,
-    "performances": [
-     {
-      "date": "2026-06-20",
-      "date_raw": "20 JUN 2026",
-      "competition": "Balkan Championships, Panthessaliko Stadium, Volos",
-      "category": "B",
-      "discipline_code": "3KSC",
-      "discipline": "3000 Metres Steeplechase",
-      "indoor": false,
-      "place": 1,
-      "mark": "9:40.41",
-      "result_score": 1143,
-      "placing_score": 50,
-      "performance_score": 1193,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-08-10",
-      "date_raw": "10 AUG 2026",
-      "competition": "European Athletics Championships, Alexander Stadium, Birmingham",
-      "category": "GL",
-      "discipline_code": "3KSC",
-      "discipline": "3000 Metres Steeplechase",
-      "indoor": false,
-      "place": 12,
-      "mark": "9:34.40",
-      "result_score": 1158,
-      "placing_score": 35,
-      "performance_score": 1193,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-07-11",
-      "date_raw": "11 JUL 2026",
-      "competition": "81. Cezmi Or Cup, ENKA Atletizm Pisti, Istanbul",
-      "category": "D",
-      "discipline_code": "3KSC",
-      "discipline": "3000 Metres Steeplechase",
-      "indoor": false,
-      "place": 1,
-      "mark": "9:37.17",
-      "result_score": 1151,
-      "placing_score": 25,
-      "performance_score": 1176,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-11"
-   },
-   {
-    "competitor_id": "135762657",
+    "competitor_id": "136867854",
     "slug": "/athletes/kenya/mercy-chepngeno-koskey-15169289",
-    "rank": 53,
+    "rank": 52,
     "name": "Mercy Chepngeno KOSKEY",
     "dob": "16 SEP 2007",
     "country": "KEN",
@@ -3027,12 +2970,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762658",
+    "competitor_id": "136867855",
     "slug": "/athletes/great-britain-ni/stevie-lawrence-wrist-14524899",
-    "rank": 54,
+    "rank": 53,
     "name": "Stevie LAWRENCE-WRIST",
     "dob": "18 FEB 1997",
     "country": "GBR",
@@ -3084,17 +3027,32 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762659",
-    "slug": "/athletes/turkiye/tugba-yenigun-14421056",
-    "rank": 55,
-    "name": "Tuğba YENIGÜN",
-    "dob": "09 JUL 1994",
-    "country": "TUR",
-    "ranking_score": 1185.0,
+    "competitor_id": "136867856",
+    "slug": "/athletes/moldova/andreea-stavila-grosu-14910357",
+    "rank": 54,
+    "name": "Andreea STAVILA-GROSU",
+    "dob": "13 DEC 2000",
+    "country": "MDA",
+    "ranking_score": 1182.0,
     "performances": [
+     {
+      "date": "2026-06-20",
+      "date_raw": "20 JUN 2026",
+      "competition": "Balkan Championships, Panthessaliko Stadium, Volos",
+      "category": "B",
+      "discipline_code": "3KSC",
+      "discipline": "3000 Metres Steeplechase",
+      "indoor": false,
+      "place": 1,
+      "mark": "9:40.41",
+      "result_score": 1143,
+      "placing_score": 50,
+      "performance_score": 1193,
+      "month_correction_applied": false
+     },
      {
       "date": "2026-08-10",
       "date_raw": "10 AUG 2026",
@@ -3103,13 +3061,40 @@
       "discipline_code": "3KSC",
       "discipline": "3000 Metres Steeplechase",
       "indoor": false,
-      "place": 11,
-      "mark": "9:33.27",
-      "result_score": 1160,
-      "placing_score": 35,
-      "performance_score": 1195,
+      "place": 12,
+      "mark": "9:34.40",
+      "result_score": 1158,
+      "placing_score": 21,
+      "performance_score": 1179,
       "month_correction_applied": false
      },
+     {
+      "date": "2026-07-11",
+      "date_raw": "11 JUL 2026",
+      "competition": "81. Cezmi Or Cup, ENKA Atletizm Pisti, Istanbul",
+      "category": "D",
+      "discipline_code": "3KSC",
+      "discipline": "3000 Metres Steeplechase",
+      "indoor": false,
+      "place": 1,
+      "mark": "9:37.17",
+      "result_score": 1151,
+      "placing_score": 25,
+      "performance_score": 1176,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-18"
+   },
+   {
+    "competitor_id": "136867857",
+    "slug": "/athletes/turkiye/tugba-yenigun-14421056",
+    "rank": 55,
+    "name": "Tuğba YENIGÜN",
+    "dob": "09 JUL 1994",
+    "country": "TUR",
+    "ranking_score": 1180.0,
+    "performances": [
      {
       "date": "2026-06-13",
       "date_raw": "13 JUN 2026",
@@ -3123,6 +3108,21 @@
       "result_score": 1160,
       "placing_score": 28,
       "performance_score": 1188,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-08-10",
+      "date_raw": "10 AUG 2026",
+      "competition": "European Athletics Championships, Alexander Stadium, Birmingham",
+      "category": "GL",
+      "discipline_code": "3KSC",
+      "discipline": "3000 Metres Steeplechase",
+      "indoor": false,
+      "place": 11,
+      "mark": "9:33.27",
+      "result_score": 1160,
+      "placing_score": 21,
+      "performance_score": 1181,
       "month_correction_applied": false
      },
      {
@@ -3141,69 +3141,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762660",
-    "slug": "/athletes/hungary/zita-urban-14685030",
-    "rank": 56,
-    "name": "Zita URBÁN",
-    "dob": "22 APR 2002",
-    "country": "HUN",
-    "ranking_score": 1181.0,
-    "performances": [
-     {
-      "date": "2026-08-10",
-      "date_raw": "10 AUG 2026",
-      "competition": "European Athletics Championships, Alexander Stadium, Birmingham",
-      "category": "GL",
-      "discipline_code": "3KSC",
-      "discipline": "3000 Metres Steeplechase",
-      "indoor": false,
-      "place": 14,
-      "mark": "9:35.57",
-      "result_score": 1155,
-      "placing_score": 35,
-      "performance_score": 1190,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-06-20",
-      "date_raw": "20 JUN 2026",
-      "competition": "Track Night Vienna, LAZ Wien, Wien",
-      "category": "D",
-      "discipline_code": "3KSC",
-      "discipline": "3000 Metres Steeplechase",
-      "indoor": false,
-      "place": 1,
-      "mark": "9:35.88",
-      "result_score": 1154,
-      "placing_score": 25,
-      "performance_score": 1179,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-07-25",
-      "date_raw": "25 JUL 2026",
-      "competition": "Hungarian Championships, Nemzeti Atlétikai Központ, Budapest",
-      "category": "B",
-      "discipline_code": "3KSC",
-      "discipline": "3000 Metres Steeplechase",
-      "indoor": false,
-      "place": 1,
-      "mark": "9:47.77",
-      "result_score": 1125,
-      "placing_score": 50,
-      "performance_score": 1175,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-11"
-   },
-   {
-    "competitor_id": "135762661",
+    "competitor_id": "136867858",
     "slug": "/athletes/turkiye/sumeyye-erol-14590146",
-    "rank": 57,
+    "rank": 56,
     "name": "Sümeyye EROL",
     "dob": "15 JUN 1997",
     "country": "TUR",
@@ -3255,10 +3198,67 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762662",
+    "competitor_id": "136867859",
+    "slug": "/athletes/pr-of-china/xia-luo-14892675",
+    "rank": 57,
+    "name": "Xia LUO",
+    "dob": "10 MAY 2000",
+    "country": "CHN",
+    "ranking_score": 1178.0,
+    "performances": [
+     {
+      "date": "2026-08-14",
+      "date_raw": "14 AUG 2026",
+      "competition": "Chinese Championships, Sports Center, Quzhou",
+      "category": "B",
+      "discipline_code": "3KSC",
+      "discipline": "3000 Metres Steeplechase",
+      "indoor": false,
+      "place": 1,
+      "mark": "9:39.52",
+      "result_score": 1145,
+      "placing_score": 50,
+      "performance_score": 1195,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-11-16",
+      "date_raw": "16 NOV 2025",
+      "competition": "The 15th Games of People's Republic of China, Guangdong Ersha Sports Training Center, Guangzhou",
+      "category": "F",
+      "discipline_code": "3KSC",
+      "discipline": "3000 Metres Steeplechase",
+      "indoor": false,
+      "place": 1,
+      "mark": "9:26.44",
+      "result_score": 1177,
+      "placing_score": 8,
+      "performance_score": 1185,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-27",
+      "date_raw": "27 JUN 2026",
+      "competition": "Chinese Athletics Meet, Kuishan Sports Center, Rizhao",
+      "category": "F",
+      "discipline_code": "3KSC",
+      "discipline": "3000 Metres Steeplechase",
+      "indoor": false,
+      "place": 1,
+      "mark": "9:38.15",
+      "result_score": 1148,
+      "placing_score": 8,
+      "performance_score": 1156,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-18"
+   },
+   {
+    "competitor_id": "136867860",
     "slug": "/athletes/germany/adia-budde-14926483",
     "rank": 58,
     "name": "Adia BUDDE",
@@ -3312,12 +3312,69 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762663",
-    "slug": "/athletes/kenya/anatasha-cheptoo-15228290",
+    "competitor_id": "136867861",
+    "slug": "/athletes/hungary/zita-urban-14685030",
     "rank": 59,
+    "name": "Zita URBÁN",
+    "dob": "22 APR 2002",
+    "country": "HUN",
+    "ranking_score": 1176.0,
+    "performances": [
+     {
+      "date": "2026-06-20",
+      "date_raw": "20 JUN 2026",
+      "competition": "Track Night Vienna, LAZ Wien, Wien",
+      "category": "D",
+      "discipline_code": "3KSC",
+      "discipline": "3000 Metres Steeplechase",
+      "indoor": false,
+      "place": 1,
+      "mark": "9:35.88",
+      "result_score": 1154,
+      "placing_score": 25,
+      "performance_score": 1179,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-08-10",
+      "date_raw": "10 AUG 2026",
+      "competition": "European Athletics Championships, Alexander Stadium, Birmingham",
+      "category": "GL",
+      "discipline_code": "3KSC",
+      "discipline": "3000 Metres Steeplechase",
+      "indoor": false,
+      "place": 14,
+      "mark": "9:35.57",
+      "result_score": 1155,
+      "placing_score": 21,
+      "performance_score": 1176,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-07-25",
+      "date_raw": "25 JUL 2026",
+      "competition": "Hungarian Championships, Nemzeti Atlétikai Központ, Budapest",
+      "category": "B",
+      "discipline_code": "3KSC",
+      "discipline": "3000 Metres Steeplechase",
+      "indoor": false,
+      "place": 1,
+      "mark": "9:47.77",
+      "result_score": 1125,
+      "placing_score": 50,
+      "performance_score": 1175,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-18"
+   },
+   {
+    "competitor_id": "136867862",
+    "slug": "/athletes/kenya/anatasha-cheptoo-15228290",
+    "rank": 60,
     "name": "Anatasha CHEPTOO",
     "dob": "17 DEC 2007",
     "country": "KEN",
@@ -3369,12 +3426,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762664",
+    "competitor_id": "136867863",
     "slug": "/athletes/united-states/emma-gee-014736216",
-    "rank": 60,
+    "rank": 61,
     "name": "Emma GEE",
     "dob": "17 AUG 1997",
     "country": "USA",
@@ -3426,12 +3483,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762665",
+    "competitor_id": "136867864",
     "slug": "/athletes/norway/andrea-nygard-vie-15035215",
-    "rank": 61,
+    "rank": 62,
     "name": "Andrea NYGÅRD VIE",
     "dob": "04 JUL 2006",
     "country": "NOR",
@@ -3483,12 +3540,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762666",
+    "competitor_id": "136867865",
     "slug": "/athletes/canada/katelyn-stewart-barnett-14818116",
-    "rank": 62,
+    "rank": 63,
     "name": "Katelyn STEWART-BARNETT",
     "dob": "12 MAY 2003",
     "country": "CAN",
@@ -3540,12 +3597,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762667",
+    "competitor_id": "136867866",
     "slug": "/athletes/united-states/logan-jolly-14571222",
-    "rank": 63,
+    "rank": 64,
     "name": "Logan JOLLY",
     "dob": "07 JUL 1998",
     "country": "USA",
@@ -3597,12 +3654,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762668",
+    "competitor_id": "136867867",
     "slug": "/athletes/kenya/joyce-jepkogei-biwot-15199058",
-    "rank": 64,
+    "rank": 65,
     "name": "Joyce Jepkogei BIWOT",
     "dob": "17 AUG 1999",
     "country": "KEN",
@@ -3654,12 +3711,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762669",
+    "competitor_id": "136867868",
     "slug": "/athletes/japan/manami-nishiyama-14733877",
-    "rank": 65,
+    "rank": 66,
     "name": "Manami NISHIYAMA",
     "dob": "09 DEC 1999",
     "country": "JPN",
@@ -3711,12 +3768,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762670",
+    "competitor_id": "136867869",
     "slug": "/athletes/argentina/micaela-levaggi-14545494",
-    "rank": 66,
+    "rank": 67,
     "name": "Micaela LEVAGGI",
     "dob": "12 AUG 1998",
     "country": "ARG",
@@ -3768,12 +3825,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762671",
+    "competitor_id": "136867870",
     "slug": "/athletes/turkiye/derya-kunur-14671694",
-    "rank": 67,
+    "rank": 68,
     "name": "Derya KUNUR",
     "dob": "01 SEP 1999",
     "country": "TUR",
@@ -3825,12 +3882,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762672",
+    "competitor_id": "136867871",
     "slug": "/athletes/kenya/cynthia-jemutai-15280716",
-    "rank": 68,
+    "rank": 69,
     "name": "Cynthia JEMUTAI",
     "dob": "22 APR 2002",
     "country": "KEN",
@@ -3882,12 +3939,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762673",
+    "competitor_id": "136867872",
     "slug": "/athletes/portugal/laura-taborda-14741797",
-    "rank": 69,
+    "rank": 70,
     "name": "Laura TABORDA",
     "dob": "01 JAN 1999",
     "country": "POR",
@@ -3939,67 +3996,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762674",
-    "slug": "/athletes/pr-of-china/xia-luo-14892675",
-    "rank": 70,
-    "name": "Xia LUO",
-    "dob": "10 MAY 2000",
-    "country": "CHN",
-    "ranking_score": 1156.0,
-    "performances": [
-     {
-      "date": "2025-11-16",
-      "date_raw": "16 NOV 2025",
-      "competition": "The 15th Games of People's Republic of China, Guangdong Ersha Sports Training Center, Guangzhou",
-      "category": "F",
-      "discipline_code": "3KSC",
-      "discipline": "3000 Metres Steeplechase",
-      "indoor": false,
-      "place": 1,
-      "mark": "9:26.44",
-      "result_score": 1177,
-      "placing_score": 8,
-      "performance_score": 1185,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-06-27",
-      "date_raw": "27 JUN 2026",
-      "competition": "Chinese Athletics Meet, Kuishan Sports Center, Rizhao",
-      "category": "F",
-      "discipline_code": "3KSC",
-      "discipline": "3000 Metres Steeplechase",
-      "indoor": false,
-      "place": 1,
-      "mark": "9:38.15",
-      "result_score": 1148,
-      "placing_score": 8,
-      "performance_score": 1156,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-05-16",
-      "date_raw": "16 MAY 2026",
-      "competition": "Wanda Diamond League, China Textile City Sports Centre, Shaoxing/Keqiao",
-      "category": "GW",
-      "discipline_code": "3KSC",
-      "discipline": "3000 Metres Steeplechase",
-      "indoor": false,
-      "place": 16,
-      "mark": "9:47.04",
-      "result_score": 1127,
-      "placing_score": 0,
-      "performance_score": 1127,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-11"
-   },
-   {
-    "competitor_id": "135762675",
+    "competitor_id": "136867873",
     "slug": "/athletes/denmark/anna-mark-helwigh-14634709",
     "rank": 71,
     "name": "Anna Mark HELWIGH",
@@ -4053,10 +4053,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762676",
+    "competitor_id": "136867874",
     "slug": "/athletes/turkiye/pelinsu-sahin-14843900",
     "rank": 72,
     "name": "Pelinsu ŞAHIN",
@@ -4110,10 +4110,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762677",
+    "competitor_id": "136867875",
     "slug": "/athletes/sweden/emilia-lillemo-14828185",
     "rank": 73,
     "name": "Emilia LILLEMO",
@@ -4167,69 +4167,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762678",
-    "slug": "/athletes/romania/stella-rutto-14530634",
-    "rank": 74,
-    "name": "Stella RUTTO",
-    "dob": "1999",
-    "country": "ROU",
-    "ranking_score": 1147.0,
-    "performances": [
-     {
-      "date": "2025-08-23",
-      "date_raw": "23 AUG 2025",
-      "competition": "Romanian Championships, Stadionul de atletism \"Nicolae Mărășescu\", Craiova",
-      "category": "B",
-      "discipline_code": "3KSC",
-      "discipline": "3000 Metres Steeplechase",
-      "indoor": false,
-      "place": 1,
-      "mark": "9:38.14",
-      "result_score": 1148,
-      "placing_score": 50,
-      "performance_score": 1198,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-14",
-      "date_raw": "14 AUG 2025",
-      "competition": "Grand Slam Jerusalem, Givat Ram Stadium, Jerusalem",
-      "category": "B",
-      "discipline_code": "2KSC",
-      "discipline": "2000 Metres Steeplechase",
-      "indoor": false,
-      "place": 4,
-      "mark": "6:20.11",
-      "result_score": 1107,
-      "placing_score": 31,
-      "performance_score": 1138,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-09-15",
-      "date_raw": "15 SEP 2025",
-      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
-      "category": "OW",
-      "discipline_code": "3KSC",
-      "discipline": "3000 Metres Steeplechase",
-      "indoor": false,
-      "place": 33,
-      "mark": "9:55.76",
-      "result_score": 1105,
-      "placing_score": 0,
-      "performance_score": 1105,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-11"
-   },
-   {
-    "competitor_id": "135762679",
+    "competitor_id": "136867876",
     "slug": "/athletes/norway/vilde-vage-henriksen-14707392",
-    "rank": 75,
+    "rank": 74,
     "name": "Vilde Våge HENRIKSEN",
     "dob": "16 SEP 2000",
     "country": "NOR",
@@ -4281,12 +4224,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762680",
+    "competitor_id": "136867877",
     "slug": "/athletes/ireland/abbie-sheridan-14912275",
-    "rank": 76,
+    "rank": 75,
     "name": "Abbie SHERIDAN",
     "dob": "20 MAR 2002",
     "country": "IRL",
@@ -4338,12 +4281,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762681",
+    "competitor_id": "136867878",
     "slug": "/athletes/united-states/emily-paupore-14968140",
-    "rank": 77,
+    "rank": 76,
     "name": "Emily PAUPORE",
     "dob": "28 MAR 2002",
     "country": "USA",
@@ -4395,12 +4338,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762682",
+    "competitor_id": "136867879",
     "slug": "/athletes/switzerland/shirley-lang-14753184",
-    "rank": 78,
+    "rank": 77,
     "name": "Shirley LANG",
     "dob": "29 JUN 2002",
     "country": "SUI",
@@ -4452,12 +4395,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762683",
+    "competitor_id": "136867880",
     "slug": "/athletes/great-britain-ni/sarah-tait-14655139",
-    "rank": 79,
+    "rank": 78,
     "name": "Sarah TAIT",
     "dob": "26 MAR 2001",
     "country": "GBR",
@@ -4509,12 +4452,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762684",
+    "competitor_id": "136867881",
     "slug": "/athletes/ethiopia/zeritu-daba-14975267",
-    "rank": 80,
+    "rank": 79,
     "name": "Zeritu DABA",
     "dob": "20 JAN 2006",
     "country": "ETH",
@@ -4566,12 +4509,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762685",
+    "competitor_id": "136867882",
     "slug": "/athletes/belarus/tatsiana-shabanava-14635707",
-    "rank": 81,
+    "rank": 80,
     "name": "Tatsiana SHABANAVA",
     "dob": "20 MAR 1998",
     "country": "BLR",
@@ -4623,10 +4566,67 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762686",
+    "competitor_id": "136867883",
+    "slug": "/athletes/pr-of-china/yiting-yang-14983614",
+    "rank": 81,
+    "name": "Yiting YANG",
+    "dob": "15 MAR 2004",
+    "country": "CHN",
+    "ranking_score": 1140.0,
+    "performances": [
+     {
+      "date": "2026-08-14",
+      "date_raw": "14 AUG 2026",
+      "competition": "Chinese Championships, Sports Center, Quzhou",
+      "category": "B",
+      "discipline_code": "3KSC",
+      "discipline": "3000 Metres Steeplechase",
+      "indoor": false,
+      "place": 2,
+      "mark": "9:45.11",
+      "result_score": 1131,
+      "placing_score": 42,
+      "performance_score": 1173,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-27",
+      "date_raw": "27 JUN 2026",
+      "competition": "Chinese Athletics Meet, Kuishan Sports Center, Rizhao",
+      "category": "F",
+      "discipline_code": "3KSC",
+      "discipline": "3000 Metres Steeplechase",
+      "indoor": false,
+      "place": 2,
+      "mark": "9:48.39",
+      "result_score": 1123,
+      "placing_score": 5,
+      "performance_score": 1128,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-05-23",
+      "date_raw": "23 MAY 2026",
+      "competition": "Chinese U23 Championships, Taizhou Yuhuan Olympic Sports Center Stadium, Taizhou",
+      "category": "F",
+      "discipline_code": "3KSC",
+      "discipline": "3000 Metres Steeplechase",
+      "indoor": false,
+      "place": 1,
+      "mark": "9:52.74",
+      "result_score": 1113,
+      "placing_score": 8,
+      "performance_score": 1121,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-18"
+   },
+   {
+    "competitor_id": "136867884",
     "slug": "/athletes/romania/maria-mihaela-blaga-14875916",
     "rank": 82,
     "name": "Maria Mihaela BLAGA",
@@ -4680,10 +4680,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762687",
+    "competitor_id": "136867885",
     "slug": "/athletes/germany/jule-jutta-lindner-14981849",
     "rank": 83,
     "name": "Jule Jutta LINDNER",
@@ -4737,10 +4737,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762688",
+    "competitor_id": "136867886",
     "slug": "/athletes/australia/brielle-erbacher-14636382",
     "rank": 84,
     "name": "Brielle ERBACHER",
@@ -4794,10 +4794,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762689",
+    "competitor_id": "136867887",
     "slug": "/athletes/united-states/kate-putman-014938459",
     "rank": 85,
     "name": "Kate PUTMAN",
@@ -4851,10 +4851,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762690",
+    "competitor_id": "136867888",
     "slug": "/athletes/united-states/sydney-masciarelli-14895530",
     "rank": 86,
     "name": "Sydney MASCIARELLI",
@@ -4908,10 +4908,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762691",
+    "competitor_id": "136867889",
     "slug": "/athletes/france/katia-delarche-14636251",
     "rank": 87,
     "name": "Katia DELARCHE",
@@ -4965,10 +4965,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762692",
+    "competitor_id": "136867890",
     "slug": "/athletes/estonia/laura-maasik-14404141",
     "rank": 88,
     "name": "Laura MAASIK",
@@ -5022,12 +5022,69 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762693",
-    "slug": "/athletes/japan/yuzu-nishide-14858472",
+    "competitor_id": "136867891",
+    "slug": "/athletes/pr-of-china/shanshan-zhang-14796252",
     "rank": 89,
+    "name": "Shanshan ZHANG",
+    "dob": "10 SEP 1999",
+    "country": "CHN",
+    "ranking_score": 1130.0,
+    "performances": [
+     {
+      "date": "2026-08-14",
+      "date_raw": "14 AUG 2026",
+      "competition": "Chinese Championships, Sports Center, Quzhou",
+      "category": "B",
+      "discipline_code": "3KSC",
+      "discipline": "3000 Metres Steeplechase",
+      "indoor": false,
+      "place": 3,
+      "mark": "9:47.05",
+      "result_score": 1126,
+      "placing_score": 35,
+      "performance_score": 1161,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-11-16",
+      "date_raw": "16 NOV 2025",
+      "competition": "The 15th Games of People's Republic of China, Guangdong Ersha Sports Training Center, Guangzhou",
+      "category": "F",
+      "discipline_code": "3KSC",
+      "discipline": "3000 Metres Steeplechase",
+      "indoor": false,
+      "place": 3,
+      "mark": "9:51.30",
+      "result_score": 1116,
+      "placing_score": 3,
+      "performance_score": 1119,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-09-27",
+      "date_raw": "27 SEP 2025",
+      "competition": "National Athletics Championships, Kuishan Sports Center, Rizhao",
+      "category": "F",
+      "discipline_code": "3KSC",
+      "discipline": "3000 Metres Steeplechase",
+      "indoor": false,
+      "place": 1,
+      "mark": "9:56.21",
+      "result_score": 1104,
+      "placing_score": 8,
+      "performance_score": 1112,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-18"
+   },
+   {
+    "competitor_id": "136867892",
+    "slug": "/athletes/japan/yuzu-nishide-14858472",
+    "rank": 90,
     "name": "Yuzu NISHIDE",
     "dob": "25 JAN 2000",
     "country": "JPN",
@@ -5079,12 +5136,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762694",
+    "competitor_id": "136867893",
     "slug": "/athletes/kenya/mercy-wanjiru-kinyanjui-15102085",
-    "rank": 90,
+    "rank": 91,
     "name": "Mercy Wanjiru KINYANJUI",
     "dob": "",
     "country": "KEN",
@@ -5136,12 +5193,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762695",
+    "competitor_id": "136867894",
     "slug": "/athletes/cuba/anisleidis-ochoa-14785990",
-    "rank": 91,
+    "rank": 92,
     "name": "Anisleidis OCHOA",
     "dob": "04 OCT 2000",
     "country": "CUB",
@@ -5193,12 +5250,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762696",
+    "competitor_id": "136867895",
     "slug": "/athletes/finland/alisa-virtanen-14735549",
-    "rank": 92,
+    "rank": 93,
     "name": "Alisa VIRTANEN",
     "dob": "04 SEP 2002",
     "country": "FIN",
@@ -5250,12 +5307,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762697",
+    "competitor_id": "136867896",
     "slug": "/athletes/poland/patrycja-kapala-14569052",
-    "rank": 93,
+    "rank": 94,
     "name": "Patrycja KAPAŁA",
     "dob": "26 MAR 1997",
     "country": "POL",
@@ -5307,12 +5364,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762698",
+    "competitor_id": "136867897",
     "slug": "/athletes/germany/carolin-hinrichs-14927910",
-    "rank": 94,
+    "rank": 95,
     "name": "Carolin HINRICHS",
     "dob": "26 JAN 2004",
     "country": "GER",
@@ -5364,12 +5421,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762699",
+    "competitor_id": "136867898",
     "slug": "/athletes/united-states/lexi-goff-14937276",
-    "rank": 95,
+    "rank": 96,
     "name": "Lexi GOFF",
     "dob": "",
     "country": "USA",
@@ -5421,12 +5478,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762700",
+    "competitor_id": "136867899",
     "slug": "/athletes/netherlands/veerle-bakker-14513285",
-    "rank": 96,
+    "rank": 97,
     "name": "Veerle BAKKER",
     "dob": "29 SEP 1997",
     "country": "NED",
@@ -5478,12 +5535,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762701",
+    "competitor_id": "136867900",
     "slug": "/athletes/spain/claudia-corral-14848695",
-    "rank": 97,
+    "rank": 98,
     "name": "Claudia CORRAL",
     "dob": "08 AUG 2002",
     "country": "ESP",
@@ -5535,12 +5592,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762702",
+    "competitor_id": "136867901",
     "slug": "/athletes/turkiye/sila-bayir-14882867",
-    "rank": 98,
+    "rank": 99,
     "name": "Sila BAYIR",
     "dob": "12 FEB 2004",
     "country": "TUR",
@@ -5592,12 +5649,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135762703",
+    "competitor_id": "136867902",
     "slug": "/athletes/russia/anastasiya-krasilnikova-14931324",
-    "rank": 99,
+    "rank": 100,
     "name": "Anastasiya KRASILNIKOVA",
     "dob": "10 DEC 2003",
     "country": "RUS",
@@ -5649,64 +5706,7 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
-   },
-   {
-    "competitor_id": "135762704",
-    "slug": "/athletes/netherlands/jetske-van-kampen-14588156",
-    "rank": 100,
-    "name": "Jetske VAN KAMPEN",
-    "dob": "28 DEC 1998",
-    "country": "NED",
-    "ranking_score": 1123.0,
-    "performances": [
-     {
-      "date": "2026-07-26",
-      "date_raw": "26 JUL 2026",
-      "competition": "Dutch Championships, FBK Stadium, Hengelo",
-      "category": "B",
-      "discipline_code": "3KSC",
-      "discipline": "3000 Metres Steeplechase",
-      "indoor": false,
-      "place": 1,
-      "mark": "9:48.30",
-      "result_score": 1123,
-      "placing_score": 50,
-      "performance_score": 1173,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-07-18",
-      "date_raw": "18 JUL 2026",
-      "competition": "Night of Athletics, Stadion De Veen, Heusden-Zolder",
-      "category": "C",
-      "discipline_code": "3KSC",
-      "discipline": "3000 Metres Steeplechase",
-      "indoor": false,
-      "place": 10,
-      "mark": "9:47.69",
-      "result_score": 1125,
-      "placing_score": 9,
-      "performance_score": 1134,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-05-30",
-      "date_raw": "30 MAY 2026",
-      "competition": "SplitTime NK Teams, Sportcomplex De Leidse Hout, Leiden",
-      "category": "F",
-      "discipline_code": "3KSC",
-      "discipline": "3000 Metres Steeplechase",
-      "indoor": false,
-      "place": 2,
-      "mark": "10:14.95",
-      "result_score": 1059,
-      "placing_score": 5,
-      "performance_score": 1064,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    }
   ]
  }

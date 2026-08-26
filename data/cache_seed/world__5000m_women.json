@@ -1,74 +1,17 @@
 {
- "_fetched_at": 1787122338.8897908,
+ "_fetched_at": 1787727438.4335716,
  "_key": "world__5000m_women",
  "data": {
   "championship": "world",
   "event": "5000m_women",
   "rankings_url": "https://worldathletics.org/world-rankings/5000m/women",
-  "fetched": "2026-08-19T06:52:18",
-  "rank_date": "2026-08-11",
+  "fetched": "2026-08-26T06:57:18",
+  "rank_date": "2026-08-18",
   "athletes": [
    {
-    "competitor_id": "135754662",
-    "slug": "/athletes/kenya/faith-kipyegon-14413305",
-    "rank": 1,
-    "name": "Faith KIPYEGON",
-    "dob": "10 JAN 1994",
-    "country": "KEN",
-    "ranking_score": 1342.0,
-    "performances": [
-     {
-      "date": "2025-09-20",
-      "date_raw": "20 SEP 2025",
-      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
-      "category": "OW",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "14:55.07",
-      "result_score": 1173,
-      "placing_score": 190,
-      "performance_score": 1363,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-16",
-      "date_raw": "16 AUG 2025",
-      "competition": "Silesia Kamila Skolimowska Memorial, Stadion Śląski, Chorzów",
-      "category": "A",
-      "discipline_code": "3000",
-      "discipline": "3000 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "8:07.04",
-      "result_score": 1290,
-      "placing_score": 70,
-      "performance_score": 1360,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-05-16",
-      "date_raw": "16 MAY 2026",
-      "competition": "Wanda Diamond League, China Textile City Sports Centre, Shaoxing/Keqiao",
-      "category": "A",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "14:24.14",
-      "result_score": 1234,
-      "placing_score": 70,
-      "performance_score": 1304,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-11"
-   },
-   {
-    "competitor_id": "135754663",
+    "competitor_id": "136859866",
     "slug": "/athletes/ethiopia/likina-amebaw-14877871",
-    "rank": 2,
+    "rank": 1,
     "name": "Likina AMEBAW",
     "dob": "30 NOV 1997",
     "country": "ETH",
@@ -120,10 +63,67 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754664",
+    "competitor_id": "136859867",
+    "slug": "/athletes/kenya/faith-kipyegon-14413305",
+    "rank": 2,
+    "name": "Faith KIPYEGON",
+    "dob": "10 JAN 1994",
+    "country": "KEN",
+    "ranking_score": 1324.0,
+    "performances": [
+     {
+      "date": "2025-09-20",
+      "date_raw": "20 SEP 2025",
+      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
+      "category": "OW",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "14:55.07",
+      "result_score": 1173,
+      "placing_score": 190,
+      "performance_score": 1363,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-07-10",
+      "date_raw": "10 JUL 2026",
+      "competition": "Meeting International d’Athlétisme Herculis EBS, Stade Louis II, Monaco",
+      "category": "GW",
+      "discipline_code": "3000",
+      "discipline": "3000 Metres",
+      "indoor": false,
+      "place": 4,
+      "mark": "8:24.21",
+      "result_score": 1229,
+      "placing_score": 77,
+      "performance_score": 1306,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-05-16",
+      "date_raw": "16 MAY 2026",
+      "competition": "Wanda Diamond League, China Textile City Sports Centre, Shaoxing/Keqiao",
+      "category": "A",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "14:24.14",
+      "result_score": 1234,
+      "placing_score": 70,
+      "performance_score": 1304,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-18"
+   },
+   {
+    "competitor_id": "136859868",
     "slug": "/athletes/kenya/agnes-jebet-ngetich-14758189",
     "rank": 3,
     "name": "Agnes Jebet NGETICH",
@@ -177,10 +177,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754665",
+    "competitor_id": "136859869",
     "slug": "/athletes/ethiopia/aleshign-baweke-15172866",
     "rank": 4,
     "name": "Aleshign BAWEKE",
@@ -234,10 +234,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754666",
+    "competitor_id": "136859870",
     "slug": "/athletes/ethiopia/senayet-getachew-15046190",
     "rank": 5,
     "name": "Senayet GETACHEW",
@@ -291,10 +291,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754667",
+    "competitor_id": "136859871",
     "slug": "/athletes/italy/nadia-battocletti-14700830",
     "rank": 6,
     "name": "Nadia BATTOCLETTI",
@@ -348,10 +348,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754668",
+    "competitor_id": "136859872",
     "slug": "/athletes/ethiopia/medina-eisa-14985841",
     "rank": 7,
     "name": "Medina EISA",
@@ -405,10 +405,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754669",
+    "competitor_id": "136859873",
     "slug": "/athletes/united-states/josette-andrews-14574966",
     "rank": 8,
     "name": "Josette ANDREWS",
@@ -462,10 +462,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754670",
+    "competitor_id": "136859874",
     "slug": "/athletes/ethiopia/fantaye-belayneh-14977672",
     "rank": 9,
     "name": "Fantaye BELAYNEH",
@@ -519,10 +519,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754671",
+    "competitor_id": "136859875",
     "slug": "/athletes/spain/marta-garcia-14635475",
     "rank": 10,
     "name": "Marta GARCÍA",
@@ -576,10 +576,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754672",
+    "competitor_id": "136859876",
     "slug": "/athletes/ethiopia/hirut-meshesha-14805826",
     "rank": 11,
     "name": "Hirut MESHESHA",
@@ -633,10 +633,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754673",
+    "competitor_id": "136859877",
     "slug": "/athletes/united-states/shelby-houlihan-14368938",
     "rank": 12,
     "name": "Shelby HOULIHAN",
@@ -690,10 +690,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754674",
+    "competitor_id": "136859878",
     "slug": "/athletes/netherlands/maureen-koster-14372338",
     "rank": 13,
     "name": "Maureen KOSTER",
@@ -747,10 +747,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754675",
+    "competitor_id": "136859879",
     "slug": "/athletes/great-britain-ni/hannah-nuttall-14523341",
     "rank": 14,
     "name": "Hannah NUTTALL",
@@ -804,10 +804,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754676",
+    "competitor_id": "136859880",
     "slug": "/athletes/australia/rose-davies-14517594",
     "rank": 15,
     "name": "Rose DAVIES",
@@ -861,10 +861,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754677",
+    "competitor_id": "136859881",
     "slug": "/athletes/australia/jessica-hull-14464506",
     "rank": 16,
     "name": "Jessica HULL",
@@ -918,10 +918,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754678",
+    "competitor_id": "136859882",
     "slug": "/athletes/ethiopia/hawi-abera-15058804",
     "rank": 17,
     "name": "Hawi ABERA",
@@ -975,10 +975,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754679",
+    "competitor_id": "136859883",
     "slug": "/athletes/ethiopia/marta-alemayo-15131346",
     "rank": 18,
     "name": "Marta ALEMAYO",
@@ -1032,10 +1032,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754680",
+    "competitor_id": "136859884",
     "slug": "/athletes/australia/linden-hall-14272002",
     "rank": 19,
     "name": "Linden HALL",
@@ -1089,10 +1089,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754681",
+    "competitor_id": "136859885",
     "slug": "/athletes/kenya/caroline-nyaga-14814043",
     "rank": 20,
     "name": "Caroline NYAGA",
@@ -1146,10 +1146,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754682",
+    "competitor_id": "136859886",
     "slug": "/athletes/japan/nozomi-tanaka-14632538",
     "rank": 21,
     "name": "Nozomi TANAKA",
@@ -1203,10 +1203,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754683",
+    "competitor_id": "136859887",
     "slug": "/athletes/great-britain-ni/megan-keith-14918707",
     "rank": 22,
     "name": "Megan KEITH",
@@ -1260,10 +1260,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754684",
+    "competitor_id": "136859888",
     "slug": "/athletes/united-states/parker-valby-14903214",
     "rank": 23,
     "name": "Parker VALBY",
@@ -1317,10 +1317,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754685",
+    "competitor_id": "136859889",
     "slug": "/athletes/belgium/jana-van-lent-14704113",
     "rank": 24,
     "name": "Jana VAN LENT",
@@ -1374,10 +1374,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754686",
+    "competitor_id": "136859890",
     "slug": "/athletes/united-states/emily-mackay-14667572",
     "rank": 25,
     "name": "Emily MACKAY",
@@ -1431,10 +1431,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754687",
+    "competitor_id": "136859891",
     "slug": "/athletes/ireland/sarah-healy-14705242",
     "rank": 26,
     "name": "Sarah HEALY",
@@ -1488,10 +1488,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754688",
+    "competitor_id": "136859892",
     "slug": "/athletes/kenya/janet-jepkoech-chepkemoi-15018098",
     "rank": 27,
     "name": "Janet Jepkoech CHEPKEMOI",
@@ -1545,10 +1545,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754689",
+    "competitor_id": "136859893",
     "slug": "/athletes/ethiopia/shito-gumi-15135852",
     "rank": 28,
     "name": "Shito GUMI",
@@ -1602,10 +1602,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754690",
+    "competitor_id": "136859894",
     "slug": "/athletes/australia/georgia-griffith-14549778",
     "rank": 29,
     "name": "Georgia GRIFFITH",
@@ -1659,10 +1659,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754691",
+    "competitor_id": "136859895",
     "slug": "/athletes/ethiopia/yenawa-nbret-15090391",
     "rank": 30,
     "name": "Yenawa NBRET",
@@ -1716,10 +1716,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754692",
+    "competitor_id": "136859896",
     "slug": "/athletes/united-states/jane-hedengren-15090151",
     "rank": 31,
     "name": "Jane HEDENGREN",
@@ -1773,10 +1773,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754693",
+    "competitor_id": "136859897",
     "slug": "/athletes/netherlands/diane-van-es-14625026",
     "rank": 32,
     "name": "Diane VAN ES",
@@ -1830,10 +1830,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754694",
+    "competitor_id": "136859898",
     "slug": "/athletes/united-states/karissa-schweizer-14470567",
     "rank": 33,
     "name": "Karissa SCHWEIZER",
@@ -1887,10 +1887,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754695",
+    "competitor_id": "136859899",
     "slug": "/athletes/canada/gabriela-debues-stafford-14501531",
     "rank": 34,
     "name": "Gabriela DEBUES-STAFFORD",
@@ -1944,10 +1944,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754696",
+    "competitor_id": "136859900",
     "slug": "/athletes/burundi/francine-niyomukunzi-14786755",
     "rank": 35,
     "name": "Francine NIYOMUKUNZI",
@@ -2001,10 +2001,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754697",
+    "competitor_id": "136859901",
     "slug": "/athletes/great-britain-ni/innes-fitzgerald-15033317",
     "rank": 36,
     "name": "Innes FITZGERALD",
@@ -2058,10 +2058,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754698",
+    "competitor_id": "136859902",
     "slug": "/athletes/australia/maudie-skyring-14609597",
     "rank": 37,
     "name": "Maudie SKYRING",
@@ -2115,10 +2115,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754699",
+    "competitor_id": "136859903",
     "slug": "/athletes/kenya/margaret-akidor-14798242",
     "rank": 38,
     "name": "Margaret AKIDOR",
@@ -2172,10 +2172,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754700",
+    "competitor_id": "136859904",
     "slug": "/athletes/uganda/joy-cheptoyek-14818058",
     "rank": 39,
     "name": "Joy CHEPTOYEK",
@@ -2229,10 +2229,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754701",
+    "competitor_id": "136859905",
     "slug": "/athletes/united-states/margot-appleton-14848160",
     "rank": 40,
     "name": "Margot APPLETON",
@@ -2286,10 +2286,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754702",
+    "competitor_id": "136859906",
     "slug": "/athletes/kenya/caroline-kariba-14965231",
     "rank": 41,
     "name": "Caroline KARIBA",
@@ -2343,10 +2343,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754703",
+    "competitor_id": "136859907",
     "slug": "/athletes/pr-of-china/wuga-he-14862415",
     "rank": 42,
     "name": "Wuga HE",
@@ -2400,10 +2400,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754704",
+    "competitor_id": "136859908",
     "slug": "/athletes/uganda/charity-cherop-15058751",
     "rank": 43,
     "name": "Charity CHEROP",
@@ -2457,10 +2457,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754705",
+    "competitor_id": "136859909",
     "slug": "/athletes/south-africa/tayla-kavanagh-14830946",
     "rank": 44,
     "name": "Tayla KAVANAGH",
@@ -2514,10 +2514,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754706",
+    "competitor_id": "136859910",
     "slug": "/athletes/australia/lauren-ryan-14667446",
     "rank": 45,
     "name": "Lauren RYAN",
@@ -2571,10 +2571,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754707",
+    "competitor_id": "136859911",
     "slug": "/athletes/ethiopia/birtukan-molla-15116034",
     "rank": 46,
     "name": "Birtukan MOLLA",
@@ -2628,10 +2628,10 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754708",
+    "competitor_id": "136859912",
     "slug": "/athletes/united-states/elise-stearns-14839139",
     "rank": 47,
     "name": "Elise STEARNS",
@@ -2685,69 +2685,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754709",
-    "slug": "/athletes/united-states/alicia-monson-14708276",
-    "rank": 48,
-    "name": "Alicia MONSON",
-    "dob": "13 MAY 1998",
-    "country": "USA",
-    "ranking_score": 1189.0,
-    "performances": [
-     {
-      "date": "2026-06-13",
-      "date_raw": "13 JUN 2026",
-      "competition": "USATF LA Grand Prix, USC Allyson Felix at Loker Track Stadium, Los Angeles, CA",
-      "category": "A",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 3,
-      "mark": "15:03.33",
-      "result_score": 1157,
-      "placing_score": 56,
-      "performance_score": 1213,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-08-01",
-      "date_raw": "01 AUG 2026",
-      "competition": "IFAM Oordegem, Putbosstadion, Oordegem",
-      "category": "C",
-      "discipline_code": "5000",
-      "discipline": "5000 Metres",
-      "indoor": false,
-      "place": 5,
-      "mark": "14:50.63",
-      "result_score": 1181,
-      "placing_score": 18,
-      "performance_score": 1199,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-08-16",
-      "date_raw": "16 AUG 2025",
-      "competition": "Meeting voor Mon, AtletiekArena Gaston Roelants Kessel-Lo / Hal 5, Leuven",
-      "category": "D",
-      "discipline_code": "3000",
-      "discipline": "3000 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "8:50.91",
-      "result_score": 1136,
-      "placing_score": 19,
-      "performance_score": 1155,
-      "month_correction_applied": false
-     }
-    ],
-    "rank_date": "2026-08-11"
-   },
-   {
-    "competitor_id": "135754710",
+    "competitor_id": "136859913",
     "slug": "/athletes/ethiopia/mastewal-mehabaw-15308109",
-    "rank": 49,
+    "rank": 48,
     "name": "Mastewal MEHABAW",
     "dob": "31 DEC 2006",
     "country": "ETH",
@@ -2799,12 +2742,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754711",
+    "competitor_id": "136859914",
     "slug": "/athletes/kenya/doris-lemngole-15128594",
-    "rank": 50,
+    "rank": 49,
     "name": "Doris LEMNGOLE",
     "dob": "05 FEB 2002",
     "country": "KEN",
@@ -2856,12 +2799,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754712",
+    "competitor_id": "136859915",
     "slug": "/athletes/canada/regan-yee-14501254",
-    "rank": 51,
+    "rank": 50,
     "name": "Regan YEE",
     "dob": "04 JUL 1995",
     "country": "CAN",
@@ -2913,12 +2856,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754713",
+    "competitor_id": "136859916",
     "slug": "/athletes/india/parul-chaudhary-14497992",
-    "rank": 52,
+    "rank": 51,
     "name": "Parul CHAUDHARY",
     "dob": "15 APR 1995",
     "country": "IND",
@@ -2970,12 +2913,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754714",
+    "competitor_id": "136859917",
     "slug": "/athletes/kenya/pamela-kosgei-15041996",
-    "rank": 53,
+    "rank": 52,
     "name": "Pamela KOSGEI",
     "dob": "05 JUL 2004",
     "country": "KEN",
@@ -3027,12 +2970,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754715",
+    "competitor_id": "136859918",
     "slug": "/athletes/united-states/sydney-vaught-14765580",
-    "rank": 54,
+    "rank": 53,
     "name": "Sydney VAUGHT",
     "dob": "07 MAR 2003",
     "country": "USA",
@@ -3084,12 +3027,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754716",
+    "competitor_id": "136859919",
     "slug": "/athletes/united-states/kayley-delay-14802030",
-    "rank": 55,
+    "rank": 54,
     "name": "Kayley DELAY",
     "dob": "07 JUN 1999",
     "country": "USA",
@@ -3141,12 +3084,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754717",
+    "competitor_id": "136859920",
     "slug": "/athletes/kenya/lucy-nduta-15018122",
-    "rank": 56,
+    "rank": 55,
     "name": "Lucy NDUTA",
     "dob": "16 DEC 2005",
     "country": "KEN",
@@ -3198,12 +3141,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754718",
+    "competitor_id": "136859921",
     "slug": "/athletes/great-britain-ni/laura-muir-14422111",
-    "rank": 57,
+    "rank": 56,
     "name": "Laura MUIR",
     "dob": "09 MAY 1993",
     "country": "GBR",
@@ -3255,12 +3198,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754719",
+    "competitor_id": "136859922",
     "slug": "/athletes/ethiopia/bernesh-dessie-15309271",
-    "rank": 58,
+    "rank": 57,
     "name": "Bernesh DESSIE",
     "dob": "11 FEB 2008",
     "country": "ETH",
@@ -3312,12 +3255,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754720",
+    "competitor_id": "136859923",
     "slug": "/athletes/djibouti/samiya-hassan-nour-14786622",
-    "rank": 59,
+    "rank": 58,
     "name": "Samiya HASSAN NOUR",
     "dob": "05 DEC 1999",
     "country": "DJI",
@@ -3369,12 +3312,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754721",
+    "competitor_id": "136859924",
     "slug": "/athletes/great-britain-ni/eloise-walker-14655138",
-    "rank": 60,
+    "rank": 59,
     "name": "Eloise WALKER",
     "dob": "27 MAY 2001",
     "country": "GBR",
@@ -3426,12 +3369,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754722",
+    "competitor_id": "136859925",
     "slug": "/athletes/kenya/marion-jepngetich-14989690",
-    "rank": 61,
+    "rank": 60,
     "name": "Marion JEPNGETICH",
     "dob": "04 SEP 2005",
     "country": "KEN",
@@ -3483,12 +3426,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754723",
+    "competitor_id": "136859926",
     "slug": "/athletes/italy/micol-majori-14632353",
-    "rank": 62,
+    "rank": 61,
     "name": "Micol MAJORI",
     "dob": "04 JUN 1998",
     "country": "ITA",
@@ -3540,12 +3483,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754724",
+    "competitor_id": "136859927",
     "slug": "/athletes/japan/yuma-yamamoto-14899665",
-    "rank": 63,
+    "rank": 62,
     "name": "Yuma YAMAMOTO",
     "dob": "01 MAY 2000",
     "country": "JPN",
@@ -3597,12 +3540,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754725",
+    "competitor_id": "136859928",
     "slug": "/athletes/rwanda/emeline-imanizabayo-15022571",
-    "rank": 64,
+    "rank": 63,
     "name": "Emeline IMANIZABAYO",
     "dob": "01 JAN 1996",
     "country": "RWA",
@@ -3654,12 +3597,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754726",
+    "competitor_id": "136859929",
     "slug": "/athletes/netherlands/amina-maatoug-14763372",
-    "rank": 65,
+    "rank": 64,
     "name": "Amina MAATOUG",
     "dob": "17 NOV 2002",
     "country": "NED",
@@ -3711,12 +3654,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754727",
+    "competitor_id": "136859930",
     "slug": "/athletes/kenya/betty-kipkore-15135704",
-    "rank": 66,
+    "rank": 65,
     "name": "Betty KIPKORE",
     "dob": "22 JUL 2003",
     "country": "KEN",
@@ -3768,12 +3711,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754728",
+    "competitor_id": "136859931",
     "slug": "/athletes/spain/idaira-prieto-14592926",
-    "rank": 67,
+    "rank": 66,
     "name": "Idaira PRIETO",
     "dob": "17 AUG 1997",
     "country": "ESP",
@@ -3825,12 +3768,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754729",
+    "competitor_id": "136859932",
     "slug": "/athletes/kenya/tabithanjeri-kamau-014767078",
-    "rank": 68,
+    "rank": 67,
     "name": "Tabithanjeri KAMAU",
     "dob": "03 JUL 2000",
     "country": "KEN",
@@ -3882,12 +3825,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754730",
+    "competitor_id": "136859933",
     "slug": "/athletes/belgium/elise-vanderelst-14526691",
-    "rank": 69,
+    "rank": 68,
     "name": "Elise VANDERELST",
     "dob": "27 JAN 1998",
     "country": "BEL",
@@ -3939,12 +3882,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754731",
+    "competitor_id": "136859934",
     "slug": "/athletes/spain/maria-forero-14850944",
-    "rank": 70,
+    "rank": 69,
     "name": "Maria FORERO",
     "dob": "24 MAR 2003",
     "country": "ESP",
@@ -3996,12 +3939,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754732",
+    "competitor_id": "136859935",
     "slug": "/athletes/ethiopia/yenenesh-shimket-15043002",
-    "rank": 71,
+    "rank": 70,
     "name": "Yenenesh SHIMKET",
     "dob": "09 FEB 2007",
     "country": "ETH",
@@ -4053,12 +3996,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754733",
+    "competitor_id": "136859936",
     "slug": "/athletes/italy/federica-del-buono-14480247",
-    "rank": 72,
+    "rank": 71,
     "name": "Federica DEL BUONO",
     "dob": "12 DEC 1994",
     "country": "ITA",
@@ -4110,12 +4053,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754734",
+    "competitor_id": "136859937",
     "slug": "/athletes/kenya/edna-chelulei-15211010",
-    "rank": 73,
+    "rank": 72,
     "name": "Edna CHELULEI",
     "dob": "",
     "country": "KEN",
@@ -4167,12 +4110,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754735",
+    "competitor_id": "136859938",
     "slug": "/athletes/finland/ilona-mononen-14914640",
-    "rank": 74,
+    "rank": 73,
     "name": "Ilona MONONEN",
     "dob": "18 DEC 2003",
     "country": "FIN",
@@ -4224,12 +4167,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754736",
+    "competitor_id": "136859939",
     "slug": "/athletes/kenya/judy-chepkoech-15166120",
-    "rank": 75,
+    "rank": 74,
     "name": "Judy CHEPKOECH",
     "dob": "2004",
     "country": "KEN",
@@ -4281,12 +4224,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754737",
+    "competitor_id": "136859940",
     "slug": "/athletes/kenya/cynthia-chepkirui-15126570",
-    "rank": 76,
+    "rank": 75,
     "name": "Cynthia CHEPKIRUI",
     "dob": "04 SEP 2008",
     "country": "KEN",
@@ -4338,12 +4281,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754738",
+    "competitor_id": "136859941",
     "slug": "/athletes/netherlands/jennifer-gulikers-14911316",
-    "rank": 77,
+    "rank": 76,
     "name": "Jennifer GULIKERS",
     "dob": "18 AUG 1994",
     "country": "NED",
@@ -4395,12 +4338,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754739",
+    "competitor_id": "136859942",
     "slug": "/athletes/kenya/mirriam-cherop-14700573",
-    "rank": 78,
+    "rank": 77,
     "name": "Mirriam CHEROP",
     "dob": "25 JUN 1999",
     "country": "KEN",
@@ -4452,12 +4395,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754740",
+    "competitor_id": "136859943",
     "slug": "/athletes/austria/lisa-redlinger-15006261",
-    "rank": 79,
+    "rank": 78,
     "name": "Lisa REDLINGER",
     "dob": "13 NOV 2002",
     "country": "AUT",
@@ -4509,12 +4452,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754741",
+    "competitor_id": "136859944",
     "slug": "/athletes/kenya/iska-chelangat-14989689",
-    "rank": 80,
+    "rank": 79,
     "name": "Iska CHELANGAT",
     "dob": "20 APR 2004",
     "country": "KEN",
@@ -4566,12 +4509,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754742",
+    "competitor_id": "136859945",
     "slug": "/athletes/kenya/maurine-jepkoech-chebor-14989691",
-    "rank": 81,
+    "rank": 80,
     "name": "Maurine Jepkoech CHEBOR",
     "dob": "28 MAY 2004",
     "country": "KEN",
@@ -4623,12 +4566,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754743",
+    "competitor_id": "136859946",
     "slug": "/athletes/kenya/agnes-mwikali-mutuku-14915503",
-    "rank": 82,
+    "rank": 81,
     "name": "Agnes Mwikali MUTUKU",
     "dob": "15 DEC 2002",
     "country": "KEN",
@@ -4680,12 +4623,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754744",
+    "competitor_id": "136859947",
     "slug": "/athletes/kenya/esther-muthoni-14962711",
-    "rank": 83,
+    "rank": 82,
     "name": "Esther MUTHONI",
     "dob": "27 DEC 2001",
     "country": "KEN",
@@ -4737,12 +4680,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754745",
+    "competitor_id": "136859948",
     "slug": "/athletes/united-states/katie-camarena-14696756",
-    "rank": 84,
+    "rank": 83,
     "name": "Katie CAMARENA",
     "dob": "09 SEP 1997",
     "country": "USA",
@@ -4794,12 +4737,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754746",
+    "competitor_id": "136859949",
     "slug": "/athletes/sweden/carmen-cernjul-14953813",
-    "rank": 85,
+    "rank": 84,
     "name": "Carmen CERNJUL",
     "dob": "14 JUN 2007",
     "country": "SWE",
@@ -4851,12 +4794,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754747",
+    "competitor_id": "136859950",
     "slug": "/athletes/pr-of-china/tiantian-liang-14950779",
-    "rank": 86,
+    "rank": 85,
     "name": "Tiantian LIANG",
     "dob": "31 AUG 2004",
     "country": "CHN",
@@ -4908,12 +4851,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754748",
+    "competitor_id": "136859951",
     "slug": "/athletes/kenya/mercyline-jepkemei-kirwa-15205630",
-    "rank": 87,
+    "rank": 86,
     "name": "Mercyline Jepkemei KIRWA",
     "dob": "23 FEB 2000",
     "country": "KEN",
@@ -4965,12 +4908,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754749",
+    "competitor_id": "136859952",
     "slug": "/athletes/kenya/yvonne-jepchirchir-chepkoskei-15019926",
-    "rank": 88,
+    "rank": 87,
     "name": "Yvonne Jepchirchir CHEPKOSKEI",
     "dob": "25 MAR 2006",
     "country": "KEN",
@@ -5022,12 +4965,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754750",
+    "competitor_id": "136859953",
     "slug": "/athletes/kenya/daisy-jerop-14974967",
-    "rank": 89,
+    "rank": 88,
     "name": "Daisy JEROP",
     "dob": "26 APR 2006",
     "country": "KEN",
@@ -5079,12 +5022,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754751",
+    "competitor_id": "136859954",
     "slug": "/athletes/kenya/hilda-olemomoi-15014437",
-    "rank": 90,
+    "rank": 89,
     "name": "Hilda OLEMOMOI",
     "dob": "02 DEC 2003",
     "country": "KEN",
@@ -5136,12 +5079,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754752",
+    "competitor_id": "136859955",
     "slug": "/athletes/germany/vanessa-mikitenko-14904208",
-    "rank": 91,
+    "rank": 90,
     "name": "Vanessa MIKITENKO",
     "dob": "07 JUL 2005",
     "country": "GER",
@@ -5193,12 +5136,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754753",
+    "competitor_id": "136859956",
     "slug": "/athletes/norway/anna-marie-nordengen-sirevag-14804467",
-    "rank": 92,
+    "rank": 91,
     "name": "Anna Marie Nordengen SIREVÅG",
     "dob": "24 MAY 2004",
     "country": "NOR",
@@ -5250,12 +5193,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754754",
+    "competitor_id": "136859957",
     "slug": "/athletes/belgium/lisa-rooms-14527618",
-    "rank": 93,
+    "rank": 92,
     "name": "Lisa ROOMS",
     "dob": "17 JUN 1996",
     "country": "BEL",
@@ -5307,12 +5250,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754755",
+    "competitor_id": "136859958",
     "slug": "/athletes/germany/lisa-merkel-14878272",
-    "rank": 94,
+    "rank": 93,
     "name": "Lisa MERKEL",
     "dob": "20 JAN 2003",
     "country": "GER",
@@ -5364,12 +5307,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754756",
+    "competitor_id": "136859959",
     "slug": "/athletes/kenya/nelvin-jepkemboi-15117582",
-    "rank": 95,
+    "rank": 94,
     "name": "Nelvin JEPKEMBOI",
     "dob": "23 AUG 2001",
     "country": "KEN",
@@ -5421,12 +5364,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754757",
+    "competitor_id": "136859960",
     "slug": "/athletes/norway/amalie-saeten-14602791",
-    "rank": 96,
+    "rank": 95,
     "name": "Amalie SÆTEN",
     "dob": "01 DEC 1997",
     "country": "NOR",
@@ -5478,12 +5421,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754758",
+    "competitor_id": "136859961",
     "slug": "/athletes/united-states/cailie-logue-hughes-14649707",
-    "rank": 97,
+    "rank": 96,
     "name": "Cailie LOGUE HUGHES",
     "dob": "04 JAN 1999",
     "country": "USA",
@@ -5535,12 +5478,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754759",
+    "competitor_id": "136859962",
     "slug": "/athletes/japan/mikuni-yada-14747887",
-    "rank": 98,
+    "rank": 97,
     "name": "Mikuni YADA",
     "dob": "29 OCT 1999",
     "country": "JPN",
@@ -5592,12 +5535,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754760",
+    "competitor_id": "136859963",
     "slug": "/athletes/canada/jadyn-keeler-14847671",
-    "rank": 99,
+    "rank": 98,
     "name": "Jadyn KEELER",
     "dob": "16 JUN 2003",
     "country": "CAN",
@@ -5649,12 +5592,12 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
    },
    {
-    "competitor_id": "135754761",
+    "competitor_id": "136859964",
     "slug": "/athletes/japan/momoka-kawaguchi-14668328",
-    "rank": 100,
+    "rank": 99,
     "name": "Momoka KAWAGUCHI",
     "dob": "28 JUN 1998",
     "country": "JPN",
@@ -5706,7 +5649,64 @@
       "month_correction_applied": false
      }
     ],
-    "rank_date": "2026-08-11"
+    "rank_date": "2026-08-18"
+   },
+   {
+    "competitor_id": "136859965",
+    "slug": "/athletes/portugal/mariana-machado-14737874",
+    "rank": 100,
+    "name": "Mariana MACHADO",
+    "dob": "12 NOV 2000",
+    "country": "POR",
+    "ranking_score": 1141.0,
+    "performances": [
+     {
+      "date": "2026-07-11",
+      "date_raw": "11 JUL 2026",
+      "competition": "Meeting of Braga, Estádio 1o de Maio, Braga",
+      "category": "C",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "15:15.73",
+      "result_score": 1133,
+      "placing_score": 28,
+      "performance_score": 1161,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-07-24",
+      "date_raw": "24 JUL 2026",
+      "competition": "Portuguese Championships, Estadio Universitario, Lisboa",
+      "category": "B",
+      "discipline_code": "5000",
+      "discipline": "5000 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "15:37.73",
+      "result_score": 1091,
+      "placing_score": 42,
+      "performance_score": 1133,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-02-15",
+      "date_raw": "15 FEB 2026",
+      "competition": "Campeonatos Nacionais de Clubes 1ª e 2ª Divisão - Final, Altice Forum, Braga (i)",
+      "category": "F",
+      "discipline_code": "3000sh",
+      "discipline": "3000 Metres Short Track",
+      "indoor": false,
+      "place": 1,
+      "mark": "9:01.86",
+      "result_score": 1121,
+      "placing_score": 8,
+      "performance_score": 1129,
+      "month_correction_applied": false
+     }
+    ],
+    "rank_date": "2026-08-18"
    }
   ]
  }
