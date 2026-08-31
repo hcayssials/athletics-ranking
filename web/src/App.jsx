@@ -90,8 +90,8 @@ const shortEvent = (p) => {
 // qualSet / qualPos / reasons are keyed by UPPERCASED name — the wildcard names in
 // championships.json and the WA list names are the same people but not always the same casing.
 function qualifyingZone(rankings) {
-  const empty = { qualSet: new Set(), qualPos: {}, reasons: {}, lastQualName: null, cutoff: null,
-                  invites: [], offListInvites: [] };
+  const empty = { qualSet: new Set(), qualPos: {}, invited: {}, lastQualName: null, cutoff: null,
+                  invites: [], topInvites: [] };
   if (!rankings) return empty;
   const quota = rankings.quota || 30;
   const maxPer = rankings.max_per_country == null ? Infinity : rankings.max_per_country;
@@ -102,31 +102,37 @@ function qualifyingZone(rankings) {
       : [];
   const inviteSet = new Set(invites.map((i) => i.name.toUpperCase()));
   const sorted = [...rankings.athletes].sort((a, b) => b.ranking_score - a.ranking_score);
-  // Wildcards hold slots 1..k (exempt from the country cap, wherever they sit on the list);
-  // the ranking walk fills the remaining quota-k slots. qualPos = the slot number in the
-  // actual qualifying field (which can differ from the raw rank once byes/caps bite).
+  // Wildcards and invitations hold slots 1..k (exempt from the country cap, wherever they sit
+  // on the list); the ranking walk fills the remaining quota-k slots. qualPos = the slot number
+  // in the actual qualifying field (which can differ from the raw rank once byes/caps bite).
   const cc = {}; let pos = invites.length, last = null, cutoff = null;
-  const qualSet = new Set(), qualPos = {}, reasons = {};
+  const qualSet = new Set(), qualPos = {}, invited = {};
   invites.forEach((inv, i) => {
     const key = inv.name.toUpperCase();
-    qualSet.add(key); qualPos[key] = i + 1; reasons[key] = inv.reason;
+    qualSet.add(key); qualPos[key] = i + 1; invited[key] = inv;
   });
   for (const a of sorted) {
-    if (inviteSet.has(a.name.toUpperCase())) continue; // already in by wildcard
+    if (inviteSet.has(a.name.toUpperCase())) continue; // already in by wildcard / invitation
     if (pos >= quota) break;
     if ((cc[a.country] || 0) >= maxPer) continue;     // country already full → blocked
     cc[a.country] = (cc[a.country] || 0) + 1;
     pos++; qualPos[a.name.toUpperCase()] = pos; qualSet.add(a.name.toUpperCase());
     last = a.name; cutoff = a.ranking_score;
   }
-  // Wildcards who hold a place but aren't on the ranking list at all (Cole Hocker in the
-  // Ultimate 1500m, an injured defending champion in Birmingham). They're inside the cut, so
-  // the table has to show them — otherwise the biggest name in the event is simply missing.
-  const listed = new Set(rankings.athletes.map((a) => a.name.toUpperCase()));
-  const offListInvites = invites
-    .map((inv, i) => ({ ...inv, position: i + 1 }))
-    .filter((inv) => !listed.has(inv.name.toUpperCase()));
-  return { qualSet, qualPos, reasons, lastQualName: last, cutoff, invites, offListInvites };
+  // Someone can hold a place and still be invisible in the top of the table: Cole Hocker isn't
+  // on the world 1500m list at all, and an exceptional invitee like Josh Kerr is on it but 79th.
+  // Those get lifted into a byes block above the ranking rows — otherwise the biggest names in
+  // the event are missing from a cut they're inside of. An invitee already ranked above the
+  // cutoff line (Isaac NADER at #5) is visible where they are, so they stay put.
+  const cutIdx = rankings.athletes.findIndex((a) => a.name === last);
+  const topInvites = invites
+    .map((inv, i) => {
+      const row = rankings.athletes.find((a) => a.name.toUpperCase() === inv.name.toUpperCase());
+      const idx = row ? rankings.athletes.indexOf(row) : -1;
+      return { ...inv, position: i + 1, row, visible: idx >= 0 && cutIdx >= 0 && idx <= cutIdx };
+    })
+    .filter((inv) => !inv.visible);
+  return { qualSet, qualPos, invited, lastQualName: last, cutoff, invites, topInvites };
 }
 
 // "★ WILDCARD · OLYMPIC CHAMPION" tag on a ranking-table row (inverted on the selected row).
@@ -155,7 +161,8 @@ function buildResultView(r, champCfg, qualifyOn, methodOpen) {
       status, cutoff: q.cutoff_score, position: q.qual_position_new, quota: q.quota,
       country: r.country, countryAhead: q.country_ahead || 0,
       maxPerCountry: q.max_per_country,                       // null = no country cap
-      inviteReason: invite ? invite.reason : null,            // why this athlete holds a wildcard
+      inviteReason: invite ? invite.reason : null,            // why this athlete holds a bye
+      inviteKind: invite ? invite.kind : null,                // "exceptional" = a WA invitation
       needPts: Math.max(0, Math.round((q.cutoff_score || 0) - r.new_score)),
     };
   }
@@ -238,8 +245,11 @@ export default function App() {
   const notContested = (champCfg.not_contested || []).includes(event);
   const narrow = useIsNarrow();
 
-  // Chip label on a wildcard row — the reason is dropped on narrow screens (no room).
-  const wildcardTag = (reason) => (narrow ? "★ Wildcard" : `★ Wildcard · ${reason}`);
+  // Chip label on a bye row. An exceptional invitation isn't a champion's wildcard, so it says
+  // so; the reason is dropped on narrow screens (no room).
+  const inviteTag = (inv) => (inv.kind === "exceptional"
+    ? (narrow ? "★ Invite" : `★ ${inv.reason}`)
+    : (narrow ? "★ Wildcard" : `★ Wildcard · ${inv.reason}`));
 
   const entryStandardFor = (ev) => (meta && (meta.events.find((e) => e.key === ev) || {}).entry_standard) || "";
 
@@ -447,12 +457,26 @@ export default function App() {
 
   const scoreSentence = `Ranking score: average of the best ${eventCfg.best_n || 5} results from the last ${eventCfg.window_months || 12} months, rounded down.`;
   const quota = (rankings && rankings.quota) || 30;
+  // "· 2 to wildcards · 1 to an invite" — what the ranking places are counted down from.
+  const offListCount = zone.topInvites.filter((i) => !i.row).length;
+  const exceptionalCount = zone.invites.filter((i) => i.kind === "exceptional").length;
+  const byeClause = (() => {
+    const plural = (n, w) => `${n} ${w}${n > 1 ? "s" : ""}`;
+    const wc = zone.invites.filter((i) => i.kind !== "exceptional").length;
+    const ex = zone.invites.length - wc;
+    if (!zone.invites.length) return "";
+    if (!rankings.auto_invites) return " · 1 to the champion";
+    const parts = [];
+    if (wc) parts.push(plural(wc, "wildcard"));
+    if (ex) parts.push(plural(ex, "invite"));
+    return ` · ${parts.join(" + ")}`;
+  })();
   const champClause = rankings && rankings.defending_champion ? ", champion auto-qualifies" : "";
   const isUltimate = championship === "road_to_ultimate";
   const assumptionLine = notContested
     ? champCfg.not_contested_note
     : isUltimate
-      ? `${scoreSentence} Ultimate qualifying is worldwide: ${quota} places, no country cap, Olympic & World champions get wildcards.`
+      ? `${scoreSentence} Ultimate qualifying is worldwide: ${quota} places, no country cap, Olympic & World champions get wildcards${exceptionalCount ? ", and World Athletics can invite others" : ""}.`
       : hasQual
         ? `${scoreSentence} Birmingham qualifying (Europe only): ${quota} places, max 3 per country${champClause}.`
         : `${scoreSentence} All nations — no quota or qualifying caps.`;
@@ -569,7 +593,7 @@ export default function App() {
                 <div style={{ border: "1.5px dashed #d8dce2", borderRadius: 14, padding: "40px 28px", textAlign: "center", color: MUTE }}>
                   <div style={{ fontSize: 17, fontWeight: 600, color: "#6b7480" }}>
                     {busy ? "Running…"
-                      : wildcardSel ? `${wildcardSel.name} — wildcard (${wildcardSel.reason})`
+                      : wildcardSel ? `${wildcardSel.name} — ${wildcardSel.kind === "exceptional" ? "invited" : "wildcard"} (${wildcardSel.reason})`
                         : selected ? `Loading ${selected}'s performances…` : "Run a what-if to see the impact"}
                   </div>
                   <div style={{ fontSize: 13.5, marginTop: 6 }}>
@@ -590,7 +614,7 @@ export default function App() {
               <h2 style={{ margin: 0, fontSize: 16, fontWeight: 700 }}>{(champCfg.scope_label || "World Ranking") + " — " + eventLabel}</h2>
               <span style={{ fontFamily: MONO, fontSize: 11, color: MUTE }}>
                 {rankings
-                  ? `${list.length} athletes${zone.offListInvites.length ? ` + ${zone.offListInvites.length} wildcard${zone.offListInvites.length > 1 ? "s" : ""}` : ""}`
+                  ? `${list.length} athletes${offListCount ? ` + ${offListCount} off-list bye${offListCount > 1 ? "s" : ""}` : ""}`
                   : "loading…"}
               </span>
             </div>
@@ -622,17 +646,28 @@ export default function App() {
                       <td style={{ padding: "10px 18px 10px 10px", textAlign: "right" }}><span className="wf-skel" style={{ width: 34, animationDelay: `${(i % 6) * 0.08}s` }} /></td>
                     </tr>
                   ))}
-                  {/* Wildcards who hold a place without being on the ranking list — shown at the
-                      top of the qualifying zone (that's the slot they occupy in qualify.py), with
-                      no rank or score because the list doesn't carry one for them. */}
-                  {rankings && zone.offListInvites.map((inv) => {
+                  {/* Byes that wouldn't otherwise show inside the cut — an athlete who isn't on
+                      the list at all, or one who is but ranks below the cutoff line. Shown at the
+                      slot they occupy in qualify.py, with their real rank/score when the list has
+                      one (they keep their ranking row further down too). */}
+                  {rankings && zone.topInvites.length > 0 && (
+                    <tr>
+                      <td colSpan={hasQual ? 5 : 4} style={{ padding: "5px 18px", background: "#eef2f7", fontFamily: MONO, fontSize: 10, letterSpacing: "0.08em", textTransform: "uppercase", color: "#2f4a6b", fontWeight: 700 }}>
+                        {exceptionalCount ? "Wildcards & invites" : "Wildcards"}
+                      </td>
+                    </tr>
+                  )}
+                  {rankings && zone.topInvites.map((inv) => {
                     const isSel = selected === inv.name;
+                    const kindWord = inv.kind === "exceptional" ? "an exceptional World Athletics invitation" : "a wildcard";
                     return (
-                      <tr key={`wildcard-${inv.name}`} onClick={() => selectWildcard(inv)}
-                        title={`${inv.name} enters by wildcard (${inv.reason}) — inside the cut regardless of ranking. Not on the ranking list for this event.`}
+                      <tr key={`bye-${inv.name}`} onClick={() => (inv.row ? selectAthlete(inv.name) : selectWildcard(inv))}
+                        title={`${inv.name} enters by ${kindWord} (${inv.reason}) — inside the cut regardless of ranking.${inv.row ? "" : " Not on the ranking list for this event."}`}
                         style={{ cursor: "pointer", background: isSel ? INK : "rgba(47,125,82,0.05)", color: isSel ? SURFACE : INK, borderBottom: "1px solid #f2f4f7", transition: "background 0.12s" }}>
                         <td style={{ textAlign: "right", padding: "8px 10px 8px 18px", fontFamily: MONO, fontWeight: 600, color: isSel ? ACCENT : "#9aa1ac" }}
-                          title="No world-ranking place on this list.">—</td>
+                          title={inv.row ? "World-ranking place — the bye is what puts them in the field." : "No world-ranking place on this list."}>
+                          {inv.row ? inv.row.rank : "—"}
+                        </td>
                         {hasQual && (
                           <td style={{ textAlign: "right", padding: "8px 10px", fontFamily: MONO, fontSize: 12, fontWeight: 600, color: isSel ? ACCENT : "#1f8a4c" }}>
                             {inv.position}
@@ -641,18 +676,27 @@ export default function App() {
                         <td style={{ padding: "8px 10px", fontWeight: 600 }}>
                           <span style={{ display: "inline-block", width: 6, height: 6, borderRadius: "50%", marginRight: 8, verticalAlign: "middle", background: isSel ? ACCENT : "transparent" }} />
                           {inv.name}
-                          <span style={wildcardChip(isSel)} title={`Wildcard · ${inv.reason}`}>{wildcardTag(inv.reason)}</span>
+                          <span style={wildcardChip(isSel)} title={`${inv.kind === "exceptional" ? "Exceptional invite" : "Wildcard"} · ${inv.reason}`}>{inviteTag(inv)}</span>
                         </td>
                         <td style={{ padding: "8px 10px", fontFamily: MONO, fontSize: 12, color: "#6b7480" }}>{inv.country}</td>
-                        <td style={{ padding: "8px 18px 8px 10px", textAlign: "right", fontFamily: MONO, fontWeight: 600, color: isSel ? SURFACE : "#9aa1ac" }}
-                          title="Not on the ranking list — the wildcard place doesn't depend on a ranking score.">—</td>
+                        <td style={{ padding: "8px 18px 8px 10px", textAlign: "right", fontFamily: MONO, fontWeight: 600, color: isSel ? SURFACE : inv.row ? undefined : "#9aa1ac" }}
+                          title={inv.row ? "Ranking score — not what put them in the field." : "Not on the ranking list — the place doesn't depend on a ranking score."}>
+                          {inv.row ? Math.round(inv.row.ranking_score) : "—"}
+                        </td>
                       </tr>
                     );
                   })}
+                  {rankings && zone.topInvites.length > 0 && (
+                    <tr>
+                      <td colSpan={hasQual ? 5 : 4} style={{ padding: "5px 18px", background: "#f2f4f7", fontFamily: MONO, fontSize: 10, letterSpacing: "0.08em", textTransform: "uppercase", color: MUTE, fontWeight: 700 }}>
+                        {`${champCfg.scope_label || "World ranking"} · fills the remaining ${Math.max(0, rankings.quota - zone.invites.length)} of ${rankings.quota} places`}
+                      </td>
+                    </tr>
+                  )}
                   {list.map((a) => {
                     const isSel = selected === a.name;
                     const inZone = hasQual && zone.qualSet.has(a.name.toUpperCase());
-                    const inviteReason = hasQual ? zone.reasons[a.name.toUpperCase()] : null;
+                    const invite = hasQual ? zone.invited[a.name.toUpperCase()] : null;
                     const compat = selCountry && a.country === selCountry && !isSel;
                     const bg = isSel ? INK : compat ? "#f2f4f7" : inZone ? "rgba(47,125,82,0.05)" : BG;
                     const fg = isSel ? SURFACE : INK;
@@ -669,7 +713,7 @@ export default function App() {
                           <td style={{ padding: "8px 10px", fontWeight: 600 }}>
                             <span style={{ display: "inline-block", width: 6, height: 6, borderRadius: "50%", marginRight: 8, verticalAlign: "middle", background: isSel ? ACCENT : compat ? "#2f4a6b" : "transparent" }} />
                             {a.name}
-                            {inviteReason && <span style={wildcardChip(isSel)} title={`Wildcard · ${inviteReason}`}>{wildcardTag(inviteReason)}</span>}
+                            {invite && <span style={wildcardChip(isSel)} title={`${invite.kind === "exceptional" ? "Exceptional invite" : "Wildcard"} · ${invite.reason}`}>{inviteTag(invite)}</span>}
                           </td>
                           <td style={{ padding: "8px 10px", fontFamily: MONO, fontSize: 12, color: "#6b7480" }}>{a.country}</td>
                           <td style={{ padding: "8px 18px 8px 10px", textAlign: "right", fontFamily: MONO, fontWeight: 600 }}>{Math.round(a.ranking_score)}</td>
@@ -678,7 +722,7 @@ export default function App() {
                           <tr><td colSpan={5} style={{ padding: 0 }}>
                             <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "3px 18px", background: INK, color: ACCENT, fontFamily: MONO, fontSize: 10.5, letterSpacing: "0.08em" }}>
                               <span style={{ flex: 1, height: 1, background: "#2a313b" }} />
-                              {`QUALIFYING CUTOFF · ${rankings.quota} places${zone.invites.length ? (rankings.auto_invites ? ` · ${zone.invites.length} to wildcard${zone.invites.length > 1 ? "s" : ""}` : " · 1 to champion") : ""} · ≈ ${zone.cutoff != null ? Math.round(zone.cutoff) : "—"} pts`}
+                              {`QUALIFYING CUTOFF · ${rankings.quota} places${byeClause} · ≈ ${zone.cutoff != null ? Math.round(zone.cutoff) : "—"} pts`}
                               <span style={{ flex: 1, height: 1, background: "#2a313b" }} />
                             </div>
                           </td></tr>
@@ -1000,7 +1044,19 @@ function ResultPanel({ rv, onToggle }) {
     const q = rv.qual;
     const cap = q.maxPerCountry;   // null = no country cap (e.g. the Ultimate Championship)
     const fieldRules = cap != null ? `wildcard byes + ${cap}-per-country cap applied` : "wildcard byes applied; no country cap";
-    if (q.status === "champion") verdict = { mark: "★", title: q.inviteReason ? `QUALIFIES — WILDCARD (${q.inviteReason.toUpperCase()})` : "QUALIFIES — DEFENDING CHAMPION BYE", detail: "Enters by wildcard regardless of ranking, exempt from any country cap, and consumes one place.", bg: "#e7eef6", fg: "#1c3a5e", bar: "#2f4a6b" };
+    if (q.status === "champion") {
+      const exceptional = q.inviteKind === "exceptional";
+      verdict = {
+        mark: "★",
+        title: exceptional ? `QUALIFIES — ${(q.inviteReason || "exceptional invite").toUpperCase()}`
+          : q.inviteReason ? `QUALIFIES — WILDCARD (${q.inviteReason.toUpperCase()})`
+            : "QUALIFIES — DEFENDING CHAMPION BYE",
+        detail: exceptional
+          ? "Enters on a World Athletics invitation regardless of ranking, exempt from any country cap, and consumes one place."
+          : "Enters by wildcard regardless of ranking, exempt from any country cap, and consumes one place.",
+        bg: "#e7eef6", fg: "#1c3a5e", bar: "#2f4a6b",
+      };
+    }
     else if (q.status === "in") verdict = { mark: "✓", title: "INSIDE THE QUALIFYING ZONE", detail: `Auto-confirmed on score — qualifying position #${q.position} of ${q.quota} (${fieldRules}).`, bg: "#e3f3e9", fg: "#1b3d2a", bar: "#1f8a4c" };
     else if (q.status === "blocked") verdict = { mark: "≈", title: "ELIGIBLE — BUT FEDERATION'S CALL", detail: `Above the cutoff, yet ${q.countryAhead} higher-ranked ${q.country} athletes already hold the ${cap} places. The cap is a maximum — selection is ${q.country}'s decision.`, bg: "#fdebed", fg: "#2f4a6b", bar: "#2f4a6b" };
     else verdict = { mark: "✕", title: "OUTSIDE THE QUALIFYING ZONE", detail: `Below the cutoff by ${q.needPts} pts at this score.`, bg: "#fbe4e1", fg: "#8a2b22", bar: "#c62b35" };

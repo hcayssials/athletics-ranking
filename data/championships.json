@@ -1,6 +1,7 @@
 {
   "_meta": {
-    "note": "Championships are region-level and apply to any event. Pick an event with --event (e.g. 1500m_men). The rankings URL is built from rankings_url_template using the event's discipline + gender. Per-event qualification config (quota, defending champion / auto_invites, optional window override) lives under 'events'. 'data_source' aliases the ranking-list fetch to another championship's cache (same list, different qualification overlay). 'contested_events_only': events absent from 'events' are NOT on this championship's programme (the UI shows 'not_contested_note' for them). short_label / scope_label / rank_label are presentation strings for the UI tabs."
+    "note": "Championships are region-level and apply to any event. Pick an event with --event (e.g. 1500m_men). The rankings URL is built from rankings_url_template using the event's discipline + gender. Per-event qualification config (quota, defending champion / auto_invites, optional window override) lives under 'events'. 'data_source' aliases the ranking-list fetch to another championship's cache (same list, different qualification overlay). 'contested_events_only': events absent from 'events' are NOT on this championship's programme (the UI shows 'not_contested_note' for them). short_label / scope_label / rank_label are presentation strings for the UI tabs.",
+    "auto_invites_note": "Each auto_invite is {name, country, reason} plus an optional 'kind'. Omitted (or 'champion') = an automatic wildcard from World Athletics' published qualification feed — the Olympic / World / defending champion. 'exceptional' = a discretionary World Athletics invitation, which is NOT in that feed and has to be maintained by hand from WA's announcements. The engine treats both identically (seeded at the top of the field, exempt from any country cap, consuming one quota place so the ranking cutoff rises); only the UI wording differs. Order matters: entries are seeded in the order listed."
   },
 
   "world": {
@@ -53,8 +54,8 @@
     "data_source": "world",
     "max_per_country": null,
     "qualification_window": {"start": "2025-09-02", "end": "2026-09-01"},
-    "quota_source": "World Athletics 'Road to the Ultimate' qualification feed (getChampionshipQualifications, competition 7212925): quota = entryNumber per event; wildcards = the Paris 2024 Olympic and Tokyo 2025 World champions per WA's published labels.",
-    "qualification_note": "Invitational: wildcards (Olympic/World champions; the 2026 Diamond League Final winner will be added when known in Sep 2026) plus world-ranking fill-up. NO country cap. Only 26 individual events are contested; the 10000m and 3000m steeplechase are not on the programme.",
+    "quota_source": "World Athletics 'Road to the Ultimate' qualification feed (getChampionshipQualifications, competition 7212925): quota = entryNumber per event; wildcards = the Paris 2024 Olympic and Tokyo 2025 World champions per WA's published labels. Entries with kind 'exceptional' are NOT from that feed — they are discretionary World Athletics invitations, entered by hand from WA's announcements.",
+    "qualification_note": "Invitational: wildcards (Olympic/World champions; the 2026 Diamond League Final winner will be added when known in Sep 2026), any exceptional World Athletics invitations, plus world-ranking fill-up. Every wildcard and invitation consumes one of the places, so the ranking cutoff rises with each one. NO country cap. Only 26 individual events are contested; the 10000m and 3000m steeplechase are not on the programme.",
     "contested_events_only": true,
     "not_contested_note": "This event will not be competed at the World Athletics Ultimate Championship 2026.",
     "qualification_footnote": "The 2026 Diamond League Final winner also gets a wildcard — that meet is in Brussels on 4–5 September 2026, so the name will appear here afterwards.",
@@ -66,7 +67,8 @@
         {"name": "Lilian ODIRA", "country": "KEN", "reason": "World champion"}]},
       "1500m_men":   {"quota": 12, "auto_invites": [
         {"name": "Cole HOCKER", "country": "USA", "reason": "Olympic champion"},
-        {"name": "Isaac NADER", "country": "POR", "reason": "World champion"}]},
+        {"name": "Isaac NADER", "country": "POR", "reason": "World champion"},
+        {"name": "Josh KERR", "country": "GBR", "reason": "exceptional invite", "kind": "exceptional"}]},
       "1500m_women": {"quota": 12, "auto_invites": [
         {"name": "Faith KIPYEGON", "country": "KEN", "reason": "Olympic & World champion"}]},
       "5000m_men":   {"quota": 12, "auto_invites": [

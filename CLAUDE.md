@@ -67,13 +67,24 @@ without that one line — name derives from the slug, country rides along from t
   `refresh_seed` skips it). It's `contested_events_only`: events absent from its `events`
   dict (10000m, both steeples) get the `not_contested_note` landing panel in the UI, and
   `qualify=True` for them is a 400.
-- **A wildcard need not be on the ranking list** (Cole Hocker isn't in the world 1500m top 100;
-  nor is the Birmingham defending champion in a few events). `qualifyingZone` in `App.jsx`
-  seeds them at quota slots 1..k exactly like `qualify.py`, and the ones missing from the list
-  come back as `offListInvites` → extra rows at the top of the table, inside the cut, with `—`
-  for rank/score. Clicking one goes straight to the WA search (`selectWildcard`), since there
-  are no list performances to preview. Name matching there is case-insensitive on purpose:
-  `championships.json` and the WA list are the same people, not guaranteed the same casing.
+- **A bye-holder need not be visible in the ranking top N.** Cole Hocker isn't on the world
+  1500m list at all; an exceptional invitee like Josh Kerr is on it but 79th; three Birmingham
+  defending champions are missing too. `qualifyingZone` in `App.jsx` seeds every invite at quota
+  slots 1..k exactly like `qualify.py`, then returns `topInvites` — the ones whose ranking row
+  is absent or below the cutoff line — which render as a "wildcards & invites" block above the
+  ranking rows (real rank/score when the list has them, `—` when it doesn't). An invitee already
+  ranked inside the cut stays where they are, so the block never duplicates a visible row.
+  Clicking an off-list one goes straight to the WA search (`selectWildcard`) since there are no
+  list performances to preview. Name matching is case-insensitive on purpose: `championships.json`
+  and the WA list are the same people, not guaranteed the same casing.
+- **`auto_invites` carries an optional `kind`.** Omitted = a champion's automatic wildcard from
+  WA's published feed; `"exceptional"` = a discretionary World Athletics invitation, which is NOT
+  in that feed and is hand-maintained (Josh Kerr, men's 1500m Ultimate). Both engines treat them
+  identically — seeded at the top, cap-exempt, each consuming a quota place, so **every invite
+  added raises the ranking cutoff by one place**. `kind` is pure data: `qualify.py`/`qualify.js`
+  pass invite dicts through verbatim, so it reaches the UI via both `/api/rankings` and
+  `whatif.qualification.auto_invites` with no engine change and no parity risk. Only the wording
+  differs (chip, cutoff banner, verdict title, CLI `Invite:` vs `Wildcard:`).
 - **Ultimate wildcards need a manual update after the 2026 DL Final (Sep 2026)**: add the
   Brussels winners to `auto_invites` (source: WA's road-to feed
   `getChampionshipQualifications`, competitionId 7212925 — labels like "Olympic Champion").

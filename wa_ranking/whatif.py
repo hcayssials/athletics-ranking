@@ -559,7 +559,9 @@ def _format_qualification(q: dict) -> list[str]:
     quota_tag = "  (TOTAL field; ranking fills what's left after entry standards - see note)" if q["quota_is_total_field"] else ""
     lines.append(f"  Quota           : {q['quota']} places{quota_tag}")
     for inv in invites:
-        lines.append(f"  Wildcard        : {inv['name']} ({inv.get('country')}) "
+        # kind 'exceptional' = a discretionary WA invitation rather than a champion's wildcard.
+        label = "Invite" if inv.get("kind") == "exceptional" else "Wildcard"
+        lines.append(f"  {label:<16}: {inv['name']} ({inv.get('country')}) "
                      f"- {inv.get('reason', 'bye')}, exempt from any country cap")
     if invites:
         lines.append(f"                    {q['ranking_places']} ranking places remain")
@@ -573,7 +575,7 @@ def _format_qualification(q: dict) -> list[str]:
     lines.append(f"  Ranking cutoff  : {cut if cut is not None else 'n/a'} "
                  "(score of the last ranking qualifier)")
     if q.get("is_auto_invited"):
-        lines.append("  Status          : QUALIFIES by wildcard (bye) regardless of ranking")
+        lines.append("  Status          : QUALIFIES by wildcard / invitation (bye) regardless of ranking")
     elif q.get("above_cutoff") and q["status_new"] == "qualified":
         pos = q["qual_position_new"]
         lines.append(f"  Status          : ABOVE THE CUTOFF — auto-confirmed at qual position {pos}")

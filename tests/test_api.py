@@ -66,7 +66,11 @@ def test_rankings_ultimate_includes_wildcards():
                                             "event": "1500m_men"}).json()
     assert r["quota"] == 12
     assert r["max_per_country"] is None
-    assert {i["name"] for i in r["auto_invites"]} == {"Cole HOCKER", "Isaac NADER"}
+    assert {i["name"] for i in r["auto_invites"]} == {"Cole HOCKER", "Isaac NADER", "Josh KERR"}
+    # kind rides along untouched so the UI can tell a champion's wildcard from a discretionary
+    # World Athletics invitation; absent means champion.
+    kinds = {i["name"]: i.get("kind") for i in r["auto_invites"]}
+    assert kinds == {"Cole HOCKER": None, "Isaac NADER": None, "Josh KERR": "exceptional"}
 
 
 def test_whatif_ultimate_qualification_no_cap():
@@ -76,10 +80,11 @@ def test_whatif_ultimate_qualification_no_cap():
     w = client.post("/api/whatif", json=body).json()
     q = w["qualification"]
     assert q["quota"] == 12 and q["max_per_country"] is None
-    assert len(q["auto_invites"]) == 2
-    assert q["ranking_places"] == 10
-    # wildcards hold the first slots of the resolved field
-    assert [s["reason"] for s in q["field_new"][:2]] == ["Olympic champion", "World champion"]
+    assert len(q["auto_invites"]) == 3
+    assert q["ranking_places"] == 9
+    # wildcards and invitations alike hold the first slots of the resolved field, in config order
+    assert [s["reason"] for s in q["field_new"][:3]] == [
+        "Olympic champion", "World champion", "exceptional invite"]
 
 
 def test_whatif_ultimate_not_contested_event_is_400():
