@@ -35,9 +35,10 @@ There is **no JS test runner** (vitest/jest) — JS tests run via `node`.
 
 ## Deploy (GitHub Pages, no server)
 `.github/workflows/deploy-pages.yml` does everything: weekly cron (Wed 06:00 UTC; WA updates
-~Tuesdays) re-scrapes `data/cache_seed/` and commits it; every push to `main` (and the cron)
+~Tuesdays) re-scrapes `data/cache_seed/` (ranking lists **and** the Ultimate qualification
+feeds) and commits it; every push to `main` (and the cron)
 then rebuilds the bundle, runs pytest + **the parity gate** (`parity.test.mjs` must reproduce
-568 Python-generated golden vectors exactly), builds the site, and publishes `web/dist` to
+every Python-generated golden vector exactly — 574 at the last count), builds the site, and publishes `web/dist` to
 Pages. A red gate blocks the deploy — that's the point; fix the engine mismatch, don't skip it.
 `web/dist/`, `web/public/data/` and `data/cache/*.json` are gitignored. `~/.local/bin` (gh,
 node) is NOT on PATH — prefix shell commands with `export PATH="$HOME/.local/bin:$PATH"`. If
@@ -63,13 +64,28 @@ without that one line — name derives from the slug, country rides along from t
   The UI tabs and all qualification wording are meta-driven from `/api/meta` — don't
   hardcode a championship key in `App.jsx`.
 - **`road_to_ultimate` shares the world list**: its `data_source: "world"` makes
-  `fetch_championship` delegate (same cache key, no extra scraping, no extra seed files;
-  `refresh_seed` skips it). It's `contested_events_only`: events absent from its `events`
-  dict (10000m, both steeples) get the `not_contested_note` landing panel in the UI, and
-  `qualify=True` for them is a 400.
-- **Ultimate wildcards need a manual update after the 2026 DL Final (Sep 2026)**: add the
-  Brussels winners to `auto_invites` (source: WA's road-to feed
-  `getChampionshipQualifications`, competitionId 7212925 — labels like "Olympic Champion").
+  `fetch_championship` delegate (same cache key, no extra scraping; `refresh_seed` skips the
+  *list*, but still refreshes its feed — see below). It's `contested_events_only`: events
+  absent from its `events` dict (10000m, both steeples) get the `not_contested_note` landing
+  panel in the UI, and `qualify=True` for them is a 400.
+- **The Ultimate's qualification is feed-driven, not hand-maintained** (`feed.py`). A
+  `qualification_feed` block (competition id + WA event ids) points at
+  `getChampionshipQualifications`; `refresh_seed` snapshots it weekly into
+  `data/cache_seed/feed__*.json`, and `feed.event_qualification` overlays three things on
+  championships.json: **quota** (WA's `entryNumber` — the real field size, e.g. 13 for the
+  men's 1500m), **auto_invites** (the wildcards actually taken, with WA's own labels: World
+  Champion / Olympic Champion / Exceptional Invitation / Host Member Federation) and
+  **not_in_field**. The JSON values are the fallback when no snapshot exists — keep them
+  roughly in step, but the feed wins.
+  - **`not_in_field` = ranked but not entered** (declined, injured, contesting another
+    event): they hold their ranking place and take *no* qualifying place and no country slot,
+    so the cutoff drops. Derived by comparing the ranking list to the feed, but **only at or
+    above the feed's lowest listed score** (`tail_score`): WA lists ~40 next-best athletes, so
+    below that tail absence means "out of frame", not "withdrawn". Don't widen that rule —
+    it would grey out half the list.
+  - The **DL Final wildcards arrive on their own** once WA adds the Brussels winners
+    (4–5 Sep 2026) to the feed; the next weekly refresh picks them up. Worth an eyeball after
+    that meet, not an edit.
 
 ## Scoring tables & similar-event what-ifs
 - **`data/scoring_tables/*.csv` are generated, not hand-made.** `python -m scripts.build_scoring_tables`
@@ -102,10 +118,13 @@ without that one line — name derives from the slug, country rides along from t
 - **Continental-championship results are window-exempt, not undisplaceable.** In
   `ranking.py:select_counting`, a previous European/area result survives the date window but a
   better score still displaces it. Don't reinstate force-keeping.
-- **`fetch.py`, `profile.py`, `graphql.py` are network-only and the riskiest code.** Two
+- **`fetch.py`, `profile.py`, `graphql.py`, `feed.py` are network-only and the riskiest code.** Two
   production bugs came from refactoring them blind (a dropped `datetime` import; a wrong slug).
   They're now covered by **no-network mock tests** (`tests/test_fetch.py`,
-  `tests/test_profile_fetch.py`) — keep/extend those when touching this layer.
+  `tests/test_profile_fetch.py`, `tests/test_feed.py`) — keep/extend those when touching this
+  layer. Feed rows join to ranking rows on the **trailing WA athlete id in the slug**, not the
+  name (`feed.athlete_key`) — the two sources spell the slug differently and WA's `iaafId` is a
+  *different* id from the one in the slug.
 - **The WA-returned set is already the counting set** (≤ best_n). Baseline `ranking_score` must
   equal WA's published score — verify with a recompute spot-check after selection changes.
 
@@ -121,7 +140,8 @@ without that one line — name derives from the slug, country rides along from t
 
 ## Map
 Python engine (build time): `whatif.py` (`what_if`, `required_targets`) → `ranking.py` (best-N
-selection), `scoring.py` (time↔score), `qualify.py` (quota + 3-per-country cap + champion bye),
+selection), `scoring.py` (time↔score), `qualify.py` (quota + 3-per-country cap + champion bye +
+not-in-field), `feed.py` (WA's 'road to' feed → quota/wildcards/not_in_field),
 `fetch.py`/`profile.py`/`graphql.py` (data), `config.py`/`cache.py` (loading); `api.py` (local
 FastAPI, shapes contract); `scripts/build_static.py` (bundle + golden vectors). Browser engine
 (`web/src/engine/`): `whatif.js`/`ranking.js`/`scoring.js`/`qualify.js` mirror the Python file

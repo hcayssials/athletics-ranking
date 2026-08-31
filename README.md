@@ -152,6 +152,10 @@ performance displaces, and (b) apply an optional **fixed** window. It honours:
   - **Per-country cap** — max **3** ranking qualifiers per country (champion exempt). With
     France running 7-deep, this is decisive: a French athlete can be **blocked despite a
     score above the cutoff**, and improves their odds mainly by displacing a *compatriot*.
+  - **Not in the field** — for a championship with a WA qualification feed (the Ultimate),
+    ranked athletes WA doesn't list among the entries take **no** qualifying place and no
+    country slot, so the cutoff sits further down the list than the ranking implies. They
+    keep their ranking position; only the qualifying answer changes.
 
   The report's `QUALIFICATION` block shows the quota, champion, cap, cutoff, and whether the
   athlete is *above the cutoff & auto-confirmed*, *above the cutoff but held off by
@@ -183,7 +187,7 @@ performance displaces, and (b) apply an optional **fixed** window. It honours:
 ## Tests & verification
 
 ```bash
-python -m pytest -q          # 49 unit tests (scoring, ranking, qualification, events, profile), no network
+python -m pytest -q          # unit tests (scoring, ranking, qualification, feed, events, profile), no network
 ```
 
 Integration check (network): `python -m wa_ranking.cli fetch --force` then run a `whatif` and
@@ -195,6 +199,12 @@ compare the new score/rank against the live ranking page.
   list is the WA ranking **filtered to European nations** (`regionType=area&region=europe`);
   ranks are European-relative. Per-event quota + defending champion (Rome 2024 winners) live
   under `events` in `championships.json`. Non-European athletes don't appear here.
+- `road_to_ultimate` — Budapest 2026, the **World Athletics Ultimate Championship**. Shares
+  the world list (`data_source: world`), no country cap, and only 26 individual events are
+  contested (no 10000m, no steeplechase). Field size, the wildcards actually taken (Olympic
+  champion, World champion, the Diamond League Final winner, plus exceptional and host-
+  federation invitations) and the ranked-but-not-entered set all come from WA's own "road to"
+  feed, refreshed weekly — see `feed.py`.
 - `world` — the **global** world ranking (all nations); use for non-European athletes or
   pure world-ranking what-ifs (no quota / qualification).
 
