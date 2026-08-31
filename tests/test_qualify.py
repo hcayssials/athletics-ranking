@@ -90,3 +90,40 @@ def test_build_ranked_override_resorts():
     athletes = [a("X", "GBR", 1300), a("Y", "FRA", 1200)]
     ranked = build_ranked(athletes, override_name="Y", override_score=1400)
     assert [r["name"] for r in ranked] == ["Y", "X"]   # Y jumps to the top
+
+
+def test_not_in_field_athlete_takes_no_place():
+    # Wightman is ranked but WA doesn't list him in the field: the place passes down the list.
+    absent = [{"name": "Wightman", "country": "GBR", "reason": "not in the field"}]
+    field = qualifying_field(RANKED[:4], quota=3, max_per_country=None, not_in_field=absent)
+    assert [s["name"] for s in field["slots"]] == ["Nader", "Habz", "Coscoran"]
+    assert field["cutoff_score"] == 1292          # Coscoran, not Wightman's 1320
+    assert [o["name"] for o in field["omitted"]] == ["Wightman"]
+    assert field["omitted"][0]["score"] == 1320   # still carries the ranking score
+
+
+def test_not_in_field_frees_a_country_cap_slot():
+    # FRA's 2nd is out of the field, so FRA's 4th is no longer capped out.
+    absent = [{"name": "Mornet", "country": "FRA", "reason": "not in the field"}]
+    field = qualifying_field(RANKED, quota=7, max_per_country=3, not_in_field=absent)
+    names = [s["name"] for s in field["slots"]]
+    assert "Mornet" not in names
+    assert "Dubois" in names                      # took the freed FRA slot
+    assert field["counts"]["FRA"] == 3
+    assert field["blocked"] == []
+
+
+def test_wildcard_wins_over_not_in_field():
+    invites = [{"name": "Nader", "country": "POR", "reason": "World champion"}]
+    absent = [{"name": "Nader", "country": "POR", "reason": "not in the field"}]
+    field = qualifying_field(RANKED, quota=3, max_per_country=None,
+                             auto_invites=invites, not_in_field=absent)
+    assert field["slots"][0]["name"] == "Nader"
+    assert field["omitted"] == []
+
+
+def test_athlete_status_not_in_field():
+    absent = [{"name": "Habz", "country": "FRA", "reason": "not in the field"}]
+    field = qualifying_field(RANKED, quota=7, max_per_country=3, not_in_field=absent)
+    assert athlete_status(field, "Habz")[0] == "not_in_field"
+    assert athlete_status(field, "Nader")[0] == "qualified"

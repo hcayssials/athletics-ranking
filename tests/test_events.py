@@ -84,13 +84,19 @@ def test_road_to_ultimate_is_invitational_with_wildcards():
     assert champ["contested_events_only"] is True
     assert champ["not_contested_note"]
     assert set(champ["events"]) == set(ULTIMATE_EVENTS)
+    # Fallback field sizes: 16 for the 800m, 12 for the 1500m/5000m — except the men's 1500m,
+    # where two exceptional invitations push WA's field to 13. The live values come from the
+    # qualification feed (see test_feed.py); these are what ship when no snapshot exists.
     for ek in ULTIMATE_EVENTS:
         cfg = championship_event_config("road_to_ultimate", ek)
-        # WA field sizes: 16 for the 800m, 12 for the 1500m/5000m
-        assert cfg["quota"] == (16 if ek.startswith("800m") else 12)
-        assert 1 <= len(cfg["auto_invites"]) <= 3
+        assert cfg["quota"] == (13 if ek == "1500m_men" else 16 if ek.startswith("800m") else 12)
+        assert len(cfg["auto_invites"]) <= 4      # 0 where the champions aren't in the field
         for inv in cfg["auto_invites"]:
             assert {"name", "country", "reason"} <= set(inv)
+    # Every event WA publishes a feed for is one we contest.
+    fc = champ["qualification_feed"]
+    assert fc["competition_id"] == 7212925
+    assert set(fc["events"]) == set(ULTIMATE_EVENTS)
     # 10000m and steeplechase are not on the Ultimate programme
     for absent in ("10000m_men", "10000m_women", "3000mSC_men", "3000mSC_women"):
         assert championship_event_config("road_to_ultimate", absent) == {}

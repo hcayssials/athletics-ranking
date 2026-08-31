@@ -81,7 +81,12 @@ def get_api_key(force: bool = False) -> str:
         cached = cache.read(_KEY_CACHE, ttl_seconds=7 * 24 * 3600)
         if cached and cached.get("key") and _key_works(cached["key"]):
             return cached["key"]
-    for key in [_SEED_KEY, *(_scrape_candidate_keys())]:
+    # Lazily: only scrape WA's JS if the seed key has actually stopped working.
+    def candidates():
+        yield _SEED_KEY
+        yield from _scrape_candidate_keys()
+
+    for key in candidates():
         if _key_works(key):
             cache.write(_KEY_CACHE, {"key": key})
             return key

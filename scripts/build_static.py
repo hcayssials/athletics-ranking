@@ -5,7 +5,11 @@ Emits into web/public/data/ (gitignored; Vite copies public/ into dist/):
 
   meta.json                    — exactly the /api/meta payload (App.jsx reads it unchanged)
   engine.json                  — config the browser engine needs: events, championships,
-                                 placing scores, decay table, WA GraphQL endpoint + key
+                                 placing scores, decay table, WA GraphQL endpoint + key.
+                                 Per-event qualification is baked in *resolved* (quota,
+                                 wildcards and not_in_field from WA's 'road to' feed where
+                                 one exists) so the browser engine reads the same numbers
+                                 the Python engine used for the parity vectors
   rankings/{champ}__{event}.json — exactly the /api/rankings payload (or {"error": ...}
                                  for lists WA can't serve, e.g. men's steeplechase)
   lists/{champ}__{event}.json  — the full fetch_championship data (athletes incl.
@@ -34,7 +38,7 @@ import sys
 from datetime import date
 from pathlib import Path
 
-from wa_ranking import fetch, graphql
+from wa_ranking import feed, fetch, graphql
 from wa_ranking.api import meta as api_meta, rankings as api_rankings
 from wa_ranking.config import (DATA_DIR, load_championships, load_events,
                                load_placing_scores, load_result_table, _load_json)
@@ -76,8 +80,28 @@ def _graphql_config() -> dict:
     return {"endpoint": graphql.ENDPOINT, "key": key}
 
 
+def _resolved_championships() -> dict:
+    """championships.json with each event's qualification resolved through feed.py.
+
+    The browser engine has no cache to read a feed snapshot from, so the resolution happens
+    here, once, and both engines then work from identical numbers.
+    """
+    champs = json.loads(json.dumps(load_championships()))  # deep copy; JSON in, JSON out
+    for champ, cfg in champs.items():
+        for event in feed.feed_events(champ):
+            if event not in cfg.get("events", {}):
+                continue
+            try:
+                athletes = fetch.fetch_championship(champ, event)["athletes"]
+            except Exception as e:
+                print(f"  ! {champ}/{event}: keeping the JSON fallback ({str(e)[:50]})")
+                continue
+            cfg["events"][event] = feed.event_qualification(champ, event, athletes)
+    return champs
+
+
 def build_bundle() -> None:
-    events, champs = load_events(), load_championships()
+    events, champs = load_events(), _resolved_championships()
 
     _dump(OUT / "meta.json", api_meta())
     _dump(OUT / "engine.json", {
@@ -201,6 +225,18 @@ def build_vectors() -> None:
                                      "athlete": ath["name"], "place": 1, "category": "GW"})
                     add("required", {"event": event, "championship": champ,
                                      "athlete": ath["name"], "place": 3, "category": "B"})
+                    # A ranked athlete WA doesn't list in the field, so the gate covers the
+                    # not_in_field path (their place passes down the list).
+                    if quota_here:
+                        absent = (feed.event_qualification(champ, event, data["athletes"])
+                                  .get("not_in_field") or [])
+                        out_of_field = next((x for x in data["athletes"]
+                                             if absent and x["name"] == absent[0]["name"]), None)
+                        if out_of_field:
+                            add("whatif", {"event": event, "championship": champ,
+                                           "athlete": out_of_field["name"],
+                                           "time": _times_for(out_of_field, ev_cfg)[0],
+                                           "as_of": as_of.isoformat(), "qualify": True})
                     # Every similar/indoor input event once.
                     for alt in ev_cfg.get("alt_events", ()):
                         add("whatif", {"event": event, "championship": champ,

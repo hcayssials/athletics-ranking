@@ -17,8 +17,8 @@ from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
-from . import fetch, graphql
-from .config import (championship_event_config, load_championship, load_championships,
+from . import feed, fetch, graphql
+from .config import (load_championship, load_championships,
                      load_event, load_events, load_placing_scores)
 from .profile import _main_discipline_name
 from .whatif import required_targets, what_if
@@ -131,7 +131,9 @@ def rankings(championship: str, event: str, limit: int | None = None):
         data = fetch.fetch_championship(championship, event, limit=limit)
     except (ValueError, RuntimeError) as e:
         raise HTTPException(status_code=400, detail=str(e))
-    ce = championship_event_config(championship, event)
+    # Feed-overlaid where WA publishes a 'road to' feed (quota, wildcards, not_in_field),
+    # else straight from championships.json.
+    ce = feed.event_qualification(championship, event, data["athletes"])
     return {
         "championship": championship,
         "event": event,
@@ -139,6 +141,8 @@ def rankings(championship: str, event: str, limit: int | None = None):
         "quota": ce.get("quota"),
         "defending_champion": ce.get("defending_champion"),
         "auto_invites": ce.get("auto_invites"),
+        "not_in_field": ce.get("not_in_field", []),
+        "qualification_source": ce.get("qualification_source", "config"),
         "max_per_country": load_championship(championship).get("max_per_country"),
         "athletes": [{f: a.get(f) for f in _RANKING_FIELDS} for a in data["athletes"]],
     }

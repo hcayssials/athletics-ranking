@@ -8,7 +8,7 @@ from __future__ import annotations
 import math
 from datetime import date
 
-from . import fetch
+from . import feed, fetch
 from .config import (championship_event_config, load_championship, load_event,
                      load_placing_scores)
 from .profile import fetch_profile
@@ -225,10 +225,14 @@ def what_if(event: str, athlete: str, new_time: str | float,
     # The "championship declares no quota for this event" case was rejected up front.
     qualification = None
     if qualify:
-        quota = champ_event["quota"]
+        # WA's own 'road to' feed wins on field size, wildcards and who isn't in the field;
+        # championships.json is the fallback when no snapshot exists (e.g. Birmingham).
+        qual_cfg = feed.event_qualification(championship, event, data["athletes"])
+        quota = qual_cfg["quota"]
         max_pc = champ.get("max_per_country", 3)  # explicit null in JSON -> None -> no cap
-        champion = champ_event.get("defending_champion")
-        invites = champ_event.get("auto_invites")
+        champion = qual_cfg.get("defending_champion")
+        invites = qual_cfg.get("auto_invites")
+        absent = qual_cfg.get("not_in_field") or []
         invite_list = invites or ([{**champion, "reason": "defending champion (bye)"}]
                                   if champion else [])
         athletes = data["athletes"]
@@ -240,9 +244,11 @@ def what_if(event: str, athlete: str, new_time: str | float,
         ranked_old = build_ranked(athletes)
         ranked_new = build_ranked(athletes, override_name=ath["name"], override_score=new_score)
         field_old = qualifying_field(ranked_old, quota, max_per_country=max_pc,
-                                     defending_champion=champion, auto_invites=invites)
+                                     defending_champion=champion, auto_invites=invites,
+                                     not_in_field=absent)
         field_new = qualifying_field(ranked_new, quota, max_per_country=max_pc,
-                                     defending_champion=champion, auto_invites=invites)
+                                     defending_champion=champion, auto_invites=invites,
+                                     not_in_field=absent)
         status_old, slot_old = athlete_status(field_old, ath["name"])
         status_new, slot_new = athlete_status(field_new, ath["name"])
 
@@ -258,6 +264,9 @@ def what_if(event: str, athlete: str, new_time: str | float,
             "auto_invites": invite_list,
             "is_defending_champion": bool(champion) and is_invited,
             "is_auto_invited": is_invited,
+            "not_in_field": absent,
+            "is_not_in_field": status_new == "not_in_field",
+            "qualification_source": qual_cfg.get("qualification_source", "config"),
             "ranking_places": quota - len(invite_list),
             "cutoff_score": cutoff,
             "above_cutoff": (new_score is not None and cutoff is not None and new_score >= cutoff),
@@ -269,6 +278,7 @@ def what_if(event: str, athlete: str, new_time: str | float,
             "country_ahead": country_ahead,
             "field_new": field_new["slots"],
             "blocked_new": field_new["blocked"],
+            "omitted_new": field_new["omitted"],
         }
 
     # Reverse "what would it take": for a ranked athlete, the time a single new race (at the
@@ -435,10 +445,12 @@ def required_targets(event: str, athlete: str, *, championship: str = "road_to_b
 
     cutoff = None
     if "quota" in champ_event:
-        field = qualifying_field(build_ranked(data["athletes"]), champ_event["quota"],
+        qual_cfg = feed.event_qualification(championship, event, data["athletes"])
+        field = qualifying_field(build_ranked(data["athletes"]), qual_cfg["quota"],
                                  max_per_country=champ.get("max_per_country", 3),
-                                 defending_champion=champ_event.get("defending_champion"),
-                                 auto_invites=champ_event.get("auto_invites"))
+                                 defending_champion=qual_cfg.get("defending_champion"),
+                                 auto_invites=qual_cfg.get("auto_invites"),
+                                 not_in_field=qual_cfg.get("not_in_field"))
         cutoff = field["cutoff_score"]
 
     targets = []
@@ -548,6 +560,7 @@ def _format_profile_result(r: dict, ps: dict) -> list[str]:
 
 _STATUS_LABEL = {
     "qualified": "QUALIFIES",
+    "not_in_field": "NOT IN THE FIELD",
     "blocked_country_cap": "BLOCKED (country cap)",
     "out": "does not qualify",
 }
@@ -563,6 +576,13 @@ def _format_qualification(q: dict) -> list[str]:
                      f"- {inv.get('reason', 'bye')}, exempt from any country cap")
     if invites:
         lines.append(f"                    {q['ranking_places']} ranking places remain")
+    absent = q.get("not_in_field") or []
+    if absent:
+        names = ", ".join(f"{x['name']} ({x.get('country')})" for x in absent[:4])
+        more = f" +{len(absent) - 4} more" if len(absent) > 4 else ""
+        lines.append(f"  Not in the field: {len(absent)} ranked athlete(s) WA doesn't list "
+                     "— they take no place")
+        lines.append(f"                    {names}{more}")
     if q["max_per_country"] is not None:
         lines.append(f"  Country cap     : max {q['max_per_country']} per country "
                      f"(this athlete's country currently fills {q['country_count']})")
@@ -574,6 +594,10 @@ def _format_qualification(q: dict) -> list[str]:
                  "(score of the last ranking qualifier)")
     if q.get("is_auto_invited"):
         lines.append("  Status          : QUALIFIES by wildcard (bye) regardless of ranking")
+    elif q.get("is_not_in_field"):
+        lines.append("  Status          : NOT IN THE FIELD — World Athletics doesn't list this "
+                     "athlete among the entries")
+        lines.append("                    (the ranking figures above still stand)")
     elif q.get("above_cutoff") and q["status_new"] == "qualified":
         pos = q["qual_position_new"]
         lines.append(f"  Status          : ABOVE THE CUTOFF — auto-confirmed at qual position {pos}")

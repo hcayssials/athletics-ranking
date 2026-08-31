@@ -226,13 +226,16 @@ export function whatIf(ctx, {
   const newRank = rankPosition(others, newScore);
   const oldRank = ath.rank ?? null;
 
-  // Optional championship qualification (quota + country cap + wildcard byes).
+  // Optional championship qualification (quota + country cap + wildcard byes + not-in-field).
+  // champEvent is pre-resolved at build time (scripts/build_static.py): where WA publishes a
+  // 'road to' feed, quota / auto_invites / not_in_field come from it, not from the JSON default.
   let qualification = null;
   if (qualify) {
     const quota = champEvent.quota;
     const maxPc = "max_per_country" in champ ? champ.max_per_country : 3; // explicit null = no cap
     const champion = champEvent.defending_champion ?? null;
     const invites = champEvent.auto_invites ?? null;
+    const absent = champEvent.not_in_field ?? [];
     const inviteList = (invites && invites.length) ? invites
       : champion ? [{ ...champion, reason: "defending champion (bye)" }] : [];
     let athletes = data.athletes;
@@ -243,7 +246,8 @@ export function whatIf(ctx, {
 
     const rankedOld = buildRanked(athletes);
     const rankedNew = buildRanked(athletes, { overrideName: ath.name, overrideScore: newScore });
-    const qopts = { maxPerCountry: maxPc, defendingChampion: champion, autoInvites: invites };
+    const qopts = { maxPerCountry: maxPc, defendingChampion: champion, autoInvites: invites,
+                    notInField: absent };
     const fieldOld = qualifyingField(rankedOld, quota, qopts);
     const fieldNew = qualifyingField(rankedNew, quota, qopts);
     const [statusOld, slotOld] = athleteStatus(fieldOld, ath.name);
@@ -260,6 +264,9 @@ export function whatIf(ctx, {
       auto_invites: inviteList,
       is_defending_champion: Boolean(champion) && isInvited,
       is_auto_invited: isInvited,
+      not_in_field: absent,
+      is_not_in_field: statusNew === "not_in_field",
+      qualification_source: champEvent.qualification_source ?? "config",
       ranking_places: quota - inviteList.length,
       cutoff_score: cutoff,
       above_cutoff: newScore !== null && cutoff !== null && newScore >= cutoff,
@@ -271,6 +278,7 @@ export function whatIf(ctx, {
       country_ahead: countryAhead,
       field_new: fieldNew.slots,
       blocked_new: fieldNew.blocked,
+      omitted_new: fieldNew.omitted,
     };
   }
 
@@ -439,6 +447,7 @@ export function requiredTargets(ctx, event, athlete, {
       maxPerCountry: "max_per_country" in champ ? champ.max_per_country : 3,
       defendingChampion: champEvent.defending_champion ?? null,
       autoInvites: champEvent.auto_invites ?? null,
+      notInField: champEvent.not_in_field ?? null,
     });
     cutoff = field.cutoff_score;
   }

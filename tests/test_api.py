@@ -7,7 +7,7 @@ os.environ["PREWARM"] = "off"  # don't kick off the boot-time cache warm during 
 import pytest
 from fastapi.testclient import TestClient
 
-from wa_ranking import fetch
+from wa_ranking import feed, fetch
 from wa_ranking.api import app
 
 client = TestClient(app)
@@ -35,6 +35,9 @@ def _fixture():
 def _patch(monkeypatch):
     monkeypatch.setattr(fetch, "fetch_championship",
                         lambda *a, **k: _fixture())  # used by both api + whatif
+    # No feed snapshot: these tests exercise the championships.json fallback path. The
+    # feed overlay has its own tests (test_feed.py) with a stubbed snapshot.
+    monkeypatch.setattr(feed, "read_feed", lambda *a, **k: None)
 
 
 def test_health():
@@ -64,9 +67,11 @@ def test_meta_lists_events_and_championships():
 def test_rankings_ultimate_includes_wildcards():
     r = client.get("/api/rankings", params={"championship": "road_to_ultimate",
                                             "event": "1500m_men"}).json()
-    assert r["quota"] == 12
+    assert r["quota"] == 13                      # 12 + an extra exceptional invitation
     assert r["max_per_country"] is None
-    assert {i["name"] for i in r["auto_invites"]} == {"Cole HOCKER", "Isaac NADER"}
+    assert {i["name"] for i in r["auto_invites"]} == {"Cole HOCKER", "Isaac NADER",
+                                                      "Josh KERR", "Jakob INGEBRIGTSEN"}
+    assert r["not_in_field"] == [] and r["qualification_source"] == "config"
 
 
 def test_whatif_ultimate_qualification_no_cap():
@@ -75,11 +80,12 @@ def test_whatif_ultimate_qualification_no_cap():
             "championship": "road_to_ultimate", "qualify": True}
     w = client.post("/api/whatif", json=body).json()
     q = w["qualification"]
-    assert q["quota"] == 12 and q["max_per_country"] is None
-    assert len(q["auto_invites"]) == 2
-    assert q["ranking_places"] == 10
+    assert q["quota"] == 13 and q["max_per_country"] is None
+    assert len(q["auto_invites"]) == 4
+    assert q["ranking_places"] == 9
+    assert q["not_in_field"] == [] and q["is_not_in_field"] is False
     # wildcards hold the first slots of the resolved field
-    assert [s["reason"] for s in q["field_new"][:2]] == ["Olympic champion", "World champion"]
+    assert [s["reason"] for s in q["field_new"][:2]] == ["World Champion", "Olympic Champion"]
 
 
 def test_whatif_ultimate_not_contested_event_is_400():
