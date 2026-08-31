@@ -117,7 +117,9 @@ def meta():
              "not_contested": ([ek for ek in events if ek not in (c.get("events") or {})]
                                if c.get("contested_events_only") else []),
              "not_contested_note": c.get("not_contested_note"),
-             "qualification_footnote": c.get("qualification_footnote")}
+             "qualification_footnote": c.get("qualification_footnote"),
+             # Explains the greyed rows: ranked athletes WA doesn't list in the field.
+             "not_in_field_note": c.get("not_in_field_note")}
             for k, c in champs.items()
         ],
         "categories": cats,

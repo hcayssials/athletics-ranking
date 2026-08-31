@@ -86,9 +86,11 @@ const shortEvent = (p) => {
 
 // Indicative qualifying zone for the table: wildcard byes (a defending champion, or the
 // Olympic/World champions for the Ultimate) consume the first places, then the rest fill by
-// descending score with the championship's per-country cap (null = no cap). Mirrors qualify.py.
+// descending score with the championship's per-country cap (null = no cap). Athletes WA
+// doesn't list in the field are passed over entirely. Mirrors qualify.py.
 function qualifyingZone(rankings) {
-  const empty = { qualSet: new Set(), qualPos: {}, lastQualName: null, cutoff: null, invites: [] };
+  const empty = { qualSet: new Set(), qualPos: {}, lastQualName: null, cutoff: null,
+                  invites: [], notInField: new Set() };
   if (!rankings) return empty;
   const quota = rankings.quota || 30;
   const maxPer = rankings.max_per_country == null ? Infinity : rankings.max_per_country;
@@ -96,6 +98,10 @@ function qualifyingZone(rankings) {
     ? rankings.auto_invites.map((i) => i.name)
     : rankings.defending_champion ? [rankings.defending_champion.name] : [];
   const inviteSet = new Set(invites);
+  // Ranked, but not in the field (declined / injured / contesting another event): they hold
+  // their ranking place and take no qualifying place, so the cutoff sits further down.
+  const notInField = new Set((rankings.not_in_field || [])
+    .map((a) => a.name).filter((n) => !inviteSet.has(n)));
   const sorted = [...rankings.athletes].sort((a, b) => b.ranking_score - a.ranking_score);
   // Wildcards hold slots 1..k (exempt from the country cap, wherever they sit on the list);
   // the ranking walk fills the remaining quota-k slots. qualPos = the slot number in the
@@ -105,12 +111,13 @@ function qualifyingZone(rankings) {
   for (const nm of invites) { qualSet.add(nm); qualPos[nm] = invites.indexOf(nm) + 1; }
   for (const a of sorted) {
     if (inviteSet.has(a.name)) continue;              // already in by wildcard
+    if (notInField.has(a.name)) continue;             // not entered → takes no place
     if (pos >= quota) break;
     if ((cc[a.country] || 0) >= maxPer) continue;     // country already full → blocked
     cc[a.country] = (cc[a.country] || 0) + 1;
     pos++; qualPos[a.name] = pos; qualSet.add(a.name); last = a.name; cutoff = a.ranking_score;
   }
-  return { qualSet, qualPos, lastQualName: last, cutoff, invites };
+  return { qualSet, qualPos, lastQualName: last, cutoff, invites, notInField };
 }
 
 // Map a /api/whatif response into the result-panel view model.
@@ -125,7 +132,8 @@ function buildResultView(r, champCfg, qualifyOn, methodOpen) {
   if (q) {
     const inField = (q.field_new || []).some((e) => e.name === r.athlete && e.reason === "ranking");
     const blocked = (q.blocked_new || []).some((e) => e.name === r.athlete);
-    const status = q.is_auto_invited ? "champion" : inField ? "in" : blocked ? "blocked" : "below";
+    const status = q.is_auto_invited ? "champion" : q.is_not_in_field ? "not_in_field"
+      : inField ? "in" : blocked ? "blocked" : "below";
     const invite = (q.auto_invites || []).find((i) => i.name.toUpperCase() === (r.athlete || "").toUpperCase());
     qual = {
       status, cutoff: q.cutoff_score, position: q.qual_position_new, quota: q.quota,
@@ -413,10 +421,16 @@ export default function App() {
   const quota = (rankings && rankings.quota) || 30;
   const champClause = rankings && rankings.defending_champion ? ", champion auto-qualifies" : "";
   const isUltimate = championship === "road_to_ultimate";
+  const wildcards = (rankings && rankings.auto_invites) ? rankings.auto_invites.length : 0;
+  const absentees = (rankings && rankings.not_in_field) ? rankings.not_in_field.length : 0;
+  const wildcardClause = wildcards
+    ? `${wildcards} to wildcard${wildcards > 1 ? "s" : ""} (champions and invitations)`
+    : "no wildcards taken in this event";
+  const absentClause = absentees ? `, ${absentees} ranked athlete${absentees > 1 ? "s" : ""} not in the field` : "";
   const assumptionLine = notContested
     ? champCfg.not_contested_note
     : isUltimate
-      ? `${scoreSentence} Ultimate qualifying is worldwide: ${quota} places, no country cap, Olympic & World champions get wildcards.`
+      ? `${scoreSentence} Ultimate qualifying is worldwide: ${quota} places, no country cap, ${wildcardClause}${absentClause}.`
       : hasQual
         ? `${scoreSentence} Birmingham qualifying (Europe only): ${quota} places, max 3 per country${champClause}.`
         : `${scoreSentence} All nations — no quota or qualifying caps.`;
@@ -528,7 +542,8 @@ export default function App() {
             ? <ResultPanel rv={buildResultView(result, champCfg, form.qualify, methodOpen)} onToggle={() => setMethodOpen((v) => !v)} />
             : athleteInfo
               ? <AthletePreview info={athleteInfo} eventCfg={eventCfg} champCfg={champCfg} rankDate={rankings ? rankings.rank_date : null}
-                  event={event} championship={championship} categories={categories} />
+                  event={event} championship={championship} categories={categories}
+                  outOfField={hasQual && zone.notInField.has(athleteInfo.name)} />
               : (
                 <div style={{ border: "1.5px dashed #d8dce2", borderRadius: 14, padding: "40px 28px", textAlign: "center", color: MUTE }}>
                   <div style={{ fontSize: 17, fontWeight: 600, color: "#6b7480" }}>{busy ? "Running…" : selected ? `Loading ${selected}'s performances…` : "Run a what-if to see the impact"}</div>
@@ -550,6 +565,11 @@ export default function App() {
             {champCfg.qualification_footnote && (
               <div style={{ padding: "0 18px 10px", fontSize: 11.5, color: "#6b7480", lineHeight: 1.45 }}>
                 ⓘ {champCfg.qualification_footnote}
+              </div>
+            )}
+            {hasQual && champCfg.not_in_field_note && zone.notInField.size > 0 && (
+              <div style={{ padding: "0 18px 10px", fontSize: 11.5, color: "#6b7480", lineHeight: 1.45 }}>
+                ⓘ {champCfg.not_in_field_note}
               </div>
             )}
             <div style={{ maxHeight: 560, overflow: "auto" }}>
@@ -577,9 +597,10 @@ export default function App() {
                   {list.map((a) => {
                     const isSel = selected === a.name;
                     const inZone = hasQual && zone.qualSet.has(a.name);
+                    const outOfField = hasQual && zone.notInField.has(a.name);
                     const compat = selCountry && a.country === selCountry && !isSel;
                     const bg = isSel ? INK : compat ? "#f2f4f7" : inZone ? "rgba(47,125,82,0.05)" : BG;
-                    const fg = isSel ? SURFACE : INK;
+                    const fg = isSel ? SURFACE : outOfField ? "#9aa1ac" : INK;
                     return (
                       <React.Fragment key={a.competitor_id || a.name}>
                         <tr onClick={() => selectAthlete(a.name)}
@@ -590,11 +611,17 @@ export default function App() {
                               {zone.qualPos[a.name] || "—"}
                             </td>
                           )}
-                          <td style={{ padding: "8px 10px", fontWeight: 600 }}>
+                          <td style={{ padding: "8px 10px", fontWeight: outOfField ? 500 : 600, fontStyle: outOfField ? "italic" : "normal" }}>
                             <span style={{ display: "inline-block", width: 6, height: 6, borderRadius: "50%", marginRight: 8, verticalAlign: "middle", background: isSel ? ACCENT : compat ? "#2f4a6b" : "transparent" }} />
                             {a.name}
+                            {/* ranked, but WA doesn't list them among the entries */}
+                            {outOfField && (
+                              <span style={{ marginLeft: 8, padding: "1px 6px", borderRadius: 4, border: `1px solid ${isSel ? "#3a424e" : "#e2e5ea"}`, background: isSel ? "transparent" : "#f6f7f9", color: isSel ? "#9aa1ac" : "#8b929c", fontFamily: MONO, fontSize: 9.5, fontStyle: "normal", letterSpacing: "0.06em", textTransform: "uppercase", verticalAlign: "middle" }}>
+                                not in field
+                              </span>
+                            )}
                           </td>
-                          <td style={{ padding: "8px 10px", fontFamily: MONO, fontSize: 12, color: "#6b7480" }}>{a.country}</td>
+                          <td style={{ padding: "8px 10px", fontFamily: MONO, fontSize: 12, color: outOfField && !isSel ? "#a8adb6" : "#6b7480" }}>{a.country}</td>
                           <td style={{ padding: "8px 18px 8px 10px", textAlign: "right", fontFamily: MONO, fontWeight: 600 }}>{Math.round(a.ranking_score)}</td>
                         </tr>
                         {hasQual && zone.lastQualName === a.name && (
@@ -843,7 +870,7 @@ function PerfTable({ rows }) {
 
 // Read-only card shown when an athlete is clicked (before any what-if): current standing +
 // their counting performances. Running a what-if replaces this with the full ResultPanel.
-function AthletePreview({ info, eventCfg, champCfg, rankDate, event, championship, categories }) {
+function AthletePreview({ info, eventCfg, champCfg, rankDate, event, championship, categories, outOfField }) {
   const lbl = { fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: MUTE, fontWeight: 600 };
   // Reverse solver: the time this athlete would need (at a chosen place/category) to reach the
   // cutoff / #1 — fetched live so it updates as the place/category controls change.
@@ -865,9 +892,20 @@ function AthletePreview({ info, eventCfg, champCfg, rankDate, event, championshi
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <span style={{ fontSize: 19, fontWeight: 800, letterSpacing: "-0.01em" }}>{info.name}</span>
           <span style={{ fontFamily: MONO, fontSize: 12, padding: "3px 8px", borderRadius: 5, background: "#14181f", color: ACCENT }}>{info.country}</span>
+          {outOfField && (
+            <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.08em", textTransform: "uppercase", padding: "3px 8px", borderRadius: 5, border: "1px solid #3a424e", color: "#9aa1ac" }}>
+              not in field
+            </span>
+          )}
         </div>
         <span style={{ fontFamily: MONO, fontSize: 11, color: "#9aa1ac" }}>{(champCfg.scope_label || "World Ranking") + (rankDate ? " · " + rankDate : "")}</span>
       </div>
+      {/* ranked, but not among WA's entries — the rank below is real, the qualifying maths isn't */}
+      {outOfField && champCfg.not_in_field_note && (
+        <div style={{ padding: "10px 24px", background: "#f6f7f9", borderBottom: "1px solid #d8dce2", fontSize: 12.5, color: "#6b7480", lineHeight: 1.45 }}>
+          ⓘ {champCfg.not_in_field_note}
+        </div>
+      )}
       <div style={{ display: "flex", gap: 32, padding: "16px 24px", flexWrap: "wrap", borderBottom: "1px solid #d8dce2" }}>
         <div>
           <div style={lbl}>{champCfg.rank_label || "World rank"}</div>
@@ -924,6 +962,8 @@ function ResultPanel({ rv, onToggle }) {
     const cap = q.maxPerCountry;   // null = no country cap (e.g. the Ultimate Championship)
     const fieldRules = cap != null ? `wildcard byes + ${cap}-per-country cap applied` : "wildcard byes applied; no country cap";
     if (q.status === "champion") verdict = { mark: "★", title: q.inviteReason ? `QUALIFIES — WILDCARD (${q.inviteReason.toUpperCase()})` : "QUALIFIES — DEFENDING CHAMPION BYE", detail: "Enters by wildcard regardless of ranking, exempt from any country cap, and consumes one place.", bg: "#e7eef6", fg: "#1c3a5e", bar: "#2f4a6b" };
+    // Ranked but not entered: the score and rank above are real, the qualifying answer isn't.
+    else if (q.status === "not_in_field") verdict = { mark: "—", title: "NOT IN THE FIELD", detail: "World Athletics doesn't list this athlete among the entries, so this score takes no qualifying place — the cutoff below is what the rest of the list is chasing. The new score and rank still stand.", bg: "#f2f4f7", fg: "#4a5260", bar: "#9aa1ac" };
     else if (q.status === "in") verdict = { mark: "✓", title: "INSIDE THE QUALIFYING ZONE", detail: `Auto-confirmed on score — qualifying position #${q.position} of ${q.quota} (${fieldRules}).`, bg: "#e3f3e9", fg: "#1b3d2a", bar: "#1f8a4c" };
     else if (q.status === "blocked") verdict = { mark: "≈", title: "ELIGIBLE — BUT FEDERATION'S CALL", detail: `Above the cutoff, yet ${q.countryAhead} higher-ranked ${q.country} athletes already hold the ${cap} places. The cap is a maximum — selection is ${q.country}'s decision.`, bg: "#fdebed", fg: "#2f4a6b", bar: "#2f4a6b" };
     else verdict = { mark: "✕", title: "OUTSIDE THE QUALIFYING ZONE", detail: `Below the cutoff by ${q.needPts} pts at this score.`, bg: "#fbe4e1", fg: "#8a2b22", bar: "#c62b35" };
