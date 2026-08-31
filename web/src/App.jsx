@@ -87,31 +87,55 @@ const shortEvent = (p) => {
 // Indicative qualifying zone for the table: wildcard byes (a defending champion, or the
 // Olympic/World champions for the Ultimate) consume the first places, then the rest fill by
 // descending score with the championship's per-country cap (null = no cap). Mirrors qualify.py.
+// qualSet / qualPos / reasons are keyed by UPPERCASED name — the wildcard names in
+// championships.json and the WA list names are the same people but not always the same casing.
 function qualifyingZone(rankings) {
-  const empty = { qualSet: new Set(), qualPos: {}, lastQualName: null, cutoff: null, invites: [] };
+  const empty = { qualSet: new Set(), qualPos: {}, reasons: {}, lastQualName: null, cutoff: null,
+                  invites: [], offListInvites: [] };
   if (!rankings) return empty;
   const quota = rankings.quota || 30;
   const maxPer = rankings.max_per_country == null ? Infinity : rankings.max_per_country;
   const invites = rankings.auto_invites
-    ? rankings.auto_invites.map((i) => i.name)
-    : rankings.defending_champion ? [rankings.defending_champion.name] : [];
-  const inviteSet = new Set(invites);
+    ? rankings.auto_invites.map((i) => ({ ...i, reason: i.reason || "wildcard" }))
+    : rankings.defending_champion
+      ? [{ ...rankings.defending_champion, reason: "defending champion" }]
+      : [];
+  const inviteSet = new Set(invites.map((i) => i.name.toUpperCase()));
   const sorted = [...rankings.athletes].sort((a, b) => b.ranking_score - a.ranking_score);
   // Wildcards hold slots 1..k (exempt from the country cap, wherever they sit on the list);
   // the ranking walk fills the remaining quota-k slots. qualPos = the slot number in the
   // actual qualifying field (which can differ from the raw rank once byes/caps bite).
   const cc = {}; let pos = invites.length, last = null, cutoff = null;
-  const qualSet = new Set(), qualPos = {};
-  for (const nm of invites) { qualSet.add(nm); qualPos[nm] = invites.indexOf(nm) + 1; }
+  const qualSet = new Set(), qualPos = {}, reasons = {};
+  invites.forEach((inv, i) => {
+    const key = inv.name.toUpperCase();
+    qualSet.add(key); qualPos[key] = i + 1; reasons[key] = inv.reason;
+  });
   for (const a of sorted) {
-    if (inviteSet.has(a.name)) continue;              // already in by wildcard
+    if (inviteSet.has(a.name.toUpperCase())) continue; // already in by wildcard
     if (pos >= quota) break;
     if ((cc[a.country] || 0) >= maxPer) continue;     // country already full → blocked
     cc[a.country] = (cc[a.country] || 0) + 1;
-    pos++; qualPos[a.name] = pos; qualSet.add(a.name); last = a.name; cutoff = a.ranking_score;
+    pos++; qualPos[a.name.toUpperCase()] = pos; qualSet.add(a.name.toUpperCase());
+    last = a.name; cutoff = a.ranking_score;
   }
-  return { qualSet, qualPos, lastQualName: last, cutoff, invites };
+  // Wildcards who hold a place but aren't on the ranking list at all (Cole Hocker in the
+  // Ultimate 1500m, an injured defending champion in Birmingham). They're inside the cut, so
+  // the table has to show them — otherwise the biggest name in the event is simply missing.
+  const listed = new Set(rankings.athletes.map((a) => a.name.toUpperCase()));
+  const offListInvites = invites
+    .map((inv, i) => ({ ...inv, position: i + 1 }))
+    .filter((inv) => !listed.has(inv.name.toUpperCase()));
+  return { qualSet, qualPos, reasons, lastQualName: last, cutoff, invites, offListInvites };
 }
+
+// "★ WILDCARD · OLYMPIC CHAMPION" tag on a ranking-table row (inverted on the selected row).
+const wildcardChip = (isSel) => ({
+  marginLeft: 8, fontFamily: MONO, fontSize: 9.5, letterSpacing: "0.05em",
+  textTransform: "uppercase", fontWeight: 700, padding: "2px 6px", borderRadius: 4,
+  whiteSpace: "nowrap",
+  background: isSel ? "rgba(255,255,255,0.18)" : "#e7eef6", color: isSel ? SURFACE : "#2f4a6b",
+});
 
 // Map a /api/whatif response into the result-panel view model.
 function buildResultView(r, champCfg, qualifyOn, methodOpen) {
@@ -200,6 +224,7 @@ export default function App() {
   const [methodOpen, setMethodOpen] = useState(false);
   const [catHelp, setCatHelp] = useState(false);
   const [candidates, setCandidates] = useState(null); // WA search matches for an unlisted name
+  const [wildcardSel, setWildcardSel] = useState(null); // a clicked off-list wildcard {name, reason}
   const [searching, setSearching] = useState(false);
   const [pending, setPending] = useState(null); // a queued natural-language run, executed once its list loads
   const [pendingShare, setPendingShare] = useState(null); // a scenario restored from the URL, run once its list loads
@@ -212,6 +237,9 @@ export default function App() {
   // Championship) — show a notice instead of a ranking list.
   const notContested = (champCfg.not_contested || []).includes(event);
   const narrow = useIsNarrow();
+
+  // Chip label on a wildcard row — the reason is dropped on narrow screens (no room).
+  const wildcardTag = (reason) => (narrow ? "★ Wildcard" : `★ Wildcard · ${reason}`);
 
   const entryStandardFor = (ev) => (meta && (meta.events.find((e) => e.key === ev) || {}).entry_standard) || "";
 
@@ -257,11 +285,11 @@ export default function App() {
   }, [pendingShare, rankings]);
 
   // Manual selector changes start fresh; NL changes (via `pending`) keep their queued run alive.
-  const changeChampionship = (c) => { setChampionship(c); setResult(null); setSelected(null); setAthleteInfo(null); setError(""); setCandidates(null); };
+  const changeChampionship = (c) => { setChampionship(c); setResult(null); setSelected(null); setAthleteInfo(null); setError(""); setCandidates(null); setWildcardSel(null); };
   // New event → reset Time to that event's entry standard and Place to 1 (keep Category) so the
   // console never shows a time from the previous event. A later athlete pick still overrides these.
   const changeEvent = (e) => {
-    setEvent(e); setResult(null); setSelected(null); setAthleteInfo(null); setError(""); setCandidates(null);
+    setEvent(e); setResult(null); setSelected(null); setAthleteInfo(null); setError(""); setCandidates(null); setWildcardSel(null);
     setForm((s) => ({ ...s, time: entryStandardFor(e), place: 1, subEvent: "main" }));
   };
 
@@ -343,8 +371,16 @@ export default function App() {
 
   // Click/pick an athlete → select it, preview their performances, and seed Time/Place/Category
   // from their best performance. A fresh selection clears any prior what-if result.
+  // An off-list wildcard has no list performances to preview, so clicking one goes straight to
+  // the World Athletics search that the unranked what-if path runs from.
+  async function selectWildcard(inv) {
+    setSelected(inv.name); setResult(null); setAthleteInfo(null); setError(""); setWildcardSel(inv);
+    setForm((s) => ({ ...s, athlete: inv.name }));
+    await searchFor(inv.name, event);
+  }
+
   async function selectAthlete(name) {
-    setSelected(name); setResult(null); setAthleteInfo(null); setError("");
+    setSelected(name); setResult(null); setAthleteInfo(null); setError(""); setWildcardSel(null);
     setForm((s) => ({ ...s, athlete: name }));
     try {
       const ath = await getAthlete(championship, event, name);
@@ -531,8 +567,16 @@ export default function App() {
                   event={event} championship={championship} categories={categories} />
               : (
                 <div style={{ border: "1.5px dashed #d8dce2", borderRadius: 14, padding: "40px 28px", textAlign: "center", color: MUTE }}>
-                  <div style={{ fontSize: 17, fontWeight: 600, color: "#6b7480" }}>{busy ? "Running…" : selected ? `Loading ${selected}'s performances…` : "Run a what-if to see the impact"}</div>
-                  <div style={{ fontSize: 13.5, marginTop: 6 }}>Pick an athlete from the table or type a question above. The rank change shows here.</div>
+                  <div style={{ fontSize: 17, fontWeight: 600, color: "#6b7480" }}>
+                    {busy ? "Running…"
+                      : wildcardSel ? `${wildcardSel.name} — wildcard (${wildcardSel.reason})`
+                        : selected ? `Loading ${selected}'s performances…` : "Run a what-if to see the impact"}
+                  </div>
+                  <div style={{ fontSize: 13.5, marginTop: 6 }}>
+                    {wildcardSel
+                      ? `Inside the cut regardless of ranking — and not on this ranking list, so there are no list performances to show. Pick their World Athletics profile in the console to run a what-if.`
+                      : "Pick an athlete from the table or type a question above. The rank change shows here."}
+                  </div>
                 </div>
               )}
         </section>
@@ -544,7 +588,11 @@ export default function App() {
           <div style={{ background: BG, border: "1px solid #e7eaef", borderRadius: 14, overflow: "hidden" }}>
             <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", padding: "16px 18px 12px" }}>
               <h2 style={{ margin: 0, fontSize: 16, fontWeight: 700 }}>{(champCfg.scope_label || "World Ranking") + " — " + eventLabel}</h2>
-              <span style={{ fontFamily: MONO, fontSize: 11, color: MUTE }}>{rankings ? `${list.length} athletes` : "loading…"}</span>
+              <span style={{ fontFamily: MONO, fontSize: 11, color: MUTE }}>
+                {rankings
+                  ? `${list.length} athletes${zone.offListInvites.length ? ` + ${zone.offListInvites.length} wildcard${zone.offListInvites.length > 1 ? "s" : ""}` : ""}`
+                  : "loading…"}
+              </span>
             </div>
             {/* e.g. "the DL Final winner also gets a wildcard" — a pending bye the list can't show yet */}
             {champCfg.qualification_footnote && (
@@ -574,9 +622,37 @@ export default function App() {
                       <td style={{ padding: "10px 18px 10px 10px", textAlign: "right" }}><span className="wf-skel" style={{ width: 34, animationDelay: `${(i % 6) * 0.08}s` }} /></td>
                     </tr>
                   ))}
+                  {/* Wildcards who hold a place without being on the ranking list — shown at the
+                      top of the qualifying zone (that's the slot they occupy in qualify.py), with
+                      no rank or score because the list doesn't carry one for them. */}
+                  {rankings && zone.offListInvites.map((inv) => {
+                    const isSel = selected === inv.name;
+                    return (
+                      <tr key={`wildcard-${inv.name}`} onClick={() => selectWildcard(inv)}
+                        title={`${inv.name} enters by wildcard (${inv.reason}) — inside the cut regardless of ranking. Not on the ranking list for this event.`}
+                        style={{ cursor: "pointer", background: isSel ? INK : "rgba(47,125,82,0.05)", color: isSel ? SURFACE : INK, borderBottom: "1px solid #f2f4f7", transition: "background 0.12s" }}>
+                        <td style={{ textAlign: "right", padding: "8px 10px 8px 18px", fontFamily: MONO, fontWeight: 600, color: isSel ? ACCENT : "#9aa1ac" }}
+                          title="No world-ranking place on this list.">—</td>
+                        {hasQual && (
+                          <td style={{ textAlign: "right", padding: "8px 10px", fontFamily: MONO, fontSize: 12, fontWeight: 600, color: isSel ? ACCENT : "#1f8a4c" }}>
+                            {inv.position}
+                          </td>
+                        )}
+                        <td style={{ padding: "8px 10px", fontWeight: 600 }}>
+                          <span style={{ display: "inline-block", width: 6, height: 6, borderRadius: "50%", marginRight: 8, verticalAlign: "middle", background: isSel ? ACCENT : "transparent" }} />
+                          {inv.name}
+                          <span style={wildcardChip(isSel)} title={`Wildcard · ${inv.reason}`}>{wildcardTag(inv.reason)}</span>
+                        </td>
+                        <td style={{ padding: "8px 10px", fontFamily: MONO, fontSize: 12, color: "#6b7480" }}>{inv.country}</td>
+                        <td style={{ padding: "8px 18px 8px 10px", textAlign: "right", fontFamily: MONO, fontWeight: 600, color: isSel ? SURFACE : "#9aa1ac" }}
+                          title="Not on the ranking list — the wildcard place doesn't depend on a ranking score.">—</td>
+                      </tr>
+                    );
+                  })}
                   {list.map((a) => {
                     const isSel = selected === a.name;
-                    const inZone = hasQual && zone.qualSet.has(a.name);
+                    const inZone = hasQual && zone.qualSet.has(a.name.toUpperCase());
+                    const inviteReason = hasQual ? zone.reasons[a.name.toUpperCase()] : null;
                     const compat = selCountry && a.country === selCountry && !isSel;
                     const bg = isSel ? INK : compat ? "#f2f4f7" : inZone ? "rgba(47,125,82,0.05)" : BG;
                     const fg = isSel ? SURFACE : INK;
@@ -586,13 +662,14 @@ export default function App() {
                           style={{ cursor: "pointer", background: bg, color: fg, borderBottom: "1px solid #f2f4f7", transition: "background 0.12s" }}>
                           <td style={{ textAlign: "right", padding: "8px 10px 8px 18px", fontFamily: MONO, fontWeight: 600, color: isSel ? ACCENT : inZone ? "#1f8a4c" : "#9aa1ac" }}>{a.rank}</td>
                           {hasQual && (
-                            <td style={{ textAlign: "right", padding: "8px 10px", fontFamily: MONO, fontSize: 12, fontWeight: 600, color: isSel ? ACCENT : zone.qualPos[a.name] ? "#1f8a4c" : "#c4c9d0" }}>
-                              {zone.qualPos[a.name] || "—"}
+                            <td style={{ textAlign: "right", padding: "8px 10px", fontFamily: MONO, fontSize: 12, fontWeight: 600, color: isSel ? ACCENT : zone.qualPos[a.name.toUpperCase()] ? "#1f8a4c" : "#c4c9d0" }}>
+                              {zone.qualPos[a.name.toUpperCase()] || "—"}
                             </td>
                           )}
                           <td style={{ padding: "8px 10px", fontWeight: 600 }}>
                             <span style={{ display: "inline-block", width: 6, height: 6, borderRadius: "50%", marginRight: 8, verticalAlign: "middle", background: isSel ? ACCENT : compat ? "#2f4a6b" : "transparent" }} />
                             {a.name}
+                            {inviteReason && <span style={wildcardChip(isSel)} title={`Wildcard · ${inviteReason}`}>{wildcardTag(inviteReason)}</span>}
                           </td>
                           <td style={{ padding: "8px 10px", fontFamily: MONO, fontSize: 12, color: "#6b7480" }}>{a.country}</td>
                           <td style={{ padding: "8px 18px 8px 10px", textAlign: "right", fontFamily: MONO, fontWeight: 600 }}>{Math.round(a.ranking_score)}</td>

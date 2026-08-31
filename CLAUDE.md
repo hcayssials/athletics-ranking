@@ -67,6 +67,13 @@ without that one line — name derives from the slug, country rides along from t
   `refresh_seed` skips it). It's `contested_events_only`: events absent from its `events`
   dict (10000m, both steeples) get the `not_contested_note` landing panel in the UI, and
   `qualify=True` for them is a 400.
+- **A wildcard need not be on the ranking list** (Cole Hocker isn't in the world 1500m top 100;
+  nor is the Birmingham defending champion in a few events). `qualifyingZone` in `App.jsx`
+  seeds them at quota slots 1..k exactly like `qualify.py`, and the ones missing from the list
+  come back as `offListInvites` → extra rows at the top of the table, inside the cut, with `—`
+  for rank/score. Clicking one goes straight to the WA search (`selectWildcard`), since there
+  are no list performances to preview. Name matching there is case-insensitive on purpose:
+  `championships.json` and the WA list are the same people, not guaranteed the same casing.
 - **Ultimate wildcards need a manual update after the 2026 DL Final (Sep 2026)**: add the
   Brussels winners to `auto_invites` (source: WA's road-to feed
   `getChampionshipQualifications`, competitionId 7212925 — labels like "Olympic Champion").
