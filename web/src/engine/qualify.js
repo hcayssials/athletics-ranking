@@ -14,7 +14,6 @@ export function qualifyingField(ranked, quota, {
   const slots = [];
   const counts = {};
   const blocked = [];
-  const omitted = [];
   let remaining = quota;
   let pos = 1;
   const inviteNames = new Set(invites.map((i) => i.name.toUpperCase()));
@@ -22,6 +21,12 @@ export function qualifyingField(ranked, quota, {
   const absent = new Map((notInField || [])
     .filter((x) => !inviteNames.has(x.name.toUpperCase()))
     .map((x) => [x.name.toUpperCase(), x]));
+  // One pass over the whole list, not inside the walk: the walk stops at the quota, and an
+  // athlete out of the field further down must still read as "not in the field".
+  const omitted = ranked.filter((a) => absent.has(a.name.toUpperCase())).map((a) => ({
+    name: a.name, country: a.country ?? null, score: a.ranking_score ?? null,
+    reason: absent.get(a.name.toUpperCase()).reason ?? "not in the field",
+  }));
 
   for (const inv of invites) {
     slots.push({
@@ -37,14 +42,7 @@ export function qualifyingField(ranked, quota, {
 
   for (const a of ranked) {
     if (inviteNames.has(a.name.toUpperCase())) continue; // in via wildcard; cap-exempt
-    if (absent.has(a.name.toUpperCase())) {
-      omitted.push({
-        name: a.name, country: a.country ?? null,
-        score: a.ranking_score ?? null,
-        reason: absent.get(a.name.toUpperCase()).reason ?? "not in the field",
-      });
-      continue; // ranked, but not entered
-    }
+    if (absent.has(a.name.toUpperCase())) continue; // ranked, but not entered
     if (remaining <= 0) break;
     const country = a.country ?? null;
     if (maxPerCountry !== null && (counts[country] || 0) >= maxPerCountry) {

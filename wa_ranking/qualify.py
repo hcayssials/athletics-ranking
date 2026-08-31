@@ -51,12 +51,17 @@ def qualifying_field(ranked: list[dict], quota: int, *, max_per_country: int | N
     slots: list[dict] = []
     counts: dict[str, int] = {}
     blocked: list[dict] = []
-    omitted: list[dict] = []
     remaining = quota
     pos = 1
     invite_names = {i["name"].upper() for i in invites}
     absent = {x["name"].upper(): x for x in (not_in_field or [])
               if x["name"].upper() not in invite_names}
+    # Recorded in one pass over the whole list, not inside the walk below: the walk stops at
+    # the quota, and an athlete out of the field further down still needs to read as "not in
+    # the field" rather than "below the cutoff".
+    omitted = [{"name": a["name"], "country": a.get("country"), "score": a.get("ranking_score"),
+                "reason": absent[a["name"].upper()].get("reason", "not in the field")}
+               for a in ranked if a["name"].upper() in absent]
 
     for inv in invites:
         slots.append({
@@ -73,11 +78,6 @@ def qualifying_field(ranked: list[dict], quota: int, *, max_per_country: int | N
         if a["name"].upper() in invite_names:
             continue  # already in via a wildcard; exempt from the country cap
         if a["name"].upper() in absent:
-            omitted.append({
-                "name": a["name"], "country": a.get("country"),
-                "score": a.get("ranking_score"),
-                "reason": absent[a["name"].upper()].get("reason", "not in the field"),
-            })
             continue  # ranked, but not entered: takes no place and no country slot
         if remaining <= 0:
             break

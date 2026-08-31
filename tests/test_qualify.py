@@ -127,3 +127,13 @@ def test_athlete_status_not_in_field():
     field = qualifying_field(RANKED, quota=7, max_per_country=3, not_in_field=absent)
     assert athlete_status(field, "Habz")[0] == "not_in_field"
     assert athlete_status(field, "Nader")[0] == "qualified"
+
+
+def test_not_in_field_is_reported_below_the_cutoff_too():
+    # The walk stops at the quota; an athlete out of the field further down must still read as
+    # "not in the field", not "below the cutoff" — a faster time wouldn't get them in.
+    absent = [{"name": "Szot", "country": "FRA", "reason": "not in the field"}]
+    field = qualifying_field(RANKED, quota=3, max_per_country=None, not_in_field=absent)
+    assert [s["name"] for s in field["slots"]] == ["Nader", "Habz", "Wightman"]
+    assert athlete_status(field, "Szot")[0] == "not_in_field"     # 5 places below the cutoff
+    assert athlete_status(field, "Dubois")[0] == "out"            # genuinely just too slow
