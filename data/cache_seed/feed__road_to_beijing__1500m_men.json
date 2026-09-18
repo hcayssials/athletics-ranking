@@ -1,0 +1,59 @@
+{
+ "_fetched_at": 1789765253.1225548,
+ "_key": "feed__road_to_beijing__1500m_men",
+ "data": {
+  "championship": "road_to_beijing",
+  "event": "1500m_men",
+  "competition_id": 7216591,
+  "event_id": 10229502,
+  "fetched": "2026-09-18T17:00:53",
+  "quota": 56,
+  "discipline": "Men's 1500 Metres",
+  "entry_standard": "3:30.00",
+  "alt_entry_standards": [
+   {
+    "event": "Mile",
+    "entry_standard": "3:50.00"
+   },
+   {
+    "event": "Mile Road",
+    "entry_standard": "3:50.00"
+   }
+  ],
+  "max_per_country": 3,
+  "window": {
+   "start": "2026-08-23",
+   "end": "2027-08-22"
+  },
+  "rank_date": "2027-08-22",
+  "counts": {
+   "entry_standard": 3,
+   "world_rankings": 21
+  },
+  "auto_invites": [
+   {
+    "name": "Isaac NADER",
+    "country": "POR",
+    "reason": "Defending World Champion"
+   }
+  ],
+  "standard_achievers": [
+   {
+    "name": "Josh KERR",
+    "country": "GBR",
+    "mark": "3:29.35",
+    "date": "2026-09-13",
+    "venue": "Nemzeti Atlétikai Központ, Budapest (HUN)",
+    "slug": "great-britain-ni/josh-kerr-14533464"
+   },
+   {
+    "name": "Cameron MYERS",
+    "country": "AUS",
+    "mark": "3:29.68",
+    "date": "2026-09-13",
+    "venue": "Nemzeti Atlétikai Központ, Budapest (HUN)",
+    "slug": "australia/cameron-myers-14962470"
+   }
+  ]
+ }
+}

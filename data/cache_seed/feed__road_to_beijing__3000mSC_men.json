@@ -1,0 +1,74 @@
+{
+ "_fetched_at": 1789765256.498028,
+ "_key": "feed__road_to_beijing__3000mSC_men",
+ "data": {
+  "championship": "road_to_beijing",
+  "event": "3000mSC_men",
+  "competition_id": 7216591,
+  "event_id": 10229614,
+  "fetched": "2026-09-18T17:00:56",
+  "quota": 36,
+  "discipline": "Men's 3000 Metres Steeplechase",
+  "entry_standard": "8:08.00",
+  "alt_entry_standards": [],
+  "max_per_country": 3,
+  "window": {
+   "start": "2026-08-23",
+   "end": "2027-08-22"
+  },
+  "rank_date": "2027-08-22",
+  "counts": {
+   "entry_standard": 6,
+   "world_rankings": 14
+  },
+  "auto_invites": [
+   {
+    "name": "Geordie BEAMISH",
+    "country": "NZL",
+    "reason": "Defending World Champion"
+   }
+  ],
+  "standard_achievers": [
+   {
+    "name": "Gemechu GODANA",
+    "country": "ETH",
+    "mark": "8:02.74",
+    "date": "2026-08-23",
+    "venue": "Stadion Śląski, Chorzów (POL)",
+    "slug": "ethiopia/gemechu-godana-15172861"
+   },
+   {
+    "name": "Soufiane EL BAKKALI",
+    "country": "MAR",
+    "mark": "8:04.61",
+    "date": "2026-08-23",
+    "venue": "Stadion Śląski, Chorzów (POL)",
+    "slug": "morocco/soufiane-el-bakkali-14590424"
+   },
+   {
+    "name": "Salah Eddine BEN YAZIDE",
+    "country": "MAR",
+    "mark": "8:05.08",
+    "date": "2026-08-23",
+    "venue": "Stadion Śląski, Chorzów (POL)",
+    "slug": "morocco/salah-eddine-ben-yazide-14977838"
+   },
+   {
+    "name": "Ruben QUERINJEAN",
+    "country": "LUX",
+    "mark": "8:05.36",
+    "date": "2026-08-23",
+    "venue": "Stadion Śląski, Chorzów (POL)",
+    "slug": "luxembourg/ruben-querinjean-14929147"
+   },
+   {
+    "name": "Samuel FIREWU",
+    "country": "ETH",
+    "mark": "8:06.65",
+    "date": "2026-08-23",
+    "venue": "Stadion Śląski, Chorzów (POL)",
+    "slug": "ethiopia/samuel-firewu-14975231"
+   }
+  ]
+ }
+}

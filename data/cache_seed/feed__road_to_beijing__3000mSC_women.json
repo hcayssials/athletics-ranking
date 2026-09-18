@@ -1,0 +1,74 @@
+{
+ "_fetched_at": 1789765261.561877,
+ "_key": "feed__road_to_beijing__3000mSC_women",
+ "data": {
+  "championship": "road_to_beijing",
+  "event": "3000mSC_women",
+  "competition_id": 7216591,
+  "event_id": 10229524,
+  "fetched": "2026-09-18T17:01:01",
+  "quota": 36,
+  "discipline": "Women's 3000 Metres Steeplechase",
+  "entry_standard": "9:06.50",
+  "alt_entry_standards": [],
+  "max_per_country": 3,
+  "window": {
+   "start": "2026-08-23",
+   "end": "2027-08-22"
+  },
+  "rank_date": "2027-08-22",
+  "counts": {
+   "entry_standard": 6,
+   "world_rankings": 19
+  },
+  "auto_invites": [
+   {
+    "name": "Faith CHEROTICH",
+    "country": "KEN",
+    "reason": "Defending World Champion"
+   }
+  ],
+  "standard_achievers": [
+   {
+    "name": "Doris LEMNGOLE",
+    "country": "KEN",
+    "mark": "8:52.86",
+    "date": "2026-09-04",
+    "venue": "Boudewijnstadion, Bruxelles (BEL)",
+    "slug": "kenya/doris-lemngole-15128594"
+   },
+   {
+    "name": "Winfred YAVI",
+    "country": "BRN",
+    "mark": "8:53.54",
+    "date": "2026-09-04",
+    "venue": "Boudewijnstadion, Bruxelles (BEL)",
+    "slug": "bahrain/winfred-yavi-14695622"
+   },
+   {
+    "name": "Marwa BOUZAYANI",
+    "country": "TUN",
+    "mark": "8:57.02",
+    "date": "2026-09-04",
+    "venue": "Boudewijnstadion, Bruxelles (BEL)",
+    "slug": "tunisia/marwa-bouzayani-14595096"
+   },
+   {
+    "name": "Peruth CHEMUTAI",
+    "country": "UGA",
+    "mark": "8:58.28",
+    "date": "2026-08-27",
+    "venue": "Letzigrund, Zürich (SUI)",
+    "slug": "uganda/peruth-chemutai-14707661"
+   },
+   {
+    "name": "Lexy HALLADAY",
+    "country": "USA",
+    "mark": "9:05.36",
+    "date": "2026-09-04",
+    "venue": "Boudewijnstadion, Bruxelles (BEL)",
+    "slug": "united-states/lexy-halladay-14741102"
+   }
+  ]
+ }
+}

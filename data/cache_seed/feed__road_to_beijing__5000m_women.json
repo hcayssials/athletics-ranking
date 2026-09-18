@@ -1,0 +1,87 @@
+{
+ "_fetched_at": 1789765259.514573,
+ "_key": "feed__road_to_beijing__5000m_women",
+ "data": {
+  "championship": "road_to_beijing",
+  "event": "5000m_women",
+  "competition_id": 7216591,
+  "event_id": 10229514,
+  "fetched": "2026-09-18T17:00:59",
+  "quota": 42,
+  "discipline": "Women's 5000 Metres",
+  "entry_standard": "14:36.00",
+  "alt_entry_standards": [
+   {
+    "event": "5 km Road",
+    "entry_standard": "14:50.00"
+   }
+  ],
+  "max_per_country": 3,
+  "window": {
+   "start": "2026-08-23",
+   "end": "2027-08-22"
+  },
+  "rank_date": "2027-08-22",
+  "counts": {
+   "entry_standard": 6,
+   "world_rankings": 11
+  },
+  "auto_invites": [
+   {
+    "name": "Beatrice CHEBET",
+    "country": "KEN",
+    "reason": "Defending World Champion"
+   }
+  ],
+  "standard_achievers": [
+   {
+    "name": "Likina AMEBAW",
+    "country": "ETH",
+    "mark": "14:30.36",
+    "date": "2026-09-13",
+    "venue": "Nemzeti Atlétikai Központ, Budapest (HUN)",
+    "slug": "ethiopia/likina-amebaw-14877871"
+   },
+   {
+    "name": "Jessica HULL",
+    "country": "AUS",
+    "mark": "14:32.39",
+    "date": "2026-09-13",
+    "venue": "Nemzeti Atlétikai Központ, Budapest (HUN)",
+    "slug": "australia/jessica-hull-14464506"
+   },
+   {
+    "name": "Fantaye BELAYNEH",
+    "country": "ETH",
+    "mark": "14:32.62",
+    "date": "2026-09-13",
+    "venue": "Nemzeti Atlétikai Központ, Budapest (HUN)",
+    "slug": "ethiopia/fantaye-belayneh-14977672"
+   },
+   {
+    "name": "Freweyni HAILU",
+    "country": "ETH",
+    "mark": "14:32.76",
+    "date": "2026-09-13",
+    "venue": "Nemzeti Atlétikai Központ, Budapest (HUN)",
+    "slug": "ethiopia/freweyni-hailu-14836656"
+   },
+   {
+    "name": "Aleshign BAWEKE",
+    "country": "ETH",
+    "mark": "14:32.95",
+    "date": "2026-09-13",
+    "venue": "Nemzeti Atlétikai Központ, Budapest (HUN)",
+    "slug": "ethiopia/aleshign-baweke-15172866"
+   },
+   {
+    "name": "Rose DAVIES",
+    "country": "AUS",
+    "mark": "14:35.64",
+    "date": "2026-09-13",
+    "venue": "Nemzeti Atlétikai Központ, Budapest (HUN)",
+    "slug": "australia/rose-davies-14517594"
+   }
+  ]
+ }
+}

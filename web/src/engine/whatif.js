@@ -6,7 +6,7 @@
 //        tables: {resultTableRelPath: [[seconds, score], ...]},
 //        getList(championship, event) -> full ranking data }
 
-import { placingScore, pyRound, scorePerformance, timeForResultScore } from "./scoring.js";
+import { parseTime, placingScore, pyRound, resultScore, scorePerformance, timeForResultScore } from "./scoring.js";
 import { insertAndRecompute, rankingScore, rankPosition, resolveWindow, selectCounting } from "./ranking.js";
 import { athleteStatus, buildRanked, qualifyingField } from "./qualify.js";
 
@@ -30,6 +30,9 @@ function loadChampionship(ctx, championship) {
 }
 
 const champEventConfig = (champ, event) => (champ.events || {})[event] || {};
+
+// Entry-standard marks only count in World Rankings Category C competitions and above.
+const STANDARD_CATEGORIES = new Set(["OW", "DF", "GW", "GL", "A", "B", "C"]);
 
 const table = (ctx, relPath) => {
   const t = ctx.tables[relPath];
@@ -56,6 +59,7 @@ function resolveInputEvent(ev, subEvent) {
     placing_event_group: ev.placing_event_group ?? "standard",
     indoor: false,
     is_main: true,
+    standard_event: null,
   };
   if (!subEvent || subEvent === "main" || subEvent === main.discipline_code) return main;
   for (const alt of ev.alt_events || []) {
@@ -68,6 +72,8 @@ function resolveInputEvent(ev, subEvent) {
         placing_event_group: alt.placing_event_group ?? ev.placing_event_group ?? "standard",
         indoor: alt.indoor ?? false,
         is_main: false,
+        // WA alternative entry standard this similar event can satisfy (e.g. "Mile").
+        standard_event: alt.standard_event ?? null,
       };
     }
   }
@@ -78,7 +84,7 @@ function resolveInputEvent(ev, subEvent) {
 export function whatIf(ctx, {
   event, athlete, time: newTime,
   category = "GW", place = 2,
-  championship = "road_to_birmingham",
+  championship = "road_to_beijing",
   asOf = null, indoor = false,
   qualificationWindow = false, qualify = false,
   profileInfo = null, subEvent = null,
@@ -95,7 +101,7 @@ export function whatIf(ctx, {
     }
     throw new Error(
       `Championship '${championship}' has no quota for event '${event}'; --qualify is `
-      + "only meaningful for a qualification championship (e.g. road_to_birmingham).");
+      + "only meaningful for a qualification championship (e.g. road_to_beijing).");
   }
   const bestN = ev.best_n, window = ev.window_months;
   const inp = resolveInputEvent(ev, subEvent);
@@ -226,26 +232,44 @@ export function whatIf(ctx, {
   const newRank = rankPosition(others, newScore);
   const oldRank = ath.rank ?? null;
 
-  // Optional championship qualification (quota + country cap + wildcard byes).
+  // Optional championship qualification: wildcard byes + entry-standard achievers + country
+  // cap + world-ranking fill. champEvent is pre-resolved at build time (build_static.py):
+  // where WA publishes a 'road to' feed, quota / standard / byes / standard_achievers come
+  // from it, not from the JSON default — the same numbers the Python engine used.
   let qualification = null;
+  let qualCfg = null;
+  let stdList = [];
   if (qualify) {
+    qualCfg = champEvent;
     const quota = champEvent.quota;
     const maxPc = "max_per_country" in champ ? champ.max_per_country : 3; // explicit null = no cap
     const champion = champEvent.defending_champion ?? null;
     const invites = champEvent.auto_invites ?? null;
     const inviteList = (invites && invites.length) ? invites
       : champion ? [{ ...champion, reason: "defending champion (bye)" }] : [];
+    const achievers = champEvent.standard_achievers ?? null; // null = unknown (no feed snapshot)
+    stdList = (achievers || []).map((s) => ({ name: s.name, country: s.country ?? null, mark: s.mark ?? null }));
     let athletes = data.athletes;
     if (profileInfo) { // unranked athlete isn't in the list — add him so he can slot in
       athletes = athletes.concat([{ name: ath.name, country: ath.country, ranking_score: null }]);
     }
     const isInvited = inviteList.some((i) => ath.name.toUpperCase() === i.name.toUpperCase());
+    const alreadyAchieved = stdList.some((s) => ath.name.toUpperCase() === s.name.toUpperCase());
+
+    // Does the hypothetical mark meet the entry standard (right event, window, category)?
+    const es = entryStandardCheck(champEvent, ev, inp, breakdown, category, asOf,
+                                  champEvent.qualification_window || qw,
+                                  indoor || inp.indoor);
+    const stdNew = stdList.concat(
+      (es && es.meets && !alreadyAchieved)
+        ? [{ name: ath.name, country: ath.country ?? null, mark: String(newTime), hypothetical: true }]
+        : []);
 
     const rankedOld = buildRanked(athletes);
     const rankedNew = buildRanked(athletes, { overrideName: ath.name, overrideScore: newScore });
     const qopts = { maxPerCountry: maxPc, defendingChampion: champion, autoInvites: invites };
-    const fieldOld = qualifyingField(rankedOld, quota, qopts);
-    const fieldNew = qualifyingField(rankedNew, quota, qopts);
+    const fieldOld = qualifyingField(rankedOld, quota, { ...qopts, standardAchievers: stdList });
+    const fieldNew = qualifyingField(rankedNew, quota, { ...qopts, standardAchievers: stdNew });
     const [statusOld, slotOld] = athleteStatus(fieldOld, ath.name);
     const [statusNew, slotNew] = athleteStatus(fieldNew, ath.name);
 
@@ -260,7 +284,18 @@ export function whatIf(ctx, {
       auto_invites: inviteList,
       is_defending_champion: Boolean(champion) && isInvited,
       is_auto_invited: isInvited,
-      ranking_places: quota - inviteList.length,
+      // Entry-standard route (World Championships): null when the championship has no
+      // standard. standard_achievers_known=false means the field is modelled as if nobody
+      // had the standard yet (no feed snapshot) — the UI says so.
+      entry_standard: es,
+      standard_achievers_known: achievers !== null,
+      standard_achievers_count: stdList.length,
+      already_achieved_standard: alreadyAchieved,
+      standard_places: fieldNew.standard_places,
+      ranking_places: Math.max(0, quota - inviteList.length - fieldNew.standard_places),
+      route_old: route(statusOld, slotOld, isInvited),
+      route_new: route(statusNew, slotNew, isInvited),
+      qualification_source: champEvent.qualification_source ?? "config",
       cutoff_score: cutoff,
       above_cutoff: newScore !== null && cutoff !== null && newScore >= cutoff,
       status_old: statusOld,
@@ -286,6 +321,9 @@ export function whatIf(ctx, {
     if (top !== null) targets.push(["reach #1", top + 1]);
     const rows = targetsRequired(ctx, ev, recompute.old_counting, bestN,
                                  breakdown.placing_score, recomputedOld, targets);
+    if (qualCfg && qualCfg.entry_standard) {
+      rows.unshift(standardTarget(ctx, ev, qualCfg.entry_standard, ath.name, stdList));
+    }
     if (rows.length) {
       whatWouldItTake = { place, category: category.toUpperCase(), targets: rows };
     }
@@ -397,19 +435,92 @@ function targetsRequired(ctx, ev, countingOld, bestN, placing, currentScore, tar
   for (const [label, score] of targets) {
     if (score === null || score === undefined) continue;
     if (currentScore !== null && currentScore >= score) {
-      rows.push({ label, target_score: pyRound(score), result_score: null, time: null, status: "met" });
+      rows.push({ label, kind: "score", target_score: pyRound(score), result_score: null, time: null, status: "met" });
       continue;
     }
     const [time, needResult] = requiredTime(ctx, ev, countingOld, bestN, placing, score);
-    rows.push({ label, target_score: pyRound(score), result_score: needResult,
+    rows.push({ label, kind: "score", target_score: pyRound(score), result_score: needResult,
                 time, status: time ? "reachable" : "unreachable" });
   }
   return rows;
 }
 
+// Reverse-solver row for the entry standard: the time IS the standard (no placing points
+// involved); "met" when WA already lists the athlete as having achieved it.
+function standardTarget(ctx, ev, standard, athlete, achievers) {
+  const met = achievers.some((s) => athlete.toUpperCase() === s.name.toUpperCase());
+  return { label: "meet the entry standard", kind: "standard",
+           target_score: resultScore(table(ctx, ev.result_table), standard), result_score: null,
+           time: standard, status: met ? "met" : "reachable" };
+}
+
+// How an athlete gets in: wildcard / standard / ranking / blocked_country_cap / out.
+function route(status, slot, isInvited) {
+  if (isInvited) return "wildcard";
+  if (status === "qualified") return (slot || {}).reason === "entry standard" ? "standard" : "ranking";
+  return status === "blocked_country_cap" ? status : "out";
+}
+
+// Does the hypothetical mark meet the championship's entry standard? Mirrors
+// whatif.py:_entry_standard_check — main event (or a listed road/mile alternative, never an
+// indoor mark), inside the qualification window, Category C meet or above. gap_seconds is
+// signed (+ = slower), in hundredths so both engines agree exactly.
+function entryStandardCheck(qualCfg, ev, inp, breakdown, category, asOf, window, indoor) {
+  let standard = qualCfg.entry_standard;
+  if (!standard) return null;
+  let stdEvent = ev.discipline ?? "main event";
+  let altOk = true;
+  if (!inp.is_main) {
+    const altName = inp.standard_event;
+    const alt = (qualCfg.alt_entry_standards || []).find((a) => altName && a.event === altName) || null;
+    if (alt) { standard = alt.entry_standard; stdEvent = altName; }
+    else altOk = false;
+  }
+  const stdS = parseTime(standard);
+  const hypS = breakdown.seconds;
+  const gap = (pyRound(hypS * 100) - pyRound(stdS * 100)) / 100;
+  const meetsMark = hypS <= stdS;
+  let inside = true;
+  if (window && window.start && window.end) inside = window.start <= asOf && asOf <= window.end;
+  const validCat = STANDARD_CATEGORIES.has(category.toUpperCase());
+  indoor = Boolean(indoor);
+  const meets = meetsMark && inside && validCat && !indoor && altOk;
+  const mainLabel = ev.discipline ?? "main event";
+  let note;
+  if (!altOk) {
+    note = `No entry standard for the ${inp.label} — only a ${mainLabel} `
+      + "(or a listed road/mile alternative) can meet the standard.";
+  } else if (indoor) {
+    note = "Indoor (short-track) marks count for the ranking but not for the entry standard.";
+  } else if (!validCat) {
+    note = `A category ${category.toUpperCase()} meet doesn't count for the entry standard `
+      + "(Category C or above needed); it still counts for the ranking.";
+  } else if (!inside) {
+    note = `Outside the qualification window (${window.start} to ${window.end}).`;
+  } else if (meetsMark) {
+    note = `Meets the ${stdEvent} entry standard (${standard}) by ${Math.abs(gap).toFixed(2)}s.`;
+  } else {
+    note = `${gap.toFixed(2)}s short of the ${stdEvent} entry standard (${standard}).`;
+  }
+  return {
+    standard,
+    standard_event: stdEvent,
+    standard_seconds: stdS,
+    hypothetical_seconds: hypS,
+    gap_seconds: gap,
+    meets_mark: meetsMark,
+    inside_window: inside,
+    valid_category: validCat,
+    indoor_invalid: indoor,
+    event_valid: altOk,
+    meets,
+    note,
+  };
+}
+
 // Standalone reverse solver (no hypothetical time) — whatif.required_targets.
 export function requiredTargets(ctx, event, athlete, {
-  championship = "road_to_birmingham", place = 1, category = "GW",
+  championship = "road_to_beijing", place = 1, category = "GW",
 } = {}) {
   const champ = loadChampionship(ctx, championship);
   const ev = loadEvent(ctx, event);
@@ -434,11 +545,14 @@ export function requiredTargets(ctx, event, athlete, {
   const top = present.length ? Math.max(...present) : null;
 
   let cutoff = null;
+  let stdList = [];
   if ("quota" in champEvent) {
+    stdList = (champEvent.standard_achievers || []).map((s) => ({ name: s.name, country: s.country ?? null, mark: s.mark ?? null }));
     const field = qualifyingField(buildRanked(data.athletes), champEvent.quota, {
       maxPerCountry: "max_per_country" in champ ? champ.max_per_country : 3,
       defendingChampion: champEvent.defending_champion ?? null,
       autoInvites: champEvent.auto_invites ?? null,
+      standardAchievers: stdList,
     });
     cutoff = field.cutoff_score;
   }
@@ -448,6 +562,9 @@ export function requiredTargets(ctx, event, athlete, {
   if (top !== null) targets.push(["reach #1", top + 1]);
   const rows = targetsRequired(ctx, ev, oldCounting, bestN, placing,
                                ath.ranking_score ?? null, targets);
+  if ("quota" in champEvent && champEvent.entry_standard) {
+    rows.unshift(standardTarget(ctx, ev, champEvent.entry_standard, ath.name, stdList));
+  }
   return { event, championship, athlete: ath.name,
            place, category: category.toUpperCase(), targets: rows };
 }

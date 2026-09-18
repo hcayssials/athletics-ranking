@@ -3,8 +3,9 @@ import { getMeta, getRankings, getAthlete, searchAthletes, runWhatIf, getRequire
 import { parseTime, surnameOf, bestPerf, matchAthlete, parseQuery, extractSlug, deriveName, looksLikeProfile, extractName } from "./parse.js";
 import { INK, SURFACE, BG, ACCENT, MUTE, MONO } from "./theme.js";
 
-// Ranking What-If Studio — "WA Editorial" look (see theme.js), driven by the live FastAPI backend.
-// All ranking/qualification numbers come from /api/rankings and /api/whatif (real data, all events).
+// Ranking What-If Studio — "WA Editorial" look (see theme.js), driven by the static data bundle
+// + the local engine (src/api.js). All ranking/qualification numbers come from getRankings /
+// runWhatIf (real data, all events). Everything championship-specific is meta-driven.
 
 const CAT_LABELS = {
   OW: "OW — Olympics / World Champs", DF: "DF — Diamond League final",
@@ -84,34 +85,53 @@ const shortEvent = (p) => {
   return d || "—";
 };
 
-// Indicative qualifying zone for the table: wildcard byes (a defending champion, or the
-// Olympic/World champions for the Ultimate) consume the first places, then the rest fill by
-// descending score with the championship's per-country cap (null = no cap). Mirrors qualify.py.
+// Indicative qualifying zone for the table, mirroring qualify.js: wildcard byes hold the first
+// places, then the athletes who already have the entry standard (World Championships; they
+// count toward the country cap), then the ranking walk fills what's left of the quota under
+// the per-country cap (null = no cap). Keys are UPPERCASED names — config and the WA list are
+// the same people, not guaranteed the same casing. qualPos = the slot number in the actual
+// qualifying field (which can differ from the raw rank once byes/standards/caps bite).
 function qualifyingZone(rankings) {
-  const empty = { qualSet: new Set(), qualPos: {}, lastQualName: null, cutoff: null, invites: [] };
+  const empty = { qualSet: new Set(), qualPos: {}, standardOf: {}, lastQualName: null, cutoff: null,
+                  invites: [], standardCount: 0, standardPlaces: 0 };
   if (!rankings) return empty;
   const quota = rankings.quota || 30;
   const maxPer = rankings.max_per_country == null ? Infinity : rankings.max_per_country;
   const invites = rankings.auto_invites
     ? rankings.auto_invites.map((i) => i.name)
     : rankings.defending_champion ? [rankings.defending_champion.name] : [];
-  const inviteSet = new Set(invites);
+  const up = (s) => (s || "").toUpperCase();
+  const inviteSet = new Set(invites.map(up));
   const sorted = [...rankings.athletes].sort((a, b) => b.ranking_score - a.ranking_score);
-  // Wildcards hold slots 1..k (exempt from the country cap, wherever they sit on the list);
-  // the ranking walk fills the remaining quota-k slots. qualPos = the slot number in the
-  // actual qualifying field (which can differ from the raw rank once byes/caps bite).
-  const cc = {}; let pos = invites.length, last = null, cutoff = null;
-  const qualSet = new Set(), qualPos = {};
-  for (const nm of invites) { qualSet.add(nm); qualPos[nm] = invites.indexOf(nm) + 1; }
+  const cc = {}; let pos = invites.length, last = null, cutoff = null, standardPlaces = 0;
+  const qualSet = new Set(), qualPos = {}, standardOf = {}, stdSet = new Set();
+  invites.forEach((nm, i) => { qualSet.add(up(nm)); qualPos[up(nm)] = i + 1; });
+  for (const s of rankings.standard_achievers || []) {
+    const key = up(s.name);
+    if (inviteSet.has(key) || stdSet.has(key)) continue;
+    stdSet.add(key); standardOf[key] = s.mark || "standard";
+    if ((cc[s.country] || 0) >= maxPer) continue;    // 4th from a country: capped out
+    cc[s.country] = (cc[s.country] || 0) + 1;
+    pos++; qualPos[key] = pos; qualSet.add(key); standardPlaces++;
+  }
   for (const a of sorted) {
-    if (inviteSet.has(a.name)) continue;              // already in by wildcard
+    const key = up(a.name);
+    if (inviteSet.has(key) || stdSet.has(key)) continue; // already placed (or capped) above
     if (pos >= quota) break;
     if ((cc[a.country] || 0) >= maxPer) continue;     // country already full → blocked
     cc[a.country] = (cc[a.country] || 0) + 1;
-    pos++; qualPos[a.name] = pos; qualSet.add(a.name); last = a.name; cutoff = a.ranking_score;
+    pos++; qualPos[key] = pos; qualSet.add(key); last = a.name; cutoff = a.ranking_score;
   }
-  return { qualSet, qualPos, lastQualName: last, cutoff, invites };
+  return { qualSet, qualPos, standardOf, lastQualName: last, cutoff, invites,
+           standardCount: stdSet.size, standardPlaces };
 }
+
+// "STD 3:29.35" chip on a ranking row: the athlete already has the entry standard.
+const stdChip = (isSel) => ({
+  marginLeft: 8, fontFamily: MONO, fontSize: 9.5, letterSpacing: "0.05em", fontWeight: 700,
+  padding: "2px 6px", borderRadius: 4, whiteSpace: "nowrap",
+  background: isSel ? "rgba(255,255,255,0.18)" : "#e3f3e9", color: isSel ? SURFACE : "#1f6b43",
+});
 
 // Map a /api/whatif response into the result-panel view model.
 function buildResultView(r, champCfg, qualifyOn, methodOpen) {
@@ -123,9 +143,10 @@ function buildResultView(r, champCfg, qualifyOn, methodOpen) {
   const q = (champCfg.has_qualification && qualifyOn && r.qualification) ? r.qualification : null;
   let qual = null;
   if (q) {
-    const inField = (q.field_new || []).some((e) => e.name === r.athlete && e.reason === "ranking");
-    const blocked = (q.blocked_new || []).some((e) => e.name === r.athlete);
-    const status = q.is_auto_invited ? "champion" : inField ? "in" : blocked ? "blocked" : "below";
+    // route_new: wildcard / standard / ranking / blocked_country_cap / out (engine-resolved).
+    const route = q.route_new || (q.is_auto_invited ? "wildcard" : q.status_new === "qualified" ? "ranking" : q.status_new === "blocked_country_cap" ? "blocked_country_cap" : "out");
+    const status = route === "wildcard" ? "champion" : route === "standard" ? "standard"
+      : route === "ranking" ? "in" : route === "blocked_country_cap" ? "blocked" : "below";
     const invite = (q.auto_invites || []).find((i) => i.name.toUpperCase() === (r.athlete || "").toUpperCase());
     qual = {
       status, cutoff: q.cutoff_score, position: q.qual_position_new, quota: q.quota,
@@ -133,6 +154,12 @@ function buildResultView(r, champCfg, qualifyOn, methodOpen) {
       maxPerCountry: q.max_per_country,                       // null = no country cap
       inviteReason: invite ? invite.reason : null,            // why this athlete holds a wildcard
       needPts: Math.max(0, Math.round((q.cutoff_score || 0) - r.new_score)),
+      es: q.entry_standard || null,                           // entry-standard check (World Champs)
+      achieversKnown: !!q.standard_achievers_known,
+      achieversCount: q.standard_achievers_count || 0,
+      alreadyAchieved: !!q.already_achieved_standard,
+      standardPlaces: q.standard_places || 0,
+      rankingPlaces: q.ranking_places,
     };
   }
 
@@ -186,7 +213,7 @@ function useIsNarrow(maxWidth = 760) {
 
 export default function App() {
   const [meta, setMeta] = useState(null);
-  const [championship, setChampionship] = useState("road_to_birmingham");
+  const [championship, setChampionship] = useState(null);   // set from meta (first qualification tab)
   const [event, setEvent] = useState("1500m_men");
   const [rankings, setRankings] = useState(null);
   const [rankErr, setRankErr] = useState("");
@@ -213,15 +240,23 @@ export default function App() {
   const notContested = (champCfg.not_contested || []).includes(event);
   const narrow = useIsNarrow();
 
-  const entryStandardFor = (ev) => (meta && (meta.events.find((e) => e.key === ev) || {}).entry_standard) || "";
+  // The championship's own standard for the event (World Champs) beats the event default.
+  const entryStandardFor = (ev, champ = championship) => {
+    if (!meta) return "";
+    const c = meta.championships.find((x) => x.key === champ) || {};
+    return (c.standards || {})[ev] || (meta.events.find((e) => e.key === ev) || {}).entry_standard || "";
+  };
+  // First tab with qualification (the live "Road to …"), else the first tab.
+  const defaultChampionship = (m) => ((m.championships.find((c) => c.has_qualification) || m.championships[0] || {}).key || null);
 
   useEffect(() => {
     getMeta().then((m) => {
       setMeta(m);
+      const champ0 = defaultChampionship(m);
       const sp = new URLSearchParams(window.location.search);
       if (sp.get("a")) {
         // A shared scenario in the URL — restore it and queue a run once its list loads.
-        const champ = m.championships.some((c) => c.key === sp.get("c")) ? sp.get("c") : championship;
+        const champ = m.championships.some((c) => c.key === sp.get("c")) ? sp.get("c") : champ0;
         const ev = m.events.some((e) => e.key === sp.get("e")) ? sp.get("e") : event;
         const f = {
           athlete: sp.get("a"),
@@ -235,14 +270,16 @@ export default function App() {
         setPendingShare({ f, champ, ev, profile: sp.get("pf") || null });
         return;
       }
-      const es = (m.events.find((e) => e.key === event) || {}).entry_standard;
+      setChampionship(champ0);
+      const c0 = m.championships.find((c) => c.key === champ0) || {};
+      const es = (c0.standards || {})[event] || (m.events.find((e) => e.key === event) || {}).entry_standard;
       if (es) setForm((s) => ({ ...s, time: es }));   // sensible starting time for the initial event
     }).catch((e) => setRankErr(e.message));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
     setRankings(null); setRankErr("");
-    if (notContested) return;                 // no list to load — the notice panel shows instead
+    if (!championship || notContested) return;   // nothing to load yet / the notice panel shows instead
     getRankings(championship, event).then(setRankings).catch((e) => setRankErr(e.message));
   }, [championship, event, notContested]);
 
@@ -257,7 +294,11 @@ export default function App() {
   }, [pendingShare, rankings]);
 
   // Manual selector changes start fresh; NL changes (via `pending`) keep their queued run alive.
-  const changeChampionship = (c) => { setChampionship(c); setResult(null); setSelected(null); setAthleteInfo(null); setError(""); setCandidates(null); };
+  const changeChampionship = (c) => {
+    setChampionship(c); setResult(null); setSelected(null); setAthleteInfo(null); setError(""); setCandidates(null);
+    const std = entryStandardFor(event, c);
+    if (std) setForm((s) => ({ ...s, time: std }));   // this championship's standard as the starting time
+  };
   // New event → reset Time to that event's entry standard and Place to 1 (keep Category) so the
   // console never shows a time from the previous event. A later athlete pick still overrides these.
   const changeEvent = (e) => {
@@ -401,7 +442,7 @@ export default function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pending, rankings]);
 
-  if (!meta) return <p style={{ padding: 24, fontFamily: "'Archivo', system-ui, sans-serif", color: INK }}>Loading… {rankErr}</p>;
+  if (!meta || !championship) return <p style={{ padding: 24, fontFamily: "'Archivo', system-ui, sans-serif", color: INK }}>Loading… {rankErr}</p>;
 
   const tabBase = { padding: "9px 16px", border: "none", borderRadius: 7, fontSize: 13.5, fontWeight: 700, cursor: "pointer" };
   const tab = (active) => ({ ...tabBase, background: active ? INK : "transparent", color: active ? SURFACE : "#6b7480" });
@@ -411,15 +452,18 @@ export default function App() {
 
   const scoreSentence = `Ranking score: average of the best ${eventCfg.best_n || 5} results from the last ${eventCfg.window_months || 12} months, rounded down.`;
   const quota = (rankings && rankings.quota) || 30;
-  const champClause = rankings && rankings.defending_champion ? ", champion auto-qualifies" : "";
-  const isUltimate = championship === "road_to_ultimate";
+  const champName = (champCfg.short_label || "").replace(/^Road to /, "") || "the championship";
+  const stdHere = rankings && rankings.entry_standard;   // this championship's standard for the event
+  // "56 places · standard 3:30.00 or ranking · max 3 per country · 2 wildcards" — all from config.
+  const capClause = champCfg.max_per_country == null ? "no country cap" : `max ${champCfg.max_per_country} per country`;
+  const byeClause = zone.invites.length
+    ? (rankings && rankings.auto_invites ? `${zone.invites.length} wildcard${zone.invites.length > 1 ? "s" : ""}` : "champion auto-qualifies")
+    : "";
   const assumptionLine = notContested
     ? champCfg.not_contested_note
-    : isUltimate
-      ? `${scoreSentence} Ultimate qualifying is worldwide: ${quota} places, no country cap, Olympic & World champions get wildcards.`
-      : hasQual
-        ? `${scoreSentence} Birmingham qualifying (Europe only): ${quota} places, max 3 per country${champClause}.`
-        : `${scoreSentence} All nations — no quota or qualifying caps.`;
+    : hasQual
+      ? `${scoreSentence} ${champCfg.scope_label || champName} qualifying: ${quota} places, ${stdHere ? `entry standard ${stdHere} or world ranking, ` : ""}${capClause}${byeClause ? `, ${byeClause}` : ""}.`
+      : `${scoreSentence} All nations — no quota or qualifying caps.`;
 
   // Examples target the qualifying bubble (qualification tabs) or athletes climbing the list
   // (world) — not the top names who are essentially safe. That's where a what-if actually tells
@@ -428,27 +472,20 @@ export default function App() {
   const at = (i) => list[Math.max(0, Math.min(list.length - 1, i))];
   let examples = [];
   if (list.length >= 6) {
-    if (isUltimate) {
+    if (hasQual) {
       const cut = list.findIndex((a) => a.name === zone.lastQualName);
       const i = cut >= 0 ? cut : Math.min(list.length - 1, quota - 1);
       examples = [
         `What if ${exName(at(i + 1))} wins a Diamond League meeting?`,
-        `Does ${exName(at(i + 3))} make the Ultimate by winning their national champs?`,
-        `What if ${exName(at(i))} finishes 2nd in a Diamond League final?`,
-      ];
-    } else if (hasQual) {
-      const cut = list.findIndex((a) => a.name === zone.lastQualName);
-      const i = cut >= 0 ? cut : Math.min(list.length - 1, quota - 1);
-      examples = [
-        `What if ${exName(at(i + 1))} finishes 2nd at the European Champs?`,
-        `Does ${exName(at(i + 4))} make the team by winning their national champs?`,
-        `What if ${exName(at(i))} wins a Diamond League meeting?`,
+        `Does ${exName(at(i + 4))} make ${champName} by winning their national champs?`,
+        stdHere ? `What if ${exName(at(i))} runs ${stdHere} at a Diamond League meeting?`
+          : `What if ${exName(at(i))} finishes 2nd in a Diamond League final?`,
       ];
     } else {
       examples = [
         `What if ${exName(at(12))} wins a Diamond League meeting?`,
         `How far does ${exName(at(22))} climb with a Diamond League win?`,
-        `What if ${exName(at(35))} finishes 2nd at the World Championships?`,
+        `What if ${exName(at(35))} finishes 2nd at the Olympics?`,
       ];
     }
   }
@@ -500,7 +537,7 @@ export default function App() {
           </div>
           <div style={{ display: "flex", gap: 10, marginTop: 12, flexWrap: "wrap" }}>
             <input value={query} onChange={(e) => setQuery(e.target.value)} onKeyDown={(e) => e.key === "Enter" && interpret()}
-              placeholder="e.g. What if Wightman wins in Birmingham in 3:29.0?"
+              placeholder="e.g. What if Wightman runs 3:29.0 at a Diamond League meeting?"
               style={{ flex: 1, minWidth: 280, padding: "14px 16px", border: "none", borderRadius: 10, background: "#14181f", color: SURFACE, fontSize: 16, outline: "none" }} />
             <button onClick={interpret} style={{ padding: "14px 26px", border: "none", borderRadius: 10, background: ACCENT, color: INK, fontSize: 15, fontWeight: 700, cursor: "pointer" }}>Interpret →</button>
           </div>
@@ -528,7 +565,7 @@ export default function App() {
             ? <ResultPanel rv={buildResultView(result, champCfg, form.qualify, methodOpen)} onToggle={() => setMethodOpen((v) => !v)} />
             : athleteInfo
               ? <AthletePreview info={athleteInfo} eventCfg={eventCfg} champCfg={champCfg} rankDate={rankings ? rankings.rank_date : null}
-                  event={event} championship={championship} categories={categories} />
+                  event={event} championship={championship} categories={categories} rankings={rankings} />
               : (
                 <div style={{ border: "1.5px dashed #d8dce2", borderRadius: 14, padding: "40px 28px", textAlign: "center", color: MUTE }}>
                   <div style={{ fontSize: 17, fontWeight: 600, color: "#6b7480" }}>{busy ? "Running…" : selected ? `Loading ${selected}'s performances…` : "Run a what-if to see the impact"}</div>
@@ -546,7 +583,19 @@ export default function App() {
               <h2 style={{ margin: 0, fontSize: 16, fontWeight: 700 }}>{(champCfg.scope_label || "World Ranking") + " — " + eventLabel}</h2>
               <span style={{ fontFamily: MONO, fontSize: 11, color: MUTE }}>{rankings ? `${list.length} athletes` : "loading…"}</span>
             </div>
-            {/* e.g. "the DL Final winner also gets a wildcard" — a pending bye the list can't show yet */}
+            {/* Entry-standard route (World Champs): the standard, how many already have it (from
+                WA's feed snapshot — or "unknown" when there is none), and what the ranking fills. */}
+            {hasQual && rankings && rankings.entry_standard && (
+              <div style={{ padding: "0 18px 10px", fontSize: 11.5, color: "#6b7480", lineHeight: 1.45 }}
+                title={champCfg.entry_standard_rules || ""}>
+                ⓘ Entry standard <b style={{ fontFamily: MONO, color: INK }}>{rankings.entry_standard}</b>
+                {rankings.standard_achievers
+                  ? ` · ${rankings.standard_achievers.length} athlete${rankings.standard_achievers.length === 1 ? "" : "s"} already have it (WA feed${rankings.feed_fetched ? ", " + fmtDate(rankings.feed_fetched.slice(0, 10)) : ""})`
+                  : " · who has it: unknown (no WA feed) — shown as if nobody yet"}
+                {` · ${Math.max(0, quota - zone.invites.length - zone.standardPlaces)} of ${quota} places left to the ranking`}
+              </div>
+            )}
+            {/* e.g. a pending bye the list can't show yet */}
             {champCfg.qualification_footnote && (
               <div style={{ padding: "0 18px 10px", fontSize: 11.5, color: "#6b7480", lineHeight: 1.45 }}>
                 ⓘ {champCfg.qualification_footnote}
@@ -576,7 +625,9 @@ export default function App() {
                   ))}
                   {list.map((a) => {
                     const isSel = selected === a.name;
-                    const inZone = hasQual && zone.qualSet.has(a.name);
+                    const key = a.name.toUpperCase();
+                    const inZone = hasQual && zone.qualSet.has(key);
+                    const stdMark = hasQual ? zone.standardOf[key] : null;   // already has the entry standard
                     const compat = selCountry && a.country === selCountry && !isSel;
                     const bg = isSel ? INK : compat ? "#f2f4f7" : inZone ? "rgba(47,125,82,0.05)" : BG;
                     const fg = isSel ? SURFACE : INK;
@@ -586,13 +637,14 @@ export default function App() {
                           style={{ cursor: "pointer", background: bg, color: fg, borderBottom: "1px solid #f2f4f7", transition: "background 0.12s" }}>
                           <td style={{ textAlign: "right", padding: "8px 10px 8px 18px", fontFamily: MONO, fontWeight: 600, color: isSel ? ACCENT : inZone ? "#1f8a4c" : "#9aa1ac" }}>{a.rank}</td>
                           {hasQual && (
-                            <td style={{ textAlign: "right", padding: "8px 10px", fontFamily: MONO, fontSize: 12, fontWeight: 600, color: isSel ? ACCENT : zone.qualPos[a.name] ? "#1f8a4c" : "#c4c9d0" }}>
-                              {zone.qualPos[a.name] || "—"}
+                            <td style={{ textAlign: "right", padding: "8px 10px", fontFamily: MONO, fontSize: 12, fontWeight: 600, color: isSel ? ACCENT : zone.qualPos[key] ? "#1f8a4c" : "#c4c9d0" }}>
+                              {zone.qualPos[key] || "—"}
                             </td>
                           )}
                           <td style={{ padding: "8px 10px", fontWeight: 600 }}>
                             <span style={{ display: "inline-block", width: 6, height: 6, borderRadius: "50%", marginRight: 8, verticalAlign: "middle", background: isSel ? ACCENT : compat ? "#2f4a6b" : "transparent" }} />
                             {a.name}
+                            {stdMark && <span style={stdChip(isSel)} title={`Has the entry standard (${stdMark}) — in regardless of ranking, subject to the country cap`}>{narrow ? "STD" : `STD ${stdMark}`}</span>}
                           </td>
                           <td style={{ padding: "8px 10px", fontFamily: MONO, fontSize: 12, color: "#6b7480" }}>{a.country}</td>
                           <td style={{ padding: "8px 18px 8px 10px", textAlign: "right", fontFamily: MONO, fontWeight: 600 }}>{Math.round(a.ranking_score)}</td>
@@ -601,7 +653,7 @@ export default function App() {
                           <tr><td colSpan={5} style={{ padding: 0 }}>
                             <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "3px 18px", background: INK, color: ACCENT, fontFamily: MONO, fontSize: 10.5, letterSpacing: "0.08em" }}>
                               <span style={{ flex: 1, height: 1, background: "#2a313b" }} />
-                              {`QUALIFYING CUTOFF · ${rankings.quota} places${zone.invites.length ? (rankings.auto_invites ? ` · ${zone.invites.length} to wildcard${zone.invites.length > 1 ? "s" : ""}` : " · 1 to champion") : ""} · ≈ ${zone.cutoff != null ? Math.round(zone.cutoff) : "—"} pts`}
+                              {`QUALIFYING CUTOFF · ${rankings.quota} places${zone.invites.length ? (rankings.auto_invites ? ` · ${zone.invites.length} to wildcard${zone.invites.length > 1 ? "s" : ""}` : " · 1 to champion") : ""}${zone.standardPlaces ? ` · ${zone.standardPlaces} to the standard` : ""} · ≈ ${zone.cutoff != null ? Math.round(zone.cutoff) : "—"} pts`}
                               <span style={{ flex: 1, height: 1, background: "#2a313b" }} />
                             </div>
                           </td></tr>
@@ -784,14 +836,15 @@ function TargetRows({ rows }) {
     <div style={{ display: "grid", gap: 7 }}>
       {rows.map((t, i) => {
         const cap = t.label.charAt(0).toUpperCase() + t.label.slice(1);
+        const std = t.kind === "standard";   // the entry standard: an exact mark, not a score target
         return (
           <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 12, fontSize: 13 }}>
             <span style={{ color: INK }}>{cap}{" "}
-              <span style={{ color: MUTE, fontFamily: MONO, fontSize: 11.5 }}>({t.target_score})</span>
+              <span style={{ color: MUTE, fontFamily: MONO, fontSize: 11.5 }}>{std ? "(any Cat C+ meet)" : `(${t.target_score})`}</span>
             </span>
             <span style={{ fontFamily: MONO, fontWeight: 700, whiteSpace: "nowrap" }}>
-              {t.status === "met" ? <span style={{ color: "#1f8a4c" }}>already there ✓</span>
-                : t.status === "reachable" ? <span style={{ color: ACCENT }}>~{t.time}</span>
+              {t.status === "met" ? <span style={{ color: "#1f8a4c" }}>{std ? "achieved ✓" : "already there ✓"}</span>
+                : t.status === "reachable" ? <span style={{ color: ACCENT }}>{std ? t.time : `~${t.time}`}</span>
                   : <span style={{ color: MUTE, fontWeight: 600 }}>out of reach here</span>}
             </span>
           </div>
@@ -843,8 +896,11 @@ function PerfTable({ rows }) {
 
 // Read-only card shown when an athlete is clicked (before any what-if): current standing +
 // their counting performances. Running a what-if replaces this with the full ResultPanel.
-function AthletePreview({ info, eventCfg, champCfg, rankDate, event, championship, categories }) {
+function AthletePreview({ info, eventCfg, champCfg, rankDate, event, championship, categories, rankings }) {
   const lbl = { fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: MUTE, fontWeight: 600 };
+  // Entry standard (World Champs): the mark, and whether WA already lists this athlete with it.
+  const std = rankings && rankings.entry_standard;
+  const achieved = std && (rankings.standard_achievers || []).find((s) => s.name.toUpperCase() === (info.name || "").toUpperCase());
   // Reverse solver: the time this athlete would need (at a chosen place/category) to reach the
   // cutoff / #1 — fetched live so it updates as the place/category controls change.
   const [rPlace, setRPlace] = useState(1);
@@ -877,6 +933,15 @@ function AthletePreview({ info, eventCfg, champCfg, rankDate, event, championshi
           <div style={lbl}>Ranking score</div>
           <div style={{ fontSize: 34, fontWeight: 800, fontFamily: MONO, marginTop: 4 }}>{info.ranking_score != null ? Math.round(info.ranking_score) : "—"}</div>
         </div>
+        {std && (
+          <div>
+            <div style={lbl}>Entry standard</div>
+            <div style={{ fontSize: 34, fontWeight: 800, fontFamily: MONO, marginTop: 4, color: achieved ? "#1f8a4c" : INK }}>{std}</div>
+            <div style={{ fontSize: 11.5, color: achieved ? "#1f8a4c" : MUTE, fontFamily: MONO }}>
+              {achieved ? `achieved ✓ ${achieved.mark || ""}` : rankings.standard_achievers ? "not yet (WA feed)" : "unknown"}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* reverse solver: what time it would take to reach key targets */}
@@ -923,11 +988,26 @@ function ResultPanel({ rv, onToggle }) {
     const q = rv.qual;
     const cap = q.maxPerCountry;   // null = no country cap (e.g. the Ultimate Championship)
     const fieldRules = cap != null ? `wildcard byes + ${cap}-per-country cap applied` : "wildcard byes applied; no country cap";
+    const split = q.es ? ` ${q.standardPlaces} place${q.standardPlaces === 1 ? "" : "s"} to the standard, ${q.rankingPlaces} to the ranking.` : "";
     if (q.status === "champion") verdict = { mark: "★", title: q.inviteReason ? `QUALIFIES — WILDCARD (${q.inviteReason.toUpperCase()})` : "QUALIFIES — DEFENDING CHAMPION BYE", detail: "Enters by wildcard regardless of ranking, exempt from any country cap, and consumes one place.", bg: "#e7eef6", fg: "#1c3a5e", bar: "#2f4a6b" };
-    else if (q.status === "in") verdict = { mark: "✓", title: "INSIDE THE QUALIFYING ZONE", detail: `Auto-confirmed on score — qualifying position #${q.position} of ${q.quota} (${fieldRules}).`, bg: "#e3f3e9", fg: "#1b3d2a", bar: "#1f8a4c" };
+    else if (q.status === "standard") verdict = { mark: "✓", title: q.alreadyAchieved ? "QUALIFIES — HAS THE ENTRY STANDARD" : "QUALIFIES — ENTRY STANDARD", detail: `${q.alreadyAchieved ? "Already listed by WA with the standard" : "This race meets the standard"} — in regardless of ranking (position #${q.position} of ${q.quota}); ${cap != null ? `the ${cap}-per-country cap still applies` : "no country cap"}.${split}`, bg: "#e3f3e9", fg: "#1b3d2a", bar: "#1f8a4c" };
+    else if (q.status === "in") verdict = { mark: "✓", title: "INSIDE THE QUALIFYING ZONE", detail: `Auto-confirmed on score — qualifying position #${q.position} of ${q.quota} (${fieldRules}).${split}`, bg: "#e3f3e9", fg: "#1b3d2a", bar: "#1f8a4c" };
     else if (q.status === "blocked") verdict = { mark: "≈", title: "ELIGIBLE — BUT FEDERATION'S CALL", detail: `Above the cutoff, yet ${q.countryAhead} higher-ranked ${q.country} athletes already hold the ${cap} places. The cap is a maximum — selection is ${q.country}'s decision.`, bg: "#fdebed", fg: "#2f4a6b", bar: "#2f4a6b" };
-    else verdict = { mark: "✕", title: "OUTSIDE THE QUALIFYING ZONE", detail: `Below the cutoff by ${q.needPts} pts at this score.`, bg: "#fbe4e1", fg: "#8a2b22", bar: "#c62b35" };
+    else verdict = { mark: "✕", title: "OUTSIDE THE QUALIFYING ZONE", detail: `Below the cutoff by ${q.needPts} pts at this score${q.es ? ` and ${q.es.meets_mark ? "the mark doesn't count for the standard here" : `${q.es.gap_seconds.toFixed(2)}s short of the standard`}` : ""}.${split}`, bg: "#fbe4e1", fg: "#8a2b22", bar: "#c62b35" };
   }
+  // Compact entry-standard line under the race breakdown: "Entry standard 3:30.00 · 1.00s short · 6 have it".
+  const esLine = rv.qual && rv.qual.es ? (() => {
+    const es = rv.qual.es;
+    const gap = Math.abs(es.gap_seconds).toFixed(2);
+    const verdictTxt = es.meets ? `met by ${gap}s ✓`
+      : !es.event_valid ? "no standard for this event"
+        : es.indoor_invalid ? "indoor — doesn't count"
+          : !es.valid_category ? `category ${rv.hypo.category} doesn't count (C+ needed)`
+            : !es.inside_window ? "outside the window"
+              : `${gap}s short`;
+    const who = rv.qual.achieversKnown ? `${rv.qual.achieversCount} already have it` : "who has it: unknown";
+    return { text: `Entry standard ${es.standard}${es.standard_event && es.standard_event !== (rv.hypoEvent && rv.hypoEvent.label) && !(rv.hypoEvent && rv.hypoEvent.is_main) ? ` (${es.standard_event})` : ""} · ${verdictTxt} · ${who}`, ok: es.meets, title: es.note };
+  })() : null;
 
   return (
     <div style={{ border: "1px solid #d8dce2", borderRadius: 16, overflow: "hidden", background: BG, animation: "wf-rise 0.4s ease both" }}>
@@ -1014,6 +1094,11 @@ function ResultPanel({ rv, onToggle }) {
             ) : (
               <div style={{ fontSize: 11.5, color: "#9aa1ac", marginTop: 3 }}>
                 {rv.counts ? "Counts toward the new average — it displaced a weaker result." : `Not strong enough to enter the best-${rv.bestN} — the score is unchanged.`}
+              </div>
+            )}
+            {esLine && (
+              <div title={esLine.title} style={{ marginTop: 8, fontFamily: MONO, fontSize: 12, padding: "6px 9px", borderRadius: 6, background: esLine.ok ? "#e3f3e9" : "#f2f4f7", color: esLine.ok ? "#1f6b43" : "#3a414c", border: `1px solid ${esLine.ok ? "#bfe3cc" : "#e7eaef"}` }}>
+                {esLine.text}
               </div>
             )}
           </div>

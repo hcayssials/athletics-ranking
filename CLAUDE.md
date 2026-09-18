@@ -5,8 +5,9 @@ Guidance for working in this repo. Read this first; it captures the non-obvious 
 ## What this is
 A World Athletics ranking **what-if** tool. Pick an athlete on a ranking list (or an unranked
 one via their WA profile), enter a hypothetical performance, and see the new ranking score,
-rank, and Birmingham qualification status. Also a **reverse solver**: the time needed to reach
-the cutoff / #1.
+rank, and World Championships (Road to Beijing 27) qualification status — including whether
+the mark meets the **entry standard**. Also a **reverse solver**: the time needed to reach the
+entry standard / the ranking cutoff / #1.
 
 - **Engine (source of truth):** Python package `wa_ranking/` — runs at build time only.
 - **Browser engine:** `web/src/engine/` — a line-for-line JS port that runs the what-if math
@@ -37,8 +38,8 @@ There is **no JS test runner** (vitest/jest) — JS tests run via `node`.
 `.github/workflows/deploy-pages.yml` does everything: weekly cron (Wed 06:00 UTC; WA updates
 ~Tuesdays) re-scrapes `data/cache_seed/` and commits it; every push to `main` (and the cron)
 then rebuilds the bundle, runs pytest + **the parity gate** (`parity.test.mjs` must reproduce
-568 Python-generated golden vectors exactly), builds the site, and publishes `web/dist` to
-Pages. A red gate blocks the deploy — that's the point; fix the engine mismatch, don't skip it.
+every Python-generated golden vector exactly — 432 at the last count), builds the site, and
+publishes `web/dist` to Pages. A red gate blocks the deploy — that's the point; fix the engine mismatch, don't skip it.
 `web/dist/`, `web/public/data/` and `data/cache/*.json` are gitignored. `~/.local/bin` (gh,
 node) is NOT on PATH — prefix shell commands with `export PATH="$HOME/.local/bin:$PATH"`. If
 `git push` errors with "could not read Username", run `gh auth setup-git` once, then push.
@@ -46,7 +47,11 @@ node) is NOT on PATH — prefix shell commands with `export PATH="$HOME/.local/b
 ## Cache & seed (why the site always has data)
 The committed snapshot in `data/cache_seed/` is the site's data source: `cache.read()` falls
 back to it when the live cache is cold, and `build_static` reads through that same path. The
-weekly workflow refreshes it (also runnable manually: `python -m scripts.refresh_seed`).
+weekly workflow refreshes it (also runnable manually: `python -m scripts.refresh_seed`). It
+holds two kinds of file: `<champ>__<event>.json` ranking lists (only for non-archived
+*source* championships — today just `world`) and `feed__<champ>__<event>.json` snapshots of
+WA's qualification feed (see below). Archived championships' old list seeds are still in the
+folder; they're unused and can be deleted.
 
 ## Live browser features (the only runtime network calls)
 Name search and unranked-athlete profiles call WA's GraphQL endpoint directly from the browser
@@ -56,20 +61,66 @@ those two features 401 until the next build; the core what-if (static data + loc
 unaffected. The profile *page* (best-ever rank) is CORS-blocked, so unranked athletes show
 without that one line — name derives from the slug, country rides along from the search result.
 
-## Championships (world / Birmingham / Ultimate)
+## Championships (world / Road to Beijing 27; Birmingham & Ultimate archived)
 - `data/championships.json` drives everything: presentation strings (`short_label`,
   `scope_label`, `rank_label`), qualification (`quota`, `max_per_country` — explicit `null`
-  = no cap), and byes (`defending_champion`, or an `auto_invites` list of wildcards).
-  The UI tabs and all qualification wording are meta-driven from `/api/meta` — don't
-  hardcode a championship key in `App.jsx`.
-- **`road_to_ultimate` shares the world list**: its `data_source: "world"` makes
-  `fetch_championship` delegate (same cache key, no extra scraping, no extra seed files;
-  `refresh_seed` skips it). It's `contested_events_only`: events absent from its `events`
-  dict (10000m, both steeples) get the `not_contested_note` landing panel in the UI, and
-  `qualify=True` for them is a 400.
-- **Ultimate wildcards need a manual update after the 2026 DL Final (Sep 2026)**: add the
-  Brussels winners to `auto_invites` (source: WA's road-to feed
-  `getChampionshipQualifications`, competitionId 7212925 — labels like "Olympic Champion").
+  = no cap, per-event `entry_standard`), byes (`defending_champion`, or an `auto_invites`
+  list of wildcards) and the explainer strings (`qualification_note`, `entry_standard_rules`,
+  `quota_source`). The UI tabs and all qualification wording are meta-driven from
+  `/api/meta` — don't hardcode a championship key in `App.jsx` (the default tab is the first
+  one with `has_qualification`; the console's default time is that tab's standard).
+- **`archived: true`** (Birmingham, Ultimate) hides a finished championship from meta, the
+  bundle, the parity vectors and the weekly refresh, but keeps its config loadable so the
+  engine/tests still work. Deleting an archived block + its seed files is safe once nothing
+  references it.
+- **`road_to_beijing` shares the world list**: its `data_source: "world"` makes
+  `fetch_championship` delegate (same cache key, no extra scraping; `refresh_seed` skips the
+  list but refreshes its feed). Every event is contested. Facts: WA "Qualification System and
+  Entry Standards – Beijing 2027" (May 2026, PDF) — target fields 56/56/42/27/36, 3 per
+  country (4 with a wildcard), window 23 Aug 2026 – 22 Aug 2027 (18 months for the 10,000m),
+  wildcards = defending World Champion, 2026 Ultimate Championship winner, 2027 Diamond
+  League winner. Area champions (a conditional route) are NOT modelled.
+- **The Beijing qualification is feed-driven** (`feed.py`): the `qualification_feed` block
+  (WA competition 7216591 + WA event ids) points at `getChampionshipQualifications`, the data
+  behind WA's own "Road to Beijing 27" page. `refresh_seed` snapshots it weekly into
+  `data/cache_seed/feed__road_to_beijing__*.json`; `feed.event_qualification` overlays on
+  the JSON config: **quota** (`entryNumber`), **entry_standard** (+ `alt_entry_standards`
+  for the mile / 5km / 10km road), **qualification_window**, **auto_invites** (the byes WA
+  labels — today only "Defending World Champion") and **standard_achievers** (everyone WA
+  marks "Qualified by Entry Standard", with the mark). `build_static` bakes the *resolved*
+  config into `engine.json`, so both engines read identical numbers. `tests/test_feed.py`
+  guards the committed snapshots against drifting from the JSON (quota / standard / window /
+  first bye) — if WA changes a standard, update both.
+- **Hand-maintained wildcards** carry `"source": "manual"`: the six 2026 Ultimate winners
+  (WA's feed doesn't label them yet; the merge keeps them alongside the feed's byes, deduped
+  by name). **To do after the 2027 Diamond League final (Sep 2027): add the winners** with
+  reason "2027 Diamond League winner". Also check the one-wildcard-per-country rule by hand
+  (`test_road_to_beijing_config_matches_the_published_system` asserts no two byes share a
+  nation). If WA's feed starts labelling Ultimate/DL winners, drop the manual entries.
+
+## Entry standards (World Championships)
+- Field model (`qualify.py` / `qualify.js`): wildcards → **entry-standard achievers** →
+  ranking fill of the remaining quota. Standard achievers count toward the 3-per-country cap
+  (a 4th from one country is `blocked`), are not capped by the quota (WA: ties for the last
+  standard place all qualify), and a wildcard holder in the list stays a wildcard. The
+  `cutoff_score` is the last *ranking* qualifier; slots carry `reason` ("entry standard" /
+  "ranking" / the wildcard label) and the field reports `standard_places` / `ranking_places`.
+- The what-if (`whatif.py:_entry_standard_check`, mirrored in `whatif.js`) tests the mark
+  against the standard only when it can count: main event (or an alt event whose
+  `standard_event` matches a listed alternative — `events.json` tags the mile and 10km road;
+  indoor never counts), inside the qualification window (`as_of`), Category **C or above**.
+  `qualification.entry_standard` = {standard, gap_seconds (signed, hundredths — computed as
+  `round(s*100)` differences so both engines agree), meets, note}; `route_old/new` ∈ wildcard
+  / standard / ranking / blocked_country_cap / out.
+- **No feed snapshot ⇒ `standard_achievers_known: false`** and the field is modelled as if
+  nobody had the standard; the UI says "who has it: unknown" instead of pretending. Don't
+  silently default the list to empty anywhere else.
+- Reverse solver rows carry `kind` ("standard" = the exact time, no `~`; "score" = solved
+  from ranking scores). `TargetRows` renders both.
+- The rolling world list is *not* WA's qualification-period ranking: WA's Road-to feed only
+  counts results since 23 Aug 2026, so early in the window its "In World Rankings quota" list
+  is short. The engine's `qualification_window=True` (fixed window) exists for that; the UI
+  doesn't expose it yet.
 
 ## Scoring tables & similar-event what-ifs
 - **`data/scoring_tables/*.csv` are generated, not hand-made.** `python -m scripts.build_scoring_tables`
@@ -102,12 +153,18 @@ without that one line — name derives from the slug, country rides along from t
 - **Continental-championship results are window-exempt, not undisplaceable.** In
   `ranking.py:select_counting`, a previous European/area result survives the date window but a
   better score still displaces it. Don't reinstate force-keeping.
-- **`fetch.py`, `profile.py`, `graphql.py` are network-only and the riskiest code.** Two
-  production bugs came from refactoring them blind (a dropped `datetime` import; a wrong slug).
-  They're now covered by **no-network mock tests** (`tests/test_fetch.py`,
-  `tests/test_profile_fetch.py`) — keep/extend those when touching this layer.
+- **`fetch.py`, `profile.py`, `graphql.py`, `feed.py` are network-only and the riskiest code.**
+  Two production bugs came from refactoring them blind (a dropped `datetime` import; a wrong
+  slug). They're now covered by **no-network mock tests** (`tests/test_fetch.py`,
+  `tests/test_profile_fetch.py`, `tests/test_feed.py`) — keep/extend those when touching this
+  layer. Feed rows carry a slug spelled differently from the ranking rows; `feed.athlete_key`
+  joins on the trailing WA athlete id when you need to match them.
 - **The WA-returned set is already the counting set** (≤ best_n). Baseline `ranking_score` must
   equal WA's published score — verify with a recompute spot-check after selection changes.
+  Known open gap (seed 2026-09-16): 5 of 1000 world-list athletes recompute exactly **10
+  points below** WA's published score (Wanyonyi, Hodgkinson, Kerr, Wiley, Ngetich) — likely a
+  rule the engine doesn't know (a championship bonus?), not rounding. Unresolved; not caused
+  by the Beijing work.
 
 ## Conventions
 - **Palette lives in `web/src/theme.js`** ("WA Editorial": white surfaces, cool ink, WA-red
@@ -120,10 +177,12 @@ without that one line — name derives from the slug, country rides along from t
 - Keep changes small and commit per logical change; only push when asked (push to main = deploy).
 
 ## Map
-Python engine (build time): `whatif.py` (`what_if`, `required_targets`) → `ranking.py` (best-N
-selection), `scoring.py` (time↔score), `qualify.py` (quota + 3-per-country cap + champion bye),
-`fetch.py`/`profile.py`/`graphql.py` (data), `config.py`/`cache.py` (loading); `api.py` (local
-FastAPI, shapes contract); `scripts/build_static.py` (bundle + golden vectors). Browser engine
+Python engine (build time): `whatif.py` (`what_if`, `required_targets`, entry-standard check)
+→ `ranking.py` (best-N selection), `scoring.py` (time↔score), `qualify.py` (wildcards +
+standard achievers + 3-per-country cap + quota), `feed.py` (WA 'road to' feed → quota /
+standard / byes / standard achievers), `fetch.py`/`profile.py`/`graphql.py` (data),
+`config.py`/`cache.py` (loading); `api.py` (local FastAPI, shapes contract);
+`scripts/build_static.py` (bundle + golden vectors). Browser engine
 (`web/src/engine/`): `whatif.js`/`ranking.js`/`scoring.js`/`qualify.js` mirror the Python file
 for file; `profile.js`/`graphql.js` (live WA calls), `data.js` (bundle loading),
 `parity.test.mjs` (the gate). Frontend: `App.jsx` (everything), `parse.js` (NL query +

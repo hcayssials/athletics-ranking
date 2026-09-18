@@ -112,3 +112,98 @@ def test_main_event_entry_has_no_similar_note(monkeypatch):
     r = what_if("5000m_men", "Test Runner", "12:50.0", category="DF", place=1, verbose=False)
     assert r["hypothetical_event"]["is_main"] is True
     assert r["similar_event_note"] is None
+
+
+def _stub_1500_list(monkeypatch, achievers):
+    """A 1500m_men world list (3 athletes) + a stubbed Beijing feed overlay."""
+    from datetime import date
+    from wa_ranking import feed, whatif
+    def ath(name, country, score, rank):
+        return {"name": name, "country": country, "ranking_score": score, "rank": rank,
+                "performances": [_perf(score, "1500", "3:33.00") for _ in range(5)]}
+    data = {"rank_date": "2026-09-15", "athletes": [
+        ath("Top RUNNER", "KEN", 1400, 1), ath("Mid RUNNER", "GBR", 1300, 2),
+        ath("Low RUNNER", "FRA", 1200, 3)]}
+    monkeypatch.setattr(whatif.fetch, "fetch_championship", lambda *a, **k: data)
+    snap = {"quota": 4, "entry_standard": "3:30.00",
+            "alt_entry_standards": [{"event": "Mile", "entry_standard": "3:50.00"}],
+            "window": {"start": "2026-08-23", "end": "2027-08-22"},
+            "auto_invites": [{"name": "Isaac NADER", "country": "POR", "reason": "Defending World Champion"}],
+            "standard_achievers": achievers, "fetched": "2026-09-18T06:00:00"}
+    monkeypatch.setattr(feed, "read_feed", lambda *a, **k: snap)
+    return date(2026, 9, 18)
+
+
+def test_beijing_standard_route_and_gap(monkeypatch):
+    from wa_ranking.whatif import what_if
+    as_of = _stub_1500_list(monkeypatch, achievers=[])
+    # Quota 4 = Nader (bye) + Kerr (manual bye, config) + 2 ranking places -> Low is out...
+    r = what_if("1500m_men", "Low RUNNER", "3:31.00", category="B", place=1,
+                championship="road_to_beijing", as_of=as_of, qualify=True, verbose=False)
+    q = r["qualification"]
+    assert q["quota"] == 4 and q["max_per_country"] == 3
+    assert [i["name"] for i in q["auto_invites"]] == ["Isaac NADER", "Josh KERR"]
+    es = q["entry_standard"]
+    assert es["standard"] == "3:30.00" and es["meets"] is False and es["gap_seconds"] == 1.0
+    assert "1.00s short" in es["note"]
+    assert q["route_new"] == "out" and q["standard_achievers_known"] is True
+    # ...but on the standard the athlete is in by that route, whatever the ranking says.
+    r = what_if("1500m_men", "Low RUNNER", "3:29.80", category="B", place=1,
+                championship="road_to_beijing", as_of=as_of, qualify=True, verbose=False)
+    q = r["qualification"]
+    assert q["entry_standard"]["meets"] is True and q["entry_standard"]["gap_seconds"] == -0.2
+    assert q["route_old"] == "out" and q["route_new"] == "standard"
+    assert q["status_new"] == "qualified" and q["standard_places"] == 1
+    assert q["ranking_places"] == 1                          # 4 - 2 byes - 1 standard
+    # Reverse solver leads with the standard row (exact time, not an estimate).
+    first = r["what_would_it_take"]["targets"][0]
+    assert first["kind"] == "standard" and first["time"] == "3:30.00" and first["status"] == "reachable"
+
+
+def test_beijing_standard_validity_rules(monkeypatch):
+    from wa_ranking.whatif import what_if
+    as_of = _stub_1500_list(monkeypatch, achievers=[])
+    run = lambda **kw: what_if("1500m_men", "Low RUNNER", kw.pop("time", "3:29.00"),
+                               championship="road_to_beijing", as_of=as_of, qualify=True,
+                               verbose=False, **kw)["qualification"]["entry_standard"]
+    d = run(category="D", place=1)                         # too low a category
+    assert d["meets_mark"] and not d["valid_category"] and not d["meets"]
+    i = run(sub_event="1500m_i", category="GW", place=1)   # indoor never counts
+    assert i["indoor_invalid"] and not i["meets"]
+    m = run(sub_event="mile", time="3:49.00", category="GW", place=1)   # mile alternative
+    assert m["standard"] == "3:50.00" and m["standard_event"] == "Mile" and m["meets"]
+    two = run(sub_event="2000m", time="4:50.00", category="GW", place=1)  # no alt standard
+    assert two["event_valid"] is False and not two["meets"]
+    from datetime import date
+    late = what_if("1500m_men", "Low RUNNER", "3:29.00", championship="road_to_beijing",
+                   as_of=date(2027, 9, 1), qualify=True, verbose=False)["qualification"]["entry_standard"]
+    assert late["inside_window"] is False and not late["meets"]
+
+
+def test_beijing_known_achievers_squeeze_the_ranking_fill(monkeypatch):
+    from wa_ranking.whatif import required_targets, what_if
+    as_of = _stub_1500_list(monkeypatch, achievers=[
+        {"name": "Low RUNNER", "country": "FRA", "mark": "3:29.50"},
+        {"name": "Off LIST", "country": "USA", "mark": "3:29.90"}])
+    r = what_if("1500m_men", "Mid RUNNER", "3:33.00", category="B", place=1,
+                championship="road_to_beijing", as_of=as_of, qualify=True, verbose=False)
+    q = r["qualification"]
+    # 4 places: Nader, Kerr, Low (standard), Off LIST (standard) -> nothing left for the ranking.
+    assert q["standard_places"] == 2 and q["ranking_places"] == 0
+    assert q["route_new"] == "out" and q["cutoff_score"] is None
+    assert q["standard_achievers_count"] == 2
+    r = required_targets("1500m_men", "Low RUNNER", championship="road_to_beijing")
+    assert r["targets"][0]["kind"] == "standard" and r["targets"][0]["status"] == "met"
+
+
+def test_beijing_without_a_feed_snapshot_says_achievers_unknown(monkeypatch):
+    from datetime import date
+    from wa_ranking import feed, whatif
+    from wa_ranking.whatif import what_if
+    _stub_1500_list(monkeypatch, achievers=[])
+    monkeypatch.setattr(feed, "read_feed", lambda *a, **k: None)
+    r = what_if("1500m_men", "Low RUNNER", "3:31.00", championship="road_to_beijing",
+                as_of=date(2026, 9, 18), qualify=True, verbose=False)
+    q = r["qualification"]
+    assert q["quota"] == 56 and q["standard_achievers_known"] is False
+    assert q["qualification_source"] == "config" and q["entry_standard"]["standard"] == "3:30.00"

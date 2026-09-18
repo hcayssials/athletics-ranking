@@ -1,0 +1,87 @@
+{
+ "_fetched_at": 1789765254.124508,
+ "_key": "feed__road_to_beijing__5000m_men",
+ "data": {
+  "championship": "road_to_beijing",
+  "event": "5000m_men",
+  "competition_id": 7216591,
+  "event_id": 10229609,
+  "fetched": "2026-09-18T17:00:54",
+  "quota": 42,
+  "discipline": "Men's 5000 Metres",
+  "entry_standard": "12:50.00",
+  "alt_entry_standards": [
+   {
+    "event": "5 km Road",
+    "entry_standard": "13:01.00"
+   }
+  ],
+  "max_per_country": 3,
+  "window": {
+   "start": "2026-08-23",
+   "end": "2027-08-22"
+  },
+  "rank_date": "2027-08-22",
+  "counts": {
+   "entry_standard": 7,
+   "world_rankings": 13
+  },
+  "auto_invites": [
+   {
+    "name": "Cole HOCKER",
+    "country": "USA",
+    "reason": "Defending World Champion"
+   }
+  ],
+  "standard_achievers": [
+   {
+    "name": "Birhanu BALEW",
+    "country": "BRN",
+    "mark": "12:45.70",
+    "date": "2026-09-05",
+    "venue": "Boudewijnstadion, Bruxelles (BEL)",
+    "slug": "bahrain/birhanu-balew-14695983"
+   },
+   {
+    "name": "Egide NTAKARUTIMANA",
+    "country": "BDI",
+    "mark": "12:46.73",
+    "date": "2026-09-05",
+    "venue": "Boudewijnstadion, Bruxelles (BEL)",
+    "slug": "burundi/egide-ntakarutimana-14987250"
+   },
+   {
+    "name": "Cornelius KEMBOI",
+    "country": "KEN",
+    "mark": "12:47.29",
+    "date": "2026-09-05",
+    "venue": "Boudewijnstadion, Bruxelles (BEL)",
+    "slug": "kenya/cornelius-kemboi-14894347"
+   },
+   {
+    "name": "Biniam MEHARY",
+    "country": "ETH",
+    "mark": "12:47.78",
+    "date": "2026-09-05",
+    "venue": "Boudewijnstadion, Bruxelles (BEL)",
+    "slug": "ethiopia/biniam-mehary-15118094"
+   },
+   {
+    "name": "Graham BLANKS",
+    "country": "USA",
+    "mark": "12:47.98",
+    "date": "2026-09-05",
+    "venue": "Boudewijnstadion, Bruxelles (BEL)",
+    "slug": "united-states/graham-blanks-14884807"
+   },
+   {
+    "name": "Nico YOUNG",
+    "country": "USA",
+    "mark": "12:48.12",
+    "date": "2026-09-05",
+    "venue": "Boudewijnstadion, Bruxelles (BEL)",
+    "slug": "united-states/nico-young-14882782"
+   }
+  ]
+ }
+}

@@ -5,6 +5,7 @@ Run locally with:  uvicorn wa_ranking.api:app --reload
 """
 from __future__ import annotations
 
+import logging
 import os
 import threading
 from contextlib import asynccontextmanager
@@ -17,16 +18,16 @@ from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
-from . import fetch, graphql
-from .config import (championship_event_config, load_championship, load_championships,
-                     load_event, load_events, load_placing_scores)
+from . import feed, fetch, graphql
+from .config import (load_championship, load_championships, load_event, load_events,
+                     load_placing_scores)
 from .profile import _main_discipline_name
 from .whatif import required_targets, what_if
 
 # On boot, warm the cache for common (championship, event) lists so the first real request
 # isn't slow (~40s/event). Cache-aware: fetch_championship is a no-op when data is fresh.
 # Override with PREWARM="champ:event,champ:event" or disable with PREWARM="off".
-_PREWARM_DEFAULT = "road_to_birmingham"  # all events under this championship
+_PREWARM_DEFAULT = "world"  # all events under this championship (Beijing shares the world list)
 
 
 def _prewarm_pairs() -> list[tuple[str, str]]:
@@ -75,8 +76,10 @@ async def _http_exc(request, exc: HTTPException):
 @app.exception_handler(Exception)
 async def _unhandled_exc(request, exc: Exception):
     # Any uncaught error (e.g. an upstream WA fetch failing) still returns JSON the UI can
-    # read, instead of FastAPI's plain-text "Internal Server Error" page.
-    return JSONResponse(status_code=500, content={"error": f"{type(exc).__name__}: {exc}"})
+    # read, instead of FastAPI's plain-text "Internal Server Error" page. Keep the exception
+    # detail in the server log; don't leak type/message (or a stack-adjacent string) to clients.
+    logging.exception("Unhandled error on %s %s", request.method, request.url.path)
+    return JSONResponse(status_code=500, content={"error": "Internal server error."})
 
 
 @app.get("/api/health")
@@ -106,7 +109,8 @@ def meta():
         ],
         # Per-championship presentation + qualification info so the UI stays config-driven:
         # not_contested lists events absent from an invitational's programme (the UI shows
-        # not_contested_note for them instead of a ranking list).
+        # not_contested_note for them instead of a ranking list). Archived (finished)
+        # championships are left out — the site only shows live ones.
         "championships": [
             {"key": k, "label": c.get("label"),
              "short_label": c.get("short_label", c.get("label")),
@@ -117,8 +121,15 @@ def meta():
              "not_contested": ([ek for ek in events if ek not in (c.get("events") or {})]
                                if c.get("contested_events_only") else []),
              "not_contested_note": c.get("not_contested_note"),
-             "qualification_footnote": c.get("qualification_footnote")}
-            for k, c in champs.items()
+             "qualification_footnote": c.get("qualification_footnote"),
+             # Entry-standard route (World Championships): per-event standards for the
+             # console's default time, plus the wording the UI shows for the rules.
+             "qualification_note": c.get("qualification_note"),
+             "entry_standard_rules": c.get("entry_standard_rules"),
+             "qualification_window": c.get("qualification_window"),
+             "standards": {ek: e["entry_standard"] for ek, e in (c.get("events") or {}).items()
+                           if e.get("entry_standard")}}
+            for k, c in champs.items() if not c.get("archived")
         ],
         "categories": cats,
     }
@@ -131,7 +142,9 @@ def rankings(championship: str, event: str, limit: int | None = None):
         data = fetch.fetch_championship(championship, event, limit=limit)
     except (ValueError, RuntimeError) as e:
         raise HTTPException(status_code=400, detail=str(e))
-    ce = championship_event_config(championship, event)
+    # Feed-overlaid where WA publishes a 'road to' feed (quota, entry standard, byes, who has
+    # achieved the standard), else straight from championships.json.
+    ce = feed.event_qualification(championship, event)
     return {
         "championship": championship,
         "event": event,
@@ -139,6 +152,11 @@ def rankings(championship: str, event: str, limit: int | None = None):
         "quota": ce.get("quota"),
         "defending_champion": ce.get("defending_champion"),
         "auto_invites": ce.get("auto_invites"),
+        "entry_standard": ce.get("entry_standard"),
+        "alt_entry_standards": ce.get("alt_entry_standards"),
+        "standard_achievers": ce.get("standard_achievers"),   # None = unknown (no feed)
+        "qualification_source": ce.get("qualification_source"),
+        "feed_fetched": ce.get("feed_fetched"),
         "max_per_country": load_championship(championship).get("max_per_country"),
         "athletes": [{f: a.get(f) for f in _RANKING_FIELDS} for a in data["athletes"]],
     }
@@ -213,7 +231,7 @@ class WhatIfRequest(BaseModel):
     time: str
     category: str = "GW"
     place: int = 2
-    championship: str = "road_to_birmingham"
+    championship: str = "road_to_beijing"
     as_of: str | None = None
     qualify: bool = False
     qualification_window: bool = False

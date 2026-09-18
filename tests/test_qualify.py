@@ -90,3 +90,57 @@ def test_build_ranked_override_resorts():
     athletes = [a("X", "GBR", 1300), a("Y", "FRA", 1200)]
     ranked = build_ranked(athletes, override_name="Y", override_score=1400)
     assert [r["name"] for r in ranked] == ["Y", "X"]   # Y jumps to the top
+
+
+def test_standard_achievers_take_places_before_the_ranking_fill():
+    # Beijing style: Dubois (FRA, ranked last) has the entry standard -> in before Coscoran.
+    achievers = [{"name": "Dubois", "country": "FRA", "mark": "3:29.90"}]
+    field = qualifying_field(RANKED, quota=4, max_per_country=None, standard_achievers=achievers)
+    assert [(s["name"], s["reason"]) for s in field["slots"]] == [
+        ("Dubois", "entry standard"), ("Nader", "ranking"), ("Habz", "ranking"), ("Wightman", "ranking")]
+    assert field["slots"][0]["score"] == 1200 and field["slots"][0]["mark"] == "3:29.90"
+    assert field["standard_places"] == 1 and field["ranking_places"] == 3
+    assert field["cutoff_score"] == 1320                   # last *ranking* qualifier
+    assert athlete_status(field, "Dubois")[1]["reason"] == "entry standard"
+
+
+def test_standard_achiever_off_the_list_still_consumes_a_place():
+    achievers = [{"name": "Unranked FAST", "country": "USA", "mark": "3:28.00"}]
+    field = qualifying_field(RANKED[:3], quota=3, max_per_country=None, standard_achievers=achievers)
+    assert [s["name"] for s in field["slots"]] == ["Unranked FAST", "Nader", "Habz"]
+    assert field["slots"][0]["score"] is None
+
+
+def test_standard_achievers_count_toward_the_country_cap():
+    # Three FRA standard achievers fill FRA's 3; the 4th (Habz, ranked 2nd!) is capped out.
+    achievers = [{"name": "Mornet", "country": "FRA"}, {"name": "Szot", "country": "FRA"},
+                 {"name": "Dubois", "country": "FRA"}]
+    field = qualifying_field(RANKED, quota=7, max_per_country=3, standard_achievers=achievers)
+    names = [s["name"] for s in field["slots"]]
+    assert names[:3] == ["Mornet", "Szot", "Dubois"] and "Habz" not in names
+    assert athlete_status(field, "Habz")[0] == "blocked_country_cap"
+    assert athlete_status(field, "Habz")[1]["route"] == "ranking"
+    assert field["counts"]["FRA"] == 3
+    # A 4th standard achiever from FRA is blocked too (route says by which path).
+    field = qualifying_field(RANKED, quota=7, max_per_country=3,
+                             standard_achievers=achievers + [{"name": "Habz", "country": "FRA"}])
+    assert athlete_status(field, "Habz")[0] == "blocked_country_cap"
+    assert athlete_status(field, "Habz")[1]["route"] == "entry standard"
+
+
+def test_wildcard_wins_over_standard_and_duplicates_are_ignored():
+    invites = [{"name": "Nader", "country": "POR", "reason": "Defending World Champion"}]
+    achievers = [{"name": "Nader", "country": "POR"}, {"name": "Habz", "country": "FRA"},
+                 {"name": "Habz", "country": "FRA"}]
+    field = qualifying_field(RANKED, quota=3, auto_invites=invites, standard_achievers=achievers)
+    assert [(s["name"], s["reason"]) for s in field["slots"]] == [
+        ("Nader", "Defending World Champion"), ("Habz", "entry standard"), ("Wightman", "ranking")]
+    assert field["slots"][0]["score"] == 1368              # wildcard's ranking score rides along
+
+
+def test_standard_achievers_are_not_capped_by_the_quota():
+    # WA: ties for the last standard place all qualify — they squeeze the ranking fill to 0.
+    achievers = [{"name": f"S{i}", "country": "XX{}".format(i)} for i in range(4)]
+    field = qualifying_field(RANKED, quota=3, max_per_country=None, standard_achievers=achievers)
+    assert field["standard_places"] == 4 and field["ranking_places"] == 0
+    assert field["cutoff_score"] is None
