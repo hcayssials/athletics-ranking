@@ -5,6 +5,7 @@ Run locally with:  uvicorn wa_ranking.api:app --reload
 """
 from __future__ import annotations
 
+import logging
 import os
 import threading
 from contextlib import asynccontextmanager
@@ -75,8 +76,10 @@ async def _http_exc(request, exc: HTTPException):
 @app.exception_handler(Exception)
 async def _unhandled_exc(request, exc: Exception):
     # Any uncaught error (e.g. an upstream WA fetch failing) still returns JSON the UI can
-    # read, instead of FastAPI's plain-text "Internal Server Error" page.
-    return JSONResponse(status_code=500, content={"error": f"{type(exc).__name__}: {exc}"})
+    # read, instead of FastAPI's plain-text "Internal Server Error" page. Keep the exception
+    # detail in the server log; don't leak type/message (or a stack-adjacent string) to clients.
+    logging.exception("Unhandled error on %s %s", request.method, request.url.path)
+    return JSONResponse(status_code=500, content={"error": "Internal server error."})
 
 
 @app.get("/api/health")
