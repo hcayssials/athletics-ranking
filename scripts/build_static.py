@@ -224,6 +224,32 @@ def build_vectors() -> None:
                                      "athlete": ath["name"], "place": 1, "category": "GW"})
                     add("required", {"event": event, "championship": champ,
                                      "athlete": ath["name"], "place": 3, "category": "B"})
+                    # Entry-standard route (Beijing): exactly on the standard, a hair off it,
+                    # a category too low to count, and an indoor mark that never counts.
+                    std = feed.event_qualification(champ, event).get("entry_standard")
+                    if quota_here and std:
+                        for t, extra in ((std, {}),
+                                         (format_seconds(parse_time(std) + 0.01), {}),
+                                         (std, {"category": "D", "place": 1})):
+                            add("whatif", {"event": event, "championship": champ,
+                                           "athlete": ath["name"], "time": t,
+                                           "as_of": as_of.isoformat(), "qualify": True, **extra})
+                        ind = next((a for a in ev_cfg.get("alt_events", ()) if a.get("indoor")), None)
+                        if ind:
+                            add("whatif", {"event": event, "championship": champ,
+                                           "athlete": ath["name"], "time": std,
+                                           "sub_event": ind["key"],
+                                           "as_of": as_of.isoformat(), "qualify": True})
+                        # An athlete WA already lists with the standard (if on our list).
+                        listed = {a["name"].upper() for a in data["athletes"]}
+                        done = next((s for s in feed.event_qualification(champ, event)
+                                     .get("standard_achievers", []) if s["name"].upper() in listed), None)
+                        if done:
+                            add("whatif", {"event": event, "championship": champ,
+                                           "athlete": done["name"], "time": std,
+                                           "as_of": as_of.isoformat(), "qualify": True})
+                            add("required", {"event": event, "championship": champ,
+                                             "athlete": done["name"], "place": 1, "category": "GW"})
                     # Every similar/indoor input event once.
                     for alt in ev_cfg.get("alt_events", ()):
                         add("whatif", {"event": event, "championship": champ,

@@ -64,13 +64,13 @@ eq(looksLikeProfile(""), false, "empty not profile");
 
 // --- real data (static bundle): bestPerf + matchAthlete ---
 const main = async () => {
-  const rk = readJson("rankings/road_to_birmingham__1500m_men.json");
+  const rk = readJson("rankings/road_to_beijing__1500m_men.json");
   const list = rk.athletes;
   eq(matchAthlete("what if WIGHTMAN wins", list), "Jake WIGHTMAN", "match surname");
   eq(matchAthlete("how about nader", list), "Isaac NADER", "match lowercase surname");
   eq(matchAthlete("nobody here", list), null, "match miss");
 
-  const ath = findAthlete(readJson("lists/road_to_birmingham__1500m_men.json"), "Jake WIGHTMAN");
+  const ath = findAthlete(readJson("lists/world__1500m_men.json"), "Jake WIGHTMAN");
   const best = bestPerf(ath, "1500m_men");
   // Data refreshes weekly, so assert the *rule*, not a mark: bestPerf must return the
   // main-event (code 1500) performance with the highest result score.
