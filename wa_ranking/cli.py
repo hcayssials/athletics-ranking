@@ -18,7 +18,7 @@ from . import fetch
 from .config import load_championships, load_events
 from .whatif import what_if
 
-DEFAULT_CHAMP = "road_to_birmingham"
+DEFAULT_CHAMP = "road_to_beijing"
 DEFAULT_EVENT = "1500m_men"
 
 
@@ -26,7 +26,7 @@ def _add_common(p: argparse.ArgumentParser) -> None:
     p.add_argument("--event", default=DEFAULT_EVENT,
                    help=f"Event key, e.g. 800m_women (default: {DEFAULT_EVENT})")
     p.add_argument("--championship", default=DEFAULT_CHAMP,
-                   help=f"world | road_to_birmingham (default: {DEFAULT_CHAMP})")
+                   help=f"world | road_to_beijing | ... (default: {DEFAULT_CHAMP})")
 
 
 def cmd_whatif(args) -> int:
@@ -62,7 +62,8 @@ def cmd_list(args) -> int:
 
 def cmd_champs(args) -> int:
     for key, c in load_championships().items():
-        print(f"  {key}  ->  {c['label']}")
+        tag = "  [archived]" if c.get("archived") else ""
+        print(f"  {key}  ->  {c['label']}{tag}")
     return 0
 
 

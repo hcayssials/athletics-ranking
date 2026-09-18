@@ -69,8 +69,53 @@ def test_road_to_birmingham_has_quota_and_champion_per_event():
 
 def test_championships_are_region_level():
     champs = load_championships()
-    assert {"world", "road_to_birmingham", "road_to_ultimate"} <= set(champs)
+    assert {"world", "road_to_beijing", "road_to_birmingham", "road_to_ultimate"} <= set(champs)
     assert "rankings_url_template" in champs["world"]
+    # The two finished championships are archived (hidden from the site, config kept).
+    assert champs["road_to_birmingham"]["archived"] is True
+    assert champs["road_to_ultimate"]["archived"] is True
+    assert "qualification_footnote" not in champs["road_to_ultimate"]   # stale DL-Final note gone
+    assert not champs["road_to_beijing"].get("archived")
+
+
+BEIJING_STANDARDS = {
+    "800m_men": "1:43.00", "800m_women": "1:57.50", "1500m_men": "3:30.00", "1500m_women": "3:58.00",
+    "5000m_men": "12:50.00", "5000m_women": "14:36.00", "10000m_men": "26:48.00",
+    "10000m_women": "30:40.00", "3000mSC_men": "8:08.00", "3000mSC_women": "9:06.50",
+}
+BEIJING_QUOTA = {"800m": 56, "1500m": 56, "5000m": 42, "10000m": 27, "3000mSC": 36}
+
+
+def test_road_to_beijing_config_matches_the_published_system():
+    """WA 'Qualification System and Entry Standards - Beijing 2027' (May 2026)."""
+    champ = load_championships()["road_to_beijing"]
+    assert champ["data_source"] == "world"            # shares the world ranking list/cache
+    assert champ["max_per_country"] == 3
+    assert champ["qualification_window"] == {"start": "2026-08-23", "end": "2027-08-22"}
+    assert champ["qualification_feed"]["competition_id"] == 7216591
+    assert set(champ["qualification_feed"]["events"]) == set(ALL_EVENTS)
+    assert set(champ["events"]) == set(ALL_EVENTS)    # every event is contested
+    for ek in ALL_EVENTS:
+        cfg = championship_event_config("road_to_beijing", ek)
+        assert cfg["quota"] == BEIJING_QUOTA[ek.split("_")[0]]
+        assert cfg["entry_standard"] == BEIJING_STANDARDS[ek]
+        assert cfg["auto_invites"][0]["reason"] == "Defending World Champion"
+        for inv in cfg["auto_invites"]:
+            assert {"name", "country", "reason"} <= set(inv)
+        # One wildcard per country per event (WA rule) — never two byes from one nation.
+        countries = [inv["country"] for inv in cfg["auto_invites"]]
+        assert len(countries) == len(set(countries)), ek
+        if ek.startswith("10000m"):
+            assert cfg["qualification_window"] == {"start": "2026-02-23", "end": "2027-08-22"}
+        else:
+            assert "qualification_window" not in cfg
+    # Ultimate winners are wildcards (hand-maintained) only in the six contested events.
+    manual = {ek for ek in ALL_EVENTS
+              if any(i.get("source") == "manual" for i in championship_event_config("road_to_beijing", ek)["auto_invites"])}
+    assert manual == set(ULTIMATE_EVENTS)
+    # The events.json default time is the Beijing standard (console default).
+    for ek in ALL_EVENTS:
+        assert load_event(ek)["entry_standard"] == BEIJING_STANDARDS[ek]
 
 
 ULTIMATE_EVENTS = ["800m_men", "800m_women", "1500m_men", "1500m_women",

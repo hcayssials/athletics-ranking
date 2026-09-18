@@ -1,0 +1,82 @@
+{
+ "_fetched_at": 1789765252.149122,
+ "_key": "feed__road_to_beijing__800m_men",
+ "data": {
+  "championship": "road_to_beijing",
+  "event": "800m_men",
+  "competition_id": 7216591,
+  "event_id": 10229501,
+  "fetched": "2026-09-18T17:00:52",
+  "quota": 56,
+  "discipline": "Men's 800 Metres",
+  "entry_standard": "1:43.00",
+  "alt_entry_standards": [],
+  "max_per_country": 3,
+  "window": {
+   "start": "2026-08-23",
+   "end": "2027-08-22"
+  },
+  "rank_date": "2027-08-22",
+  "counts": {
+   "entry_standard": 7,
+   "world_rankings": 14
+  },
+  "auto_invites": [
+   {
+    "name": "Emmanuel WANYONYI",
+    "country": "KEN",
+    "reason": "Defending World Champion"
+   }
+  ],
+  "standard_achievers": [
+   {
+    "name": "Djamel SEDJATI",
+    "country": "ALG",
+    "mark": "1:41.83",
+    "date": "2026-08-27",
+    "venue": "Letzigrund, Zürich (SUI)",
+    "slug": "algeria/djamel-sedjati-14976579"
+   },
+   {
+    "name": "Marco AROP",
+    "country": "CAN",
+    "mark": "1:42.28",
+    "date": "2026-09-13",
+    "venue": "Nemzeti Atlétikai Központ, Budapest (HUN)",
+    "slug": "canada/marco-arop-14755875"
+   },
+   {
+    "name": "Brandon MILLER",
+    "country": "USA",
+    "mark": "1:42.54",
+    "date": "2026-09-13",
+    "venue": "Nemzeti Atlétikai Központ, Budapest (HUN)",
+    "slug": "united-states/brandon-miller-14939097"
+   },
+   {
+    "name": "Francesco PERNICI",
+    "country": "ITA",
+    "mark": "1:42.67",
+    "date": "2026-09-13",
+    "venue": "Nemzeti Atlétikai Központ, Budapest (HUN)",
+    "slug": "italy/francesco-pernici-14899530"
+   },
+   {
+    "name": "Mark ENGLISH",
+    "country": "IRL",
+    "mark": "1:42.78",
+    "date": "2026-09-13",
+    "venue": "Nemzeti Atlétikai Központ, Budapest (HUN)",
+    "slug": "ireland/mark-english-14377494"
+   },
+   {
+    "name": "Yanis MEZIANE",
+    "country": "FRA",
+    "mark": "1:42.78",
+    "date": "2026-09-13",
+    "venue": "Nemzeti Atlétikai Központ, Budapest (HUN)",
+    "slug": "france/yanis-meziane-14893694"
+   }
+  ]
+ }
+}

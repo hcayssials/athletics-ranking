@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "note": "Per-event ranking config from World Athletics Track & Field 2026 rules. best_n = performances averaged; main_event_min = how many must be the Main Event; main/similar event codes are WA disciplineCode values (main codes are used to enforce the minimum; similar codes are informational). window_months: 12 for 800/1500/5000, 18 for 10000. result_table is the time->result-score table; placing_event_group selects the placing table. entry_standard is the Birmingham 2026 European Champs standard.",
+    "note": "Per-event ranking config from World Athletics Track & Field 2026 rules. best_n = performances averaged; main_event_min = how many must be the Main Event; main/similar event codes are WA disciplineCode values (main codes are used to enforce the minimum; similar codes are informational). window_months: 12 for 800/1500/5000, 18 for 10000. result_table is the time->result-score table; placing_event_group selects the placing table. entry_standard is the Beijing 2027 World Championships standard (the console's default time; the per-championship value in championships.json is what the qualification engine uses). An alt_event's standard_event names the WA alternative entry standard it can satisfy (e.g. 'Mile', '10km Road'); indoor alternatives never count for a standard.",
     "event_path": {"800m": "800m", "1500m": "1500m", "5000m": "5000m", "10000m": "10000m"}
   },
 
@@ -10,7 +10,7 @@
     "similar_event_codes": ["600", "600sh", "800sh", "1000", "1000sh"],
     "best_n": 5, "main_event_min": 3, "window_months": 12,
     "result_table": "scoring_tables/800m_men.csv",
-    "placing_event_group": "standard", "entry_standard": "1:44.80",
+    "placing_event_group": "standard", "entry_standard": "1:43.00",
     "alt_events": [
       {"key": "1000m", "label": "1000m", "discipline_code": "1000", "result_table": "scoring_tables/1000m_men.csv"},
       {"key": "600m", "label": "600m", "discipline_code": "600", "result_table": "scoring_tables/600m_men.csv"},
@@ -23,7 +23,7 @@
     "similar_event_codes": ["600", "600sh", "800sh", "1000", "1000sh"],
     "best_n": 5, "main_event_min": 3, "window_months": 12,
     "result_table": "scoring_tables/800m_women.csv",
-    "placing_event_group": "standard", "entry_standard": "1:59.80",
+    "placing_event_group": "standard", "entry_standard": "1:57.50",
     "alt_events": [
       {"key": "1000m", "label": "1000m", "discipline_code": "1000", "result_table": "scoring_tables/1000m_women.csv"},
       {"key": "600m", "label": "600m", "discipline_code": "600", "result_table": "scoring_tables/600m_women.csv"},
@@ -37,9 +37,9 @@
     "similar_event_codes": ["1500sh", "MILE", "MILEsh", "2000", "2000sh", "1MR"],
     "best_n": 5, "main_event_min": 3, "window_months": 12,
     "result_table": "scoring_tables/1500m_men.csv",
-    "placing_event_group": "standard", "entry_standard": "3:33.50",
+    "placing_event_group": "standard", "entry_standard": "3:30.00",
     "alt_events": [
-      {"key": "mile", "label": "Mile", "discipline_code": "MILE", "result_table": "scoring_tables/Mile_men.csv"},
+      {"key": "mile", "label": "Mile", "discipline_code": "MILE", "result_table": "scoring_tables/Mile_men.csv", "standard_event": "Mile"},
       {"key": "2000m", "label": "2000m", "discipline_code": "2000", "result_table": "scoring_tables/2000m_men.csv"},
       {"key": "1500m_i", "label": "1500m (indoor)", "discipline_code": "1500sh", "result_table": "scoring_tables/1500m_men_indoor.csv", "indoor": true},
       {"key": "mile_i", "label": "Mile (indoor)", "discipline_code": "MILEsh", "result_table": "scoring_tables/Mile_men_indoor.csv", "indoor": true}
@@ -51,9 +51,9 @@
     "similar_event_codes": ["1500sh", "MILE", "MILEsh", "2000", "2000sh", "1MR"],
     "best_n": 5, "main_event_min": 3, "window_months": 12,
     "result_table": "scoring_tables/1500m_women.csv",
-    "placing_event_group": "standard", "entry_standard": "4:03.50",
+    "placing_event_group": "standard", "entry_standard": "3:58.00",
     "alt_events": [
-      {"key": "mile", "label": "Mile", "discipline_code": "MILE", "result_table": "scoring_tables/Mile_women.csv"},
+      {"key": "mile", "label": "Mile", "discipline_code": "MILE", "result_table": "scoring_tables/Mile_women.csv", "standard_event": "Mile"},
       {"key": "2000m", "label": "2000m", "discipline_code": "2000", "result_table": "scoring_tables/2000m_women.csv"},
       {"key": "1500m_i", "label": "1500m (indoor)", "discipline_code": "1500sh", "result_table": "scoring_tables/1500m_women_indoor.csv", "indoor": true},
       {"key": "mile_i", "label": "Mile (indoor)", "discipline_code": "MILEsh", "result_table": "scoring_tables/Mile_women_indoor.csv", "indoor": true}
@@ -66,7 +66,7 @@
     "similar_event_codes": ["3000", "3000sh", "2M", "2Msh", "5000sh", "5KR"],
     "best_n": 3, "main_event_min": 2, "window_months": 12,
     "result_table": "scoring_tables/5000m_men.csv",
-    "placing_event_group": "5000m", "entry_standard": "13:08.00",
+    "placing_event_group": "5000m", "entry_standard": "12:50.00",
     "alt_events": [
       {"key": "3000m", "label": "3000m", "discipline_code": "3000", "result_table": "scoring_tables/3000m_men.csv"},
       {"key": "3000m_i", "label": "3000m (indoor)", "discipline_code": "3000sh", "result_table": "scoring_tables/3000m_men_indoor.csv", "indoor": true},
@@ -79,7 +79,7 @@
     "similar_event_codes": ["3000", "3000sh", "2M", "2Msh", "5000sh", "5KR"],
     "best_n": 3, "main_event_min": 2, "window_months": 12,
     "result_table": "scoring_tables/5000m_women.csv",
-    "placing_event_group": "5000m", "entry_standard": "15:05.00",
+    "placing_event_group": "5000m", "entry_standard": "14:36.00",
     "alt_events": [
       {"key": "3000m", "label": "3000m", "discipline_code": "3000", "result_table": "scoring_tables/3000m_women.csv"},
       {"key": "3000m_i", "label": "3000m (indoor)", "discipline_code": "3000sh", "result_table": "scoring_tables/3000m_women_indoor.csv", "indoor": true},
@@ -93,9 +93,9 @@
     "similar_event_codes": ["10RR"],
     "best_n": 2, "main_event_min": 1, "window_months": 18,
     "result_table": "scoring_tables/10000m_men.csv",
-    "placing_event_group": "10000m", "entry_standard": "27:50.00",
+    "placing_event_group": "10000m", "entry_standard": "26:48.00",
     "alt_events": [
-      {"key": "10km", "label": "10km (road)", "discipline_code": "10RR", "result_table": "scoring_tables/10km_men.csv", "road": true}
+      {"key": "10km", "label": "10km (road)", "discipline_code": "10RR", "result_table": "scoring_tables/10km_men.csv", "road": true, "standard_event": "10km Road"}
     ]
   },
   "10000m_women": {
@@ -104,9 +104,9 @@
     "similar_event_codes": ["10RR"],
     "best_n": 2, "main_event_min": 1, "window_months": 18,
     "result_table": "scoring_tables/10000m_women.csv",
-    "placing_event_group": "10000m", "entry_standard": "32:00.00",
+    "placing_event_group": "10000m", "entry_standard": "30:40.00",
     "alt_events": [
-      {"key": "10km", "label": "10km (road)", "discipline_code": "10RR", "result_table": "scoring_tables/10km_women.csv", "road": true}
+      {"key": "10km", "label": "10km (road)", "discipline_code": "10RR", "result_table": "scoring_tables/10km_women.csv", "road": true, "standard_event": "10km Road"}
     ]
   },
 
@@ -117,7 +117,7 @@
     "main_event_codes": ["3KSC"], "similar_event_codes": ["2KSC"],
     "best_n": 3, "main_event_min": 2, "window_months": 12,
     "result_table": "scoring_tables/3000mSC_men.csv",
-    "placing_event_group": "5000m", "entry_standard": "8:20.00",
+    "placing_event_group": "5000m", "entry_standard": "8:08.00",
     "alt_events": [
       {"key": "2000msc", "label": "2000m SC", "discipline_code": "2KSC", "result_table": "scoring_tables/2000mSC_men.csv"}
     ]
@@ -129,7 +129,7 @@
     "main_event_codes": ["3KSC"], "similar_event_codes": ["2KSC"],
     "best_n": 3, "main_event_min": 2, "window_months": 12,
     "result_table": "scoring_tables/3000mSC_women.csv",
-    "placing_event_group": "5000m", "entry_standard": "9:28.00",
+    "placing_event_group": "5000m", "entry_standard": "9:06.50",
     "alt_events": [
       {"key": "2000msc", "label": "2000m SC", "discipline_code": "2KSC", "result_table": "scoring_tables/2000mSC_women.csv"}
     ]

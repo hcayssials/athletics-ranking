@@ -5,7 +5,12 @@ Emits into web/public/data/ (gitignored; Vite copies public/ into dist/):
 
   meta.json                    — exactly the /api/meta payload (App.jsx reads it unchanged)
   engine.json                  — config the browser engine needs: events, championships,
-                                 placing scores, decay table, WA GraphQL endpoint + key
+                                 placing scores, decay table, WA GraphQL endpoint + key.
+                                 Per-event qualification is baked in *resolved* (quota,
+                                 entry standard, byes and standard achievers from WA's
+                                 'road to' feed snapshot where one exists) so the browser
+                                 engine reads the same numbers the Python engine used for
+                                 the parity vectors. Archived championships are left out.
   rankings/{champ}__{event}.json — exactly the /api/rankings payload (or {"error": ...}
                                  for lists WA can't serve, e.g. men's steeplechase)
   lists/{champ}__{event}.json  — the full fetch_championship data (athletes incl.
@@ -30,11 +35,12 @@ Usage:
 from __future__ import annotations
 
 import json
+import shutil
 import sys
 from datetime import date
 from pathlib import Path
 
-from wa_ranking import fetch, graphql
+from wa_ranking import feed, fetch, graphql
 from wa_ranking.api import meta as api_meta, rankings as api_rankings
 from wa_ranking.config import (DATA_DIR, load_championships, load_events,
                                load_placing_scores, load_result_table, _load_json)
@@ -76,8 +82,24 @@ def _graphql_config() -> dict:
     return {"endpoint": graphql.ENDPOINT, "key": key}
 
 
+def _resolved_championships() -> dict:
+    """championships.json minus archived entries, with each event's qualification resolved
+    through feed.py. The browser has no cache to read a feed snapshot from, so the resolution
+    happens here, once, and both engines then work from identical numbers."""
+    champs = json.loads(json.dumps(load_championships()))  # deep copy; JSON in, JSON out
+    out = {}
+    for champ, cfg in champs.items():
+        if cfg.get("archived"):
+            continue
+        for event in list(cfg.get("events") or {}):
+            cfg["events"][event] = feed.event_qualification(champ, event)
+        out[champ] = cfg
+    return out
+
+
 def build_bundle() -> None:
-    events, champs = load_events(), load_championships()
+    events, champs = load_events(), _resolved_championships()
+    shutil.rmtree(OUT, ignore_errors=True)   # no stale files from a previous config (gitignored)
 
     _dump(OUT / "meta.json", api_meta())
     _dump(OUT / "engine.json", {
@@ -147,7 +169,8 @@ def _times_for(athlete: dict, event_cfg: dict) -> list[str]:
 
 def build_vectors() -> None:
     as_of = date.today()
-    events, champs = load_events(), load_championships()
+    events = load_events()
+    champs = {k: c for k, c in load_championships().items() if not c.get("archived")}
     vectors = []
 
     def add(kind: str, inputs: dict) -> None:

@@ -1,0 +1,47 @@
+{
+ "_fetched_at": 1789765255.351727,
+ "_key": "feed__road_to_beijing__10000m_men",
+ "data": {
+  "championship": "road_to_beijing",
+  "event": "10000m_men",
+  "competition_id": 7216591,
+  "event_id": 10229610,
+  "fetched": "2026-09-18T17:00:55",
+  "quota": 27,
+  "discipline": "Men's 10,000 Metres",
+  "entry_standard": "26:48.00",
+  "alt_entry_standards": [
+   {
+    "event": "10km Road",
+    "entry_standard": "27:00.00"
+   }
+  ],
+  "max_per_country": 3,
+  "window": {
+   "start": "2026-02-23",
+   "end": "2027-08-22"
+  },
+  "rank_date": "2027-08-22",
+  "counts": {
+   "entry_standard": 2,
+   "world_rankings": 25
+  },
+  "auto_invites": [
+   {
+    "name": "Jimmy GRESSIER",
+    "country": "FRA",
+    "reason": "Defending World Champion"
+   }
+  ],
+  "standard_achievers": [
+   {
+    "name": "Biniam MEHARY",
+    "country": "ETH",
+    "mark": "26:55",
+    "date": "2026-04-18",
+    "venue": "Laredo (ESP)",
+    "slug": "ethiopia/biniam-mehary-15118094"
+   }
+  ]
+ }
+}

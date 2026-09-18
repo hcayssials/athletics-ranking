@@ -1,0 +1,74 @@
+{
+ "_fetched_at": 1789765257.545622,
+ "_key": "feed__road_to_beijing__800m_women",
+ "data": {
+  "championship": "road_to_beijing",
+  "event": "800m_women",
+  "competition_id": 7216591,
+  "event_id": 10229512,
+  "fetched": "2026-09-18T17:00:57",
+  "quota": 56,
+  "discipline": "Women's 800 Metres",
+  "entry_standard": "1:57.50",
+  "alt_entry_standards": [],
+  "max_per_country": 3,
+  "window": {
+   "start": "2026-08-23",
+   "end": "2027-08-22"
+  },
+  "rank_date": "2027-08-22",
+  "counts": {
+   "entry_standard": 6,
+   "world_rankings": 15
+  },
+  "auto_invites": [
+   {
+    "name": "Lilian ODIRA",
+    "country": "KEN",
+    "reason": "Defending World Champion"
+   }
+  ],
+  "standard_achievers": [
+   {
+    "name": "Audrey WERRO",
+    "country": "SUI",
+    "mark": "1:53.70",
+    "date": "2026-08-27",
+    "venue": "Letzigrund, Zürich (SUI)",
+    "slug": "switzerland/audrey-werro-14856078"
+   },
+   {
+    "name": "Femke BROEDERS-BOL",
+    "country": "NED",
+    "mark": "1:54.71",
+    "date": "2026-08-27",
+    "venue": "Letzigrund, Zürich (SUI)",
+    "slug": "netherlands/femke-broeders-bol-14707010"
+   },
+   {
+    "name": "Georgia HUNTER BELL",
+    "country": "GBR",
+    "mark": "1:55.03",
+    "date": "2026-08-27",
+    "venue": "Letzigrund, Zürich (SUI)",
+    "slug": "great-britain-ni/georgia-hunter-bell-14329797"
+   },
+   {
+    "name": "Keely HODGKINSON",
+    "country": "GBR",
+    "mark": "1:56.26",
+    "date": "2026-09-12",
+    "venue": "Nemzeti Atlétikai Központ, Budapest (HUN)",
+    "slug": "great-britain-ni/keely-hodgkinson-14642894"
+   },
+   {
+    "name": "Saida TSEHAYE",
+    "country": "ETH",
+    "mark": "1:57.33",
+    "date": "2026-08-27",
+    "venue": "Letzigrund, Zürich (SUI)",
+    "slug": "ethiopia/saida-tsehaye-15238906"
+   }
+  ]
+ }
+}

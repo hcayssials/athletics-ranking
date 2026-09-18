@@ -7,7 +7,7 @@ os.environ["PREWARM"] = "off"  # don't kick off the boot-time cache warm during 
 import pytest
 from fastapi.testclient import TestClient
 
-from wa_ranking import fetch
+from wa_ranking import feed, fetch
 from wa_ranking.api import app
 
 client = TestClient(app)
@@ -35,6 +35,9 @@ def _fixture():
 def _patch(monkeypatch):
     monkeypatch.setattr(fetch, "fetch_championship",
                         lambda *a, **k: _fixture())  # used by both api + whatif
+    # No feed snapshot: these tests exercise the championships.json fallback path. The feed
+    # overlay has its own tests (test_feed.py) with a stubbed snapshot.
+    monkeypatch.setattr(feed, "read_feed", lambda *a, **k: None)
 
 
 def test_health():
@@ -45,20 +48,29 @@ def test_meta_lists_events_and_championships():
     m = client.get("/api/meta").json()
     keys = {e["key"] for e in m["events"]}
     assert {"1500m_men", "3000mSC_women"} <= keys
-    assert {c["key"] for c in m["championships"]} == {"world", "road_to_birmingham",
-                                                      "road_to_ultimate"}
+    # Archived (finished) championships are not offered to the site.
+    assert [c["key"] for c in m["championships"]] == ["world", "road_to_beijing"]
     assert "GW" in m["categories"]
     champs = {c["key"]: c for c in m["championships"]}
-    assert champs["road_to_birmingham"]["has_qualification"] is True
-    assert champs["road_to_birmingham"]["not_contested"] == []
     assert champs["world"]["has_qualification"] is False
-    ult = champs["road_to_ultimate"]
-    assert ult["has_qualification"] is True
-    assert set(ult["not_contested"]) == {"10000m_men", "10000m_women",
-                                         "3000mSC_men", "3000mSC_women"}
-    assert ult["not_contested_note"]
-    assert ult["max_per_country"] is None
-    assert "Diamond League Final" in ult["qualification_footnote"]
+    bj = champs["road_to_beijing"]
+    assert bj["has_qualification"] is True
+    assert bj["not_contested"] == []
+    assert bj["max_per_country"] == 3
+    assert bj["standards"]["1500m_men"] == "3:30.00" and len(bj["standards"]) == 10
+    assert bj["qualification_window"] == {"start": "2026-08-23", "end": "2027-08-22"}
+    assert "Category C" in bj["entry_standard_rules"]
+    assert bj["qualification_note"]
+
+
+def test_rankings_beijing_carries_standard_and_byes():
+    r = client.get("/api/rankings", params={"championship": "road_to_beijing",
+                                            "event": "1500m_men"}).json()
+    assert r["quota"] == 56 and r["max_per_country"] == 3
+    assert r["entry_standard"] == "3:30.00"
+    assert [i["name"] for i in r["auto_invites"]] == ["Isaac NADER", "Josh KERR"]
+    assert r["standard_achievers"] is None            # no feed snapshot in this test = unknown
+    assert r["qualification_source"] == "config"
 
 
 def test_rankings_ultimate_includes_wildcards():
@@ -75,7 +87,7 @@ def test_whatif_ultimate_qualification_no_cap():
             "championship": "road_to_ultimate", "qualify": True}
     w = client.post("/api/whatif", json=body).json()
     q = w["qualification"]
-    assert q["quota"] == 12 and q["max_per_country"] is None
+    assert q["quota"] == 12 and q["max_per_country"] is None   # archived, but still computable
     assert len(q["auto_invites"]) == 2
     assert q["ranking_places"] == 10
     # wildcards hold the first slots of the resolved field
@@ -102,7 +114,8 @@ def test_rankings_returns_slim_rows():
 
 def test_whatif_returns_structured_result():
     body = {"event": "1500m_men", "athlete": "Alpha", "time": "3:28.80",
-            "category": "GW", "place": 1, "as_of": "2026-06-16", "qualify": True}
+            "category": "GW", "place": 1, "as_of": "2026-06-16", "qualify": True,
+            "championship": "road_to_birmingham"}
     w = client.post("/api/whatif", json=body).json()
     assert w["athlete"] == "Alpha RUNNER"
     assert w["new_score"] > w["recomputed_old_score"]      # a fast win improves the score
