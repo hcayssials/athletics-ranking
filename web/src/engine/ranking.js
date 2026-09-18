@@ -76,18 +76,20 @@ export function selectCounting(candidates, bestN, {
   return selected.slice(0, bestN);
 }
 
-// Floored mean of the counting performances (null if there are none).
-export function rankingScore(perfs, bestN, sel = {}) {
+// Floored mean of the counting performances plus the world-record bonus (null if there
+// are none).
+export function rankingScore(perfs, bestN, sel = {}, bonus = 0) {
   const counting = selectCounting(perfs, bestN, sel);
   if (!counting.length) return null;
-  return Math.floor(counting.reduce((s, p) => s + score(p), 0) / counting.length);
+  return Math.floor(counting.reduce((s, p) => s + score(p), 0) / counting.length) + bonus;
 }
 
-export function insertAndRecompute(perfs, newPerf, bestN, sel = {}) {
+// The world-record bonus sits on top of both scores (it doesn't depend on the counting set).
+export function insertAndRecompute(perfs, newPerf, bestN, sel = {}, bonus = 0) {
   const oldCounting = selectCounting(perfs, bestN, sel);
   const newCounting = selectCounting(perfs.concat([newPerf]), bestN, sel);
   const floored = (rows) =>
-    rows.length ? Math.floor(rows.reduce((s, p) => s + score(p), 0) / rows.length) : null;
+    rows.length ? Math.floor(rows.reduce((s, p) => s + score(p), 0) / rows.length) + bonus : null;
   const oldScore = floored(oldCounting);
   const newScore = floored(newCounting);
   return {

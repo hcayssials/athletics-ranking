@@ -8,7 +8,8 @@ Two sources, both public (no API key required):
 
 2. /WorldRanking/RankingScoreCalculation?competitorId=<data-id> returns a (string-encoded)
    JSON object with the athlete's counting performances, each including resultScore,
-   placingScore and performanceScore.
+   placingScore and performanceScore — plus averagePerformanceScore, rankingScore and
+   wrResults, which carry the world-record bonus (see `wr_bonus`).
 
 Everything is normalised and cached to data/cache/*.json with a TTL.
 """
@@ -88,6 +89,32 @@ def normalize_performance(r: dict) -> dict:
     }
 
 
+def wr_bonus(payload: dict) -> int:
+    """World-record bonus points in an athlete's ranking score.
+
+    WA adds a bonus to the floored average for each world record set in the ranking period,
+    counting or not (main event +20 / equalled +10; similar event +10 / equalled +5). The
+    per-record `wrBonus` field reads 0 even when the bonus applies, so derive it as
+    rankingScore - averagePerformanceScore, which is exact. 0 when either is missing.
+    """
+    avg, score = payload.get("averagePerformanceScore"), payload.get("rankingScore")
+    if avg is None or score is None:
+        return 0
+    return max(0, int(score) - int(avg))
+
+
+def normalize_wr_result(r: dict) -> dict:
+    """Normalise one entry from the RankingScoreCalculation 'wrResults' list."""
+    return {
+        "date": parse_wa_date(r.get("date")),
+        "competition": r.get("competition"),
+        "category": r.get("category"),
+        "discipline_code": r.get("disciplineCode"),
+        "indoor": bool(r.get("indoor")),
+        "mark": (r.get("mark") or "").strip(),
+    }
+
+
 def _decode_calc(text: str) -> dict:
     """RankingScoreCalculation returns a JSON-encoded string; decode (possibly twice)."""
     payload = json.loads(text)
@@ -115,6 +142,8 @@ def fetch_athlete_calculation(competitor_id: str, calc_url_template: str,
         "event_group": payload.get("eventGroup"),
         "rank": payload.get("place"),
         "performances": [normalize_performance(r) for r in payload.get("results", [])],
+        "wr_bonus": wr_bonus(payload),
+        "wr_results": [normalize_wr_result(r) for r in payload.get("wrResults") or []],
     }
 
 
@@ -166,7 +195,10 @@ def fetch_championship(championship: str, event: str, *, force: bool = False,
             time.sleep(0.2)  # be polite: small gap between per-athlete calls
         calc = fetch_athlete_calculation(row["competitor_id"], champ["calculation_url"], session)
         rank_date = rank_date or calc.get("rank_date")
-        athletes.append({**row, "performances": calc["performances"], "rank_date": calc.get("rank_date")})
+        athletes.append({**row, "performances": calc["performances"],
+                         "wr_bonus": calc.get("wr_bonus", 0),
+                         "wr_results": calc.get("wr_results", []),
+                         "rank_date": calc.get("rank_date")})
 
     result = {
         "championship": championship,

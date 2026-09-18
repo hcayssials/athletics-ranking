@@ -55,12 +55,12 @@ def _perf(score, code, mark):
             "placing_score": 0}
 
 
-def _stub_5000_athlete(monkeypatch, perfs, ranking_score):
+def _stub_5000_athlete(monkeypatch, perfs, ranking_score, wr_bonus=0):
     """A 5000m_men list with one athlete (given counting set) plus filler, for what_if."""
     from wa_ranking import whatif
     data = {"rank_date": "2026-06-16", "athletes": [
         {"name": "Test Runner", "country": "GBR", "ranking_score": ranking_score, "rank": 5,
-         "performances": perfs},
+         "performances": perfs, "wr_bonus": wr_bonus},
         {"name": "Filler", "country": "KEN", "ranking_score": 1400, "rank": 1,
          "performances": [_perf(1400, "5000", "12:40.00")]},
     ]}
@@ -112,6 +112,32 @@ def test_main_event_entry_has_no_similar_note(monkeypatch):
     r = what_if("5000m_men", "Test Runner", "12:50.0", category="DF", place=1, verbose=False)
     assert r["hypothetical_event"]["is_main"] is True
     assert r["similar_event_note"] is None
+
+
+def test_world_record_bonus_carries_into_old_and_new_scores(monkeypatch):
+    # Counting set averages 1345 (floor); a +10 world-record bonus makes WA's score 1355.
+    from wa_ranking.whatif import what_if
+    perfs = [_perf(1382, "5000", "12:45.00"), _perf(1329, "5000", "13:05.00"),
+             _perf(1326, "3000", "7:36.78")]
+    _stub_5000_athlete(monkeypatch, perfs, ranking_score=1355, wr_bonus=10)
+    r = what_if("5000m_men", "Test Runner", "12:50.0", category="DF", place=1, verbose=False)
+    assert r["wr_bonus"] == 10
+    assert r["recomputed_old_score"] == r["official_ranking_score"] == 1355
+    _stub_5000_athlete(monkeypatch, perfs, ranking_score=1345)
+    plain = what_if("5000m_men", "Test Runner", "12:50.0", category="DF", place=1, verbose=False)
+    assert r["new_score"] == plain["new_score"] + 10
+    assert r["score_delta"] == plain["score_delta"]
+
+
+def test_targets_required_subtracts_bonus_from_the_target():
+    # With a +10 bonus, reaching 1290 only needs the average to reach 1280.
+    counting = _counting([1300, 1280, 1260, 1240, 1220])
+    with_bonus = _targets_required("1500m_men", counting, 5, 100, current_score=1270,
+                                   targets=[("t", 1290)], bonus=10)[0]
+    without = _targets_required("1500m_men", counting, 5, 100, current_score=1260,
+                                targets=[("t", 1280)])[0]
+    assert with_bonus["result_score"] == without["result_score"]
+    assert with_bonus["time"] == without["time"]
 
 
 def _stub_1500_list(monkeypatch, achievers):

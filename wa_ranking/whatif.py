@@ -134,6 +134,9 @@ def what_if(event: str, athlete: str, new_time: str | float,
                "performances": profile_info["performances"]}
 
     perfs = ath["performances"]
+    # World-record bonus: added on top of the floored average, whatever the counting set
+    # (so it rides along unchanged into the hypothetical score). Unranked profiles: 0.
+    bonus = ath.get("wr_bonus") or 0
 
     # Score the hypothetical performance (a fresh result -> no age decay). For a similar-event
     # hypothetical (e.g. a 3000m), score it on that discipline's table and tag it with that
@@ -159,9 +162,9 @@ def what_if(event: str, athlete: str, new_time: str | float,
         "hypothetical": True,
     }
 
-    recompute = insert_and_recompute(perfs, new_perf, best_n, **sel)
+    recompute = insert_and_recompute(perfs, new_perf, best_n, bonus=bonus, **sel)
     official_score = ath.get("ranking_score")
-    recomputed_old = ranking_score(perfs, best_n, **sel)
+    recomputed_old = ranking_score(perfs, best_n, bonus=bonus, **sel)
     new_score = recompute["new_score"]
 
     # Explain the main-event rule when the hypothetical is a similar event (e.g. a 3000m for a
@@ -320,7 +323,7 @@ def what_if(event: str, athlete: str, new_time: str | float,
         if top is not None:
             targets.append(("reach #1", top + 1))
         rows = _targets_required(event, recompute["old_counting"], best_n,
-                                 breakdown["placing_score"], recomputed_old, targets)
+                                 breakdown["placing_score"], recomputed_old, targets, bonus=bonus)
         if qual_cfg and qual_cfg.get("entry_standard"):
             rows.insert(0, _standard_target(event, qual_cfg["entry_standard"], ath["name"], std_list))
         if rows:
@@ -397,6 +400,8 @@ def what_if(event: str, athlete: str, new_time: str | float,
         "similar_event_note": similar_event_note,
         "official_ranking_score": official_score,
         "recomputed_old_score": recomputed_old,
+        "wr_bonus": bonus,
+        "wr_results": ath.get("wr_results") or [],
         "new_score": new_score,
         "score_delta": recompute["delta"],
         "new_perf_counts": recompute["new_perf_counts"],
@@ -416,9 +421,11 @@ def what_if(event: str, athlete: str, new_time: str | float,
 
 
 def _required_time(event: str, counting_old: list[dict], best_n: int,
-                   placing: int, target: float) -> tuple[str | None, int | None]:
-    """Time (before placing points) a single new race needs so the athlete's average reaches
-    `target`, given their existing counting performances and the projected placing score."""
+                   placing: int, target: float, bonus: int = 0) -> tuple[str | None, int | None]:
+    """Time (before placing points) a single new race needs so the athlete's ranking score
+    reaches `target`, given their existing counting performances, the projected placing
+    score and their world-record `bonus` (the average only has to reach target - bonus)."""
+    target = target - bonus
     scores = sorted((p["performance_score"] for p in counting_old), reverse=True)
     n = len(scores)
     if n + 1 <= best_n:                       # new result just adds to the set
@@ -430,7 +437,8 @@ def _required_time(event: str, counting_old: list[dict], best_n: int,
 
 
 def _targets_required(event: str, counting_old: list[dict], best_n: int, placing: int,
-                      current_score: float | None, targets: list[tuple[str, float]]) -> list[dict]:
+                      current_score: float | None, targets: list[tuple[str, float]],
+                      bonus: int = 0) -> list[dict]:
     """Reverse solver: for each (label, target_score), the time a single new race at `placing`
     placing points would need to lift the athlete's average to that target. Reuses
     _required_time. status: 'met' (current score already at/above the target), 'reachable'
@@ -444,7 +452,7 @@ def _targets_required(event: str, counting_old: list[dict], best_n: int, placing
             rows.append({"label": label, "kind": "score", "target_score": round(score),
                          "result_score": None, "time": None, "status": "met"})
             continue
-        time, need_result = _required_time(event, counting_old, best_n, placing, score)
+        time, need_result = _required_time(event, counting_old, best_n, placing, score, bonus)
         rows.append({"label": label, "kind": "score", "target_score": round(score),
                      "result_score": need_result, "time": time,
                      "status": "reachable" if time else "unreachable"})
@@ -574,7 +582,8 @@ def required_targets(event: str, athlete: str, *, championship: str = "road_to_b
         targets.append(("reach the qualifying cutoff", cutoff))
     if top is not None:
         targets.append(("reach #1", top + 1))
-    rows = _targets_required(event, old_counting, best_n, placing, ath.get("ranking_score"), targets)
+    rows = _targets_required(event, old_counting, best_n, placing, ath.get("ranking_score"), targets,
+                             bonus=ath.get("wr_bonus") or 0)
     if qual_cfg and qual_cfg.get("entry_standard"):
         rows.insert(0, _standard_target(event, qual_cfg["entry_standard"], ath["name"], std_list))
     return {"event": event, "championship": championship, "athlete": ath["name"],
@@ -628,6 +637,8 @@ def format_report(r: dict) -> str:
     else:
         lines.append("RESULT")
         lines.append(f"  Official ranking score (now) : {r['official_ranking_score']}")
+        if r.get("wr_bonus"):
+            lines.append(f"  World-record bonus           : +{r['wr_bonus']} (included in both scores)")
         if r["recomputed_old_score"] != r["official_ranking_score"]:
             lines.append(f"  Recomputed from breakdown    : {r['recomputed_old_score']} "
                          f"(should match official; small diffs = WA rounding/rules)")

@@ -4,8 +4,9 @@ Key fact about the data source: the World Athletics RankingScoreCalculation endp
 *exactly the counting performances* — WA has already applied every selection rule (12-month
 window, similar events, the >=3-of-5 main-event minimum, and the rule that a previous
 continental-championship result stays eligible even when it falls outside that window).
-Verified: `floor(mean(returned performances)) == official`
-for every athlete on the list.
+Verified: `floor(mean(returned performances)) + wr_bonus == official` for every athlete on
+the list, where `wr_bonus` is WA's world-record bonus (0 for all but a handful of record
+holders; see fetch.wr_bonus).
 
 So the **baseline** ranking score is simply the floored mean of the returned set; we do *not*
 re-window it (doing so wrongly drops kept championship results). Selection logic is needed
@@ -102,26 +103,30 @@ def select_counting(candidates: list[dict], best_n: int, *,
     return selected[:best_n]
 
 
-def ranking_score(perfs: list[dict], best_n: int, **sel) -> int | None:
-    """Floored mean of the counting performances (None if there are none).
+def ranking_score(perfs: list[dict], best_n: int, *, bonus: int = 0, **sel) -> int | None:
+    """Floored mean of the counting performances plus the world-record `bonus` (None if
+    there are none).
 
-    With no selection kwargs this is the baseline: floor(mean(perfs)) — matching WA exactly,
-    since `perfs` is already WA's counting set. `sel` accepts the `select_counting` keywords.
+    With no selection kwargs this is the baseline: floor(mean(perfs)) + bonus — matching WA
+    exactly, since `perfs` is already WA's counting set. `sel` accepts the `select_counting`
+    keywords.
     """
     counting = select_counting(perfs, best_n, **sel)
     if not counting:
         return None
-    return math.floor(sum(_score(p) for p in counting) / len(counting))
+    return math.floor(sum(_score(p) for p in counting) / len(counting)) + bonus
 
 
-def insert_and_recompute(perfs: list[dict], new_perf: dict, best_n: int, **sel) -> dict:
+def insert_and_recompute(perfs: list[dict], new_perf: dict, best_n: int, *,
+                         bonus: int = 0, **sel) -> dict:
     """Insert a hypothetical performance and recompute. Returns old/new score, delta, the
-    old and new counting sets, and whether the new performance actually counts."""
+    old and new counting sets, and whether the new performance actually counts. The
+    world-record `bonus` sits on top of both scores (it doesn't depend on the counting set)."""
     old_counting = select_counting(perfs, best_n, **sel)
     new_counting = select_counting(perfs + [new_perf], best_n, **sel)
 
     def floored(rows):
-        return math.floor(sum(_score(p) for p in rows) / len(rows)) if rows else None
+        return math.floor(sum(_score(p) for p in rows) / len(rows)) + bonus if rows else None
 
     old_score, new_score = floored(old_counting), floored(new_counting)
     return {

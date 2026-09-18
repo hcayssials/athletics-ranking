@@ -144,6 +144,9 @@ export function whatIf(ctx, {
   }
 
   const perfs = ath.performances;
+  // World-record bonus: added on top of the floored average, whatever the counting set
+  // (so it rides along unchanged into the hypothetical score). Unranked profiles: 0.
+  const bonus = ath.wr_bonus || 0;
 
   // Score the hypothetical (fresh result -> no age decay); tag a similar event with its own
   // discipline code so best-N selection treats it as non-main.
@@ -165,9 +168,9 @@ export function whatIf(ctx, {
     hypothetical: true,
   };
 
-  const recompute = insertAndRecompute(perfs, newPerf, bestN, sel);
+  const recompute = insertAndRecompute(perfs, newPerf, bestN, sel, bonus);
   const officialScore = ath.ranking_score ?? null;
-  const recomputedOld = rankingScore(perfs, bestN, sel);
+  const recomputedOld = rankingScore(perfs, bestN, sel, bonus);
   const newScore = recompute.new_score;
 
   // Explain the main-event rule for a similar-event hypothetical (see whatif.py for the
@@ -320,7 +323,7 @@ export function whatIf(ctx, {
     }
     if (top !== null) targets.push(["reach #1", top + 1]);
     const rows = targetsRequired(ctx, ev, recompute.old_counting, bestN,
-                                 breakdown.placing_score, recomputedOld, targets);
+                                 breakdown.placing_score, recomputedOld, targets, bonus);
     if (qualCfg && qualCfg.entry_standard) {
       rows.unshift(standardTarget(ctx, ev, qualCfg.entry_standard, ath.name, stdList));
     }
@@ -402,6 +405,8 @@ export function whatIf(ctx, {
     similar_event_note: similarEventNote,
     official_ranking_score: officialScore,
     recomputed_old_score: recomputedOld,
+    wr_bonus: bonus,
+    wr_results: ath.wr_results || [],
     new_score: newScore,
     score_delta: recompute.delta,
     new_perf_counts: recompute.new_perf_counts,
@@ -417,8 +422,10 @@ export function whatIf(ctx, {
   };
 }
 
-// Time (before placing points) a single new race needs to lift the average to `target`.
-function requiredTime(ctx, ev, countingOld, bestN, placing, target) {
+// Time (before placing points) a single new race needs to lift the ranking score to
+// `target` — the average only has to reach target - bonus (world-record bonus).
+function requiredTime(ctx, ev, countingOld, bestN, placing, target, bonus = 0) {
+  target -= bonus;
   const scores = countingOld.map((p) => p.performance_score).sort((a, b) => b - a);
   const n = scores.length;
   const sum = (arr) => arr.reduce((s, x) => s + x, 0);
@@ -430,7 +437,7 @@ function requiredTime(ctx, ev, countingOld, bestN, placing, target) {
 }
 
 // Reverse solver rows: met / reachable (time shown) / unreachable.
-function targetsRequired(ctx, ev, countingOld, bestN, placing, currentScore, targets) {
+function targetsRequired(ctx, ev, countingOld, bestN, placing, currentScore, targets, bonus = 0) {
   const rows = [];
   for (const [label, score] of targets) {
     if (score === null || score === undefined) continue;
@@ -438,7 +445,7 @@ function targetsRequired(ctx, ev, countingOld, bestN, placing, currentScore, tar
       rows.push({ label, kind: "score", target_score: pyRound(score), result_score: null, time: null, status: "met" });
       continue;
     }
-    const [time, needResult] = requiredTime(ctx, ev, countingOld, bestN, placing, score);
+    const [time, needResult] = requiredTime(ctx, ev, countingOld, bestN, placing, score, bonus);
     rows.push({ label, kind: "score", target_score: pyRound(score), result_score: needResult,
                 time, status: time ? "reachable" : "unreachable" });
   }
@@ -561,7 +568,7 @@ export function requiredTargets(ctx, event, athlete, {
   if (cutoff !== null) targets.push(["reach the qualifying cutoff", cutoff]);
   if (top !== null) targets.push(["reach #1", top + 1]);
   const rows = targetsRequired(ctx, ev, oldCounting, bestN, placing,
-                               ath.ranking_score ?? null, targets);
+                               ath.ranking_score ?? null, targets, ath.wr_bonus || 0);
   if ("quota" in champEvent && champEvent.entry_standard) {
     rows.unshift(standardTarget(ctx, ev, champEvent.entry_standard, ath.name, stdList));
   }

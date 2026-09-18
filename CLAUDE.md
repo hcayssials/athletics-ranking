@@ -161,10 +161,14 @@ without that one line — name derives from the slug, country rides along from t
   joins on the trailing WA athlete id when you need to match them.
 - **The WA-returned set is already the counting set** (≤ best_n). Baseline `ranking_score` must
   equal WA's published score — verify with a recompute spot-check after selection changes.
-  Known open gap (seed 2026-09-16): 5 of 1000 world-list athletes recompute exactly **10
-  points below** WA's published score (Wanyonyi, Hodgkinson, Kerr, Wiley, Ngetich) — likely a
-  rule the engine doesn't know (a championship bonus?), not rounding. Unresolved; not caused
-  by the Beijing work.
+- **Ranking score = floor(mean) + world-record bonus.** WA adds a bonus for each world record
+  in the ranking period, counted or not (main event +20 / equalled +10; similar event +10 /
+  equalled +5). `fetch.wr_bonus` stores it per athlete as `rankingScore −
+  averagePerformanceScore` from the breakdown payload (the per-record `wrBonus` field reads 0
+  — don't use it), with the records in `wr_results`. Both engines add `wr_bonus` to the old
+  and new scores and subtract it from reverse-solver targets. Unranked (profile) athletes get
+  0, and a hypothetical world-record mark doesn't earn a new bonus. Seed 2026-09-18: 5 of 1000
+  athletes have one (Wanyonyi, Hodgkinson, Kerr, Wiley, Ngetich; all +10).
 
 ## Conventions
 - **Palette lives in `web/src/theme.js`** ("WA Editorial": white surfaces, cool ink, WA-red

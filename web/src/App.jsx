@@ -185,6 +185,7 @@ function buildResultView(r, champCfg, qualifyOn, methodOpen) {
     hypoEvent: r.hypothetical_event,           // which discipline the hypothetical was in
     simNote: r.similar_event_note,             // main-event-rule explanation (similar events)
     blockedByMainRule: !!(r.main_event_rule && r.main_event_rule.blocked_by_main_rule),
+    wrBonus: r.wr_bonus || 0, wrResults: r.wr_results || [],   // world-record bonus (rare)
   };
 }
 
@@ -894,6 +895,27 @@ function PerfTable({ rows }) {
   );
 }
 
+// World-record bonus line under a counting table: WA adds it on top of the floored average,
+// so without it the table visibly doesn't add up to the score. Nothing when there's no bonus.
+function WrBonusNote({ bonus, records }) {
+  if (!bonus) return null;
+  // wrResults carry only a WA discipline code (1000, MILE, 1MR, 10RR, 800sh) — spell it out.
+  const label = (r) => {
+    const c = String(r.discipline_code || "");
+    const base = c.replace(/sh$/, "");
+    const name = /^\d+$/.test(base) ? base + "m" : base === "MILE" ? "Mile" : base === "1MR" ? "Road Mile"
+      : /^\d+RR$/.test(base) ? base.replace("RR", "km Rd") : c;
+    return r.indoor || /sh$/.test(c) ? name + " (i)" : name;
+  };
+  const recs = (records || []).map((r) => `${label(r)} ${r.mark}${r.competition ? ", " + shortMeet(r.competition) : ""}`);
+  return (
+    <div style={{ fontSize: 12, color: "#3a414c", marginTop: 10 }}>
+      <span style={{ fontFamily: MONO, fontWeight: 700, color: ACCENT }}>+{bonus}</span> world-record bonus
+      {recs.length > 0 && <> ({recs.join("; ")})</>} — added to the average whether or not the record counts.
+    </div>
+  );
+}
+
 // Read-only card shown when an athlete is clicked (before any what-if): current standing +
 // their counting performances. Running a what-if replaces this with the full ResultPanel.
 function AthletePreview({ info, eventCfg, champCfg, rankDate, event, championship, categories, rankings }) {
@@ -970,6 +992,7 @@ function AthletePreview({ info, eventCfg, champCfg, rankDate, event, championshi
           Counting performances (best {eventCfg.best_n || 5} of {eventCfg.window_months || 12} mo)
         </div>
         <PerfTable rows={info.performances || []} />
+        <WrBonusNote bonus={info.wr_bonus} records={info.wr_results} />
         <div style={{ fontSize: 12, color: MUTE, marginTop: 12 }}>Set a time, place &amp; category on the right, then run a what-if to see the impact.</div>
       </div>
     </div>
@@ -1153,6 +1176,7 @@ function ResultPanel({ rv, onToggle }) {
             </ul>
             <div style={{ fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: MUTE, fontWeight: 600, marginBottom: 8 }}>Counting performances (best {rv.bestN} of {rv.windowMonths} mo)</div>
             <PerfTable rows={rv.display} />
+            <WrBonusNote bonus={rv.wrBonus} records={rv.wrResults} />
           </div>
         )}
       </div>

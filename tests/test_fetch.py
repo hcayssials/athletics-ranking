@@ -85,3 +85,60 @@ def test_mens_steeplechase_falls_back_to_graphql(monkeypatch, tmp_path):
     data = fetch.fetch_championship("road_to_birmingham", "3000mSC_men", force=True)
     assert used_graphql.get("called") is True
     assert data["athletes"][0]["name"] == "Steeler"
+
+
+def _calc_payload(avg, score, wr=()):
+    return {"athlete": "Emmanuel WANYONYI", "athleteUrlSlug": "kenya/emmanuel-wanyonyi-14974928",
+            "country": "KEN", "rankDate": "01 SEP 2026", "place": 1,
+            "averagePerformanceScore": avg, "rankingScore": score, "wrResults": list(wr),
+            "results": [{"date": "10 JUL 2026", "disciplineCode": "1000", "mark": "2:11.83",
+                         "place": "1.", "performanceScore": 1393}]}
+
+
+def test_wr_bonus_is_ranking_score_minus_average():
+    # WA's per-record wrBonus reads 0 even when the bonus applies, so it must not be used.
+    wr = [{"date": "10 JUL 2026", "competition": "Herculis, Monaco", "category": "GW",
+           "disciplineCode": "1000", "indoor": False, "mark": "2:11.83", "wrBonus": 0}]
+    assert fetch.wr_bonus(_calc_payload(1424, 1434, wr)) == 10
+    assert fetch.wr_bonus(_calc_payload(1382, 1382)) == 0
+    assert fetch.wr_bonus({"results": []}) == 0                   # older payload: no fields
+
+
+def test_fetch_athlete_calculation_keeps_wr_bonus_and_records():
+    wr = [{"date": "10 JUL 2026", "competition": "Herculis, Monaco", "category": "GW",
+           "disciplineCode": "1000", "indoor": False, "mark": " 2:11.83 ", "wrBonus": 0}]
+
+    class _Resp:
+        text = json.dumps(json.dumps(_calc_payload(1424, 1434, wr)))
+        def raise_for_status(self):
+            pass
+
+    class _Session:
+        def get(self, url, **k):
+            assert url.endswith("competitorId=139983837")
+            return _Resp()
+
+    calc = fetch.fetch_athlete_calculation("139983837", "https://x/?competitorId={competitor_id}",
+                                           _Session())
+    assert calc["wr_bonus"] == 10
+    assert calc["wr_results"] == [{"date": "2026-07-10", "competition": "Herculis, Monaco",
+                                   "category": "GW", "discipline_code": "1000",
+                                   "indoor": False, "mark": "2:11.83"}]
+    assert calc["performances"][0]["performance_score"] == 1393
+
+
+def test_fetch_championship_carries_wr_bonus_onto_athletes(monkeypatch, tmp_path):
+    monkeypatch.setattr(cache, "CACHE_DIR", tmp_path)
+    monkeypatch.setattr(cache, "SEED_DIR", tmp_path / "no_seed")
+
+    class _Resp:
+        text = _HTML
+        def raise_for_status(self):
+            pass
+
+    monkeypatch.setattr(fetch.requests.Session, "get", lambda self, *a, **k: _Resp())
+    monkeypatch.setattr(fetch, "fetch_athlete_calculation", lambda cid, url, session=None: {
+        "performances": [], "rank_date": "2026-09-01", "wr_bonus": 10,
+        "wr_results": [{"discipline_code": "MILE"}]})
+    a = fetch.fetch_championship("world", "1500m_men", force=True)["athletes"][0]
+    assert a["wr_bonus"] == 10 and a["wr_results"] == [{"discipline_code": "MILE"}]

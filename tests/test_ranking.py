@@ -27,6 +27,19 @@ def test_ranking_score_none_when_empty():
     assert ranking_score([], 5) is None
 
 
+def test_ranking_score_adds_world_record_bonus_after_flooring():
+    # WA: floor(mean) + bonus, e.g. Wanyonyi 7123/5 = 1424.6 -> 1424, + 10 (1000m WR) = 1434.
+    perfs = [p(1531), p(1414), p(1401), p(1393), p(1384)]
+    assert ranking_score(perfs, 5, bonus=10) == 1434
+    assert ranking_score([], 5, bonus=10) is None
+
+
+def test_insert_and_recompute_keeps_bonus_on_both_scores():
+    perfs = [p(1400), p(1380), p(1360), p(1340), p(1300)]
+    r = insert_and_recompute(perfs, p(1390, comp="(hypothetical)"), 5, bonus=10)
+    assert r["old_score"] == 1366 and r["new_score"] == 1384 and r["delta"] == 18
+
+
 # --- selection rules ------------------------------------------------------------------
 
 def test_select_counting_takes_best_n():
