@@ -36,6 +36,14 @@ eq(parseQuery("women's 5000m: Smith finishes 2nd at the European Champs", "1500m
 eq(parseQuery("steeplechase third place", "1500m_men").eventKey, "3000mSC_men", "pq steeple keeps gender");
 eq(parseQuery("Does Nuguse make the Ultimate by winning a Diamond League meeting?", "1500m_men").championship,
    "road_to_ultimate", "pq ultimate");
+eq(parseQuery("Does Nuguse make Beijing by winning their national champs?", "1500m_men"),
+   { athlete: "Does Nuguse make Beijing by winning their national champs?", championship: "road_to_beijing", place: 1, category: "B" }, "pq beijing");
+eq(parseQuery("What if Kerr finishes 2nd at the World Championships?", "1500m_men"),
+   { athlete: "What if Kerr finishes 2nd at the World Championships?", championship: "road_to_beijing", place: 2, category: "OW" }, "pq world champs -> beijing");
+eq(parseQuery("Does Hull make the team with a 3:56 win?", "1500m_women").championship,
+   "road_to_beijing", "pq 'make the team' -> live road to");
+eq(parseQuery("What if Hull runs 3:58.00 at a Diamond League meeting?", "1500m_women"),
+   { athlete: "What if Hull runs 3:58.00 at a Diamond League meeting?", category: "GW", time: "3:58.00" }, "pq standard example");
 eq(parseQuery("What if Chebet wins the World Athletics Ultimate in Budapest?", "5000m_women").championship,
    "road_to_ultimate", "pq ultimate beats 'world'");
 eq(parseQuery("Wightman wins nationals in 3:34", "1500m_men").category, "B", "pq nationals -> B (national champs)");
