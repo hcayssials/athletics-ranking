@@ -1,12 +1,12 @@
 {
- "_fetched_at": 1789767869.395585,
+ "_fetched_at": 1790161324.7719166,
  "_key": "feed__road_to_beijing__5000m_men",
  "data": {
   "championship": "road_to_beijing",
   "event": "5000m_men",
   "competition_id": 7216591,
   "event_id": 10229609,
-  "fetched": "2026-09-18T17:44:29",
+  "fetched": "2026-09-23T11:02:04",
   "quota": 42,
   "discipline": "Men's 5000 Metres",
   "entry_standard": "12:50.00",
@@ -23,14 +23,19 @@
   },
   "rank_date": "2027-08-22",
   "counts": {
-   "entry_standard": 7,
-   "world_rankings": 13
+   "entry_standard": 10,
+   "world_rankings": 12
   },
   "auto_invites": [
    {
     "name": "Cole HOCKER",
     "country": "USA",
     "reason": "Defending World Champion"
+   },
+   {
+    "name": "Jakob INGEBRIGTSEN",
+    "country": "NOR",
+    "reason": "Ultimate Champion, European Champion"
    }
   ],
   "standard_achievers": [
@@ -81,6 +86,22 @@
     "date": "2026-09-05",
     "venue": "Boudewijnstadion, Bruxelles (BEL)",
     "slug": "united-states/nico-young-14882782"
+   },
+   {
+    "name": "Dawit SEARE",
+    "country": "ERI",
+    "mark": "12:56",
+    "date": "2026-09-19",
+    "venue": "København (DEN)",
+    "slug": "eritrea/dawit-seare-14985194"
+   },
+   {
+    "name": "Saymon AMANUEL",
+    "country": "ERI",
+    "mark": "13:00",
+    "date": "2026-09-19",
+    "venue": "København (DEN)",
+    "slug": "eritrea/saymon-amanuel-15186316"
    }
   ]
  }

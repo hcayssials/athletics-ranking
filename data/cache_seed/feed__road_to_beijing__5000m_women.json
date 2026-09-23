@@ -1,12 +1,12 @@
 {
- "_fetched_at": 1789767872.620021,
+ "_fetched_at": 1790161327.9029913,
  "_key": "feed__road_to_beijing__5000m_women",
  "data": {
   "championship": "road_to_beijing",
   "event": "5000m_women",
   "competition_id": 7216591,
   "event_id": 10229514,
-  "fetched": "2026-09-18T17:44:32",
+  "fetched": "2026-09-23T11:02:07",
   "quota": 42,
   "discipline": "Women's 5000 Metres",
   "entry_standard": "14:36.00",
@@ -23,7 +23,7 @@
   },
   "rank_date": "2027-08-22",
   "counts": {
-   "entry_standard": 6,
+   "entry_standard": 8,
    "world_rankings": 11
   },
   "auto_invites": [
@@ -31,17 +31,14 @@
     "name": "Beatrice CHEBET",
     "country": "KEN",
     "reason": "Defending World Champion"
-   }
-  ],
-  "standard_achievers": [
+   },
    {
     "name": "Likina AMEBAW",
     "country": "ETH",
-    "mark": "14:30.36",
-    "date": "2026-09-13",
-    "venue": "Nemzeti Atlétikai Központ, Budapest (HUN)",
-    "slug": "ethiopia/likina-amebaw-14877871"
-   },
+    "reason": "Ultimate Champion"
+   }
+  ],
+  "standard_achievers": [
    {
     "name": "Jessica HULL",
     "country": "AUS",
@@ -81,6 +78,14 @@
     "date": "2026-09-13",
     "venue": "Nemzeti Atlétikai Központ, Budapest (HUN)",
     "slug": "australia/rose-davies-14517594"
+   },
+   {
+    "name": "Caroline Makandi GITONGA",
+    "country": "KEN",
+    "mark": "14:48",
+    "date": "2026-09-19",
+    "venue": "København (DEN)",
+    "slug": "kenya/caroline-makandi-gitonga-14761963"
    }
   ]
  }
