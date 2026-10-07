@@ -1,19 +1,19 @@
 {
- "_fetched_at": 1790161327.9029913,
+ "_fetched_at": 1791377625.3205373,
  "_key": "feed__road_to_beijing__5000m_women",
  "data": {
   "championship": "road_to_beijing",
   "event": "5000m_women",
   "competition_id": 7216591,
   "event_id": 10229514,
-  "fetched": "2026-09-23T11:02:07",
+  "fetched": "2026-10-07T12:53:45",
   "quota": 42,
   "discipline": "Women's 5000 Metres",
   "entry_standard": "14:36.00",
   "alt_entry_standards": [
    {
     "event": "5 km Road",
-    "entry_standard": "14:50.00"
+    "entry_standard": "14:36.00"
    }
   ],
   "max_per_country": 3,
@@ -23,8 +23,8 @@
   },
   "rank_date": "2027-08-22",
   "counts": {
-   "entry_standard": 8,
-   "world_rankings": 11
+   "entry_standard": 7,
+   "world_rankings": 15
   },
   "auto_invites": [
    {
@@ -78,14 +78,6 @@
     "date": "2026-09-13",
     "venue": "Nemzeti Atlétikai Központ, Budapest (HUN)",
     "slug": "australia/rose-davies-14517594"
-   },
-   {
-    "name": "Caroline Makandi GITONGA",
-    "country": "KEN",
-    "mark": "14:48",
-    "date": "2026-09-19",
-    "venue": "København (DEN)",
-    "slug": "kenya/caroline-makandi-gitonga-14761963"
    }
   ]
  }

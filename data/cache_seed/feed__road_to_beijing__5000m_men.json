@@ -1,19 +1,19 @@
 {
- "_fetched_at": 1790161324.7719166,
+ "_fetched_at": 1791377622.3664246,
  "_key": "feed__road_to_beijing__5000m_men",
  "data": {
   "championship": "road_to_beijing",
   "event": "5000m_men",
   "competition_id": 7216591,
   "event_id": 10229609,
-  "fetched": "2026-09-23T11:02:04",
+  "fetched": "2026-10-07T12:53:42",
   "quota": 42,
   "discipline": "Men's 5000 Metres",
   "entry_standard": "12:50.00",
   "alt_entry_standards": [
    {
     "event": "5 km Road",
-    "entry_standard": "13:01.00"
+    "entry_standard": "12:50.00"
    }
   ],
   "max_per_country": 3,
@@ -23,8 +23,8 @@
   },
   "rank_date": "2027-08-22",
   "counts": {
-   "entry_standard": 10,
-   "world_rankings": 12
+   "entry_standard": 8,
+   "world_rankings": 17
   },
   "auto_invites": [
    {
@@ -86,22 +86,6 @@
     "date": "2026-09-05",
     "venue": "Boudewijnstadion, Bruxelles (BEL)",
     "slug": "united-states/nico-young-14882782"
-   },
-   {
-    "name": "Dawit SEARE",
-    "country": "ERI",
-    "mark": "12:56",
-    "date": "2026-09-19",
-    "venue": "København (DEN)",
-    "slug": "eritrea/dawit-seare-14985194"
-   },
-   {
-    "name": "Saymon AMANUEL",
-    "country": "ERI",
-    "mark": "13:00",
-    "date": "2026-09-19",
-    "venue": "København (DEN)",
-    "slug": "eritrea/saymon-amanuel-15186316"
    }
   ]
  }

@@ -1,25 +1,16 @@
 {
- "_fetched_at": 1790161324.2070565,
+ "_fetched_at": 1791377621.5711284,
  "_key": "feed__road_to_beijing__1500m_men",
  "data": {
   "championship": "road_to_beijing",
   "event": "1500m_men",
   "competition_id": 7216591,
   "event_id": 10229502,
-  "fetched": "2026-09-23T11:02:04",
+  "fetched": "2026-10-07T12:53:41",
   "quota": 56,
   "discipline": "Men's 1500 Metres",
   "entry_standard": "3:30.00",
-  "alt_entry_standards": [
-   {
-    "event": "Mile",
-    "entry_standard": "3:50.00"
-   },
-   {
-    "event": "Mile Road",
-    "entry_standard": "3:50.00"
-   }
-  ],
+  "alt_entry_standards": [],
   "max_per_country": 3,
   "window": {
    "start": "2026-08-23",
@@ -28,7 +19,7 @@
   "rank_date": "2027-08-22",
   "counts": {
    "entry_standard": 3,
-   "world_rankings": 21
+   "world_rankings": 24
   },
   "auto_invites": [
    {
