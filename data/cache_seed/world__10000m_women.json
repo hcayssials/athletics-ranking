@@ -1,21 +1,21 @@
 {
- "_fetched_at": 1793190431.4867814,
+ "_fetched_at": 1793801070.4589016,
  "_key": "world__10000m_women",
  "data": {
   "championship": "world",
   "event": "10000m_women",
   "rankings_url": "https://worldathletics.org/world-rankings/10000m/women",
-  "fetched": "2026-10-28T12:27:11",
-  "rank_date": "2026-10-20",
+  "fetched": "2026-11-04T14:04:30",
+  "rank_date": "2026-11-03",
   "athletes": [
    {
-    "competitor_id": "145175403",
+    "competitor_id": "145790731",
     "slug": "/athletes/kenya/agnes-jebet-ngetich-14758189",
     "rank": 1,
     "name": "Agnes Jebet NGETICH",
     "dob": "23 JAN 2001",
     "country": "KEN",
-    "ranking_score": 1339.0,
+    "ranking_score": 1329.0,
     "performances": [
      {
       "date": "2025-09-13",
@@ -48,21 +48,12 @@
       "month_correction_applied": false
      }
     ],
-    "wr_bonus": 10,
-    "wr_results": [
-     {
-      "date": "2025-04-26",
-      "competition": "adizero: Road to Records 2025, Herzogenaurach",
-      "category": "E",
-      "discipline_code": "10RR",
-      "indoor": false,
-      "mark": "29:27"
-     }
-    ],
-    "rank_date": "2026-10-20"
+    "wr_bonus": 0,
+    "wr_results": [],
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175404",
+    "competitor_id": "145790732",
     "slug": "/athletes/kenya/beatrice-chebet-14749924",
     "rank": 2,
     "name": "Beatrice CHEBET",
@@ -103,10 +94,10 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175405",
+    "competitor_id": "145790733",
     "slug": "/athletes/italy/nadia-battocletti-14700830",
     "rank": 3,
     "name": "Nadia BATTOCLETTI",
@@ -147,10 +138,10 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175406",
+    "competitor_id": "145790734",
     "slug": "/athletes/japan/ririka-hironaka-14766617",
     "rank": 4,
     "name": "Ririka HIRONAKA",
@@ -191,56 +182,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175407",
-    "slug": "/athletes/uganda/joy-cheptoyek-14818058",
-    "rank": 5,
-    "name": "Joy CHEPTOYEK",
-    "dob": "15 MAY 2002",
-    "country": "UGA",
-    "ranking_score": 1258.0,
-    "performances": [
-     {
-      "date": "2025-09-13",
-      "date_raw": "13 SEP 2025",
-      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
-      "category": "OW",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 7,
-      "mark": "31:15.03",
-      "result_score": 1179,
-      "placing_score": 110,
-      "performance_score": 1289,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-05-03",
-      "date_raw": "03 MAY 2025",
-      "competition": "Tokyo : Speed : Race, Meijijingu Gaien area, Tokyo",
-      "category": "F",
-      "discipline_code": "10RR",
-      "discipline": "10 Kilometres Road",
-      "indoor": false,
-      "place": 1,
-      "mark": "30:22",
-      "result_score": 1227,
-      "placing_score": 0,
-      "performance_score": 1227,
-      "month_correction_applied": false
-     }
-    ],
-    "wr_bonus": 0,
-    "wr_results": [],
-    "rank_date": "2026-10-20"
-   },
-   {
-    "competitor_id": "145175408",
+    "competitor_id": "145790735",
     "slug": "/athletes/ethiopia/chaltu-dida-15119269",
-    "rank": 6,
+    "rank": 5,
     "name": "Chaltu DIDA",
     "dob": "05 DEC 2006",
     "country": "ETH",
@@ -279,12 +226,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175409",
+    "competitor_id": "145790736",
     "slug": "/athletes/kenya/miriam-chebet-15019004",
-    "rank": 7,
+    "rank": 6,
     "name": "Miriam CHEBET",
     "dob": "18 SEP 2002",
     "country": "KEN",
@@ -323,10 +270,54 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175410",
+    "competitor_id": "145790737",
+    "slug": "/athletes/uganda/joy-cheptoyek-14818058",
+    "rank": 7,
+    "name": "Joy CHEPTOYEK",
+    "dob": "15 MAY 2002",
+    "country": "UGA",
+    "ranking_score": 1249.0,
+    "performances": [
+     {
+      "date": "2025-09-13",
+      "date_raw": "13 SEP 2025",
+      "competition": "World Athletics Championships, Tokyo 2025, National Stadium, Tokyo",
+      "category": "OW",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 7,
+      "mark": "31:15.03",
+      "result_score": 1179,
+      "placing_score": 110,
+      "performance_score": 1289,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-07-22",
+      "date_raw": "22 JUL 2025",
+      "competition": "Trials for World Athletics Championships Tokyo 2025, Nyayo National Stadium, Nairobi",
+      "category": "F",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 4,
+      "mark": "30:41.95",
+      "result_score": 1209,
+      "placing_score": 0,
+      "performance_score": 1209,
+      "month_correction_applied": false
+     }
+    ],
+    "wr_bonus": 0,
+    "wr_results": [],
+    "rank_date": "2026-11-03"
+   },
+   {
+    "competitor_id": "145790738",
     "slug": "/athletes/ethiopia/asayech-ayichew-15041291",
     "rank": 8,
     "name": "Asayech AYICHEW",
@@ -367,10 +358,10 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175411",
+    "competitor_id": "145790739",
     "slug": "/athletes/belgium/jana-van-lent-14704113",
     "rank": 9,
     "name": "Jana VAN LENT",
@@ -411,56 +402,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175412",
-    "slug": "/athletes/ethiopia/senayet-getachew-15046190",
-    "rank": 10,
-    "name": "Senayet GETACHEW",
-    "dob": "01 OCT 2005",
-    "country": "ETH",
-    "ranking_score": 1237.0,
-    "performances": [
-     {
-      "date": "2025-07-12",
-      "date_raw": "12 JUL 2025",
-      "competition": "Sunset Tour, Jack Kemp Stadium - Occidental College, Los Angeles, CA",
-      "category": "B",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "30:36.67",
-      "result_score": 1214,
-      "placing_score": 42,
-      "performance_score": 1256,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-04-26",
-      "date_raw": "26 APR 2025",
-      "competition": "adizero: Road to Records 2025, Herzogenaurach",
-      "category": "E",
-      "discipline_code": "10RR",
-      "discipline": "10 Kilometres Road",
-      "indoor": false,
-      "place": 3,
-      "mark": "30:31",
-      "result_score": 1219,
-      "placing_score": 0,
-      "performance_score": 1219,
-      "month_correction_applied": false
-     }
-    ],
-    "wr_bonus": 0,
-    "wr_results": [],
-    "rank_date": "2026-10-20"
-   },
-   {
-    "competitor_id": "145175413",
+    "competitor_id": "145790740",
     "slug": "/athletes/slovenia/klara-lukan-14605811",
-    "rank": 11,
+    "rank": 10,
     "name": "Klara LUKAN",
     "dob": "08 SEP 2000",
     "country": "SLO",
@@ -499,12 +446,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175414",
+    "competitor_id": "145790741",
     "slug": "/athletes/australia/rose-davies-14517594",
-    "rank": 12,
+    "rank": 11,
     "name": "Rose DAVIES",
     "dob": "21 DEC 1999",
     "country": "AUS",
@@ -543,12 +490,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175415",
+    "competitor_id": "145790742",
     "slug": "/athletes/ethiopia/aynadis-mebratu-14923883",
-    "rank": 13,
+    "rank": 12,
     "name": "Aynadis MEBRATU",
     "dob": "25 NOV 2004",
     "country": "ETH",
@@ -587,12 +534,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175416",
+    "competitor_id": "145790743",
     "slug": "/athletes/kazakhstan/daisy-jepkemei-14530633",
-    "rank": 14,
+    "rank": 13,
     "name": "Daisy JEPKEMEI",
     "dob": "13 FEB 1996",
     "country": "KAZ",
@@ -631,12 +578,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175417",
+    "competitor_id": "145790744",
     "slug": "/athletes/great-britain-ni/megan-keith-14918707",
-    "rank": 15,
+    "rank": 14,
     "name": "Megan KEITH",
     "dob": "23 APR 2002",
     "country": "GBR",
@@ -675,12 +622,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175418",
+    "competitor_id": "145790745",
     "slug": "/athletes/netherlands/maureen-koster-14372338",
-    "rank": 16,
+    "rank": 15,
     "name": "Maureen KOSTER",
     "dob": "03 JUL 1992",
     "country": "NED",
@@ -719,12 +666,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175419",
+    "competitor_id": "145790746",
     "slug": "/athletes/ethiopia/asefu-abreha-14848747",
-    "rank": 17,
+    "rank": 16,
     "name": "Asefu ABREHA",
     "dob": "31 MAY 2006",
     "country": "ETH",
@@ -763,12 +710,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175420",
+    "competitor_id": "145790747",
     "slug": "/athletes/ethiopia/wede-kefale-14786747",
-    "rank": 18,
+    "rank": 17,
     "name": "Wede KEFALE",
     "dob": "02 MAR 2000",
     "country": "ETH",
@@ -807,12 +754,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175421",
+    "competitor_id": "145790748",
     "slug": "/athletes/kenya/diana-wanza-14974968",
-    "rank": 19,
+    "rank": 18,
     "name": "Diana WANZA",
     "dob": "19 FEB 1999",
     "country": "KEN",
@@ -851,12 +798,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175422",
+    "competitor_id": "145790749",
     "slug": "/athletes/great-britain-ni/calli-hauger-thackery-14276523",
-    "rank": 20,
+    "rank": 19,
     "name": "Calli HAUGER-THACKERY",
     "dob": "09 JAN 1993",
     "country": "GBR",
@@ -895,12 +842,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175423",
+    "competitor_id": "145790750",
     "slug": "/athletes/kenya/caroline-kariba-14965231",
-    "rank": 21,
+    "rank": 20,
     "name": "Caroline KARIBA",
     "dob": "22 APR 2004",
     "country": "KEN",
@@ -939,12 +886,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175424",
+    "competitor_id": "145790751",
     "slug": "/athletes/rwanda/florence-niyonkuru-15098714",
-    "rank": 22,
+    "rank": 21,
     "name": "Florence NIYONKURU",
     "dob": "01 JAN 2001",
     "country": "RWA",
@@ -983,56 +930,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175425",
-    "slug": "/athletes/australia/isobel-batt-doyle-14519260",
-    "rank": 23,
-    "name": "Isobel BATT-DOYLE",
-    "dob": "14 SEP 1995",
-    "country": "AUS",
-    "ranking_score": 1216.0,
-    "performances": [
-     {
-      "date": "2025-06-11",
-      "date_raw": "11 JUN 2025",
-      "competition": "Oslo Bislett Games, Bislett Stadion, Oslo",
-      "category": "A",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 7,
-      "mark": "30:51.27",
-      "result_score": 1201,
-      "placing_score": 24,
-      "performance_score": 1225,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-05-03",
-      "date_raw": "03 MAY 2025",
-      "competition": "Tokyo : Speed : Race, Meijijingu Gaien area, Tokyo",
-      "category": "F",
-      "discipline_code": "10RR",
-      "discipline": "10 Kilometres Road",
-      "indoor": false,
-      "place": 3,
-      "mark": "30:44",
-      "result_score": 1207,
-      "placing_score": 0,
-      "performance_score": 1207,
-      "month_correction_applied": false
-     }
-    ],
-    "wr_bonus": 0,
-    "wr_results": [],
-    "rank_date": "2026-10-20"
-   },
-   {
-    "competitor_id": "145175426",
+    "competitor_id": "145790752",
     "slug": "/athletes/kenya/janeth-nyiva-mutungi-14849583",
-    "rank": 24,
+    "rank": 22,
     "name": "Janeth Nyiva MUTUNGI",
     "dob": "27 AUG 2003",
     "country": "KEN",
@@ -1071,12 +974,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175427",
+    "competitor_id": "145790753",
     "slug": "/athletes/kenya/pamela-kosgei-15041996",
-    "rank": 25,
+    "rank": 23,
     "name": "Pamela KOSGEI",
     "dob": "05 JUL 2004",
     "country": "KEN",
@@ -1115,12 +1018,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175428",
+    "competitor_id": "145790754",
     "slug": "/athletes/kenya/brenda-jepchirchir-14989897",
-    "rank": 26,
+    "rank": 24,
     "name": "Brenda JEPCHIRCHIR",
     "dob": "10 JUL 2005",
     "country": "KEN",
@@ -1159,12 +1062,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175429",
+    "competitor_id": "145790755",
     "slug": "/athletes/kenya/dolphine-nyaboke-omare-14758190",
-    "rank": 27,
+    "rank": 25,
     "name": "Dolphine Nyaboke OMARE",
     "dob": "26 JUL 2001",
     "country": "KEN",
@@ -1203,12 +1106,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175430",
+    "competitor_id": "145790756",
     "slug": "/athletes/kenya/loice-chemnung-14590680",
-    "rank": 28,
+    "rank": 26,
     "name": "Loice CHEMNUNG",
     "dob": "22 FEB 1997",
     "country": "KEN",
@@ -1247,12 +1150,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175431",
+    "competitor_id": "145790757",
     "slug": "/athletes/kenya/janeth-chepngetich-14689606",
-    "rank": 29,
+    "rank": 27,
     "name": "Janeth CHEPNGETICH",
     "dob": "23 JUL 1998",
     "country": "KEN",
@@ -1291,12 +1194,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175432",
+    "competitor_id": "145790758",
     "slug": "/athletes/australia/lauren-ryan-14667446",
-    "rank": 30,
+    "rank": 28,
     "name": "Lauren RYAN",
     "dob": "15 MAR 1998",
     "country": "AUS",
@@ -1335,12 +1238,56 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175433",
+    "competitor_id": "145790759",
+    "slug": "/athletes/ethiopia/senayet-getachew-15046190",
+    "rank": 29,
+    "name": "Senayet GETACHEW",
+    "dob": "01 OCT 2005",
+    "country": "ETH",
+    "ranking_score": 1204.0,
+    "performances": [
+     {
+      "date": "2025-07-12",
+      "date_raw": "12 JUL 2025",
+      "competition": "Sunset Tour, Jack Kemp Stadium - Occidental College, Los Angeles, CA",
+      "category": "B",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "30:36.67",
+      "result_score": 1214,
+      "placing_score": 42,
+      "performance_score": 1256,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-07-04",
+      "date_raw": "04 JUL 2025",
+      "competition": "Atlanta Journal-Constitution Peachtree Road Race, Atlanta Track Club Indoor Facility, Atlanta, GA",
+      "category": "E",
+      "discipline_code": "10RR",
+      "discipline": "10 Kilometres Road",
+      "indoor": false,
+      "place": 2,
+      "mark": "31:30",
+      "result_score": 1153,
+      "placing_score": 0,
+      "performance_score": 1153,
+      "month_correction_applied": false
+     }
+    ],
+    "wr_bonus": 0,
+    "wr_results": [],
+    "rank_date": "2026-11-03"
+   },
+   {
+    "competitor_id": "145790760",
     "slug": "/athletes/kenya/tabithanjeri-kamau-014767078",
-    "rank": 31,
+    "rank": 30,
     "name": "Tabithanjeri KAMAU",
     "dob": "03 JUL 2000",
     "country": "KEN",
@@ -1379,10 +1326,54 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175434",
+    "competitor_id": "145790761",
+    "slug": "/athletes/australia/isobel-batt-doyle-14519260",
+    "rank": 31,
+    "name": "Isobel BATT-DOYLE",
+    "dob": "14 SEP 1995",
+    "country": "AUS",
+    "ranking_score": 1201.0,
+    "performances": [
+     {
+      "date": "2025-06-11",
+      "date_raw": "11 JUN 2025",
+      "competition": "Oslo Bislett Games, Bislett Stadion, Oslo",
+      "category": "A",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 7,
+      "mark": "30:51.27",
+      "result_score": 1201,
+      "placing_score": 24,
+      "performance_score": 1225,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-08-02",
+      "date_raw": "02 AUG 2025",
+      "competition": "TD Beach to Beacon 10K Road Race, 1000 Shore Road, Cape Elizabeth, ME",
+      "category": "C",
+      "discipline_code": "10RR",
+      "discipline": "10 Kilometres Road",
+      "indoor": false,
+      "place": 1,
+      "mark": "31:25",
+      "result_score": 1170,
+      "placing_score": 7,
+      "performance_score": 1177,
+      "month_correction_applied": false
+     }
+    ],
+    "wr_bonus": 0,
+    "wr_results": [],
+    "rank_date": "2026-11-03"
+   },
+   {
+    "competitor_id": "145790762",
     "slug": "/athletes/united-states/elise-cranny-14531083",
     "rank": 32,
     "name": "Elise CRANNY",
@@ -1423,10 +1414,10 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175435",
+    "competitor_id": "145790763",
     "slug": "/athletes/united-states/taylor-roe-14709234",
     "rank": 33,
     "name": "Taylor ROE",
@@ -1467,56 +1458,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175436",
-    "slug": "/athletes/uganda/rebecca-chelangat-14885455",
-    "rank": 34,
-    "name": "Rebecca CHELANGAT",
-    "dob": "01 JAN 2002",
-    "country": "UGA",
-    "ranking_score": 1194.0,
-    "performances": [
-     {
-      "date": "2025-06-14",
-      "date_raw": "14 JUN 2025",
-      "competition": "Gouden Spike, Sportcomplex De Leidse Hout, Leiden",
-      "category": "D",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "31:21.74",
-      "result_score": 1173,
-      "placing_score": 21,
-      "performance_score": 1194,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-05-03",
-      "date_raw": "03 MAY 2025",
-      "competition": "Tokyo : Speed : Race, Meijijingu Gaien area, Tokyo",
-      "category": "F",
-      "discipline_code": "10RR",
-      "discipline": "10 Kilometres Road",
-      "indoor": false,
-      "place": 4,
-      "mark": "30:59",
-      "result_score": 1194,
-      "placing_score": 0,
-      "performance_score": 1194,
-      "month_correction_applied": false
-     }
-    ],
-    "wr_bonus": 0,
-    "wr_results": [],
-    "rank_date": "2026-10-20"
-   },
-   {
-    "competitor_id": "145175437",
+    "competitor_id": "145790764",
     "slug": "/athletes/united-states/jessica-mcclain-14335825",
-    "rank": 35,
+    "rank": 34,
     "name": "Jessica MCCLAIN",
     "dob": "15 FEB 1992",
     "country": "USA",
@@ -1555,12 +1502,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175438",
+    "competitor_id": "145790765",
     "slug": "/athletes/united-states/jane-hedengren-15090151",
-    "rank": 36,
+    "rank": 35,
     "name": "Jane HEDENGREN",
     "dob": "23 SEP 2006",
     "country": "USA",
@@ -1599,12 +1546,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175439",
+    "competitor_id": "145790766",
     "slug": "/athletes/netherlands/diane-van-es-14625026",
-    "rank": 37,
+    "rank": 36,
     "name": "Diane VAN ES",
     "dob": "22 MAR 1999",
     "country": "NED",
@@ -1643,12 +1590,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175440",
+    "competitor_id": "145790767",
     "slug": "/athletes/united-states/emily-infeld-14313263",
-    "rank": 38,
+    "rank": 37,
     "name": "Emily INFELD",
     "dob": "21 MAR 1990",
     "country": "USA",
@@ -1687,12 +1634,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175441",
+    "competitor_id": "145790768",
     "slug": "/athletes/pr-of-china/wuga-he-14862415",
-    "rank": 39,
+    "rank": 38,
     "name": "Wuga HE",
     "dob": "28 JUL 1998",
     "country": "CHN",
@@ -1731,12 +1678,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175442",
+    "competitor_id": "145790769",
     "slug": "/athletes/france/mekdes-woldu-14419455",
-    "rank": 40,
+    "rank": 39,
     "name": "Mekdes WOLDU",
     "dob": "20 OCT 1992",
     "country": "FRA",
@@ -1775,10 +1722,54 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175443",
+    "competitor_id": "145790770",
+    "slug": "/athletes/uganda/rebecca-chelangat-14885455",
+    "rank": 40,
+    "name": "Rebecca CHELANGAT",
+    "dob": "01 JAN 2002",
+    "country": "UGA",
+    "ranking_score": 1190.0,
+    "performances": [
+     {
+      "date": "2025-06-14",
+      "date_raw": "14 JUN 2025",
+      "competition": "Gouden Spike, Sportcomplex De Leidse Hout, Leiden",
+      "category": "D",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "31:21.74",
+      "result_score": 1173,
+      "placing_score": 21,
+      "performance_score": 1194,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-10-26",
+      "date_raw": "26 OCT 2025",
+      "competition": "Shanghai 10K Elite Race, Shanghai",
+      "category": "B",
+      "discipline_code": "10RR",
+      "discipline": "10 Kilometres Road",
+      "indoor": false,
+      "place": 3,
+      "mark": "31:14",
+      "result_score": 1180,
+      "placing_score": 7,
+      "performance_score": 1187,
+      "month_correction_applied": false
+     }
+    ],
+    "wr_bonus": 0,
+    "wr_results": [],
+    "rank_date": "2026-11-03"
+   },
+   {
+    "competitor_id": "145790771",
     "slug": "/athletes/south-africa/tayla-kavanagh-14830946",
     "rank": 41,
     "name": "Tayla KAVANAGH",
@@ -1819,10 +1810,10 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175444",
+    "competitor_id": "145790772",
     "slug": "/athletes/france/alessia-zarbo-14761053",
     "rank": 42,
     "name": "Alessia ZARBO",
@@ -1863,10 +1854,10 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175445",
+    "competitor_id": "145790773",
     "slug": "/athletes/germany/lisa-merkel-14878272",
     "rank": 43,
     "name": "Lisa MERKEL",
@@ -1907,10 +1898,10 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175446",
+    "competitor_id": "145790774",
     "slug": "/athletes/united-states/weini-kelati-frezghi-14877184",
     "rank": 44,
     "name": "Weini KELATI FREZGHI",
@@ -1951,10 +1942,10 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175447",
+    "competitor_id": "145790775",
     "slug": "/athletes/great-britain-ni/izzy-fry-14653034",
     "rank": 45,
     "name": "Izzy FRY",
@@ -1995,10 +1986,10 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175448",
+    "competitor_id": "145790776",
     "slug": "/athletes/germany/konstanze-klosterhalfen-14496249",
     "rank": 46,
     "name": "Konstanze KLOSTERHALFEN",
@@ -2039,10 +2030,10 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175449",
+    "competitor_id": "145790777",
     "slug": "/athletes/kenya/sarah-wanjiru-14957601",
     "rank": 47,
     "name": "Sarah WANJIRU",
@@ -2083,56 +2074,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175450",
-    "slug": "/athletes/uganda/sarah-chelangat-14786748",
-    "rank": 48,
-    "name": "Sarah CHELANGAT",
-    "dob": "05 JUN 2001",
-    "country": "UGA",
-    "ranking_score": 1182.0,
-    "performances": [
-     {
-      "date": "2025-04-27",
-      "date_raw": "27 APR 2025",
-      "competition": "Tata Consultancy Services World 10K Bengaluru, Bengaluru",
-      "category": "B",
-      "discipline_code": "10RR",
-      "discipline": "10 Kilometres Road",
-      "indoor": false,
-      "place": 1,
-      "mark": "31:07",
-      "result_score": 1186,
-      "placing_score": 14,
-      "performance_score": 1200,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-07-12",
-      "date_raw": "12 JUL 2025",
-      "competition": "Sunset Tour, Jack Kemp Stadium - Occidental College, Los Angeles, CA",
-      "category": "B",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 4,
-      "mark": "32:01.15",
-      "result_score": 1138,
-      "placing_score": 27,
-      "performance_score": 1165,
-      "month_correction_applied": false
-     }
-    ],
-    "wr_bonus": 0,
-    "wr_results": [],
-    "rank_date": "2026-10-20"
-   },
-   {
-    "competitor_id": "145175451",
+    "competitor_id": "145790778",
     "slug": "/athletes/japan/nozomi-tanaka-14632538",
-    "rank": 49,
+    "rank": 48,
     "name": "Nozomi TANAKA",
     "dob": "04 SEP 1999",
     "country": "JPN",
@@ -2171,12 +2118,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175452",
+    "competitor_id": "145790779",
     "slug": "/athletes/spain/idaira-prieto-14592926",
-    "rank": 50,
+    "rank": 49,
     "name": "Idaira PRIETO",
     "dob": "17 AUG 1997",
     "country": "ESP",
@@ -2215,12 +2162,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175453",
+    "competitor_id": "145790780",
     "slug": "/athletes/italy/elisa-palmero-14701876",
-    "rank": 51,
+    "rank": 50,
     "name": "Elisa PALMERO",
     "dob": "10 JUL 1999",
     "country": "ITA",
@@ -2259,12 +2206,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175454",
+    "competitor_id": "145790781",
     "slug": "/athletes/poland/elzbieta-glinka-15080748",
-    "rank": 52,
+    "rank": 51,
     "name": "Elżbieta GLINKA",
     "dob": "30 OCT 1993",
     "country": "POL",
@@ -2303,12 +2250,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175455",
+    "competitor_id": "145790782",
     "slug": "/athletes/south-africa/glenrose-xaba-14515907",
-    "rank": 53,
+    "rank": 52,
     "name": "Glenrose XABA",
     "dob": "31 DEC 1994",
     "country": "RSA",
@@ -2347,56 +2294,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175456",
-    "slug": "/athletes/germany/eva-dieterich-14752369",
-    "rank": 54,
-    "name": "Eva DIETERICH",
-    "dob": "29 MAR 1999",
-    "country": "GER",
-    "ranking_score": 1178.0,
-    "performances": [
-     {
-      "date": "2025-05-03",
-      "date_raw": "03 MAY 2025",
-      "competition": "German 10,000m Championships, Jahnkampfbahn, Hamburg",
-      "category": "B",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "31:45.18",
-      "result_score": 1152,
-      "placing_score": 35,
-      "performance_score": 1187,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-05-24",
-      "date_raw": "24 MAY 2025",
-      "competition": "European 10,000m Cup, Stade Complexe Sportif Jean-Paul Chasseboeuf, Pacé",
-      "category": "B",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 4,
-      "mark": "31:56.91",
-      "result_score": 1142,
-      "placing_score": 27,
-      "performance_score": 1169,
-      "month_correction_applied": false
-     }
-    ],
-    "wr_bonus": 0,
-    "wr_results": [],
-    "rank_date": "2026-10-20"
-   },
-   {
-    "competitor_id": "145175457",
+    "competitor_id": "145790783",
     "slug": "/athletes/belgium/chloe-herbiet-14763815",
-    "rank": 55,
+    "rank": 53,
     "name": "Chloé HERBIET",
     "dob": "03 DEC 1998",
     "country": "BEL",
@@ -2435,12 +2338,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175458",
+    "competitor_id": "145790784",
     "slug": "/athletes/kenya/joy-naukot-15203733",
-    "rank": 56,
+    "rank": 54,
     "name": "Joy NAUKOT",
     "dob": "09 JUL 2003",
     "country": "KEN",
@@ -2479,12 +2382,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175459",
+    "competitor_id": "145790785",
     "slug": "/athletes/japan/mikuni-yada-14747887",
-    "rank": 57,
+    "rank": 55,
     "name": "Mikuni YADA",
     "dob": "29 OCT 1999",
     "country": "JPN",
@@ -2523,12 +2426,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175460",
+    "competitor_id": "145790786",
     "slug": "/athletes/djibouti/samiya-hassan-nour-14786622",
-    "rank": 58,
+    "rank": 56,
     "name": "Samiya HASSAN NOUR",
     "dob": "05 DEC 1999",
     "country": "DJI",
@@ -2567,100 +2470,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175461",
-    "slug": "/athletes/germany/elena-burkard-14420240",
-    "rank": 59,
-    "name": "Elena BURKARD",
-    "dob": "10 FEB 1992",
-    "country": "GER",
-    "ranking_score": 1175.0,
-    "performances": [
-     {
-      "date": "2025-05-03",
-      "date_raw": "03 MAY 2025",
-      "competition": "German 10,000m Championships, Jahnkampfbahn, Hamburg",
-      "category": "B",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "31:40.79",
-      "result_score": 1156,
-      "placing_score": 42,
-      "performance_score": 1198,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-03-08",
-      "date_raw": "08 MAR 2026",
-      "competition": "German 10km Road Running Championships, Uelzen",
-      "category": "B",
-      "discipline_code": "10RR",
-      "discipline": "10 Kilometres Road",
-      "indoor": false,
-      "place": 2,
-      "mark": "31:55",
-      "result_score": 1143,
-      "placing_score": 10,
-      "performance_score": 1153,
-      "month_correction_applied": false
-     }
-    ],
-    "wr_bonus": 0,
-    "wr_results": [],
-    "rank_date": "2026-10-20"
-   },
-   {
-    "competitor_id": "145175462",
-    "slug": "/athletes/uganda/annet-chemengich-chelangat-14913700",
-    "rank": 60,
-    "name": "Annet Chemengich CHELANGAT",
-    "dob": "29 JUL 1993",
-    "country": "UGA",
-    "ranking_score": 1175.0,
-    "performances": [
-     {
-      "date": "2025-05-03",
-      "date_raw": "03 MAY 2025",
-      "competition": "Tokyo : Speed : Race, Meijijingu Gaien area, Tokyo",
-      "category": "F",
-      "discipline_code": "10RR",
-      "discipline": "10 Kilometres Road",
-      "indoor": false,
-      "place": 7,
-      "mark": "31:03",
-      "result_score": 1190,
-      "placing_score": 0,
-      "performance_score": 1190,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-06-14",
-      "date_raw": "14 JUN 2025",
-      "competition": "Gouden Spike, Sportcomplex De Leidse Hout, Leiden",
-      "category": "D",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 4,
-      "mark": "31:47.89",
-      "result_score": 1150,
-      "placing_score": 11,
-      "performance_score": 1161,
-      "month_correction_applied": false
-     }
-    ],
-    "wr_bonus": 0,
-    "wr_results": [],
-    "rank_date": "2026-10-20"
-   },
-   {
-    "competitor_id": "145175463",
+    "competitor_id": "145790787",
     "slug": "/athletes/spain/carla-gallardo-14688215",
-    "rank": 61,
+    "rank": 57,
     "name": "Carla GALLARDO",
     "dob": "09 FEB 1999",
     "country": "ESP",
@@ -2699,12 +2514,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175464",
+    "competitor_id": "145790788",
     "slug": "/athletes/portugal/mariana-machado-14737874",
-    "rank": 62,
+    "rank": 58,
     "name": "Mariana MACHADO",
     "dob": "12 NOV 2000",
     "country": "POR",
@@ -2743,12 +2558,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175465",
+    "competitor_id": "145790789",
     "slug": "/athletes/kenya/esther-muthoni-14962711",
-    "rank": 63,
+    "rank": 59,
     "name": "Esther MUTHONI",
     "dob": "27 DEC 2001",
     "country": "KEN",
@@ -2787,12 +2602,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175466",
+    "competitor_id": "145790790",
     "slug": "/athletes/kenya/agnes-mwikali-mutuku-14915503",
-    "rank": 64,
+    "rank": 60,
     "name": "Agnes Mwikali MUTUKU",
     "dob": "15 DEC 2002",
     "country": "KEN",
@@ -2831,12 +2646,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175467",
+    "competitor_id": "145790791",
     "slug": "/athletes/kenya/mercyline-jepkemei-kirwa-15205630",
-    "rank": 65,
+    "rank": 61,
     "name": "Mercyline Jepkemei KIRWA",
     "dob": "23 FEB 2000",
     "country": "KEN",
@@ -2875,12 +2690,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175468",
+    "competitor_id": "145790792",
     "slug": "/athletes/kenya/cintia-chepngeno-14758187",
-    "rank": 66,
+    "rank": 62,
     "name": "Cintia CHEPNGENO",
     "dob": "03 JUN 2000",
     "country": "KEN",
@@ -2919,12 +2734,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175469",
+    "competitor_id": "145790793",
     "slug": "/athletes/kenya/rebecca-mwangi-14855594",
-    "rank": 67,
+    "rank": 63,
     "name": "Rebecca MWANGI",
     "dob": "15 JUN 2001",
     "country": "KEN",
@@ -2963,12 +2778,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175470",
+    "competitor_id": "145790794",
     "slug": "/athletes/uganda/esther-chebet-14677914",
-    "rank": 68,
+    "rank": 64,
     "name": "Esther CHEBET",
     "dob": "09 OCT 1997",
     "country": "UGA",
@@ -3007,12 +2822,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175471",
+    "competitor_id": "145790795",
     "slug": "/athletes/netherlands/jennifer-gulikers-14911316",
-    "rank": 69,
+    "rank": 65,
     "name": "Jennifer GULIKERS",
     "dob": "18 AUG 1994",
     "country": "NED",
@@ -3051,12 +2866,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175472",
+    "competitor_id": "145790796",
     "slug": "/athletes/ethiopia/tsigie-gebreselama-14848732",
-    "rank": 70,
+    "rank": 66,
     "name": "Tsigie GEBRESELAMA",
     "dob": "30 SEP 2000",
     "country": "ETH",
@@ -3095,12 +2910,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175473",
+    "competitor_id": "145790797",
     "slug": "/athletes/italy/federica-del-buono-14480247",
-    "rank": 71,
+    "rank": 67,
     "name": "Federica DEL BUONO",
     "dob": "12 DEC 1994",
     "country": "ITA",
@@ -3139,12 +2954,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175474",
+    "competitor_id": "145790798",
     "slug": "/athletes/morocco/kaoutar-farkoussi-14590420",
-    "rank": 72,
+    "rank": 68,
     "name": "Kaoutar FARKOUSSI",
     "dob": "19 MAR 1996",
     "country": "MAR",
@@ -3183,12 +2998,56 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175475",
+    "competitor_id": "145790799",
+    "slug": "/athletes/norway/hanne-mjoen-maridal-14630180",
+    "rank": 69,
+    "name": "Hanne Mjøen MARIDAL",
+    "dob": "21 SEP 1996",
+    "country": "NOR",
+    "ranking_score": 1166.0,
+    "performances": [
+     {
+      "date": "2026-10-17",
+      "date_raw": "17 OCT 2026",
+      "competition": "Hytteplanmila, Svendsrudmoen Stadion, Hole",
+      "category": "F",
+      "discipline_code": "10RR",
+      "discipline": "10 Kilometres Road",
+      "indoor": false,
+      "place": 3,
+      "mark": "30:56",
+      "result_score": 1196,
+      "placing_score": 0,
+      "performance_score": 1196,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-07-25",
+      "date_raw": "25 JUL 2026",
+      "competition": "Norwegian Championships, Trondheim Stadion, Trondheim",
+      "category": "B",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 3,
+      "mark": "32:38.59",
+      "result_score": 1105,
+      "placing_score": 31,
+      "performance_score": 1136,
+      "month_correction_applied": false
+     }
+    ],
+    "wr_bonus": 0,
+    "wr_results": [],
+    "rank_date": "2026-11-03"
+   },
+   {
+    "competitor_id": "145790800",
     "slug": "/athletes/germany/blanka-dorfel-014706228",
-    "rank": 73,
+    "rank": 70,
     "name": "Blanka DÖRFEL",
     "dob": "24 APR 2002",
     "country": "GER",
@@ -3227,12 +3086,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175476",
+    "competitor_id": "145790801",
     "slug": "/athletes/japan/wakana-kabasawa-14608139",
-    "rank": 74,
+    "rank": 71,
     "name": "Wakana KABASAWA",
     "dob": "24 MAR 1999",
     "country": "JPN",
@@ -3271,12 +3130,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175477",
+    "competitor_id": "145790802",
     "slug": "/athletes/spain/alicia-berzosa-14812892",
-    "rank": 75,
+    "rank": 72,
     "name": "Alicia BERZOSA",
     "dob": "10 SEP 2000",
     "country": "ESP",
@@ -3315,12 +3174,56 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175478",
+    "competitor_id": "145790803",
+    "slug": "/athletes/germany/eva-dieterich-14752369",
+    "rank": 73,
+    "name": "Eva DIETERICH",
+    "dob": "29 MAR 1999",
+    "country": "GER",
+    "ranking_score": 1163.0,
+    "performances": [
+     {
+      "date": "2025-05-24",
+      "date_raw": "24 MAY 2025",
+      "competition": "European 10,000m Cup, Stade Complexe Sportif Jean-Paul Chasseboeuf, Pacé",
+      "category": "B",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 4,
+      "mark": "31:56.91",
+      "result_score": 1142,
+      "placing_score": 27,
+      "performance_score": 1169,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-03-08",
+      "date_raw": "08 MAR 2026",
+      "competition": "German 10km Road Running Championships, Uelzen",
+      "category": "B",
+      "discipline_code": "10RR",
+      "discipline": "10 Kilometres Road",
+      "indoor": false,
+      "place": 1,
+      "mark": "31:54",
+      "result_score": 1144,
+      "placing_score": 14,
+      "performance_score": 1158,
+      "month_correction_applied": false
+     }
+    ],
+    "wr_bonus": 0,
+    "wr_results": [],
+    "rank_date": "2026-11-03"
+   },
+   {
+    "competitor_id": "145790804",
     "slug": "/athletes/australia/leanne-pompeani-14675198",
-    "rank": 76,
+    "rank": 74,
     "name": "Leanne POMPEANI",
     "dob": "25 JUN 1996",
     "country": "AUS",
@@ -3359,12 +3262,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175479",
+    "competitor_id": "145790805",
     "slug": "/athletes/slovenia/marusa-mismas-zrimsek-14375060",
-    "rank": 77,
+    "rank": 75,
     "name": "Maruša MIŠMAŠ ZRIMŠEK",
     "dob": "24 OCT 1994",
     "country": "SLO",
@@ -3403,12 +3306,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175480",
+    "competitor_id": "145790806",
     "slug": "/athletes/norway/anna-marie-nordengen-sirevag-14804467",
-    "rank": 78,
+    "rank": 76,
     "name": "Anna Marie Nordengen SIREVÅG",
     "dob": "24 MAY 2004",
     "country": "NOR",
@@ -3447,12 +3350,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175481",
+    "competitor_id": "145790807",
     "slug": "/athletes/ethiopia/fentaye-chane-15283819",
-    "rank": 79,
+    "rank": 77,
     "name": "Fentaye CHANE",
     "dob": "20 JAN 2005",
     "country": "ETH",
@@ -3491,12 +3394,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175482",
+    "competitor_id": "145790808",
     "slug": "/athletes/kenya/betty-kipkore-15135704",
-    "rank": 80,
+    "rank": 78,
     "name": "Betty KIPKORE",
     "dob": "22 JUL 2003",
     "country": "KEN",
@@ -3535,12 +3438,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175483",
+    "competitor_id": "145790809",
     "slug": "/athletes/japan/rika-kaseda-14719677",
-    "rank": 81,
+    "rank": 79,
     "name": "Rika KASEDA",
     "dob": "02 MAR 1999",
     "country": "JPN",
@@ -3579,12 +3482,56 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175484",
+    "competitor_id": "145790810",
+    "slug": "/athletes/norway/karoline-haugen-15261374",
+    "rank": 80,
+    "name": "Karoline HAUGEN",
+    "dob": "22 APR 1995",
+    "country": "NOR",
+    "ranking_score": 1157.0,
+    "performances": [
+     {
+      "date": "2026-10-17",
+      "date_raw": "17 OCT 2026",
+      "competition": "Hytteplanmila, Svendsrudmoen Stadion, Hole",
+      "category": "F",
+      "discipline_code": "10RR",
+      "discipline": "10 Kilometres Road",
+      "indoor": false,
+      "place": 4,
+      "mark": "31:31",
+      "result_score": 1165,
+      "placing_score": 0,
+      "performance_score": 1165,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-07-25",
+      "date_raw": "25 JUL 2026",
+      "competition": "Norwegian Championships, Trondheim Stadion, Trondheim",
+      "category": "B",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "32:28.89",
+      "result_score": 1114,
+      "placing_score": 35,
+      "performance_score": 1149,
+      "month_correction_applied": false
+     }
+    ],
+    "wr_bonus": 0,
+    "wr_results": [],
+    "rank_date": "2026-11-03"
+   },
+   {
+    "competitor_id": "145790811",
     "slug": "/athletes/great-britain-ni/hannah-irwin-14798392",
-    "rank": 82,
+    "rank": 81,
     "name": "Hannah IRWIN",
     "dob": "23 JUN 1998",
     "country": "GBR",
@@ -3623,12 +3570,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175485",
+    "competitor_id": "145790812",
     "slug": "/athletes/united-states/chloe-scrimgeour-14907140",
-    "rank": 83,
+    "rank": 82,
     "name": "Chloe SCRIMGEOUR",
     "dob": "11 AUG 2003",
     "country": "USA",
@@ -3667,12 +3614,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175486",
+    "competitor_id": "145790813",
     "slug": "/athletes/belgium/lisa-rooms-14527618",
-    "rank": 84,
+    "rank": 83,
     "name": "Lisa ROOMS",
     "dob": "17 JUN 1996",
     "country": "BEL",
@@ -3711,12 +3658,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175487",
+    "competitor_id": "145790814",
     "slug": "/athletes/united-states/grace-hartman-14719772",
-    "rank": 85,
+    "rank": 84,
     "name": "Grace HARTMAN",
     "dob": "30 JAN 2004",
     "country": "USA",
@@ -3755,12 +3702,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175488",
+    "competitor_id": "145790815",
     "slug": "/athletes/japan/risa-yamazaki-14895856",
-    "rank": 86,
+    "rank": 85,
     "name": "Risa YAMAZAKI",
     "dob": "29 AUG 2002",
     "country": "JPN",
@@ -3799,12 +3746,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175489",
+    "competitor_id": "145790816",
     "slug": "/athletes/great-britain-ni/poppy-tank-14473353",
-    "rank": 87,
+    "rank": 86,
     "name": "Poppy TANK",
     "dob": "05 DEC 1997",
     "country": "GBR",
@@ -3843,56 +3790,56 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175490",
-    "slug": "/athletes/norway/hanne-mjoen-maridal-14630180",
-    "rank": 88,
-    "name": "Hanne Mjøen MARIDAL",
-    "dob": "21 SEP 1996",
-    "country": "NOR",
+    "competitor_id": "145790817",
+    "slug": "/athletes/new-zealand/georgie-grgec-14385176",
+    "rank": 87,
+    "name": "Georgie GRGEC",
+    "dob": "18 NOV 1993",
+    "country": "NZL",
     "ranking_score": 1152.0,
     "performances": [
      {
-      "date": "2026-09-12",
-      "date_raw": "12 SEP 2026",
-      "competition": "Oslo Marathon - Half Marathon, Oslo",
+      "date": "2026-10-25",
+      "date_raw": "25 OCT 2026",
+      "competition": "Strait Link Burnie10, Foreshore, Burnie",
       "category": "F",
       "discipline_code": "10RR",
       "discipline": "10 Kilometres Road",
       "indoor": false,
       "place": 1,
-      "mark": "31:26",
-      "result_score": 1169,
+      "mark": "31:21",
+      "result_score": 1174,
       "placing_score": 0,
-      "performance_score": 1169,
+      "performance_score": 1174,
       "month_correction_applied": false
      },
      {
-      "date": "2026-07-25",
-      "date_raw": "25 JUL 2026",
-      "competition": "Norwegian Championships, Trondheim Stadion, Trondheim",
+      "date": "2025-12-13",
+      "date_raw": "13 DEC 2025",
+      "competition": "Zatopek: 10, Lakeside Stadium, Melbourne",
       "category": "B",
       "discipline_code": "10K",
       "discipline": "10,000 Metres",
       "indoor": false,
-      "place": 3,
-      "mark": "32:38.59",
-      "result_score": 1105,
-      "placing_score": 31,
-      "performance_score": 1136,
+      "place": null,
+      "mark": "32:10.28",
+      "result_score": 1130,
+      "placing_score": 0,
+      "performance_score": 1130,
       "month_correction_applied": false
      }
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175491",
+    "competitor_id": "145790818",
     "slug": "/athletes/kenya/deborah-chemutai-15090441",
-    "rank": 89,
+    "rank": 88,
     "name": "Deborah CHEMUTAI",
     "dob": "25 JUL 2005",
     "country": "KEN",
@@ -3931,12 +3878,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175492",
+    "competitor_id": "145790819",
     "slug": "/athletes/japan/nanaka-izawa-14335034",
-    "rank": 90,
+    "rank": 89,
     "name": "Nanaka IZAWA",
     "dob": "13 APR 1991",
     "country": "JPN",
@@ -3975,12 +3922,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175493",
+    "competitor_id": "145790820",
     "slug": "/athletes/united-states/allie-buchalski-14588599",
-    "rank": 91,
+    "rank": 90,
     "name": "Allie BUCHALSKI",
     "dob": "12 JAN 1995",
     "country": "USA",
@@ -4019,12 +3966,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175494",
+    "competitor_id": "145790821",
     "slug": "/athletes/kenya/selah-busienei-14479236",
-    "rank": 92,
+    "rank": 91,
     "name": "Selah BUSIENEI",
     "dob": "27 DEC 1991",
     "country": "KEN",
@@ -4063,12 +4010,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175495",
+    "competitor_id": "145790822",
     "slug": "/athletes/india/seema-14734780",
-    "rank": 93,
+    "rank": 92,
     "name": "SEEMA",
     "dob": "10 JAN 2001",
     "country": "IND",
@@ -4107,12 +4054,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175496",
+    "competitor_id": "145790823",
     "slug": "/athletes/canada/jadyn-keeler-14847671",
-    "rank": 94,
+    "rank": 93,
     "name": "Jadyn KEELER",
     "dob": "16 JUN 2003",
     "country": "CAN",
@@ -4151,12 +4098,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175497",
+    "competitor_id": "145790824",
     "slug": "/athletes/kenya/pauline-kamulu-14577978",
-    "rank": 95,
+    "rank": 94,
     "name": "Pauline KAMULU",
     "dob": "30 DEC 1994",
     "country": "KEN",
@@ -4195,12 +4142,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175498",
+    "competitor_id": "145790825",
     "slug": "/athletes/united-states/amanda-vestri-014718893",
-    "rank": 96,
+    "rank": 95,
     "name": "Amanda VESTRI",
     "dob": "01 SEP 1999",
     "country": "USA",
@@ -4239,56 +4186,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175499",
-    "slug": "/athletes/united-states/cailie-logue-hughes-14649707",
-    "rank": 97,
-    "name": "Cailie LOGUE HUGHES",
-    "dob": "04 JAN 1999",
-    "country": "USA",
-    "ranking_score": 1147.0,
-    "performances": [
-     {
-      "date": "2025-05-03",
-      "date_raw": "03 MAY 2025",
-      "competition": "Save the 10,000 with Des and Kara, Hilmer Lodge Stadium, Walnut, CA",
-      "category": "B",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "32:21.54",
-      "result_score": 1120,
-      "placing_score": 42,
-      "performance_score": 1162,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-06-14",
-      "date_raw": "14 JUN 2025",
-      "competition": "Portland Track Festival, Griswold Stadium, Portland, OR",
-      "category": "C",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 4,
-      "mark": "32:28.18",
-      "result_score": 1114,
-      "placing_score": 18,
-      "performance_score": 1132,
-      "month_correction_applied": false
-     }
-    ],
-    "wr_bonus": 0,
-    "wr_results": [],
-    "rank_date": "2026-10-20"
-   },
-   {
-    "competitor_id": "145175500",
+    "competitor_id": "145790826",
     "slug": "/athletes/japan/yuma-yamamoto-14899665",
-    "rank": 98,
+    "rank": 96,
     "name": "Yuma YAMAMOTO",
     "dob": "01 MAY 2000",
     "country": "JPN",
@@ -4327,12 +4230,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175501",
+    "competitor_id": "145790827",
     "slug": "/athletes/united-states/abby-nichols-14649782",
-    "rank": 99,
+    "rank": 97,
     "name": "Abby NICHOLS",
     "dob": "31 JAN 1997",
     "country": "USA",
@@ -4371,12 +4274,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
    },
    {
-    "competitor_id": "145175502",
+    "competitor_id": "145790828",
     "slug": "/athletes/czechia/tereza-hrochova-14463763",
-    "rank": 100,
+    "rank": 98,
     "name": "Tereza HROCHOVÁ",
     "dob": "24 FEB 1996",
     "country": "CZE",
@@ -4415,7 +4318,95 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-11-03"
+   },
+   {
+    "competitor_id": "145790829",
+    "slug": "/athletes/united-states/paityn-noe-15029800",
+    "rank": 99,
+    "name": "Paityn NOE",
+    "dob": "",
+    "country": "USA",
+    "ranking_score": 1145.0,
+    "performances": [
+     {
+      "date": "2025-06-12",
+      "date_raw": "12 JUN 2025",
+      "competition": "NCAA Division I Outdoor Track and Field Championships, Hayward Field, Eugene, OR",
+      "category": "B",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 4,
+      "mark": "31:36.91",
+      "result_score": 1160,
+      "placing_score": 27,
+      "performance_score": 1187,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-05-15",
+      "date_raw": "15 MAY 2025",
+      "competition": "Southeastern Conference Outdoor Track & Field Championships, Un. of Kentucky Outdoor Track Facility, Lexington, KY",
+      "category": "F",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 1,
+      "mark": "32:49.70",
+      "result_score": 1096,
+      "placing_score": 7,
+      "performance_score": 1103,
+      "month_correction_applied": false
+     }
+    ],
+    "wr_bonus": 0,
+    "wr_results": [],
+    "rank_date": "2026-11-03"
+   },
+   {
+    "competitor_id": "145790830",
+    "slug": "/athletes/kenya/edna-chelulei-15211010",
+    "rank": 100,
+    "name": "Edna CHELULEI",
+    "dob": "",
+    "country": "KEN",
+    "ranking_score": 1145.0,
+    "performances": [
+     {
+      "date": "2026-04-03",
+      "date_raw": "03 APR 2026",
+      "competition": "Stanford Invitational, Cobb Track and Angell Field, Palo Alto, CA",
+      "category": "F",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 3,
+      "mark": "31:33.57",
+      "result_score": 1163,
+      "placing_score": 2,
+      "performance_score": 1165,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-06-12",
+      "date_raw": "12 JUN 2025",
+      "competition": "NCAA Division I Outdoor Track and Field Championships, Hayward Field, Eugene, OR",
+      "category": "B",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 12,
+      "mark": "32:23.94",
+      "result_score": 1118,
+      "placing_score": 8,
+      "performance_score": 1126,
+      "month_correction_applied": false
+     }
+    ],
+    "wr_bonus": 0,
+    "wr_results": [],
+    "rank_date": "2026-11-03"
    }
   ]
  }

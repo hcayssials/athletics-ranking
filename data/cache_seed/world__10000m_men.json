@@ -1,15 +1,15 @@
 {
- "_fetched_at": 1793190391.9287927,
+ "_fetched_at": 1793801013.4489832,
  "_key": "world__10000m_men",
  "data": {
   "championship": "world",
   "event": "10000m_men",
   "rankings_url": "https://worldathletics.org/world-rankings/10000m/men",
-  "fetched": "2026-10-28T12:26:31",
-  "rank_date": "2026-10-20",
+  "fetched": "2026-11-04T14:03:33",
+  "rank_date": "2026-10-27",
   "athletes": [
    {
-    "competitor_id": "145127802",
+    "competitor_id": "145433825",
     "slug": "/athletes/ethiopia/biniam-mehary-15118094",
     "rank": 1,
     "name": "Biniam MEHARY",
@@ -50,10 +50,10 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127803",
+    "competitor_id": "145433826",
     "slug": "/athletes/sweden/andreas-almgren-14460738",
     "rank": 2,
     "name": "Andreas ALMGREN",
@@ -94,10 +94,10 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127804",
+    "competitor_id": "145433827",
     "slug": "/athletes/australia/ky-robinson-14865727",
     "rank": 3,
     "name": "Ky ROBINSON",
@@ -138,10 +138,10 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127805",
+    "competitor_id": "145433828",
     "slug": "/athletes/ethiopia/selemon-barega-14751317",
     "rank": 4,
     "name": "Selemon BAREGA",
@@ -182,10 +182,10 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127806",
+    "competitor_id": "145433829",
     "slug": "/athletes/kenya/ishmael-rokitto-kipkurui-14935332",
     "rank": 5,
     "name": "Ishmael Rokitto KIPKURUI",
@@ -226,56 +226,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127807",
-    "slug": "/athletes/kenya/nicholas-kipkorir-14708978",
-    "rank": 6,
-    "name": "Nicholas KIPKORIR",
-    "dob": "29 SEP 1998",
-    "country": "KEN",
-    "ranking_score": 1233.0,
-    "performances": [
-     {
-      "date": "2025-07-05",
-      "date_raw": "05 JUL 2025",
-      "competition": "Prefontaine Classic, Hayward Field, Eugene, OR",
-      "category": "A",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 9,
-      "mark": "27:06.76",
-      "result_score": 1215,
-      "placing_score": 18,
-      "performance_score": 1233,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-04-26",
-      "date_raw": "26 APR 2025",
-      "competition": "adizero: Road to Records 2025, Herzogenaurach",
-      "category": "E",
-      "discipline_code": "10RR",
-      "discipline": "10 Kilometres Road",
-      "indoor": false,
-      "place": 4,
-      "mark": "26:56",
-      "result_score": 1233,
-      "placing_score": 0,
-      "performance_score": 1233,
-      "month_correction_applied": false
-     }
-    ],
-    "wr_bonus": 0,
-    "wr_results": [],
-    "rank_date": "2026-10-20"
-   },
-   {
-    "competitor_id": "145127808",
+    "competitor_id": "145433830",
     "slug": "/athletes/kenya/edwin-kurgat-14401023",
-    "rank": 7,
+    "rank": 6,
     "name": "Edwin KURGAT",
     "dob": "19 MAY 1996",
     "country": "KEN",
@@ -314,12 +270,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127809",
+    "competitor_id": "145433831",
     "slug": "/athletes/germany/mohamed-abdilaahi-14753471",
-    "rank": 8,
+    "rank": 7,
     "name": "Mohamed ABDILAAHI",
     "dob": "24 MAR 1999",
     "country": "GER",
@@ -358,56 +314,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127810",
-    "slug": "/athletes/kenya/stanley-waithaka-mburu-14802641",
-    "rank": 9,
-    "name": "Stanley Waithaka MBURU",
-    "dob": "09 APR 2000",
-    "country": "KEN",
-    "ranking_score": 1226.0,
-    "performances": [
-     {
-      "date": "2025-07-05",
-      "date_raw": "05 JUL 2025",
-      "competition": "Prefontaine Classic, Hayward Field, Eugene, OR",
-      "category": "A",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 7,
-      "mark": "26:56.36",
-      "result_score": 1232,
-      "placing_score": 24,
-      "performance_score": 1256,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-04-26",
-      "date_raw": "26 APR 2025",
-      "competition": "14th NITTAIDAI Challenge Games, NITTAIDAI Athletic Stadium, Yokohama",
-      "category": "F",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "27:21.43",
-      "result_score": 1192,
-      "placing_score": 4,
-      "performance_score": 1196,
-      "month_correction_applied": false
-     }
-    ],
-    "wr_bonus": 0,
-    "wr_results": [],
-    "rank_date": "2026-10-20"
-   },
-   {
-    "competitor_id": "145127811",
+    "competitor_id": "145433832",
     "slug": "/athletes/france/jimmy-gressier-14694062",
-    "rank": 10,
+    "rank": 8,
     "name": "Jimmy GRESSIER",
     "dob": "04 MAY 1997",
     "country": "FRA",
@@ -446,12 +358,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127812",
+    "competitor_id": "145433833",
     "slug": "/athletes/japan/mebuki-suzuki-14854889",
-    "rank": 11,
+    "rank": 9,
     "name": "Mebuki SUZUKI",
     "dob": "03 JUN 2001",
     "country": "JPN",
@@ -490,12 +402,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127813",
+    "competitor_id": "145433834",
     "slug": "/athletes/kenya/emmanuel-moi-maru-14974970",
-    "rank": 12,
+    "rank": 10,
     "name": "Emmanuel Moi MARU",
     "dob": "04 JAN 2001",
     "country": "KEN",
@@ -534,12 +446,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127814",
+    "competitor_id": "145433835",
     "slug": "/athletes/kenya/kevin-chepsergon-chesang-15265526",
-    "rank": 13,
+    "rank": 11,
     "name": "Kevin Chepsergon CHESANG",
     "dob": "01 JUL 2005",
     "country": "KEN",
@@ -578,12 +490,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127815",
+    "competitor_id": "145433836",
     "slug": "/athletes/india/gulveer-singh-15023839",
-    "rank": 14,
+    "rank": 12,
     "name": "Gulveer SINGH",
     "dob": "01 JUN 1998",
     "country": "IND",
@@ -622,12 +534,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127816",
+    "competitor_id": "145433837",
     "slug": "/athletes/kenya/samuel-kibathi-14973355",
-    "rank": 15,
+    "rank": 13,
     "name": "Samuel KIBATHI",
     "dob": "23 FEB 2005",
     "country": "KEN",
@@ -666,12 +578,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127817",
+    "competitor_id": "145433838",
     "slug": "/athletes/switzerland/dominic-lokinyomo-lobalu-14792211",
-    "rank": 16,
+    "rank": 14,
     "name": "Dominic Lokinyomo LOBALU",
     "dob": "16 AUG 1998",
     "country": "SUI",
@@ -710,12 +622,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127818",
+    "competitor_id": "145433839",
     "slug": "/athletes/kenya/anthony-kibe-14849600",
-    "rank": 17,
+    "rank": 15,
     "name": "Anthony KIBE",
     "dob": "27 MAR 2003",
     "country": "KEN",
@@ -754,12 +666,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127819",
+    "competitor_id": "145433840",
     "slug": "/athletes/netherlands/mike-foppen-14631296",
-    "rank": 18,
+    "rank": 16,
     "name": "Mike FOPPEN",
     "dob": "29 NOV 1996",
     "country": "NED",
@@ -798,12 +710,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127820",
+    "competitor_id": "145433841",
     "slug": "/athletes/great-britain-ni/david-mullarkey-14769889",
-    "rank": 19,
+    "rank": 17,
     "name": "David MULLARKEY",
     "dob": "07 MAR 2000",
     "country": "GBR",
@@ -842,12 +754,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127821",
+    "competitor_id": "145433842",
     "slug": "/athletes/ethiopia/berihu-aregawi-14848753",
-    "rank": 20,
+    "rank": 18,
     "name": "Berihu AREGAWI",
     "dob": "28 FEB 2001",
     "country": "ETH",
@@ -886,56 +798,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127822",
-    "slug": "/athletes/bahrain/birhanu-balew-14695983",
-    "rank": 21,
-    "name": "Birhanu BALEW",
-    "dob": "27 FEB 1996",
-    "country": "BRN",
-    "ranking_score": 1191.0,
-    "performances": [
-     {
-      "date": "2025-04-26",
-      "date_raw": "26 APR 2025",
-      "competition": "adizero: Road to Records 2025, Herzogenaurach",
-      "category": "E",
-      "discipline_code": "10RR",
-      "discipline": "10 Kilometres Road",
-      "indoor": false,
-      "place": 1,
-      "mark": "26:54",
-      "result_score": 1236,
-      "placing_score": 0,
-      "performance_score": 1236,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-09-25",
-      "date_raw": "25 SEP 2026",
-      "competition": "20th Asian Games, Municipal Mizuho Stadium, Nagoya",
-      "category": "A",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "28:27.51",
-      "result_score": 1090,
-      "placing_score": 56,
-      "performance_score": 1146,
-      "month_correction_applied": false
-     }
-    ],
-    "wr_bonus": 0,
-    "wr_results": [],
-    "rank_date": "2026-10-20"
-   },
-   {
-    "competitor_id": "145127823",
+    "competitor_id": "145433843",
     "slug": "/athletes/ethiopia/yomif-kejelcha-14594967",
-    "rank": 22,
+    "rank": 19,
     "name": "Yomif KEJELCHA",
     "dob": "01 AUG 1997",
     "country": "ETH",
@@ -974,12 +842,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127824",
+    "competitor_id": "145433844",
     "slug": "/athletes/kenya/kelvin-kiplagat-15042019",
-    "rank": 23,
+    "rank": 20,
     "name": "Kelvin KIPLAGAT",
     "dob": "31 JAN 2004",
     "country": "KEN",
@@ -1018,12 +886,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127825",
+    "competitor_id": "145433845",
     "slug": "/athletes/kenya/richard-lodung-15019944",
-    "rank": 24,
+    "rank": 21,
     "name": "Richard LODUNG",
     "dob": "12 DEC 2003",
     "country": "KEN",
@@ -1062,12 +930,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127826",
+    "competitor_id": "145433846",
     "slug": "/athletes/ethiopia/mezgebu-sime-15024068",
-    "rank": 25,
+    "rank": 22,
     "name": "Mezgebu SIME",
     "dob": "07 OCT 2005",
     "country": "ETH",
@@ -1106,12 +974,56 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127827",
+    "competitor_id": "145433847",
+    "slug": "/athletes/kenya/nicholas-kipkorir-14708978",
+    "rank": 23,
+    "name": "Nicholas KIPKORIR",
+    "dob": "29 SEP 1998",
+    "country": "KEN",
+    "ranking_score": 1190.0,
+    "performances": [
+     {
+      "date": "2025-07-05",
+      "date_raw": "05 JUL 2025",
+      "competition": "Prefontaine Classic, Hayward Field, Eugene, OR",
+      "category": "A",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 9,
+      "mark": "27:06.76",
+      "result_score": 1215,
+      "placing_score": 18,
+      "performance_score": 1233,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-07-04",
+      "date_raw": "04 JUL 2026",
+      "competition": "Northside Hospital Peachtree Road Race, Atlanta, GA",
+      "category": "E",
+      "discipline_code": "10RR",
+      "discipline": "10 Kilometres Road",
+      "indoor": false,
+      "place": 2,
+      "mark": "27:41",
+      "result_score": 1148,
+      "placing_score": 0,
+      "performance_score": 1148,
+      "month_correction_applied": false
+     }
+    ],
+    "wr_bonus": 0,
+    "wr_results": [],
+    "rank_date": "2026-10-27"
+   },
+   {
+    "competitor_id": "145433848",
     "slug": "/athletes/great-britain-ni/scott-beattie-14706588",
-    "rank": 26,
+    "rank": 24,
     "name": "Scott BEATTIE",
     "dob": "04 DEC 1998",
     "country": "GBR",
@@ -1150,12 +1062,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127828",
+    "competitor_id": "145433849",
     "slug": "/athletes/kenya/elsingi-kipruto-15169283",
-    "rank": 27,
+    "rank": 25,
     "name": "Elsingi KIPRUTO",
     "dob": "19 AUG 2005",
     "country": "KEN",
@@ -1194,12 +1106,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127829",
+    "competitor_id": "145433850",
     "slug": "/athletes/ethiopia/hagos-eyob-15141858",
-    "rank": 28,
+    "rank": 26,
     "name": "Hagos EYOB",
     "dob": "16 DEC 2006",
     "country": "ETH",
@@ -1238,12 +1150,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127830",
+    "competitor_id": "145433851",
     "slug": "/athletes/kenya/evans-keitany-kiptum-14477630",
-    "rank": 29,
+    "rank": 27,
     "name": "Evans Keitany KIPTUM",
     "dob": "27 NOV 1999",
     "country": "KEN",
@@ -1282,12 +1194,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127831",
+    "competitor_id": "145433852",
     "slug": "/athletes/great-britain-ni/emile-cairess-14644747",
-    "rank": 30,
+    "rank": 28,
     "name": "Emile CAIRESS",
     "dob": "27 DEC 1997",
     "country": "GBR",
@@ -1326,12 +1238,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127832",
+    "competitor_id": "145433853",
     "slug": "/athletes/united-states/conner-mantz-14628442",
-    "rank": 31,
+    "rank": 29,
     "name": "Conner MANTZ",
     "dob": "08 DEC 1996",
     "country": "USA",
@@ -1370,12 +1282,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127833",
+    "competitor_id": "145433854",
     "slug": "/athletes/eritrea/habtom-samuel-14919315",
-    "rank": 32,
+    "rank": 30,
     "name": "Habtom SAMUEL",
     "dob": "30 NOV 2003",
     "country": "ERI",
@@ -1414,12 +1326,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127834",
+    "competitor_id": "145433855",
     "slug": "/athletes/ireland/efrem-gidey-14842722",
-    "rank": 33,
+    "rank": 31,
     "name": "Efrem GIDEY",
     "dob": "03 SEP 2000",
     "country": "IRL",
@@ -1458,12 +1370,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127835",
+    "competitor_id": "145433856",
     "slug": "/athletes/kenya/amos-kipkemoi-bett-15045364",
-    "rank": 34,
+    "rank": 32,
     "name": "Amos Kipkemoi BETT",
     "dob": "03 AUG 2000",
     "country": "KEN",
@@ -1502,12 +1414,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127836",
+    "competitor_id": "145433857",
     "slug": "/athletes/france/valentin-gondouin-14900468",
-    "rank": 35,
+    "rank": 33,
     "name": "Valentin GONDOUIN",
     "dob": "04 MAR 1999",
     "country": "FRA",
@@ -1546,12 +1458,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127837",
+    "competitor_id": "145433858",
     "slug": "/athletes/kenya/kiprono-sitonik-14798187",
-    "rank": 36,
+    "rank": 34,
     "name": "Kiprono SITONIK",
     "dob": "10 NOV 2001",
     "country": "KEN",
@@ -1590,12 +1502,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127838",
+    "competitor_id": "145433859",
     "slug": "/athletes/kenya/silas-senchura-15126593",
-    "rank": 37,
+    "rank": 35,
     "name": "Silas SENCHURA",
     "dob": "12 JUL 2005",
     "country": "KEN",
@@ -1634,100 +1546,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127839",
-    "slug": "/athletes/kenya/james-mwanzia-mutuku-14894335",
-    "rank": 38,
-    "name": "James Mwanzia MUTUKU",
-    "dob": "20 DEC 2002",
-    "country": "KEN",
-    "ranking_score": 1182.0,
-    "performances": [
-     {
-      "date": "2025-04-26",
-      "date_raw": "26 APR 2025",
-      "competition": "14th NITTAIDAI Challenge Games, NITTAIDAI Athletic Stadium, Yokohama",
-      "category": "F",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 1,
-      "mark": "27:20.79",
-      "result_score": 1193,
-      "placing_score": 7,
-      "performance_score": 1200,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-05-24",
-      "date_raw": "24 MAY 2025",
-      "competition": "Selection Meeting for 57th All Japan Inter-University Ekiden, Lemon Gas Stadium, Hiratsuka",
-      "category": "F",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 3,
-      "mark": "27:39.99",
-      "result_score": 1163,
-      "placing_score": 2,
-      "performance_score": 1165,
-      "month_correction_applied": false
-     }
-    ],
-    "wr_bonus": 0,
-    "wr_results": [],
-    "rank_date": "2026-10-20"
-   },
-   {
-    "competitor_id": "145127840",
-    "slug": "/athletes/kenya/gideon-kipkertich-rono-14858600",
-    "rank": 39,
-    "name": "Gideon Kipkertich RONO",
-    "dob": "22 FEB 2003",
-    "country": "KEN",
-    "ranking_score": 1181.0,
-    "performances": [
-     {
-      "date": "2025-04-26",
-      "date_raw": "26 APR 2025",
-      "competition": "14th NITTAIDAI Challenge Games, NITTAIDAI Athletic Stadium, Yokohama",
-      "category": "F",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 3,
-      "mark": "27:24.72",
-      "result_score": 1187,
-      "placing_score": 2,
-      "performance_score": 1189,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-07-05",
-      "date_raw": "05 JUL 2026",
-      "competition": "74th Japan Corporate Teams Athletics Championships 10000m, Aoba Park Athletic Field, Chitose",
-      "category": "F",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 3,
-      "mark": "27:35.04",
-      "result_score": 1171,
-      "placing_score": 2,
-      "performance_score": 1173,
-      "month_correction_applied": false
-     }
-    ],
-    "wr_bonus": 0,
-    "wr_results": [],
-    "rank_date": "2026-10-20"
-   },
-   {
-    "competitor_id": "145127841",
+    "competitor_id": "145433860",
     "slug": "/athletes/kenya/amos-kipkemoi-14747336",
-    "rank": 40,
+    "rank": 36,
     "name": "Amos KIPKEMOI",
     "dob": "10 SEP 2003",
     "country": "KEN",
@@ -1766,12 +1590,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127842",
+    "competitor_id": "145433861",
     "slug": "/athletes/kenya/raphael-dapash-15042027",
-    "rank": 41,
+    "rank": 37,
     "name": "Raphael DAPASH",
     "dob": "03 APR 2004",
     "country": "KEN",
@@ -1810,12 +1634,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127843",
+    "competitor_id": "145433862",
     "slug": "/athletes/russia/vladimir-nikitin-14442497",
-    "rank": 42,
+    "rank": 38,
     "name": "Vladimir NIKITIN",
     "dob": "05 AUG 1992",
     "country": "RUS",
@@ -1854,12 +1678,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127844",
+    "competitor_id": "145433863",
     "slug": "/athletes/kenya/emmanuel-korir-kiplagat-14892214",
-    "rank": 43,
+    "rank": 39,
     "name": "Emmanuel Korir KIPLAGAT",
     "dob": "05 MAY 2002",
     "country": "KEN",
@@ -1898,12 +1722,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127845",
+    "competitor_id": "145433864",
     "slug": "/athletes/kenya/charles-kiboino-15247725",
-    "rank": 44,
+    "rank": 40,
     "name": "Charles KIBOINO",
     "dob": "21 DEC 2006",
     "country": "KEN",
@@ -1942,12 +1766,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127846",
+    "competitor_id": "145433865",
     "slug": "/athletes/kenya/dennis-mutuku-15042020",
-    "rank": 45,
+    "rank": 41,
     "name": "Dennis MUTUKU",
     "dob": "30 SEP 2005",
     "country": "KEN",
@@ -1986,12 +1810,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127847",
+    "competitor_id": "145433866",
     "slug": "/athletes/kenya/shadrack-rono-14989936",
-    "rank": 46,
+    "rank": 42,
     "name": "Shadrack RONO",
     "dob": "01 JAN 2002",
     "country": "KEN",
@@ -2030,12 +1854,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127848",
+    "competitor_id": "145433867",
     "slug": "/athletes/uruguay/santiago-catrofe-14706109",
-    "rank": 47,
+    "rank": 43,
     "name": "Santiago CATROFE",
     "dob": "13 FEB 1999",
     "country": "URU",
@@ -2074,12 +1898,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127849",
+    "competitor_id": "145433868",
     "slug": "/athletes/kenya/brian-kibor-akotir-15182754",
-    "rank": 48,
+    "rank": 44,
     "name": "Brian Kibor AKOTIR",
     "dob": "10 OCT 2001",
     "country": "KEN",
@@ -2118,12 +1942,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127850",
+    "competitor_id": "145433869",
     "slug": "/athletes/uganda/samuel-simba-cherop-15140408",
-    "rank": 49,
+    "rank": 45,
     "name": "Samuel Simba CHEROP",
     "dob": "03 JUL 2006",
     "country": "UGA",
@@ -2162,56 +1986,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127851",
-    "slug": "/athletes/kenya/antipas-kibet-kandie-14808800",
-    "rank": 50,
-    "name": "Antipas Kibet KANDIE",
-    "dob": "02 APR 1996",
-    "country": "KEN",
-    "ranking_score": 1172.0,
-    "performances": [
-     {
-      "date": "2025-11-15",
-      "date_raw": "15 NOV 2025",
-      "competition": "18th NITTAIDAI Challenge Games, NITTAIDAI Athletic Stadium, Yokohama",
-      "category": "F",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "27:30.60",
-      "result_score": 1178,
-      "placing_score": 4,
-      "performance_score": 1182,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-04-26",
-      "date_raw": "26 APR 2025",
-      "competition": "14th NITTAIDAI Challenge Games, NITTAIDAI Athletic Stadium, Yokohama",
-      "category": "F",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 6,
-      "mark": "27:39.91",
-      "result_score": 1163,
-      "placing_score": 0,
-      "performance_score": 1163,
-      "month_correction_applied": false
-     }
-    ],
-    "wr_bonus": 0,
-    "wr_results": [],
-    "rank_date": "2026-10-20"
-   },
-   {
-    "competitor_id": "145127852",
+    "competitor_id": "145433870",
     "slug": "/athletes/belgium/simon-debognies-14589434",
-    "rank": 51,
+    "rank": 46,
     "name": "Simon DEBOGNIES",
     "dob": "16 JUL 1996",
     "country": "BEL",
@@ -2250,12 +2030,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127853",
+    "competitor_id": "145433871",
     "slug": "/athletes/france/simon-bedard-14643587",
-    "rank": 52,
+    "rank": 47,
     "name": "Simon BEDARD",
     "dob": "03 JAN 1997",
     "country": "FRA",
@@ -2294,12 +2074,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127854",
+    "competitor_id": "145433872",
     "slug": "/athletes/ethiopia/nibret-kinde-15058748",
-    "rank": 53,
+    "rank": 48,
     "name": "Nibret KINDE",
     "dob": "01 JAN 2006",
     "country": "ETH",
@@ -2338,12 +2118,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127855",
+    "competitor_id": "145433873",
     "slug": "/athletes/kenya/ernest-cheruiyot-15130431",
-    "rank": 54,
+    "rank": 49,
     "name": "Ernest CHERUIYOT",
     "dob": "01 MAY 2005",
     "country": "KEN",
@@ -2382,42 +2162,42 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127856",
-    "slug": "/athletes/kenya/raphael-longisa-14973359",
-    "rank": 55,
-    "name": "Raphael LONGISA",
-    "dob": "21 AUG 2003",
+    "competitor_id": "145433874",
+    "slug": "/athletes/kenya/gideon-kipkertich-rono-14858600",
+    "rank": 50,
+    "name": "Gideon Kipkertich RONO",
+    "dob": "22 FEB 2003",
     "country": "KEN",
-    "ranking_score": 1169.0,
+    "ranking_score": 1170.0,
     "performances": [
      {
-      "date": "2025-04-26",
-      "date_raw": "26 APR 2025",
-      "competition": "14th NITTAIDAI Challenge Games, NITTAIDAI Athletic Stadium, Yokohama",
+      "date": "2026-07-05",
+      "date_raw": "05 JUL 2026",
+      "competition": "74th Japan Corporate Teams Athletics Championships 10000m, Aoba Park Athletic Field, Chitose",
       "category": "F",
       "discipline_code": "10K",
       "discipline": "10,000 Metres",
       "indoor": false,
-      "place": 4,
-      "mark": "27:34.70",
+      "place": 3,
+      "mark": "27:35.04",
       "result_score": 1171,
-      "placing_score": 0,
-      "performance_score": 1171,
+      "placing_score": 2,
+      "performance_score": 1173,
       "month_correction_applied": false
      },
      {
-      "date": "2026-05-04",
-      "date_raw": "04 MAY 2026",
-      "competition": "Selection Meeting for 58th All Japan Inter-University Ekiden, Lemon Gas Stadium, Hiratsuka",
+      "date": "2026-04-25",
+      "date_raw": "25 APR 2026",
+      "competition": "21st Nittaidai Challenge Games, NITTAIDAI Athletic Stadium, Yokohama",
       "category": "F",
       "discipline_code": "10K",
       "discipline": "10,000 Metres",
       "indoor": false,
       "place": 2,
-      "mark": "27:40.05",
+      "mark": "27:39.71",
       "result_score": 1163,
       "placing_score": 4,
       "performance_score": 1167,
@@ -2426,12 +2206,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127857",
+    "competitor_id": "145433875",
     "slug": "/athletes/kenya/samwel-chebolei-masai-14798170",
-    "rank": 56,
+    "rank": 51,
     "name": "Samwel Chebolei MASAI",
     "dob": "20 MAR 2001",
     "country": "KEN",
@@ -2470,56 +2250,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127858",
-    "slug": "/athletes/ethiopia/gemechu-dida-14825107",
-    "rank": 57,
-    "name": "Gemechu DIDA",
-    "dob": "12 SEP 1999",
-    "country": "ETH",
-    "ranking_score": 1167.0,
-    "performances": [
-     {
-      "date": "2025-04-26",
-      "date_raw": "26 APR 2025",
-      "competition": "adizero: Road to Records 2025, Herzogenaurach",
-      "category": "E",
-      "discipline_code": "10RR",
-      "discipline": "10 Kilometres Road",
-      "indoor": false,
-      "place": 2,
-      "mark": "26:54",
-      "result_score": 1236,
-      "placing_score": 0,
-      "performance_score": 1236,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-03-25",
-      "date_raw": "25 MAR 2026",
-      "competition": "Ethiopian Championships, Ethiopian Sport Academy, Addis Ababa",
-      "category": "B",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 3,
-      "mark": "28:42.23",
-      "result_score": 1068,
-      "placing_score": 31,
-      "performance_score": 1099,
-      "month_correction_applied": false
-     }
-    ],
-    "wr_bonus": 0,
-    "wr_results": [],
-    "rank_date": "2026-10-20"
-   },
-   {
-    "competitor_id": "145127859",
+    "competitor_id": "145433876",
     "slug": "/athletes/japan/hiromichi-nonaka-14963045",
-    "rank": 58,
+    "rank": 52,
     "name": "Hiromichi NONAKA",
     "dob": "16 FEB 2005",
     "country": "JPN",
@@ -2558,12 +2294,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127860",
+    "competitor_id": "145433877",
     "slug": "/athletes/italy/yemaneberhan-crippa-14513998",
-    "rank": 59,
+    "rank": 53,
     "name": "Yemaneberhan CRIPPA",
     "dob": "15 OCT 1996",
     "country": "ITA",
@@ -2602,12 +2338,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127861",
+    "competitor_id": "145433878",
     "slug": "/athletes/kenya/laban-kiptoo-kosgei-15221550",
-    "rank": 60,
+    "rank": 54,
     "name": "Laban Kiptoo KOSGEI",
     "dob": "09 JUN 2006",
     "country": "KEN",
@@ -2646,12 +2382,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127862",
+    "competitor_id": "145433879",
     "slug": "/athletes/kenya/felix-kiptarus-korir-14892003",
-    "rank": 61,
+    "rank": 55,
     "name": "Felix Kiptarus KORIR",
     "dob": "15 AUG 2003",
     "country": "KEN",
@@ -2690,12 +2426,56 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127863",
+    "competitor_id": "145433880",
+    "slug": "/athletes/kenya/antipas-kibet-kandie-14808800",
+    "rank": 56,
+    "name": "Antipas Kibet KANDIE",
+    "dob": "02 APR 1996",
+    "country": "KEN",
+    "ranking_score": 1163.0,
+    "performances": [
+     {
+      "date": "2025-11-15",
+      "date_raw": "15 NOV 2025",
+      "competition": "18th NITTAIDAI Challenge Games, NITTAIDAI Athletic Stadium, Yokohama",
+      "category": "F",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "27:30.60",
+      "result_score": 1178,
+      "placing_score": 4,
+      "performance_score": 1182,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-07-05",
+      "date_raw": "05 JUL 2026",
+      "competition": "74th Japan Corporate Teams Athletics Championships 10000m, Aoba Park Athletic Field, Chitose",
+      "category": "F",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 7,
+      "mark": "27:51.82",
+      "result_score": 1144,
+      "placing_score": 0,
+      "performance_score": 1144,
+      "month_correction_applied": false
+     }
+    ],
+    "wr_bonus": 0,
+    "wr_results": [],
+    "rank_date": "2026-10-27"
+   },
+   {
+    "competitor_id": "145433881",
     "slug": "/athletes/norway/magnus-tuv-myhre-14910807",
-    "rank": 62,
+    "rank": 57,
     "name": "Magnus Tuv MYHRE",
     "dob": "15 JUN 2000",
     "country": "NOR",
@@ -2734,12 +2514,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127864",
+    "competitor_id": "145433882",
     "slug": "/athletes/kenya/denis-kipngetich-15041989",
-    "rank": 63,
+    "rank": 58,
     "name": "Denis KIPNGETICH",
     "dob": "07 JAN 2003",
     "country": "KEN",
@@ -2778,12 +2558,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127865",
+    "competitor_id": "145433883",
     "slug": "/athletes/uruguay/valentin-soca-14887362",
-    "rank": 64,
+    "rank": 59,
     "name": "Valentin SOCA",
     "dob": "24 JUL 2002",
     "country": "URU",
@@ -2822,12 +2602,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127866",
+    "competitor_id": "145433884",
     "slug": "/athletes/uganda/dan-kibet-14913746",
-    "rank": 65,
+    "rank": 60,
     "name": "Dan KIBET",
     "dob": "10 FEB 2004",
     "country": "UGA",
@@ -2866,12 +2646,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127867",
+    "competitor_id": "145433885",
     "slug": "/athletes/uganda/keneth-kiprop-15041078",
-    "rank": 66,
+    "rank": 61,
     "name": "Keneth KIPROP",
     "dob": "13 MAY 2005",
     "country": "UGA",
@@ -2910,12 +2690,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127868",
+    "competitor_id": "145433886",
     "slug": "/athletes/kenya/gilbert-kipkosgei-kiprotich-14989875",
-    "rank": 67,
+    "rank": 62,
     "name": "Gilbert Kipkosgei KIPROTICH",
     "dob": "12 MAY 2000",
     "country": "KEN",
@@ -2954,12 +2734,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127869",
+    "competitor_id": "145433887",
     "slug": "/athletes/kenya/kevin-kiprop-soget-15247794",
-    "rank": 68,
+    "rank": 63,
     "name": "Kevin Kiprop SOGET",
     "dob": "02 MAY 2008",
     "country": "KEN",
@@ -2998,12 +2778,56 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127870",
+    "competitor_id": "145433888",
+    "slug": "/athletes/kenya/james-mwanzia-mutuku-14894335",
+    "rank": 64,
+    "name": "James Mwanzia MUTUKU",
+    "dob": "20 DEC 2002",
+    "country": "KEN",
+    "ranking_score": 1158.0,
+    "performances": [
+     {
+      "date": "2025-05-24",
+      "date_raw": "24 MAY 2025",
+      "competition": "Selection Meeting for 57th All Japan Inter-University Ekiden, Lemon Gas Stadium, Hiratsuka",
+      "category": "F",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 3,
+      "mark": "27:39.99",
+      "result_score": 1163,
+      "placing_score": 2,
+      "performance_score": 1165,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-10-03",
+      "date_raw": "03 OCT 2026",
+      "competition": "27th Central Japan Corporate Athletics Championships, Hoshigadai Stadium, Tajimi",
+      "category": "F",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "27:49.86",
+      "result_score": 1147,
+      "placing_score": 4,
+      "performance_score": 1151,
+      "month_correction_applied": false
+     }
+    ],
+    "wr_bonus": 0,
+    "wr_results": [],
+    "rank_date": "2026-10-27"
+   },
+   {
+    "competitor_id": "145433889",
     "slug": "/athletes/france/baptiste-guyon-14789002",
-    "rank": 69,
+    "rank": 65,
     "name": "Baptiste GUYON",
     "dob": "17 JAN 2001",
     "country": "FRA",
@@ -3042,12 +2866,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127871",
+    "competitor_id": "145433890",
     "slug": "/athletes/united-states/ahmed-muhumed-14643341",
-    "rank": 70,
+    "rank": 66,
     "name": "Ahmed MUHUMED",
     "dob": "01 JAN 1998",
     "country": "USA",
@@ -3086,12 +2910,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127872",
+    "competitor_id": "145433891",
     "slug": "/athletes/france/felix-bour-14467653",
-    "rank": 71,
+    "rank": 67,
     "name": "Felix BOUR",
     "dob": "25 MAR 1994",
     "country": "FRA",
@@ -3130,12 +2954,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127873",
+    "competitor_id": "145433892",
     "slug": "/athletes/kenya/stephen-muthini-14989882",
-    "rank": 72,
+    "rank": 68,
     "name": "Stephen MUTHINI",
     "dob": "20 JUL 2005",
     "country": "KEN",
@@ -3174,12 +2998,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127874",
+    "competitor_id": "145433893",
     "slug": "/athletes/kenya/brian-kiptoo-14858602",
-    "rank": 73,
+    "rank": 69,
     "name": "Brian KIPTOO",
     "dob": "15 APR 2000",
     "country": "KEN",
@@ -3218,12 +3042,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127875",
+    "competitor_id": "145433894",
     "slug": "/athletes/uganda/rogers-kibet-14999531",
-    "rank": 74,
+    "rank": 70,
     "name": "Rogers KIBET",
     "dob": "26 MAR 2003",
     "country": "UGA",
@@ -3262,12 +3086,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127876",
+    "competitor_id": "145433895",
     "slug": "/athletes/djibouti/hani-idriss-hersi-14786619",
-    "rank": 75,
+    "rank": 71,
     "name": "Hani Idriss HERSI",
     "dob": "15 NOV 1999",
     "country": "DJI",
@@ -3306,12 +3130,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127877",
+    "competitor_id": "145433896",
     "slug": "/athletes/kenya/shadrack-kipkemei-15090516",
-    "rank": 76,
+    "rank": 72,
     "name": "Shadrack KIPKEMEI",
     "dob": "01 JUL 2003",
     "country": "KEN",
@@ -3350,12 +3174,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127878",
+    "competitor_id": "145433897",
     "slug": "/athletes/spain/eduardo-menacho-14677463",
-    "rank": 77,
+    "rank": 73,
     "name": "Eduardo MENACHO",
     "dob": "25 NOV 1999",
     "country": "ESP",
@@ -3394,12 +3218,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127879",
+    "competitor_id": "145433898",
     "slug": "/athletes/tanzania/benjamin-fernandi-ratsim-15248963",
-    "rank": 78,
+    "rank": 74,
     "name": "Benjamin Fernandi RATSIM",
     "dob": "15 SEP 2006",
     "country": "TAN",
@@ -3438,12 +3262,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127880",
+    "competitor_id": "145433899",
     "slug": "/athletes/kenya/richard-kimayat-15187547",
-    "rank": 79,
+    "rank": 75,
     "name": "Richard KIMAYAT",
     "dob": "02 JAN 2003",
     "country": "KEN",
@@ -3482,12 +3306,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127881",
+    "competitor_id": "145433900",
     "slug": "/athletes/japan/yuma-nishizawa-14901741",
-    "rank": 80,
+    "rank": 76,
     "name": "Yuma NISHIZAWA",
     "dob": "19 SEP 2000",
     "country": "JPN",
@@ -3526,56 +3350,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127882",
-    "slug": "/athletes/kenya/wilson-lemangale-15186252",
-    "rank": 81,
-    "name": "Wilson LEMANGALE",
-    "dob": "04 SEP 1998",
-    "country": "KEN",
-    "ranking_score": 1154.0,
-    "performances": [
-     {
-      "date": "2025-11-22",
-      "date_raw": "22 NOV 2025",
-      "competition": "Hachioji Long Distance, Kamiyugi Park Athletic Stadium, Hachioji",
-      "category": "F",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 23,
-      "mark": "27:42.79",
-      "result_score": 1158,
-      "placing_score": 0,
-      "performance_score": 1158,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2025-04-26",
-      "date_raw": "26 APR 2025",
-      "competition": "14th NITTAIDAI Challenge Games, NITTAIDAI Athletic Stadium, Yokohama",
-      "category": "F",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 8,
-      "mark": "27:48.40",
-      "result_score": 1150,
-      "placing_score": 0,
-      "performance_score": 1150,
-      "month_correction_applied": false
-     }
-    ],
-    "wr_bonus": 0,
-    "wr_results": [],
-    "rank_date": "2026-10-20"
-   },
-   {
-    "competitor_id": "145127883",
+    "competitor_id": "145433901",
     "slug": "/athletes/pr-of-china/wenjie-wang-15074930",
-    "rank": 82,
+    "rank": 77,
     "name": "Wenjie WANG",
     "dob": "04 MAY 2004",
     "country": "CHN",
@@ -3614,12 +3394,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127884",
+    "competitor_id": "145433902",
     "slug": "/athletes/japan/takato-suzuki-14754375",
-    "rank": 83,
+    "rank": 78,
     "name": "Takato SUZUKI",
     "dob": "23 JUL 1997",
     "country": "JPN",
@@ -3658,12 +3438,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127885",
+    "competitor_id": "145433903",
     "slug": "/athletes/italy/pasquale-selvarolo-14763495",
-    "rank": 84,
+    "rank": 79,
     "name": "Pasquale SELVAROLO",
     "dob": "28 NOV 1999",
     "country": "ITA",
@@ -3702,12 +3482,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127886",
+    "competitor_id": "145433904",
     "slug": "/athletes/japan/yuto-imae-14862962",
-    "rank": 85,
+    "rank": 80,
     "name": "Yuto IMAE",
     "dob": "26 JAN 1998",
     "country": "JPN",
@@ -3746,12 +3526,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127887",
+    "competitor_id": "145433905",
     "slug": "/athletes/japan/ayumu-kobayashi-14886071",
-    "rank": 86,
+    "rank": 81,
     "name": "Ayumu KOBAYASHI",
     "dob": "15 AUG 1998",
     "country": "JPN",
@@ -3790,12 +3570,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127888",
+    "competitor_id": "145433906",
     "slug": "/athletes/kenya/simon-ngatha-mungai-15205635",
-    "rank": 87,
+    "rank": 82,
     "name": "Simon Ngatha MUNGAI",
     "dob": "10 MAY 2000",
     "country": "KEN",
@@ -3834,12 +3614,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127889",
+    "competitor_id": "145433907",
     "slug": "/athletes/lesotho/kamohelo-mofolo-15155359",
-    "rank": 88,
+    "rank": 83,
     "name": "Kamohelo MOFOLO",
     "dob": "01 NOV 2005",
     "country": "LES",
@@ -3878,12 +3658,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127890",
+    "competitor_id": "145433908",
     "slug": "/athletes/france/bastien-augusto-14869306",
-    "rank": 89,
+    "rank": 84,
     "name": "Bastien AUGUSTO",
     "dob": "10 AUG 1999",
     "country": "FRA",
@@ -3922,12 +3702,56 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127891",
+    "competitor_id": "145433909",
+    "slug": "/athletes/kenya/raphael-longisa-14973359",
+    "rank": 85,
+    "name": "Raphael LONGISA",
+    "dob": "21 AUG 2003",
+    "country": "KEN",
+    "ranking_score": 1148.0,
+    "performances": [
+     {
+      "date": "2026-05-04",
+      "date_raw": "04 MAY 2026",
+      "competition": "Selection Meeting for 58th All Japan Inter-University Ekiden, Lemon Gas Stadium, Hiratsuka",
+      "category": "F",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "27:40.05",
+      "result_score": 1163,
+      "placing_score": 4,
+      "performance_score": 1167,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-11-22",
+      "date_raw": "22 NOV 2025",
+      "competition": "Hachioji Long Distance, Kamiyugi Park Athletic Stadium, Hachioji",
+      "category": "F",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 47,
+      "mark": "28:01.80",
+      "result_score": 1129,
+      "placing_score": 0,
+      "performance_score": 1129,
+      "month_correction_applied": false
+     }
+    ],
+    "wr_bonus": 0,
+    "wr_results": [],
+    "rank_date": "2026-10-27"
+   },
+   {
+    "competitor_id": "145433911",
     "slug": "/athletes/kenya/musio-saidamu-14900278",
-    "rank": 90,
+    "rank": 86,
     "name": "Musio SAIDAMU",
     "dob": "12 OCT 2000",
     "country": "KEN",
@@ -3966,12 +3790,56 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127892",
+    "competitor_id": "145433910",
+    "slug": "/athletes/kenya/wilson-lemangale-15186252",
+    "rank": 86,
+    "name": "Wilson LEMANGALE",
+    "dob": "04 SEP 1998",
+    "country": "KEN",
+    "ranking_score": 1148.0,
+    "performances": [
+     {
+      "date": "2025-11-22",
+      "date_raw": "22 NOV 2025",
+      "competition": "Hachioji Long Distance, Kamiyugi Park Athletic Stadium, Hachioji",
+      "category": "F",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 23,
+      "mark": "27:42.79",
+      "result_score": 1158,
+      "placing_score": 0,
+      "performance_score": 1158,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-04-11",
+      "date_raw": "11 APR 2026",
+      "competition": "20th NITTAIDAI Challenge Games, NITTAIDAI Athletic Stadium, Yokohama",
+      "category": "F",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "27:58.40",
+      "result_score": 1134,
+      "placing_score": 4,
+      "performance_score": 1138,
+      "month_correction_applied": false
+     }
+    ],
+    "wr_bonus": 0,
+    "wr_results": [],
+    "rank_date": "2026-10-27"
+   },
+   {
+    "competitor_id": "145433912",
     "slug": "/athletes/kenya/philemon-kiplagat-ruto-14758181",
-    "rank": 91,
+    "rank": 88,
     "name": "Philemon Kiplagat RUTO",
     "dob": "20 SEP 2001",
     "country": "KEN",
@@ -4010,12 +3878,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127893",
+    "competitor_id": "145433913",
     "slug": "/athletes/germany/nils-voigt-14598243",
-    "rank": 92,
+    "rank": 89,
     "name": "Nils VOIGT",
     "dob": "02 MAY 1997",
     "country": "GER",
@@ -4054,12 +3922,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127894",
+    "competitor_id": "145433914",
     "slug": "/athletes/kenya/michael-kiplangat-temoi-15042016",
-    "rank": 93,
+    "rank": 90,
     "name": "Michael Kiplangat TEMOI",
     "dob": "26 MAR 2005",
     "country": "KEN",
@@ -4098,12 +3966,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127895",
+    "competitor_id": "145433915",
     "slug": "/athletes/norway/awet-nftalem-kibrab-14579463",
-    "rank": 94,
+    "rank": 91,
     "name": "Awet Nftalem KIBRAB",
     "dob": "09 MAY 1995",
     "country": "NOR",
@@ -4142,12 +4010,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127896",
+    "competitor_id": "145433916",
     "slug": "/athletes/australia/edward-marks-14817330",
-    "rank": 95,
+    "rank": 92,
     "name": "Edward MARKS",
     "dob": "23 DEC 2001",
     "country": "AUS",
@@ -4186,12 +4054,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127897",
+    "competitor_id": "145433917",
     "slug": "/athletes/uganda/thomas-cheptoyek-15306203",
-    "rank": 96,
+    "rank": 93,
     "name": "Thomas CHEPTOYEK",
     "dob": "04 SEP 2008",
     "country": "UGA",
@@ -4230,12 +4098,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127898",
+    "competitor_id": "145433918",
     "slug": "/athletes/kenya/emmanuel-kiprop-kipruto-14847970",
-    "rank": 97,
+    "rank": 94,
     "name": "Emmanuel Kiprop KIPRUTO",
     "dob": "16 OCT 1999",
     "country": "KEN",
@@ -4274,12 +4142,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127899",
+    "competitor_id": "145433919",
     "slug": "/athletes/united-states/creed-thompson-15064352",
-    "rank": 98,
+    "rank": 95,
     "name": "Creed THOMPSON",
     "dob": "30 DEC 2002",
     "country": "USA",
@@ -4318,56 +4186,12 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
    },
    {
-    "competitor_id": "145127900",
-    "slug": "/athletes/kenya/dennis-kipruto-15087494",
-    "rank": 99,
-    "name": "Dennis KIPRUTO",
-    "dob": "08 APR 2005",
-    "country": "KEN",
-    "ranking_score": 1145.0,
-    "performances": [
-     {
-      "date": "2025-04-26",
-      "date_raw": "26 APR 2025",
-      "competition": "14th NITTAIDAI Challenge Games, NITTAIDAI Athletic Stadium, Yokohama",
-      "category": "F",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 7,
-      "mark": "27:43.15",
-      "result_score": 1158,
-      "placing_score": 0,
-      "performance_score": 1158,
-      "month_correction_applied": false
-     },
-     {
-      "date": "2026-07-15",
-      "date_raw": "15 JUL 2026",
-      "competition": "HOKUREN Distance Challenge in FUKAGAWA, Athletics Stadium, Fukagawa",
-      "category": "F",
-      "discipline_code": "10K",
-      "discipline": "10,000 Metres",
-      "indoor": false,
-      "place": 2,
-      "mark": "28:01.67",
-      "result_score": 1129,
-      "placing_score": 4,
-      "performance_score": 1133,
-      "month_correction_applied": false
-     }
-    ],
-    "wr_bonus": 0,
-    "wr_results": [],
-    "rank_date": "2026-10-20"
-   },
-   {
-    "competitor_id": "145127901",
+    "competitor_id": "145433920",
     "slug": "/athletes/uganda/oscar-chelimo-14805793",
-    "rank": 100,
+    "rank": 96,
     "name": "Oscar CHELIMO",
     "dob": "12 DEC 2001",
     "country": "UGA",
@@ -4406,7 +4230,183 @@
     ],
     "wr_bonus": 0,
     "wr_results": [],
-    "rank_date": "2026-10-20"
+    "rank_date": "2026-10-27"
+   },
+   {
+    "competitor_id": "145433921",
+    "slug": "/athletes/kenya/evans-kurui-15188787",
+    "rank": 97,
+    "name": "Evans KURUI",
+    "dob": "",
+    "country": "KEN",
+    "ranking_score": 1144.0,
+    "performances": [
+     {
+      "date": "2026-04-03",
+      "date_raw": "03 APR 2026",
+      "competition": "Stanford Invitational, Cobb Track and Angell Field, Palo Alto, CA",
+      "category": "F",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 3,
+      "mark": "27:48.06",
+      "result_score": 1150,
+      "placing_score": 2,
+      "performance_score": 1152,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-06-10",
+      "date_raw": "10 JUN 2026",
+      "competition": "NCAA Division I Outdoor Track and Field Championships, Hayward Field, Eugene, OR",
+      "category": "B",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 6,
+      "mark": "28:10.73",
+      "result_score": 1115,
+      "placing_score": 21,
+      "performance_score": 1136,
+      "month_correction_applied": false
+     }
+    ],
+    "wr_bonus": 0,
+    "wr_results": [],
+    "rank_date": "2026-10-27"
+   },
+   {
+    "competitor_id": "145433922",
+    "slug": "/athletes/spain/abdessamad-oukhelfen-14708418",
+    "rank": 98,
+    "name": "Abdessamad OUKHELFEN",
+    "dob": "18 DEC 1998",
+    "country": "ESP",
+    "ranking_score": 1143.0,
+    "performances": [
+     {
+      "date": "2026-02-15",
+      "date_raw": "15 FEB 2026",
+      "competition": "Spanish 10 km Road Running Championships, Ibiza",
+      "category": "B",
+      "discipline_code": "10RR",
+      "discipline": "10 Kilometres Road",
+      "indoor": false,
+      "place": 1,
+      "mark": "27:52",
+      "result_score": 1144,
+      "placing_score": 14,
+      "performance_score": 1158,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-08-15",
+      "date_raw": "15 AUG 2026",
+      "competition": "European Athletics Championships, Alexander Stadium, Birmingham",
+      "category": "GL",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 7,
+      "mark": "28:21.89",
+      "result_score": 1098,
+      "placing_score": 31,
+      "performance_score": 1129,
+      "month_correction_applied": false
+     }
+    ],
+    "wr_bonus": 0,
+    "wr_results": [],
+    "rank_date": "2026-10-27"
+   },
+   {
+    "competitor_id": "145433923",
+    "slug": "/athletes/japan/hironori-kishimoto-14860383",
+    "rank": 99,
+    "name": "Hironori KISHIMOTO",
+    "dob": "07 OCT 2000",
+    "country": "JPN",
+    "ranking_score": 1143.0,
+    "performances": [
+     {
+      "date": "2025-11-22",
+      "date_raw": "22 NOV 2025",
+      "competition": "Hachioji Long Distance, Kamiyugi Park Athletic Stadium, Hachioji",
+      "category": "F",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 36,
+      "mark": "27:52.29",
+      "result_score": 1144,
+      "placing_score": 0,
+      "performance_score": 1144,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2026-07-05",
+      "date_raw": "05 JUL 2026",
+      "competition": "74th Japan Corporate Teams Athletics Championships 10000m, Aoba Park Athletic Field, Chitose",
+      "category": "F",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 8,
+      "mark": "27:53.62",
+      "result_score": 1142,
+      "placing_score": 0,
+      "performance_score": 1142,
+      "month_correction_applied": false
+     }
+    ],
+    "wr_bonus": 0,
+    "wr_results": [],
+    "rank_date": "2026-10-27"
+   },
+   {
+    "competitor_id": "145433924",
+    "slug": "/athletes/japan/jinichiro-kameda-14956565",
+    "rank": 100,
+    "name": "Jinichiro KAMEDA",
+    "dob": "28 AUG 2001",
+    "country": "JPN",
+    "ranking_score": 1142.0,
+    "performances": [
+     {
+      "date": "2026-05-10",
+      "date_raw": "10 MAY 2026",
+      "competition": "13th Kinami Michitaka Memorial Athletics Meet, Yanmar Stadium Nagai, Osaka",
+      "category": "F",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 2,
+      "mark": "27:40.41",
+      "result_score": 1162,
+      "placing_score": 4,
+      "performance_score": 1166,
+      "month_correction_applied": false
+     },
+     {
+      "date": "2025-11-22",
+      "date_raw": "22 NOV 2025",
+      "competition": "Hachioji Long Distance, Kamiyugi Park Athletic Stadium, Hachioji",
+      "category": "F",
+      "discipline_code": "10K",
+      "discipline": "10,000 Metres",
+      "indoor": false,
+      "place": 52,
+      "mark": "28:09.27",
+      "result_score": 1118,
+      "placing_score": 0,
+      "performance_score": 1118,
+      "month_correction_applied": false
+     }
+    ],
+    "wr_bonus": 0,
+    "wr_results": [],
+    "rank_date": "2026-10-27"
    }
   ]
  }
