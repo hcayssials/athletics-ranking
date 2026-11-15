@@ -173,6 +173,30 @@ def fetch_feed(championship: str, event: str, *, force: bool = False,
     return result
 
 
+# A snapshot older than this is shown as stale (the seed is refreshed weekly).
+STALE_AFTER_DAYS = 10
+
+
+def tracking_status(championship: str, event: str) -> dict:
+    """Is official qualification tracking available for this event, and how fresh is it?
+
+    status: "not_configured" — the championship declares no feed for the event (WA hasn't
+    published one, e.g. Road to LA before autumn 2027: nothing is fetched, nothing is known);
+    "missing" — a feed is declared but there is no snapshot; "snapshot" — one exists,
+    `fetched` is its source timestamp (the caller compares it with `stale_after_days`, so
+    nothing here depends on the wall clock). `expected` is the championship's own word on
+    when tracking is due."""
+    status_cfg = load_championship(championship).get("data_status") or {}
+    out = {"status": "not_configured", "fetched": None, "stale_after_days": STALE_AFTER_DAYS,
+           "expected": status_cfg.get("official_tracking_expected")}
+    if event not in feed_events(championship):
+        return out
+    snap = read_feed(championship, event, ttl_seconds=None)
+    if not snap or snap.get("quota") is None:
+        return {**out, "status": "missing"}
+    return {**out, "status": "snapshot", "fetched": snap.get("fetched")}
+
+
 def _merge_invites(feed_invites: list[dict], config_invites: list[dict]) -> list[dict]:
     """Feed wildcards first (WA's own labels), then hand-maintained ones the feed doesn't
     carry yet (e.g. Ultimate Championship winners) — deduplicated by name."""

@@ -76,6 +76,65 @@
     }
   },
 
+  "road_to_la28": {
+    "label": "Road to LA28 (Los Angeles 2028 Olympic Games)",
+    "short_label": "Road to LA28",
+    "scope_label": "Road to LA28 · planning",
+    "rank_label": "World rank",
+    "rankings_url_template": "https://worldathletics.org/world-rankings/{event_path}/{gender}",
+    "calculation_url": "https://worldathletics.org/WorldRanking/RankingScoreCalculation?competitorId={competitor_id}",
+    "data_source": "world",
+    "max_per_country": 3,
+    "planning": true,
+    "data_status": {
+      "official_tracking": "not_published",
+      "official_tracking_expected": "autumn 2027",
+      "note": "Planning mode. World Athletics publishes its official 'Road to LA' monitoring tool in autumn 2027; until then nobody's Olympic qualification is tracked here. Standards, quotas and windows are the published ones; who has the standard is unknown, and ranking places are projected from today's rolling world ranking, which is not the Olympic qualification-period ranking."
+    },
+    "source": {
+      "title": "Qualification System - Games of the XXXIV Olympiad - LA28 - Athletics",
+      "version": "9 November 2026",
+      "url": "https://stillmed.olympics.com/media/Documents/Olympic-Games/LA28/ATH-LA28-Qualification-System.pdf",
+      "announcement_url": "https://worldathletics.org/news/press-releases/qualification-system-la28-olympic-games",
+      "checked": "2026-11-15"
+    },
+    "qualification_window": {"start": "2027-06-19", "end": "2028-06-18"},
+    "qualification_policy": {
+      "_note": "Where LA28 differs from the Worlds (read by both engines; absent keys = the Worlds behaviour). standards_over_quota 'best_performances': if more athletes than the quota achieve the standard, places go to the best performances within the quota and nobody qualifies by ranking (D.1). road_label_category: 5km/10km road standard marks may also be set in WA Label (Category E) road races. national_championships_until: National Senior Outdoor Championships that START inside the window count if achieved by this date.",
+      "standards_over_quota": "best_performances",
+      "road_label_category": "E",
+      "national_championships_until": "2028-06-22"
+    },
+    "cutoff_target_label": "reach the projected ranking cutoff",
+    "quota_source": "IOC / World Athletics 'Qualification System - Games of the XXXIV Olympiad - LA28 - Athletics', version as of 9 November 2026: section A/D.1 quota places per event, section I entry standards, section D.1 qualification and ranking periods. No WA 'Road to LA' feed exists yet (due autumn 2027), so there is no qualification_feed block: add one (competition_id + WA event ids, see feed.py) once WA publishes it.",
+    "qualification_note": "Two routes: the entry standard (set to qualify roughly 40% of the field) and the World Rankings in the ranking period (the rest). The 40/60 split is an objective, not two fixed allocations. If more athletes than the quota achieve the standard, places go to the best performances in the qualification period within the quota, and nobody qualifies by ranking, so the standard alone does not guarantee a place. Max 3 athletes per NOC per event; with more than 3 qualified, the NOC decides who goes. No wildcards: World Championships, Ultimate Championship and Diamond League byes do not apply. Universality places and the reallocation of declined places (to the next best by World Rankings, 23-24 June 2028) are not modelled.",
+    "entry_standard_rules": "Standard marks count only in World Rankings Category C competitions and above, inside the qualification window. Short-track (indoor) marks do not count. For the 5000m and 10,000m the standard can also be run at the equivalent road distance (5km / 10km), including in World Athletics Label (Category E) road races, on a certified course dropping no more than 1m per km; women's road marks from mixed races are not accepted. Track marks from mixed races are not accepted (limited exception for the 5000m and 10,000m under Technical Rule 9). There is no mile alternative for the 1500m. A competition whose last day falls inside the window counts in full; National Senior Outdoor Championships that start inside the window count if achieved by Thursday 22 June 2028.",
+    "explainers": [
+      {"title": "Standard vs place", "text": "Meeting the entry standard, being projected inside the quota, and being entered by your NOC are three different things. This tool shows the first two; national selection is not determined here."},
+      {"title": "Three per NOC", "text": "An NOC can enter at most 3 athletes per event. If more than 3 qualify, the NOC chooses, so a 4th athlete is shown as 'NOC's call', not as out."},
+      {"title": "What is unknown", "text": "Who has the standard is unknown until WA publishes 'Road to LA' (autumn 2027). Ranking places are projected by filling the whole quota from today's rolling world ranking, 3 per NOC; the official ranking will count only results in the Olympic ranking period, so these cutoffs are estimates, not official Olympic cutoffs."},
+      {"title": "Dates", "text": "Qualification and ranking period: 19 June 2027 to 18 June 2028 (10,000m: from 19 December 2026). A mark before the window opens does not count for the standard, however fast. WA confirms the qualified athletes on 20 June 2028; final list 25 June 2028."}
+    ],
+    "events": {
+      "800m_men":      {"quota": 48, "entry_standard": "1:43.00"},
+      "800m_women":    {"quota": 48, "entry_standard": "1:57.00"},
+      "1500m_men":     {"quota": 45, "entry_standard": "3:30.00"},
+      "1500m_women":   {"quota": 45, "entry_standard": "3:57.50"},
+      "5000m_men":     {"quota": 42, "entry_standard": "12:50.00",
+                        "alt_entry_standards": [{"event": "5 km Road", "entry_standard": "12:50.00"}]},
+      "5000m_women":   {"quota": 42, "entry_standard": "14:34.00",
+                        "alt_entry_standards": [{"event": "5 km Road", "entry_standard": "14:34.00"}]},
+      "10000m_men":    {"quota": 27, "entry_standard": "26:48.00",
+                        "alt_entry_standards": [{"event": "10km Road", "entry_standard": "26:48.00"}],
+                        "qualification_window": {"start": "2026-12-19", "end": "2028-06-18"}},
+      "10000m_women":  {"quota": 27, "entry_standard": "30:30.00",
+                        "alt_entry_standards": [{"event": "10km Road", "entry_standard": "30:30.00"}],
+                        "qualification_window": {"start": "2026-12-19", "end": "2028-06-18"}},
+      "3000mSC_men":   {"quota": 30, "entry_standard": "8:07.50"},
+      "3000mSC_women": {"quota": 30, "entry_standard": "9:06.00"}
+    }
+  },
+
   "road_to_birmingham": {
     "archived": true,
     "archived_note": "2026 European Athletics Championships (Birmingham, Aug 2026) are over.",

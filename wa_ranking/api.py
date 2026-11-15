@@ -127,6 +127,19 @@ def meta():
              "qualification_note": c.get("qualification_note"),
              "entry_standard_rules": c.get("entry_standard_rules"),
              "qualification_window": c.get("qualification_window"),
+             # Per-event windows (the 10,000m's is longer), resolved for every event.
+             "qualification_windows": {
+                 ek: (e.get("qualification_window") or c.get("qualification_window"))
+                 for ek, e in (c.get("events") or {}).items()
+                 if e.get("qualification_window") or c.get("qualification_window")},
+             # Planning mode (Road to LA28): no official tracking yet, so the UI labels every
+             # qualification answer as a projection and shows the source + explainers.
+             "planning": bool(c.get("planning")),
+             "data_status": c.get("data_status"),
+             "source": c.get("source"),
+             "qualification_policy": {k: v for k, v in (c.get("qualification_policy") or {}).items()
+                                      if not k.startswith("_")},
+             "explainers": c.get("explainers") or [],
              "standards": {ek: e["entry_standard"] for ek, e in (c.get("events") or {}).items()
                            if e.get("entry_standard")}}
             for k, c in champs.items() if not c.get("archived")
@@ -157,6 +170,11 @@ def rankings(championship: str, event: str, limit: int | None = None):
         "standard_achievers": ce.get("standard_achievers"),   # None = unknown (no feed)
         "qualification_source": ce.get("qualification_source"),
         "feed_fetched": ce.get("feed_fetched"),
+        "qualification_window": (ce.get("qualification_window")
+                                 or load_championship(championship).get("qualification_window")),
+        "standards_policy": (load_championship(championship).get("qualification_policy") or {})
+                            .get("standards_over_quota", "all_qualify"),
+        "tracking": feed.tracking_status(championship, event) if ce else None,
         "max_per_country": load_championship(championship).get("max_per_country"),
         "athletes": [{f: a.get(f) for f in _RANKING_FIELDS} for a in data["athletes"]],
     }
@@ -237,6 +255,7 @@ class WhatIfRequest(BaseModel):
     qualification_window: bool = False
     profile: str | None = None
     sub_event: str | None = None
+    perf_date: str | None = None
 
 
 @app.post("/api/whatif")
@@ -248,7 +267,9 @@ def whatif_endpoint(req: WhatIfRequest):
             category=req.category, place=req.place, championship=req.championship,
             as_of=date.fromisoformat(req.as_of) if req.as_of else None,
             qualify=req.qualify, qualification_window=req.qualification_window,
-            profile=req.profile, sub_event=req.sub_event, verbose=False,
+            profile=req.profile, sub_event=req.sub_event,
+            perf_date=date.fromisoformat(req.perf_date) if req.perf_date else None,
+            verbose=False,
         )
     except (ValueError, RuntimeError) as e:
         raise HTTPException(status_code=400, detail=str(e))

@@ -140,5 +140,8 @@ def insert_and_recompute(perfs: list[dict], new_perf: dict, best_n: int, *,
 
 
 def rank_position(all_scores: list[float], new_score: float) -> int:
-    """1-based position of `new_score` among `all_scores` (ties: highest position)."""
-    return 1 + sum(1 for s in all_scores if s is not None and s > new_score)
+    """1-based position of `new_score` among `all_scores` (ties: highest position). A None
+    score (no counting result at all, e.g. a fixed qualification window that hasn't opened
+    yet) ranks behind every scored athlete — the same answer the JS engine's `s > null` gives."""
+    floor = new_score if new_score is not None else 0
+    return 1 + sum(1 for s in all_scores if s is not None and s > floor)

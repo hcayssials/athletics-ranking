@@ -58,6 +58,7 @@ function resolveInputEvent(ev, subEvent) {
     result_table: ev.result_table,
     placing_event_group: ev.placing_event_group ?? "standard",
     indoor: false,
+    road: false,
     is_main: true,
     standard_event: null,
   };
@@ -71,6 +72,7 @@ function resolveInputEvent(ev, subEvent) {
         result_table: alt.result_table,
         placing_event_group: alt.placing_event_group ?? ev.placing_event_group ?? "standard",
         indoor: alt.indoor ?? false,
+        road: alt.road ?? false,
         is_main: false,
         // WA alternative entry standard this similar event can satisfy (e.g. "Mile").
         standard_event: alt.standard_event ?? null,
@@ -88,8 +90,12 @@ export function whatIf(ctx, {
   asOf = null, indoor = false,
   qualificationWindow = false, qualify = false,
   profileInfo = null, subEvent = null,
+  perfDate = null, standardAchievers = null,
 }) {
   asOf = asOf || todayISO();
+  // Date of the hypothetical race (default: asOf) — lets a planning scenario sit inside a
+  // qualification window that hasn't opened yet. The ranking side is not aged forward.
+  perfDate = perfDate || asOf;
   const champ = loadChampionship(ctx, championship);
   const ev = loadEvent(ctx, event);
   const champEvent = champEventConfig(champ, event);
@@ -151,9 +157,9 @@ export function whatIf(ctx, {
   // Score the hypothetical (fresh result -> no age decay); tag a similar event with its own
   // discipline code so best-N selection treats it as non-main.
   const breakdown = scorePerformance(ctx, table(ctx, inp.result_table), newTime, category, place,
-                                     { perfDate: asOf, asOf, eventGroup: placingGroup });
+                                     { perfDate, asOf: perfDate, eventGroup: placingGroup });
   const newPerf = {
-    date: asOf,
+    date: perfDate,
     competition: "(hypothetical)",
     category: category.toUpperCase(),
     discipline: inp.label,
@@ -245,13 +251,17 @@ export function whatIf(ctx, {
   if (qualify) {
     qualCfg = champEvent;
     const quota = champEvent.quota;
+    const policy = champ.qualification_policy || {};
+    const stdPolicy = policy.standards_over_quota ?? "all_qualify";
     const maxPc = "max_per_country" in champ ? champ.max_per_country : 3; // explicit null = no cap
     const champion = champEvent.defending_champion ?? null;
     const invites = champEvent.auto_invites ?? null;
     const inviteList = (invites && invites.length) ? invites
       : champion ? [{ ...champion, reason: "defending champion (bye)" }] : [];
-    const achievers = champEvent.standard_achievers ?? null; // null = unknown (no feed snapshot)
-    stdList = (achievers || []).map((s) => ({ name: s.name, country: s.country ?? null, mark: s.mark ?? null }));
+    const assumed = standardAchievers !== null; // scenario override: "assume these have it"
+    const achievers = assumed ? standardAchievers
+      : (champEvent.standard_achievers ?? null); // null = unknown (no feed snapshot)
+    stdList = achieverRows(achievers);
     let athletes = data.athletes;
     if (profileInfo) { // unranked athlete isn't in the list — add him so he can slot in
       athletes = athletes.concat([{ name: ath.name, country: ath.country, ranking_score: null }]);
@@ -260,17 +270,25 @@ export function whatIf(ctx, {
     const alreadyAchieved = stdList.some((s) => ath.name.toUpperCase() === s.name.toUpperCase());
 
     // Does the hypothetical mark meet the entry standard (right event, window, category)?
-    const es = entryStandardCheck(champEvent, ev, inp, breakdown, category, asOf,
+    const es = entryStandardCheck(champEvent, ev, inp, breakdown, category, perfDate,
                                   champEvent.qualification_window || qw,
-                                  indoor || inp.indoor);
-    const stdNew = stdList.concat(
-      (es && es.meets && !alreadyAchieved)
-        ? [{ name: ath.name, country: ath.country ?? null, mark: String(newTime), hypothetical: true }]
-        : []);
+                                  indoor || inp.indoor, policy);
+    const hypRow = { name: ath.name, country: ath.country ?? null, mark: String(newTime),
+                     mark_seconds: breakdown.seconds, hypothetical: true };
+    let stdNew = stdList;
+    if (es && es.meets && !alreadyAchieved) {
+      stdNew = stdList.concat([hypRow]);
+    } else if (es && es.meets && stdPolicy === "best_performances") {
+      // Places go by performance, so a faster mark replaces the one already listed.
+      stdNew = stdList.map((s) =>
+        (s.name.toUpperCase() === ath.name.toUpperCase()
+          && (s.mark_seconds === null || hypRow.mark_seconds < s.mark_seconds)) ? hypRow : s);
+    }
 
     const rankedOld = buildRanked(athletes);
     const rankedNew = buildRanked(athletes, { overrideName: ath.name, overrideScore: newScore });
-    const qopts = { maxPerCountry: maxPc, defendingChampion: champion, autoInvites: invites };
+    const qopts = { maxPerCountry: maxPc, defendingChampion: champion, autoInvites: invites,
+                    standardsPolicy: stdPolicy };
     const fieldOld = qualifyingField(rankedOld, quota, { ...qopts, standardAchievers: stdList });
     const fieldNew = qualifyingField(rankedNew, quota, { ...qopts, standardAchievers: stdNew });
     const [statusOld, slotOld] = athleteStatus(fieldOld, ath.name);
@@ -292,12 +310,21 @@ export function whatIf(ctx, {
       // had the standard yet (no feed snapshot) — the UI says so.
       entry_standard: es,
       standard_achievers_known: achievers !== null,
+      standard_achievers_assumed: assumed,
       standard_achievers_count: stdList.length,
+      // Olympic policy ("best_performances"): more achievers than places means the best
+      // marks take the quota and the ranking route closes; standards_tied = an unbreakable
+      // tie on the mark for the last place.
+      standards_policy: stdPolicy,
+      standards_oversubscribed: fieldNew.standards_oversubscribed,
+      standards_tied: fieldNew.standards_tied,
+      // A projection, not tracked qualification: planning championship or unknown achievers.
+      projection_only: Boolean(champ.planning) || achievers === null || assumed,
       already_achieved_standard: alreadyAchieved,
       standard_places: fieldNew.standard_places,
       ranking_places: Math.max(0, quota - inviteList.length - fieldNew.standard_places),
-      route_old: route(statusOld, slotOld, isInvited),
-      route_new: route(statusNew, slotNew, isInvited),
+      route_old: route(statusOld, slotOld, isInvited, isTied(fieldOld, ath.name)),
+      route_new: route(statusNew, slotNew, isInvited, isTied(fieldNew, ath.name)),
       qualification_source: champEvent.qualification_source ?? "config",
       cutoff_score: cutoff,
       above_cutoff: newScore !== null && cutoff !== null && newScore >= cutoff,
@@ -319,7 +346,7 @@ export function whatIf(ctx, {
     const top = present.length ? Math.max(...present) : null;
     const targets = [];
     if (qualification && qualification.cutoff_score !== null) {
-      targets.push(["reach the qualifying cutoff", qualification.cutoff_score]);
+      targets.push([cutoffLabel(champ), qualification.cutoff_score]);
     }
     if (top !== null) targets.push(["reach #1", top + 1]);
     const rows = targetsRequired(ctx, ev, recompute.old_counting, bestN,
@@ -365,6 +392,7 @@ export function whatIf(ctx, {
     athlete: ath.name,
     country: ath.country ?? null,
     as_of: asOf,
+    performance_date: perfDate,
     rank_date: data.rank_date ?? null,
     assumptions: {
       best_n: bestN,
@@ -383,7 +411,11 @@ export function whatIf(ctx, {
           ? "Window is the fixed qualification period; recomputed scores may differ "
             + "from WA's published (rolling-window) scores."
           : "Rolling window matches WA's published ranking scores.",
-        "Hypothetical result dated as_of, so no age-decay (month correction) is applied to it.",
+        perfDate === asOf
+          ? "Hypothetical result dated as_of, so no age-decay (month correction) is applied to it."
+          : `Hypothetical result dated ${perfDate}; the ranking side is not aged `
+            + "forward to that date - existing results keep today's scores, though by then "
+            + "some will have decayed or left the window.",
         "Other athletes are held at their current ranking scores (static field).",
         mainMin
           ? `Similar events count; at least ${mainMin} of ${bestN} counting performances `
@@ -461,18 +493,39 @@ function standardTarget(ctx, ev, standard, athlete, achievers) {
            time: standard, status: met ? "met" : "reachable" };
 }
 
-// How an athlete gets in: wildcard / standard / ranking / blocked_country_cap / out.
-function route(status, slot, isInvited) {
+// Standard achievers as the field resolver wants them, with the mark in seconds (null if
+// unparseable) for championships that allocate by performance.
+function achieverRows(achievers) {
+  return (achievers || []).map((s) => {
+    let secs = null;
+    try { secs = s.mark ? parseTime(s.mark) : null; } catch { secs = null; }
+    return { name: s.name, country: s.country ?? null, mark: s.mark ?? null, mark_seconds: secs };
+  });
+}
+
+// Reverse-solver label for the ranking cutoff ("projected" for a planning championship).
+const cutoffLabel = (champ) => champ.cutoff_target_label ?? "reach the qualifying cutoff";
+
+const isTied = (field, name) =>
+  (field.standards_tied || []).some((n) => n.toUpperCase() === name.toUpperCase());
+
+// How an athlete gets in: wildcard / standard / ranking / blocked_country_cap /
+// standard_outside_quota / standard_tie_unresolved / out.
+function route(status, slot, isInvited, tied = false) {
   if (isInvited) return "wildcard";
+  if (tied) return "standard_tie_unresolved";
   if (status === "qualified") return (slot || {}).reason === "entry standard" ? "standard" : "ranking";
-  return status === "blocked_country_cap" ? status : "out";
+  return (status === "blocked_country_cap" || status === "standard_outside_quota") ? status : "out";
 }
 
 // Does the hypothetical mark meet the championship's entry standard? Mirrors
 // whatif.py:_entry_standard_check — main event (or a listed road/mile alternative, never an
 // indoor mark), inside the qualification window, Category C meet or above. gap_seconds is
-// signed (+ = slower), in hundredths so both engines agree exactly.
-function entryStandardCheck(qualCfg, ev, inp, breakdown, category, asOf, window, indoor) {
+// signed (+ = slower), in hundredths so both engines agree exactly. asOf is the date of the
+// performance; policy is the championship's qualification_policy (LA28: Label road races,
+// the national-championships extension) — conditions the tool can't see land in `conditions`.
+function entryStandardCheck(qualCfg, ev, inp, breakdown, category, asOf, window, indoor, policy = {}) {
+  policy = policy || {};
   let standard = qualCfg.entry_standard;
   if (!standard) return null;
   let stdEvent = ev.discipline ?? "main event";
@@ -488,8 +541,21 @@ function entryStandardCheck(qualCfg, ev, inp, breakdown, category, asOf, window,
   const gap = (pyRound(hypS * 100) - pyRound(stdS * 100)) / 100;
   const meetsMark = hypS <= stdS;
   let inside = true;
-  if (window && window.start && window.end) inside = window.start <= asOf && asOf <= window.end;
-  const validCat = STANDARD_CATEGORIES.has(category.toUpperCase());
+  let windowStatus = null;
+  const conditions = [];
+  const hasWindow = Boolean(window && window.start && window.end);
+  if (hasWindow) {
+    const late = policy.national_championships_until;
+    if (asOf < window.start) windowStatus = "before";
+    else if (asOf <= window.end) windowStatus = "inside";
+    else if (late && asOf <= late) windowStatus = "national_championships_only";
+    else windowStatus = "after";
+    inside = windowStatus === "inside" || windowStatus === "national_championships_only";
+  }
+  let validCat = STANDARD_CATEGORIES.has(category.toUpperCase());
+  const labelCat = policy.road_label_category;
+  const viaLabel = Boolean(inp.road && labelCat && category.toUpperCase() === labelCat && !validCat);
+  validCat = validCat || viaLabel;
   indoor = Boolean(indoor);
   const meets = meetsMark && inside && validCat && !indoor && altOk;
   const mainLabel = ev.discipline ?? "main event";
@@ -502,12 +568,28 @@ function entryStandardCheck(qualCfg, ev, inp, breakdown, category, asOf, window,
   } else if (!validCat) {
     note = `A category ${category.toUpperCase()} meet doesn't count for the entry standard `
       + "(Category C or above needed); it still counts for the ranking.";
+  } else if (!inside && meetsMark && windowStatus === "before") {
+    note = `Fast enough (${standard} or better), but dated before the qualification window `
+      + `opens on ${window.start}, so it doesn't count for the entry standard.`;
   } else if (!inside) {
     note = `Outside the qualification window (${window.start} to ${window.end}).`;
   } else if (meetsMark) {
     note = `Meets the ${stdEvent} entry standard (${standard}) by ${Math.abs(gap).toFixed(2)}s.`;
   } else {
     note = `${gap.toFixed(2)}s short of the ${stdEvent} entry standard (${standard}).`;
+  }
+  if (meets) {
+    if (viaLabel) {
+      conditions.push(`A category ${labelCat} road race counts only if it is a World `
+        + "Athletics Label road race.");
+    }
+    if (windowStatus === "national_championships_only") {
+      conditions.push(
+        `After the window closes (${window.end}), a mark counts only at a National `
+        + "Senior Outdoor Championships that started inside the window, achieved by "
+        + `${policy.national_championships_until}.`);
+    }
+    if (conditions.length) note += " Conditional: " + conditions.join(" ");
   }
   return {
     standard,
@@ -517,6 +599,9 @@ function entryStandardCheck(qualCfg, ev, inp, breakdown, category, asOf, window,
     gap_seconds: gap,
     meets_mark: meetsMark,
     inside_window: inside,
+    window_status: windowStatus,
+    window: hasWindow ? { start: window.start, end: window.end } : null,
+    conditions,
     valid_category: validCat,
     indoor_invalid: indoor,
     event_valid: altOk,
@@ -554,8 +639,9 @@ export function requiredTargets(ctx, event, athlete, {
   let cutoff = null;
   let stdList = [];
   if ("quota" in champEvent) {
-    stdList = (champEvent.standard_achievers || []).map((s) => ({ name: s.name, country: s.country ?? null, mark: s.mark ?? null }));
+    stdList = achieverRows(champEvent.standard_achievers);
     const field = qualifyingField(buildRanked(data.athletes), champEvent.quota, {
+      standardsPolicy: (champ.qualification_policy || {}).standards_over_quota ?? "all_qualify",
       maxPerCountry: "max_per_country" in champ ? champ.max_per_country : 3,
       defendingChampion: champEvent.defending_champion ?? null,
       autoInvites: champEvent.auto_invites ?? null,
@@ -565,7 +651,7 @@ export function requiredTargets(ctx, event, athlete, {
   }
 
   const targets = [];
-  if (cutoff !== null) targets.push(["reach the qualifying cutoff", cutoff]);
+  if (cutoff !== null) targets.push([cutoffLabel(champ), cutoff]);
   if (top !== null) targets.push(["reach #1", top + 1]);
   const rows = targetsRequired(ctx, ev, oldCounting, bestN, placing,
                                ath.ranking_score ?? null, targets, ath.wr_bonus || 0);

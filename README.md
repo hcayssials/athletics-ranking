@@ -204,6 +204,8 @@ compare the new score/rank against the live ranking page.
   rankings, 3 per country, wildcards for the defending champions and Ultimate/DL winners.
   Quota, standard, window, byes and who has the standard are overlaid weekly from WA's own
   "Road to Beijing 27" feed (`feed.py`, snapshots in `data/cache_seed/feed__*.json`).
+- `road_to_la28` — the **Los Angeles 2028 Olympic Games**, as a *planning* mode (see "Road to
+  LA28" below). Shares the world list; Olympic rules, no wildcards, no official feed yet.
 - `world` — the **global** world ranking (all nations); pure world-ranking what-ifs (no
   quota / qualification).
 - `road_to_birmingham` (2026 European Championships) and `road_to_ultimate` (2026 Ultimate
@@ -212,6 +214,46 @@ compare the new score/rank against the live ranking page.
 
 The URL for each `(championship, event)` is built from a template + the event's discipline
 and gender, so adding an event is a `events.json` entry, not code.
+
+## Road to LA28 (Olympic Games) — planning mode
+
+`road_to_la28` is a planning tab for the Los Angeles 2028 Olympic Games, built from the
+IOC / World Athletics *Qualification System – Games of the XXXIV Olympiad – LA28 – Athletics*,
+**version as of 9 November 2026**
+([PDF](https://stillmed.olympics.com/media/Documents/Olympic-Games/LA28/ATH-LA28-Qualification-System.pdf),
+[WA announcement](https://worldathletics.org/news/press-releases/qualification-system-la28-olympic-games)).
+
+| Event | Men | Women | Places per gender | Window |
+|---|---|---|---|---|
+| 800m | 1:43.00 | 1:57.00 | 48 | 19 Jun 2027 – 18 Jun 2028 |
+| 1500m | 3:30.00 | 3:57.50 | 45 | 19 Jun 2027 – 18 Jun 2028 |
+| 5000m | 12:50.00 | 14:34.00 | 42 | 19 Jun 2027 – 18 Jun 2028 |
+| 10,000m | 26:48.00 | 30:30.00 | 27 | 19 Dec 2026 – 18 Jun 2028 |
+| 3000m SC | 8:07.50 | 9:06.00 | 30 | 19 Jun 2027 – 18 Jun 2028 |
+
+**Implemented exactly:** standards, quotas, windows; max 3 per NOC; no wildcards; Category C
+and above for standard marks; no short-track marks; 5km / 10km road marks for the 5000m /
+10,000m standard (also in WA Label, Category E, road races); no mile alternative; the
+over-subscription rule (more standard achievers than places: best marks take the quota, nobody
+qualifies by ranking); the National Senior Outdoor Championships extension to 22 June 2028.
+
+**Approximate, and labelled as such:** who has the standard is unknown until World Athletics
+publishes "Road to LA" (autumn 2027); ranking places are projected from today's rolling world
+ranking, which is not the Olympic ranking-period ranking. Three things are kept apart: *meets
+the entry standard*, *projected inside the quota*, and *entered by the NOC* (not determined
+here).
+
+**Not modelled / check by hand:** universality places, reallocation of declined places,
+course and mixed-race conditions, and ties for the last standard place (the rules give no
+tie-break, so the tool reports the tie instead of resolving it).
+
+```bash
+# A 3:29.50 in July 2027, evaluated against today's list:
+python -m wa_ranking.cli whatif --event 1500m_men --athlete "Kerr" --time 3:29.50 \
+    --championship road_to_la28 --qualify --perf-date 2027-07-10
+```
+
+To connect official tracking once it exists, see "Road to LA28" in `CLAUDE.md`.
 
 ## Unranked athletes (profile fallback)
 

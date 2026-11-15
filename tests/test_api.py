@@ -49,7 +49,8 @@ def test_meta_lists_events_and_championships():
     keys = {e["key"] for e in m["events"]}
     assert {"1500m_men", "3000mSC_women"} <= keys
     # Archived (finished) championships are not offered to the site.
-    assert [c["key"] for c in m["championships"]] == ["world", "road_to_beijing"]
+    assert [c["key"] for c in m["championships"]] == ["world", "road_to_beijing",
+                                                     "road_to_la28"]
     assert "GW" in m["categories"]
     champs = {c["key"]: c for c in m["championships"]}
     assert champs["world"]["has_qualification"] is False

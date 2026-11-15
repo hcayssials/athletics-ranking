@@ -34,6 +34,7 @@ def _resolve_input_event(ev: dict, sub_event: str | None) -> dict:
         "result_table": ev["result_table"],
         "placing_event_group": ev.get("placing_event_group", "standard"),
         "indoor": False,
+        "road": False,
         "is_main": True,
         "standard_event": None,
     }
@@ -49,6 +50,7 @@ def _resolve_input_event(ev: dict, sub_event: str | None) -> dict:
                 "placing_event_group": alt.get("placing_event_group",
                                                ev.get("placing_event_group", "standard")),
                 "indoor": alt.get("indoor", False),
+                "road": alt.get("road", False),
                 "is_main": False,
                 # WA alternative entry standard this similar event can satisfy (e.g. "Mile").
                 "standard_event": alt.get("standard_event"),
@@ -63,6 +65,7 @@ def what_if(event: str, athlete: str, new_time: str | float,
             as_of: date | None = None, indoor: bool = False,
             qualification_window: bool = False, qualify: bool = False,
             profile: str | None = None, sub_event: str | None = None,
+            perf_date: date | None = None, standard_achievers: list[dict] | None = None,
             force_refresh: bool = False, verbose: bool = True) -> dict:
     """Model the effect of a new performance on an athlete's ranking score and rank.
 
@@ -77,9 +80,16 @@ def what_if(event: str, athlete: str, new_time: str | float,
         as_of: ranking date to evaluate against (default: today).
         qualify: also resolve championship qualification (quota + optional per-country cap +
             wildcard byes). Requires the championship to declare a quota for the event.
+        perf_date: date of the hypothetical performance (default: as_of). Lets a planning
+            scenario place the race inside a qualification window that hasn't opened yet;
+            the ranking side still uses the list as it stands (nothing is aged forward).
+        standard_achievers: scenario override — assume exactly these athletes ({name,
+            country, mark}) hold the entry standard, instead of the feed snapshot (or of
+            "unknown" when there is none). The result is flagged as an assumption.
         indoor / qualification_window / force_refresh / verbose: see README.
     """
     as_of = as_of or date.today()
+    perf_date = perf_date or as_of
     champ = load_championship(championship)
     ev = load_event(event)
     champ_event = championship_event_config(championship, event)
@@ -143,11 +153,11 @@ def what_if(event: str, athlete: str, new_time: str | float,
     # discipline code so best-N selection treats it as a non-main result.
     breakdown = score_performance(
         event, new_time, category, place,
-        perf_date=as_of, as_of=as_of, event_group=placing_group,
+        perf_date=perf_date, as_of=perf_date, event_group=placing_group,
         result_table=inp["result_table"],
     )
     new_perf = {
-        "date": as_of.isoformat(),
+        "date": perf_date.isoformat(),
         "competition": "(hypothetical)",
         "category": category.upper(),
         "discipline": inp["label"],          # clean event label for the counting-table display
@@ -242,14 +252,17 @@ def what_if(event: str, athlete: str, new_time: str | float,
         # achieved the standard; championships.json is the fallback when no snapshot exists.
         qual_cfg = feed.event_qualification(championship, event)
         quota = qual_cfg["quota"]
+        policy = champ.get("qualification_policy") or {}
+        std_policy = policy.get("standards_over_quota", "all_qualify")
         max_pc = champ.get("max_per_country", 3)  # explicit null in JSON -> None -> no cap
         champion = qual_cfg.get("defending_champion")
         invites = qual_cfg.get("auto_invites")
         invite_list = invites or ([{**champion, "reason": "defending champion (bye)"}]
                                   if champion else [])
-        achievers = qual_cfg.get("standard_achievers")   # None = unknown (no feed snapshot)
-        std_list = [{"name": s["name"], "country": s.get("country"), "mark": s.get("mark")}
-                    for s in (achievers or [])]
+        assumed = standard_achievers is not None
+        achievers = (standard_achievers if assumed
+                     else qual_cfg.get("standard_achievers"))  # None = unknown (no feed snapshot)
+        std_list = _achiever_rows(achievers)
         athletes = data["athletes"]
         if profile_info:  # unranked athlete isn't in the list — add him so he can slot in
             athletes = athletes + [{"name": ath["name"], "country": ath["country"],
@@ -258,28 +271,36 @@ def what_if(event: str, athlete: str, new_time: str | float,
         already_achieved = any(ath["name"].upper() == s["name"].upper() for s in std_list)
 
         # Does the hypothetical mark meet the entry standard (right event, window, category)?
-        es = _entry_standard_check(qual_cfg, ev, inp, breakdown, category, as_of,
+        es = _entry_standard_check(qual_cfg, ev, inp, breakdown, category, perf_date,
                                    qual_cfg.get("qualification_window") or qw,
-                                   indoor=indoor or inp["indoor"])
-        std_new = std_list + ([{"name": ath["name"], "country": ath.get("country"),
-                                "mark": str(new_time), "hypothetical": True}]
-                              if es and es["meets"] and not already_achieved else [])
+                                   indoor=indoor or inp["indoor"], policy=policy)
+        hyp_row = {"name": ath["name"], "country": ath.get("country"), "mark": str(new_time),
+                   "mark_seconds": breakdown["seconds"], "hypothetical": True}
+        std_new = std_list
+        if es and es["meets"] and not already_achieved:
+            std_new = std_list + [hyp_row]
+        elif es and es["meets"] and std_policy == "best_performances":
+            # Places go by performance, so a faster mark replaces the one already listed.
+            std_new = [hyp_row if (s["name"].upper() == ath["name"].upper()
+                                   and (s["mark_seconds"] is None
+                                        or hyp_row["mark_seconds"] < s["mark_seconds"])) else s
+                       for s in std_list]
 
         ranked_old = build_ranked(athletes)
         ranked_new = build_ranked(athletes, override_name=ath["name"], override_score=new_score)
         field_old = qualifying_field(ranked_old, quota, max_per_country=max_pc,
                                      defending_champion=champion, auto_invites=invites,
-                                     standard_achievers=std_list)
+                                     standard_achievers=std_list, standards_policy=std_policy)
         field_new = qualifying_field(ranked_new, quota, max_per_country=max_pc,
                                      defending_champion=champion, auto_invites=invites,
-                                     standard_achievers=std_new)
+                                     standard_achievers=std_new, standards_policy=std_policy)
         status_old, slot_old = athlete_status(field_old, ath["name"])
         status_new, slot_new = athlete_status(field_new, ath["name"])
 
         cutoff = field_new["cutoff_score"]
         country_ahead = sum(1 for a in data["athletes"]
                             if a is not ath and a.get("country") == ath.get("country")
-                            and (a.get("ranking_score") or 0) > new_score)
+                            and (a.get("ranking_score") or 0) > (new_score or 0))
         qualification = {
             "quota": quota,
             "quota_is_total_field": champ.get("quota_is_total_field", False),
@@ -293,12 +314,24 @@ def what_if(event: str, athlete: str, new_time: str | float,
             # nobody had the standard yet (no feed snapshot) — the UI says so.
             "entry_standard": es,
             "standard_achievers_known": achievers is not None,
+            "standard_achievers_assumed": assumed,
             "standard_achievers_count": len(std_list),
+            # Olympic policy ("best_performances"): more achievers than places means the
+            # best marks take the quota and the ranking route closes. standards_tied lists a
+            # tie on the mark for the last place, which the rules give no way to break.
+            "standards_policy": std_policy,
+            "standards_oversubscribed": field_new["standards_oversubscribed"],
+            "standards_tied": field_new["standards_tied"],
+            # True when the answer is a projection, not tracked qualification: a planning
+            # championship (no official monitoring yet) or unknown standard achievers.
+            "projection_only": bool(champ.get("planning")) or achievers is None or assumed,
             "already_achieved_standard": already_achieved,
             "standard_places": field_new["standard_places"],
             "ranking_places": max(0, quota - len(invite_list) - field_new["standard_places"]),
-            "route_old": _route(status_old, slot_old, is_invited),
-            "route_new": _route(status_new, slot_new, is_invited),
+            "route_old": _route(status_old, slot_old, is_invited,
+                                _is_tied(field_old, ath["name"])),
+            "route_new": _route(status_new, slot_new, is_invited,
+                                _is_tied(field_new, ath["name"])),
             "qualification_source": qual_cfg.get("qualification_source", "config"),
             "cutoff_score": cutoff,
             "above_cutoff": (new_score is not None and cutoff is not None and new_score >= cutoff),
@@ -319,7 +352,7 @@ def what_if(event: str, athlete: str, new_time: str | float,
         top = max((s for s in others if s is not None), default=None)
         targets = []
         if qualification and qualification.get("cutoff_score") is not None:
-            targets.append(("reach the qualifying cutoff", qualification["cutoff_score"]))
+            targets.append((_cutoff_label(champ), qualification["cutoff_score"]))
         if top is not None:
             targets.append(("reach #1", top + 1))
         rows = _targets_required(event, recompute["old_counting"], best_n,
@@ -361,6 +394,7 @@ def what_if(event: str, athlete: str, new_time: str | float,
         "athlete": ath["name"],
         "country": ath.get("country"),
         "as_of": as_of.isoformat(),
+        "performance_date": perf_date.isoformat(),
         "rank_date": data.get("rank_date"),
         "assumptions": {
             "best_n": best_n,
@@ -379,7 +413,11 @@ def what_if(event: str, athlete: str, new_time: str | float,
                  "from WA's published (rolling-window) scores."
                  if window_kind == "fixed" else
                  "Rolling window matches WA's published ranking scores."),
-                "Hypothetical result dated as_of, so no age-decay (month correction) is applied to it.",
+                ("Hypothetical result dated as_of, so no age-decay (month correction) is applied to it."
+                 if perf_date == as_of else
+                 f"Hypothetical result dated {perf_date.isoformat()}; the ranking side is not aged "
+                 "forward to that date - existing results keep today's scores, though by then "
+                 "some will have decayed or left the window."),
                 "Other athletes are held at their current ranking scores (static field).",
                 (f"Similar events count; at least {main_min} of {best_n} counting performances "
                  "must be the main event." if main_min else
@@ -468,24 +506,57 @@ def _standard_target(event: str, standard: str, athlete: str, achievers: list[di
             "time": standard, "status": "met" if met else "reachable"}
 
 
-def _route(status: str, slot: dict | None, is_invited: bool) -> str:
-    """How an athlete gets in: wildcard / standard / ranking / blocked_country_cap / out."""
+def _achiever_rows(achievers: list[dict] | None) -> list[dict]:
+    """Standard achievers as the field resolver wants them, with the mark in seconds
+    (None if unparseable) for championships that allocate by performance."""
+    rows = []
+    for s in achievers or []:
+        try:
+            secs = parse_time(s["mark"]) if s.get("mark") else None
+        except (ValueError, TypeError):
+            secs = None
+        rows.append({"name": s["name"], "country": s.get("country"), "mark": s.get("mark"),
+                     "mark_seconds": secs})
+    return rows
+
+
+def _cutoff_label(champ: dict) -> str:
+    """Reverse-solver label for the ranking cutoff ('projected' for a planning championship)."""
+    return champ.get("cutoff_target_label", "reach the qualifying cutoff")
+
+
+def _is_tied(field: dict, name: str) -> bool:
+    return name.upper() in {n.upper() for n in field.get("standards_tied", ())}
+
+
+def _route(status: str, slot: dict | None, is_invited: bool, tied: bool = False) -> str:
+    """How an athlete gets in: wildcard / standard / ranking / blocked_country_cap /
+    standard_outside_quota / standard_tie_unresolved / out."""
     if is_invited:
         return "wildcard"
+    if tied:
+        return "standard_tie_unresolved"
     if status == "qualified":
         return "standard" if (slot or {}).get("reason") == "entry standard" else "ranking"
-    return status if status == "blocked_country_cap" else "out"
+    return status if status in ("blocked_country_cap", "standard_outside_quota") else "out"
 
 
 def _entry_standard_check(qual_cfg: dict, ev: dict, inp: dict, breakdown: dict, category: str,
-                          as_of: date, window: dict | None, *, indoor: bool = False) -> dict | None:
+                          as_of: date, window: dict | None, *, indoor: bool = False,
+                          policy: dict | None = None) -> dict | None:
     """Does the hypothetical mark meet the championship's entry standard?
 
     Validity follows WA's conditions: main event (or a listed road/mile alternative — never an
     indoor mark), inside the qualification window, Category C meet or above. `gap_seconds` is
     signed (+ = slower than the standard), in hundredths so both engines agree exactly.
+    `as_of` is the date of the performance. `policy` is the championship's
+    `qualification_policy` (LA28): `road_label_category` also admits road marks from WA
+    Label road races of that category, and `national_championships_until` extends the window
+    for National Senior Outdoor Championships that started inside it. Both are things the
+    tool can't see, so the mark then meets the standard *conditionally* (`conditions`).
     Returns None when the championship has no entry standard for the event.
     """
+    policy = policy or {}
     standard = qual_cfg.get("entry_standard")
     if not standard:
         return None
@@ -504,9 +575,25 @@ def _entry_standard_check(qual_cfg: dict, ev: dict, inp: dict, breakdown: dict, 
     gap = (round(hyp_s * 100) - round(std_s * 100)) / 100
     meets_mark = hyp_s <= std_s
     inside = True
+    window_status = None
+    conditions: list[str] = []
+    day = as_of.isoformat()
     if window and window.get("start") and window.get("end"):
-        inside = window["start"] <= as_of.isoformat() <= window["end"]
+        late = policy.get("national_championships_until")
+        if day < window["start"]:
+            window_status = "before"
+        elif day <= window["end"]:
+            window_status = "inside"
+        elif late and day <= late:
+            window_status = "national_championships_only"
+        else:
+            window_status = "after"
+        inside = window_status in ("inside", "national_championships_only")
     valid_cat = category.upper() in _STANDARD_CATEGORIES
+    label_cat = policy.get("road_label_category")
+    via_label = bool(inp.get("road") and label_cat and category.upper() == label_cat
+                     and not valid_cat)
+    valid_cat = valid_cat or via_label
     indoor = bool(indoor)
     meets = meets_mark and inside and valid_cat and not indoor and alt_ok
     main_label = ev.get("discipline", "main event")
@@ -518,12 +605,26 @@ def _entry_standard_check(qual_cfg: dict, ev: dict, inp: dict, breakdown: dict, 
     elif not valid_cat:
         note = (f"A category {category.upper()} meet doesn't count for the entry standard "
                 "(Category C or above needed); it still counts for the ranking.")
+    elif not inside and meets_mark and window_status == "before":
+        note = (f"Fast enough ({standard} or better), but dated before the qualification window "
+                f"opens on {window['start']}, so it doesn't count for the entry standard.")
     elif not inside:
         note = f"Outside the qualification window ({window['start']} to {window['end']})."
     elif meets_mark:
         note = f"Meets the {std_event} entry standard ({standard}) by {abs(gap):.2f}s."
     else:
         note = f"{gap:.2f}s short of the {std_event} entry standard ({standard})."
+    if meets:
+        if via_label:
+            conditions.append(f"A category {label_cat} road race counts only if it is a World "
+                              "Athletics Label road race.")
+        if window_status == "national_championships_only":
+            conditions.append(
+                f"After the window closes ({window['end']}), a mark counts only at a National "
+                "Senior Outdoor Championships that started inside the window, achieved by "
+                f"{policy['national_championships_until']}.")
+        if conditions:
+            note += " Conditional: " + " ".join(conditions)
     return {
         "standard": standard,
         "standard_event": std_event,
@@ -532,6 +633,10 @@ def _entry_standard_check(qual_cfg: dict, ev: dict, inp: dict, breakdown: dict, 
         "gap_seconds": gap,
         "meets_mark": meets_mark,
         "inside_window": inside,
+        "window_status": window_status,
+        "window": ({"start": window["start"], "end": window["end"]}
+                   if window and window.get("start") and window.get("end") else None),
+        "conditions": conditions,
         "valid_category": valid_cat,
         "indoor_invalid": indoor,
         "event_valid": alt_ok,
@@ -568,9 +673,10 @@ def required_targets(event: str, athlete: str, *, championship: str = "road_to_b
     std_list: list[dict] = []
     if "quota" in champ_event:
         qual_cfg = feed.event_qualification(championship, event)
-        std_list = [{"name": s["name"], "country": s.get("country"), "mark": s.get("mark")}
-                    for s in (qual_cfg.get("standard_achievers") or [])]
+        std_list = _achiever_rows(qual_cfg.get("standard_achievers"))
+        policy = champ.get("qualification_policy") or {}
         field = qualifying_field(build_ranked(data["athletes"]), qual_cfg["quota"],
+                                 standards_policy=policy.get("standards_over_quota", "all_qualify"),
                                  max_per_country=champ.get("max_per_country", 3),
                                  defending_champion=qual_cfg.get("defending_champion"),
                                  auto_invites=qual_cfg.get("auto_invites"),
@@ -579,7 +685,7 @@ def required_targets(event: str, athlete: str, *, championship: str = "road_to_b
 
     targets = []
     if cutoff is not None:
-        targets.append(("reach the qualifying cutoff", cutoff))
+        targets.append((_cutoff_label(champ), cutoff))
     if top is not None:
         targets.append(("reach #1", top + 1))
     rows = _targets_required(event, old_counting, best_n, placing, ath.get("ranking_score"), targets,
@@ -720,8 +826,25 @@ def _format_qualification(q: dict) -> list[str]:
     cc = q.get("country_count", 0)
     lines.append(f"  Ranking cutoff  : {cut if cut is not None else 'n/a'} "
                  "(score of the last ranking qualifier)")
-    if q.get("is_auto_invited"):
+    if q.get("projection_only"):
+        lines.append("  NOTE            : projection only - not official qualification tracking"
+                     " (rolling world ranking; standard achievers "
+                     + ("assumed" if q.get("standard_achievers_assumed") else
+                        "known" if q.get("standard_achievers_known") else "unknown") + ")")
+    if q.get("route_new") == "standard_tie_unresolved":
+        lines.append("  Status          : MEETS THE STANDARD - tied on the mark for the last quota"
+                     " place; the rules give no tie-break")
+    elif q.get("route_new") == "standard_outside_quota":
+        lines.append("  Status          : MEETS THE STANDARD but OUTSIDE THE QUOTA - more athletes"
+                     " have it than there are places; better marks take them")
+    elif q.get("is_auto_invited"):
         lines.append("  Status          : QUALIFIES by wildcard (bye) regardless of ranking")
+    elif q.get("route_new") == "standard" and q.get("projection_only"):
+        lines.append("  Status          : MEETS THE ENTRY STANDARD - not yet a confirmed place (who else"
+                     " has it is not tracked; entry is the NOC's decision)")
+    elif q.get("projection_only") and q["status_new"] == "qualified":
+        lines.append(f"  Status          : PROJECTED INSIDE THE RANKING QUOTA (position "
+                     f"{q['qual_position_new']}) - an estimate from the rolling world ranking")
     elif q.get("route_new") == "standard":
         lines.append("  Status          : QUALIFIES by entry standard — a place regardless of ranking"
                      f" (qual position {q['qual_position_new']})")

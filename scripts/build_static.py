@@ -37,7 +37,7 @@ from __future__ import annotations
 import json
 import shutil
 import sys
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 
 from wa_ranking import feed, fetch, graphql
@@ -45,6 +45,7 @@ from wa_ranking.api import meta as api_meta, rankings as api_rankings
 from wa_ranking.config import (DATA_DIR, load_championships, load_events,
                                load_placing_scores, load_result_table, _load_json)
 from wa_ranking.scoring import format_seconds, parse_time
+from wa_ranking.qualify import athlete_status, qualifying_field
 from wa_ranking.whatif import required_targets, what_if
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -176,7 +177,15 @@ def build_vectors() -> None:
     def add(kind: str, inputs: dict) -> None:
         fn = required_targets if kind == "required" else what_if
         try:
-            if kind == "required":
+            if kind == "field":
+                field = qualifying_field(
+                    inputs["ranked"], inputs["quota"], max_per_country=inputs["max_per_country"],
+                    auto_invites=inputs.get("auto_invites"),
+                    standard_achievers=inputs.get("standard_achievers"),
+                    standards_policy=inputs["standards_policy"])
+                out = {"field": field,
+                       "status": {n: athlete_status(field, n)[0] for n in inputs["probe"]}}
+            elif kind == "required":
                 out = fn(inputs["event"], inputs["athlete"], championship=inputs["championship"],
                          place=inputs["place"], category=inputs["category"])
             else:
@@ -186,7 +195,10 @@ def build_vectors() -> None:
                          as_of=date.fromisoformat(inputs["as_of"]),
                          qualify=inputs.get("qualify", False),
                          qualification_window=inputs.get("qualification_window", False),
-                         sub_event=inputs.get("sub_event"), verbose=False)
+                         sub_event=inputs.get("sub_event"),
+                         perf_date=(date.fromisoformat(inputs["perf_date"])
+                                    if inputs.get("perf_date") else None),
+                         standard_achievers=inputs.get("standard_achievers"), verbose=False)
             vectors.append({"kind": kind, "inputs": inputs, "expect": out})
         except (ValueError, RuntimeError) as e:
             vectors.append({"kind": kind, "inputs": inputs, "expect_error": str(e)})
@@ -258,12 +270,121 @@ def build_vectors() -> None:
                                        "sub_event": alt["key"],
                                        "as_of": as_of.isoformat(),
                                        "qualify": quota_here})
+                if i == 0 and quota_here and cfg.get("qualification_policy"):
+                    _policy_vectors(add, champ, cfg, event, ev_cfg, data, as_of)
         if not has_quota and champ != "world":
             continue
+
+    for v in _field_vectors():
+        add("field", v)
 
     _dump(VECTORS_PATH, {"as_of": as_of.isoformat(), "count": len(vectors), "vectors": vectors})
     errs = sum(1 for v in vectors if "expect_error" in v)
     print(f"Vectors: {len(vectors)} ({errs} error-cases) -> {VECTORS_PATH}")
+
+
+def _policy_vectors(add, champ: str, cfg: dict, event: str, ev_cfg: dict, data: dict,
+                    as_of: date) -> None:
+    """A championship with its own `qualification_policy` (Road to LA28): fixed performance
+    dates around the window edges (independent of today's date), the category / road /
+    indoor conditions, and assumed standard-achiever lists that over-fill the quota so the
+    best-performances allocation, its country cap and its ties are exercised end to end."""
+    policy = cfg["qualification_policy"]
+    q = feed.event_qualification(champ, event)
+    std, quota = q["entry_standard"], q["quota"]
+    w = q.get("qualification_window") or cfg["qualification_window"]
+    start, end = date.fromisoformat(w["start"]), date.fromisoformat(w["end"])
+    mid = (start + (end - start) // 2).isoformat()
+    ranked = [a for a in data["athletes"] if a.get("ranking_score") is not None]
+    first = ranked[0]["name"]
+    base = {"event": event, "championship": champ, "athlete": first, "time": std,
+            "as_of": as_of.isoformat(), "qualify": True}
+
+    days = [start - timedelta(days=1), start, end, end + timedelta(days=1)]
+    late = policy.get("national_championships_until")
+    if late:
+        days += [date.fromisoformat(late), date.fromisoformat(late) + timedelta(days=1)]
+    for d in days:
+        add("whatif", {**base, "perf_date": d.isoformat()})
+    slower = format_seconds(parse_time(std) + 0.01)
+    for extra in ({"time": slower}, {"category": "C", "place": 1}, {"category": "D", "place": 1},
+                  {"category": "E", "place": 1}, {"qualification_window": True}):
+        add("whatif", {**base, "perf_date": mid, **extra})
+    for alt in ev_cfg.get("alt_events", ()):
+        t = std if alt.get("standard_event") else _alt_time(alt, ev_cfg)
+        cats = ("B", "D", "E") if alt.get("road") else ("B",)
+        for cat in cats:
+            add("whatif", {**base, "perf_date": mid, "time": t, "sub_event": alt["key"],
+                           "category": cat, "place": 1})
+
+    # Assumed achievers: the top of the list, fastest mark to the top-ranked, 0.05s apart.
+    def marks(n: int) -> list[dict]:
+        return [{"name": a["name"], "country": a.get("country"),
+                 "mark": format_seconds(round(parse_time(std) - 5 + 0.05 * i, 2))}
+                for i, a in enumerate(ranked[:n])]
+
+    over = marks(min(len(ranked) - 2, quota + 15))   # more than the quota even after the cap
+    few = marks(5)
+    outsider = ranked[-1]["name"]                    # not among the assumed achievers
+    last_in_mark = _last_placed_mark(over, quota, cfg.get("max_per_country"))
+    for achievers, athlete, t in (
+            (few, outsider, std),                    # under-subscribed: standard = a place
+            (over, outsider, std),                   # slower than every placed mark: outside
+            (over, outsider, format_seconds(round(parse_time(std) - 10, 2))),  # takes a place
+            (over, outsider, last_in_mark),          # ties the last placed mark: unresolved
+            (over, over[0]["name"], format_seconds(round(parse_time(std) - 10, 2))),  # listed, faster
+            (over, over[-1]["name"], slower)):       # listed but outside the quota, no new mark
+        add("whatif", {**base, "athlete": athlete, "time": t, "perf_date": mid,
+                       "standard_achievers": achievers})
+
+
+def _last_placed_mark(achievers: list[dict], quota: int, max_per_country) -> str:
+    """The mark of the last achiever to get a place under the best-performances policy."""
+    rows = [{**a, "mark_seconds": parse_time(a["mark"])} for a in achievers]
+    field = qualifying_field([], quota, max_per_country=max_per_country,
+                             standard_achievers=rows, standards_policy="best_performances")
+    placed = [s for s in field["slots"] if s["reason"] == "entry standard"]
+    return placed[-1]["mark"]
+
+
+def _field_vectors() -> list[dict]:
+    """Synthetic inputs for the field resolver itself — both standards-over-quota policies
+    on the same lists, so the Worlds behaviour is pinned next to the Olympic one."""
+    def ath(n, c, s):
+        return {"name": n, "country": c, "ranking_score": s}
+
+    def std(n, c, secs):
+        return {"name": n, "country": c, "mark": format_seconds(secs), "mark_seconds": secs}
+
+    ranked = [ath("A", "KEN", 1400), ath("B", "KEN", 1390), ath("C", "ETH", 1380),
+              ath("D", "KEN", 1370), ath("E", "USA", 1360), ath("F", "KEN", 1350),
+              ath("G", "GBR", 1340), ath("H", "ESP", 1330)]
+    probe = [a["name"] for a in ranked]
+    # Given slowest-first on purpose: the Olympic policy must reorder by mark, not by rank.
+    achievers = [std("H", "ESP", 213.0), std("G", "GBR", 212.5), std("F", "KEN", 212.0),
+                 std("D", "KEN", 211.5), std("B", "KEN", 211.0), std("A", "KEN", 210.5),
+                 std("C", "ETH", 210.0)]
+    tie = [std("A", "KEN", 210.0), std("C", "ETH", 211.0), std("E", "USA", 211.0),
+           std("G", "GBR", 211.0), std("H", "ESP", 212.0)]
+    unknown_mark = achievers[:3] + [{"name": "E", "country": "USA", "mark": None,
+                                     "mark_seconds": None}]
+    out = []
+    for policy in ("all_qualify", "best_performances"):
+        for label, quota, cap, lst, invites in (
+                ("over quota", 4, 3, achievers, None),
+                ("over quota, no cap", 4, None, achievers, None),
+                ("exactly the quota", 6, 3, achievers, None),
+                ("under quota", 8, 3, achievers[:2], None),
+                ("tie for the last place", 3, 3, tie, None),
+                ("tie inside the quota", 4, 3, tie, None),
+                ("unknown mark sorts last", 3, 3, unknown_mark, None),
+                ("wildcard takes a place", 4, 3, achievers,
+                 [{"name": "Z", "country": "NOR", "reason": "wildcard"}]),
+                ("no achievers", 4, 3, [], None)):
+            out.append({"label": f"{policy}: {label}", "ranked": ranked, "quota": quota,
+                        "max_per_country": cap, "standard_achievers": lst,
+                        "auto_invites": invites, "standards_policy": policy, "probe": probe})
+    return out
 
 
 def _alt_time(alt: dict, ev_cfg: dict) -> str:

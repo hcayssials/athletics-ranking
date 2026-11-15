@@ -35,6 +35,7 @@ def cmd_whatif(args) -> int:
         args.event, args.athlete, args.time,
         category=args.category, place=args.place, championship=args.championship,
         as_of=as_of, indoor=args.indoor,
+        perf_date=date.fromisoformat(args.perf_date) if args.perf_date else None,
         qualification_window=args.qual_window, qualify=args.qualify,
         profile=args.profile,
         force_refresh=args.force, verbose=not args.json,
@@ -100,6 +101,9 @@ def main(argv=None) -> int:
     p.add_argument("--category", default="GW", help="Meet category code (default GW)")
     p.add_argument("--place", type=int, default=2, help="Projected finishing place (default 2)")
     p.add_argument("--as-of", dest="as_of", default=None, help="YYYY-MM-DD (default today)")
+    p.add_argument("--perf-date", dest="perf_date", default=None,
+                   help="date of the hypothetical race, YYYY-MM-DD (default: --as-of); e.g. a "
+                        "day inside a qualification window that hasn't opened yet")
     p.add_argument("--indoor", action="store_true")
     p.add_argument("--qual-window", dest="qual_window", action="store_true",
                    help="Use the championship's fixed qualification window instead of the "

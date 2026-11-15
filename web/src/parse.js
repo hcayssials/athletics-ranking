@@ -104,7 +104,10 @@ export function parseQuery(query, currentEvent) {
   // championship. Specific names first ("World Athletics Ultimate" / "World Championships"
   // both contain "world"); a generic qualifying phrase means the live Road to (Beijing 27).
   // Archived keys (ultimate, birmingham) still parse — App ignores a key that isn't offered.
-  if (/ultimate|budapest/.test(nq)) out.championship = "road_to_ultimate";
+  // LA28 only on an explicit Olympic-qualification phrasing — a bare "at the Olympics" is a
+  // meet (category OW), not a request to switch tab.
+  if (/\bla ?28\b|los angeles|road to la\b|olympic (team|qualif\w*|standard)|(make|qualif\w* for) the olympics/.test(nq)) out.championship = "road_to_la28";
+  else if (/ultimate|budapest/.test(nq)) out.championship = "road_to_ultimate";
   else if (/beijing|world champ|\bworlds\b|\bwch\b/.test(nq)) out.championship = "road_to_beijing";
   else if (/\bworld\b|globally|world rank|world list/.test(nq)) out.championship = "world";
   else if (/birmingham|european|\beuros?\b/.test(nq)) out.championship = "road_to_birmingham";

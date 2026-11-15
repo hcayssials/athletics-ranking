@@ -8,6 +8,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { whatIf, requiredTargets } from "./whatif.js";
+import { athleteStatus, qualifyingField } from "./qualify.js";
 
 const WEB = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const DATA = join(WEB, "public", "data");
@@ -63,13 +64,26 @@ function diff(exp, act, path = "$") {
   return null;
 }
 
+// kind "field": the field resolver itself, on synthetic inputs (standards-over-quota
+// policies, country cap, ties) — the whole field dict plus each probed athlete's status.
+function fieldVector(inp) {
+  const field = qualifyingField(inp.ranked, inp.quota, {
+    maxPerCountry: inp.max_per_country,
+    autoInvites: inp.auto_invites ?? null,
+    standardAchievers: inp.standard_achievers ?? null,
+    standardsPolicy: inp.standards_policy,
+  });
+  return { field, status: Object.fromEntries(inp.probe.map((n) => [n, athleteStatus(field, n)[0]])) };
+}
+
 const { vectors } = readJson(join(WEB, "parity-vectors.json"));
 let failures = 0;
 for (const [i, v] of vectors.entries()) {
   const inp = v.inputs;
   let out = null, err = null;
   try {
-    out = v.kind === "required"
+    out = v.kind === "field" ? fieldVector(inp)
+      : v.kind === "required"
       ? requiredTargets(ctx, inp.event, inp.athlete,
                         { championship: inp.championship, place: inp.place, category: inp.category })
       : whatIf(ctx, {
@@ -79,6 +93,8 @@ for (const [i, v] of vectors.entries()) {
           qualify: inp.qualify ?? false,
           qualificationWindow: inp.qualification_window ?? false,
           subEvent: inp.sub_event ?? null,
+          perfDate: inp.perf_date ?? null,
+          standardAchievers: inp.standard_achievers ?? null,
         });
   } catch (e) {
     err = e;
@@ -95,7 +111,7 @@ for (const [i, v] of vectors.entries()) {
   if (d) {
     failures += 1;
     if (failures <= 10) {
-      console.error(`FAIL #${i} ${v.kind} ${inp.championship}/${inp.event} ` +
+      console.error(`FAIL #${i} ${v.kind} ${inp.label ?? ""} ${inp.championship}/${inp.event} ` +
                     `${inp.athlete} ${inp.time ?? ""}\n  ${d}`);
     }
   }

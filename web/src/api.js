@@ -88,5 +88,6 @@ export async function runWhatIf(body) {
     qualificationWindow: !!body.qualification_window,
     profileInfo,
     subEvent: body.sub_event ?? null,
+    perfDate: body.perf_date ?? null,
   });
 }

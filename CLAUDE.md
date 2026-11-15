@@ -38,7 +38,7 @@ There is **no JS test runner** (vitest/jest) — JS tests run via `node`.
 `.github/workflows/deploy-pages.yml` does everything: weekly cron (Wed 06:00 UTC; WA updates
 ~Tuesdays) re-scrapes `data/cache_seed/` and commits it; every push to `main` (and the cron)
 then rebuilds the bundle, runs pytest + **the parity gate** (`parity.test.mjs` must reproduce
-every Python-generated golden vector exactly — 432 at the last count), builds the site, and
+every Python-generated golden vector exactly — 888 at the last count), builds the site, and
 publishes `web/dist` to Pages. A red gate blocks the deploy — that's the point; fix the engine mismatch, don't skip it.
 `web/dist/`, `web/public/data/` and `data/cache/*.json` are gitignored. `~/.local/bin` (gh,
 node) is NOT on PATH — prefix shell commands with `export PATH="$HOME/.local/bin:$PATH"`. If
@@ -61,7 +61,7 @@ those two features 401 until the next build; the core what-if (static data + loc
 unaffected. The profile *page* (best-ever rank) is CORS-blocked, so unranked athletes show
 without that one line — name derives from the slug, country rides along from the search result.
 
-## Championships (world / Road to Beijing 27; Birmingham & Ultimate archived)
+## Championships (world / Road to Beijing 27 / Road to LA28; Birmingham & Ultimate archived)
 - `data/championships.json` drives everything: presentation strings (`short_label`,
   `scope_label`, `rank_label`), qualification (`quota`, `max_per_country` — explicit `null`
   = no cap, per-event `entry_standard`), byes (`defending_champion`, or an `auto_invites`
@@ -97,6 +97,51 @@ without that one line — name derives from the slug, country rides along from t
   reason "2027 Diamond League winner". Also check the one-wildcard-per-country rule by hand
   (`test_road_to_beijing_config_matches_the_published_system` asserts no two byes share a
   nation). If WA's feed starts labelling Ultimate/DL winners, drop the manual entries.
+
+## Road to LA28 (Olympic Games) — planning mode
+- **Source of every number:** IOC / World Athletics "Qualification System – Games of the XXXIV
+  Olympiad – LA28 – Athletics", **version as of 9 November 2026** (PDF, also in the WA
+  Library) + WA's press release of 10 Nov 2026. Checked 2026-11-15; `source` in the config
+  carries the URLs. If a newer version appears, re-check quotas / standards / windows and
+  update `source.version` (`tests/test_la28.py` pins them).
+- **Facts modelled:** quotas 48/45/42/27/30 (800/1500/5000/10,000/steeple, per gender);
+  standards M/W 1:43.00/1:57.00, 3:30.00/3:57.50, 12:50.00/14:34.00, 26:48.00/30:30.00,
+  8:07.50/9:06.00; window 19 Jun 2027 – 18 Jun 2028 (10,000m from 19 Dec 2026); max 3 per
+  NOC; **no wildcards** (don't copy Beijing's byes); no mile alternative; the 5000m/10,000m
+  standard can be run at 5km/10km road *at the same time* (`alt_entry_standards` repeats the
+  track standard); short-track marks never count.
+- **`qualification_policy`** (championship-level, read by both engines; absent = Worlds
+  behaviour) is where the Olympics differ:
+  `standards_over_quota: "best_performances"` → `qualifying_field(standards_policy=…)` orders
+  achievers by **mark**, not ranking score, caps them at the quota, and closes the ranking
+  route when over-subscribed (`route_new` = `standard_outside_quota`). The rules give **no
+  tie-break**, so a tie on the mark across the last place is `standard_tie_unresolved` —
+  don't invent one. `road_label_category: "E"` and `national_championships_until` make a mark
+  meet the standard *conditionally* (`entry_standard.conditions`), because the tool can't see
+  whether a race is a WA Label race or a National Senior Outdoor Championships.
+- **`planning: true`** drives the UI (banner, "projected" wording, performance-date input) and
+  `qualification.projection_only`. Nothing in App.jsx names the championship.
+- **Performance date:** `what_if(perf_date=…)` / `whatIf({perfDate})` dates the hypothetical
+  (default = `as_of`) so it can sit inside a window that hasn't opened. The ranking side is
+  **not** aged forward. Tests and vectors pass fixed dates; only the UI default reads the clock.
+- **No official feed exists** (WA's "Road to LA" is due autumn 2027), so there is no
+  `qualification_feed` block, nothing is fetched, `standard_achievers` is unknown (never `[]`)
+  and `feed.tracking_status` says `not_configured`. **To activate tracking later:** find the
+  WA competition id + per-event ids on WA's Road to LA page, add a `qualification_feed` block
+  like Beijing's, run `python -m scripts.refresh_seed road_to_la28`, commit the
+  `feed__road_to_la28__*.json` seeds, extend `test_committed_seed_snapshots_agree_with_the_config`
+  to LA28, then decide whether `planning` comes off. Check then how the feed labels athletes
+  who hold the standard but fall outside the quota, and whether rows say which event (track
+  vs road) the mark came from.
+- **Approximate / not modelled:** ranking places are projected by filling the whole quota
+  from the rolling world list (3 per NOC) — not the Olympic ranking-period ranking, and blind
+  to how many places standards will take; universality places; reallocation of declined
+  places (23–24 Jun 2028); the "last day of the competition falls inside the window" rule
+  (the tool only sees the race date); mixed-race and course conditions; how WA would order a
+  road mark against a track mark when over-subscribed (compared here as plain times).
+- `what_if(standard_achievers=[…])` is a scenario override ("assume these athletes have the
+  standard") used by the tests and parity vectors to exercise over-subscription; the UI
+  doesn't expose it.
 
 ## Entry standards (World Championships)
 - Field model (`qualify.py` / `qualify.js`): wildcards → **entry-standard achievers** →
@@ -174,10 +219,13 @@ without that one line — name derives from the slug, country rides along from t
 - **Palette lives in `web/src/theme.js`** ("WA Editorial": white surfaces, cool ink, WA-red
   accent). Some incidental shades are still inline in `App.jsx` inside composite strings.
 - **Responsive** via the `useIsNarrow` hook (CSS-in-JS can't use media queries).
+- `PlanningBanner` shows a planning championship's standard / quota / window / tracking status /
+  source and the explainers from `championships.json`.
 - Shared UI: `PerfTable` (counting performances) and `TargetRows` (reverse-solver targets) are
   used by both the what-if result and the click-to-preview card (`AthletePreview`).
-- **Claude cannot see the rendered UI.** Verify FE changes with `npm run build`, then ask the
-  user to eyeball after the Pages deploy.
+- **Claude usually cannot see the rendered UI.** Verify FE changes with `npm run build`; where a
+  headless browser is available (cloud sessions ship Chromium + Playwright), also load
+  `npx vite preview` and screenshot. Otherwise ask the user to eyeball after the Pages deploy.
 - Keep changes small and commit per logical change; only push when asked (push to main = deploy).
 
 ## Map

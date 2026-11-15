@@ -70,7 +70,8 @@
     "alt_events": [
       {"key": "3000m", "label": "3000m", "discipline_code": "3000", "result_table": "scoring_tables/3000m_men.csv"},
       {"key": "3000m_i", "label": "3000m (indoor)", "discipline_code": "3000sh", "result_table": "scoring_tables/3000m_men_indoor.csv", "indoor": true},
-      {"key": "5000m_i", "label": "5000m (indoor)", "discipline_code": "5000sh", "result_table": "scoring_tables/5000m_men_indoor.csv", "indoor": true}
+      {"key": "5000m_i", "label": "5000m (indoor)", "discipline_code": "5000sh", "result_table": "scoring_tables/5000m_men_indoor.csv", "indoor": true},
+      {"key": "5km", "label": "5km (road)", "discipline_code": "5RR", "result_table": "scoring_tables/5km_men.csv", "road": true, "standard_event": "5 km Road"}
     ]
   },
   "5000m_women": {
@@ -83,7 +84,8 @@
     "alt_events": [
       {"key": "3000m", "label": "3000m", "discipline_code": "3000", "result_table": "scoring_tables/3000m_women.csv"},
       {"key": "3000m_i", "label": "3000m (indoor)", "discipline_code": "3000sh", "result_table": "scoring_tables/3000m_women_indoor.csv", "indoor": true},
-      {"key": "5000m_i", "label": "5000m (indoor)", "discipline_code": "5000sh", "result_table": "scoring_tables/5000m_women_indoor.csv", "indoor": true}
+      {"key": "5000m_i", "label": "5000m (indoor)", "discipline_code": "5000sh", "result_table": "scoring_tables/5000m_women_indoor.csv", "indoor": true},
+      {"key": "5km", "label": "5km (road)", "discipline_code": "5RR", "result_table": "scoring_tables/5km_women.csv", "road": true, "standard_event": "5 km Road"}
     ]
   },
 

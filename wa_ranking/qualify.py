@@ -15,7 +15,16 @@ A *qualifying* question ("do I make championship X?") applies:
   - an optional **max-per-country cap** across all non-wildcard routes (3 for the Worlds and
     Birmingham; None = no cap for the Ultimate Championship).
 
-Everything here operates on ranking *positions/scores*, independent of how each athlete's
+Standards over the quota are championship-specific (`standards_policy`):
+
+  - ``"all_qualify"`` (World Championships, the default): every standard achiever is in,
+    even past the target field — they can only squeeze the ranking fill;
+  - ``"best_performances"`` (Olympic Games, LA28): if more athletes than the quota achieve
+    the standard, places go to the best *performances* (the marks, not the ranking scores)
+    within the quota, and nobody qualifies by ranking. The rules give no tie-break, so a tie
+    on the mark for the last place is reported (`standards_tied`), never resolved here.
+
+Everything else operates on ranking *positions/scores*, independent of how each athlete's
 score was computed.
 """
 from __future__ import annotations
@@ -24,7 +33,8 @@ from __future__ import annotations
 def qualifying_field(ranked: list[dict], quota: int, *, max_per_country: int | None = 3,
                      defending_champion: dict | None = None,
                      auto_invites: list[dict] | None = None,
-                     standard_achievers: list[dict] | None = None) -> dict:
+                     standard_achievers: list[dict] | None = None,
+                     standards_policy: str = "all_qualify") -> dict:
     """Resolve who qualifies.
 
     Args:
@@ -40,7 +50,11 @@ def qualifying_field(ranked: list[dict], quota: int, *, max_per_country: int | N
             mark}, seeded after the wildcards in the given order (WA lists them fastest
             first). A wildcard holder in this list is treated as a wildcard. Not capped by
             the quota (WA: ties for the last standard place all qualify) — they can only
-            squeeze the ranking fill.
+            squeeze the ranking fill — unless `standards_policy` says otherwise.
+        standards_policy: "all_qualify" (above) or "best_performances": achievers are
+            ordered by `mark_seconds` (fastest first; unknown marks last, input order kept
+            for equal marks) and only the first `quota - wildcards` (after the country cap)
+            get a place; the rest are listed in `outside_quota`.
 
     Returns a dict with the ordered `slots` (reason: wildcard label / "entry standard" /
     "ranking"), the `cutoff_score` (last *ranking* qualifier), per-country `counts`
@@ -70,8 +84,14 @@ def qualifying_field(ranked: list[dict], quota: int, *, max_per_country: int | N
         remaining -= 1
         pos += 1
 
+    capped = standards_policy == "best_performances"
+    achievers = list(standard_achievers or [])
+    if capped:  # by performance, not ranking score; sorted() is stable
+        achievers.sort(key=lambda s: (s.get("mark_seconds") is None, s.get("mark_seconds") or 0))
     standard_names: set[str] = set()
-    for s in standard_achievers or []:
+    outside: list[dict] = []
+    placed_marks: list = []
+    for s in achievers:
         key = s["name"].upper()
         if key in invite_names or key in standard_names:
             continue
@@ -85,6 +105,14 @@ def qualifying_field(ranked: list[dict], quota: int, *, max_per_country: int | N
                 "route": "entry standard",
             })
             continue
+        if capped and remaining <= 0:
+            outside.append({
+                "name": s["name"], "country": country, "score": score_of.get(key),
+                "mark": s.get("mark"), "mark_seconds": s.get("mark_seconds"),
+                "reason": "entry standard, outside the quota",
+            })
+            continue
+        placed_marks.append((s["name"], s.get("mark_seconds")))
         slots.append({
             "position": pos, "name": s["name"], "country": country,
             "score": score_of.get(key), "reason": "entry standard",
@@ -117,6 +145,14 @@ def qualifying_field(ranked: list[dict], quota: int, *, max_per_country: int | N
         remaining -= 1
         pos += 1
 
+    # A tie on the mark across the last standard place: the rules name no tie-break.
+    tied: list[str] = []
+    if outside and placed_marks:
+        edge = placed_marks[-1][1]
+        if edge is not None and outside[0].get("mark_seconds") == edge:
+            tied = ([n for n, m in placed_marks if m == edge]
+                    + [o["name"] for o in outside if o.get("mark_seconds") == edge])
+
     ranking_slots = [s for s in slots if s["reason"] == "ranking"]
     standard_slots = [s for s in slots if s["reason"] == "entry standard"]
     return {
@@ -129,13 +165,18 @@ def qualifying_field(ranked: list[dict], quota: int, *, max_per_country: int | N
         "ranking_places": len(ranking_slots),
         "counts": counts,
         "blocked": blocked,
+        "standards_policy": standards_policy,
+        "standards_oversubscribed": bool(outside),
+        "outside_quota": outside,
+        "standards_tied": tied,
         "defending_champion": defending_champion,
         "auto_invites": invites,
     }
 
 
 def athlete_status(field: dict, name: str) -> tuple[str, dict | None]:
-    """Classify an athlete in a resolved field: qualified / blocked_country_cap / out.
+    """Classify an athlete in a resolved field: qualified / blocked_country_cap /
+    standard_outside_quota (has the standard, but the quota went to better marks) / out.
     For a qualified athlete the slot's `reason` says the route (wildcard label,
     "entry standard" or "ranking")."""
     nm = name.upper()
@@ -145,6 +186,9 @@ def athlete_status(field: dict, name: str) -> tuple[str, dict | None]:
     for b in field["blocked"]:
         if b["name"].upper() == nm:
             return ("blocked_country_cap", b)
+    for o in field.get("outside_quota", ()):
+        if o["name"].upper() == nm:
+            return ("standard_outside_quota", o)
     return ("out", None)
 
 

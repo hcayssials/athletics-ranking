@@ -46,6 +46,13 @@ eq(parseQuery("What if Hull runs 3:58.00 at a Diamond League meeting?", "1500m_w
    { athlete: "What if Hull runs 3:58.00 at a Diamond League meeting?", category: "GW", time: "3:58.00" }, "pq standard example");
 eq(parseQuery("What if Chebet wins the World Athletics Ultimate in Budapest?", "5000m_women").championship,
    "road_to_ultimate", "pq ultimate beats 'world'");
+eq(parseQuery("Does Kerr make LA28 by winning their national champs?", "1500m_men"),
+   { athlete: "Does Kerr make LA28 by winning their national champs?", championship: "road_to_la28", place: 1, category: "B" }, "pq LA28");
+eq(parseQuery("Can Hull qualify for the Olympics with a 3:57 win?", "1500m_women").championship,
+   "road_to_la28", "pq 'qualify for the Olympics' -> LA28");
+// A bare "at the Olympics" names a meet (category OW), not the LA28 tab.
+eq(parseQuery("What if Kerr finishes 2nd at the Olympics?", "1500m_men"),
+   { athlete: "What if Kerr finishes 2nd at the Olympics?", place: 2, category: "OW" }, "pq olympics as a meet");
 eq(parseQuery("Wightman wins nationals in 3:34", "1500m_men").category, "B", "pq nationals -> B (national champs)");
 eq(parseQuery("3rd at a national meet", "1500m_men").category, "C", "pq national meet -> C");
 

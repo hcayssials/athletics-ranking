@@ -1,11 +1,16 @@
 // Port of wa_ranking/qualify.py — wildcards + entry-standard achievers + per-country cap + quota.
 // Operates on ranking positions/scores only; see the Python module docstring.
+// standardsPolicy: "all_qualify" (Worlds: every standard achiever is in, even past the
+// quota) or "best_performances" (Olympics/LA28: more achievers than places -> the best
+// marks take the quota, nobody qualifies by ranking; a tie on the mark for the last place
+// is reported in standards_tied, never resolved).
 
 export function qualifyingField(ranked, quota, {
   maxPerCountry = 3,
   defendingChampion = null,
   autoInvites = null,
   standardAchievers = null,
+  standardsPolicy = "all_qualify",
 } = {}) {
   const invites = autoInvites ? [...autoInvites]
     : defendingChampion ? [{ ...defendingChampion, reason: "defending champion (bye)" }]
@@ -34,8 +39,19 @@ export function qualifyingField(ranked, quota, {
 
   // Entry-standard achievers: in next, whatever their ranking; they count toward the cap
   // and are not capped by the quota (they can only squeeze the ranking fill).
+  const capped = standardsPolicy === "best_performances";
+  const achievers = [...(standardAchievers || [])];
+  if (capped) { // by performance, not ranking score; Array.prototype.sort is stable
+    const k = (x) => [x.mark_seconds == null ? 1 : 0, x.mark_seconds || 0];
+    achievers.sort((a, b) => {
+      const [na, sa] = k(a), [nb, sb] = k(b);
+      return na !== nb ? na - nb : sa - sb;
+    });
+  }
   const standardNames = new Set();
-  for (const s of standardAchievers || []) {
+  const outside = [];
+  const placedMarks = [];
+  for (const s of achievers) {
     const key = s.name.toUpperCase();
     if (inviteNames.has(key) || standardNames.has(key)) continue;
     standardNames.add(key);
@@ -49,6 +65,15 @@ export function qualifyingField(ranked, quota, {
       });
       continue;
     }
+    if (capped && remaining <= 0) {
+      outside.push({
+        name: s.name, country, score: lookup(key),
+        mark: s.mark ?? null, mark_seconds: s.mark_seconds ?? null,
+        reason: "entry standard, outside the quota",
+      });
+      continue;
+    }
+    placedMarks.push([s.name, s.mark_seconds ?? null]);
     slots.push({
       position: pos, name: s.name, country,
       score: lookup(key), reason: "entry standard",
@@ -82,6 +107,16 @@ export function qualifyingField(ranked, quota, {
     pos += 1;
   }
 
+  // A tie on the mark across the last standard place: the rules name no tie-break.
+  let tied = [];
+  if (outside.length && placedMarks.length) {
+    const edge = placedMarks[placedMarks.length - 1][1];
+    if (edge !== null && outside[0].mark_seconds === edge) {
+      tied = placedMarks.filter(([, m]) => m === edge).map(([n]) => n)
+        .concat(outside.filter((o) => o.mark_seconds === edge).map((o) => o.name));
+    }
+  }
+
   const rankingSlots = slots.filter((s) => s.reason === "ranking");
   const standardSlots = slots.filter((s) => s.reason === "entry standard");
   return {
@@ -94,17 +129,23 @@ export function qualifyingField(ranked, quota, {
     ranking_places: rankingSlots.length,
     counts,
     blocked,
+    standards_policy: standardsPolicy,
+    standards_oversubscribed: outside.length > 0,
+    outside_quota: outside,
+    standards_tied: tied,
     defending_champion: defendingChampion,
     auto_invites: invites,
   };
 }
 
-// -> [status, slot]: qualified / blocked_country_cap / out. A qualified slot's `reason`
+// -> [status, slot]: qualified / blocked_country_cap / standard_outside_quota (has the
+// standard, but the quota went to better marks) / out. A qualified slot's `reason`
 // says the route (wildcard label, "entry standard" or "ranking").
 export function athleteStatus(field, name) {
   const nm = name.toUpperCase();
   for (const s of field.slots) if (s.name.toUpperCase() === nm) return ["qualified", s];
   for (const b of field.blocked) if (b.name.toUpperCase() === nm) return ["blocked_country_cap", b];
+  for (const o of field.outside_quota || []) if (o.name.toUpperCase() === nm) return ["standard_outside_quota", o];
   return ["out", null];
 }
 
