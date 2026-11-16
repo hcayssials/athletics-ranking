@@ -18,8 +18,6 @@ an optional age-decay deduction. N, the main-event minimum, and the window vary 
 | 10000m | 2 | 1 | **18 mo** | 27 | 26:48.00 / 30:40.00 |
 | 3000m SC | 3 | 2 | 12 mo | 36 | 8:08.00 / 9:06.50 |
 
-(Men's 3000m SC scoring works, but its ranking *list* isn't fetchable — see Known limitations.)
-
 ## Install
 
 ```bash
@@ -31,7 +29,7 @@ Python 3.11+ (uses `X | Y` typing).
 ## Quick start
 
 ```bash
-python -m wa_ranking.cli events                 # list the 8 events
+python -m wa_ranking.cli events                 # list the 10 events
 python -m wa_ranking.cli champs                 # world | road_to_beijing (+ archived)
 
 # Run a scenario (fetches + caches live data on first use):
@@ -169,14 +167,9 @@ performance displaces, and (b) apply an optional **fixed** window. It honours:
   python -m wa_ranking.cli whatif --athlete "Gilavert" --time 3:30.00 --place 2 --qualify
   ```
 
-> **Quota is the *total* field, not ranking-only.** `quota=30` (men's 1500m) comes from the
-> European Athletics *"Qualification System and Entry Standards"* document's per-event target
-> table (`quota_source` in `championships.json`). That 30 is the whole field, filled in
-> priority order by entry-standard achievers → finishing-position qualifiers → defending-
-> champion wildcard → approved unqualified → **then** world rankings. This tool currently
-> treats the field as ranking-only (champion bye + 3-per-country cap), which **over-counts**
-> ranking places because it doesn't yet subtract entry-standard qualifiers (men's 1500m
-> standard: 3:33.50). Modelling that is the natural next step.
+> **Quota is the *total* field, not ranking-only.** Wildcards and entry-standard achievers
+> are placed first; the world ranking fills what is left (`quota_source` in
+> `championships.json` cites the WA document the numbers come from).
 
 ## Assumptions (always printed)
 
@@ -263,22 +256,17 @@ Tune the cadence via `cache.DEFAULT_TTL_SECONDS` (e.g. drop to weekly), or sched
 
 ## Known limitations
 
-- **Men's 3000m steeplechase has no fetchable ranking list.** It's the one event WA doesn't
-  server-render in HTML, and the only GraphQL rankings feed the tool can reach is women-only.
-  So men's steeplechase *scoring* works but list-based features (rank, qualification) raise a
-  clear error. Women's steeplechase works fully (via the GraphQL list fallback in `fetch.py`).
-- **Quota = total field, not ranking-only** — world rankings fill what remains after entry
-  standards / wildcards (see the quota note above). Modelling entry-standard qualifiers is the
-  next step (the standard times are in `events.json`).
+- **The qualification picture uses today's rolling world list**, not WA's qualification-period
+  ranking (which only counts results inside the window and is final at the 22 Aug 2027 rank
+  date). Entry-standard achievers and wildcards come from WA's own feed; the ranking fill can
+  still move. The UI says so under every qualification verdict.
 - **Placing tables are finals-only.** WA scores heats/semis with separate (lower) tables, so a
   hypothetical is always treated as a final. *Existing* round performances are read directly
   from WA, so this doesn't affect baselines — only how a hypothetical heat would be scored
   (rare). Finals tables verified against live data.
-- **One baseline outlier:** Keely Hodgkinson (800m W) reproduces as 1401 vs an official 1411
-  — isolated to that reigning champion across 160 athletes checked; likely a WA adjustment.
 - Re-deriving age-decay of *existing* performances at a future date (needs raw uncorrected
   scores); a fully faithful fixed qualification window (needs full performance history, not
-  just the counting set — `--qual-window` is a flagged approximation); the frontend itself.
+  just the counting set — `--qual-window` is a flagged approximation).
 
 ## Data sources
 

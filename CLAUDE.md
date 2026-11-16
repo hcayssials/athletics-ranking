@@ -50,8 +50,7 @@ back to it when the live cache is cold, and `build_static` reads through that sa
 weekly workflow refreshes it (also runnable manually: `python -m scripts.refresh_seed`). It
 holds two kinds of file: `<champ>__<event>.json` ranking lists (only for non-archived
 *source* championships — today just `world`) and `feed__<champ>__<event>.json` snapshots of
-WA's qualification feed (see below). Archived championships' old list seeds are still in the
-folder; they're unused and can be deleted.
+WA's qualification feed (see below). Archived championships have no seed files.
 
 ## Live browser features (the only runtime network calls)
 Name search and unranked-athlete profiles call WA's GraphQL endpoint directly from the browser
