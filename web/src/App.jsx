@@ -155,6 +155,7 @@ function buildResultView(r, champCfg, qualifyOn, methodOpen) {
       inviteReason: invite ? invite.reason : null,            // why this athlete holds a wildcard
       needPts: Math.max(0, Math.round((q.cutoff_score || 0) - r.new_score)),
       es: q.entry_standard || null,                           // entry-standard check (World Champs)
+      windowEnd: (champCfg.qualification_window || {}).end || null,
       achieversKnown: !!q.standard_achievers_known,
       achieversCount: q.standard_achievers_count || 0,
       alreadyAchieved: !!q.already_achieved_standard,
@@ -397,9 +398,10 @@ export default function App() {
   }
 
   // Natural-language box: parse → switch event/championship if named → queue a run for that list.
-  function interpret() {
-    if (!query.trim()) return;
-    const p = parseQuery(query, event);
+  // `text` lets an example chip run straight away (the `query` state hasn't updated yet on click).
+  function interpret(text = query) {
+    if (!text.trim()) return;
+    const p = parseQuery(text, event);
     const champ = p.championship && meta.championships.some((c) => c.key === p.championship) ? p.championship : championship;
     const ev = p.eventKey && meta.events.some((e) => e.key === p.eventKey) ? p.eventKey : event;
     if (champ !== championship) changeChampionship(champ);
@@ -500,6 +502,10 @@ export default function App() {
           <div>
             <div style={{ fontSize: 11, letterSpacing: "0.22em", fontWeight: 600, color: MUTE, textTransform: "uppercase" }}>World Athletics · Middle Distance</div>
             <h1 style={{ margin: "4px 0 0", fontSize: narrow ? 23 : 30, fontWeight: 800, letterSpacing: "-0.02em" }}>Ranking What-If Studio</h1>
+            <p style={{ margin: "8px 0 0", maxWidth: 620, fontSize: narrow ? 13.5 : 15, lineHeight: 1.45, color: "#3a414c" }}>
+              What would one race do to a world ranking? Enter a time an athlete hasn’t run yet and see the new score and rank
+              {hasQual ? `, and whether it gets them to ${champName}` : ""}.
+            </p>
           </div>
           <div style={{ textAlign: "right", fontFamily: MONO, fontSize: 11, color: MUTE, lineHeight: 1.5 }}>
             <div>RANKINGS UPDATED</div>
@@ -531,21 +537,18 @@ export default function App() {
         ) : (<>
 
         {/* ASK BAR */}
-        <section style={{ background: INK, borderRadius: 14, padding: "20px 22px", color: SURFACE, marginBottom: 22 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 12, letterSpacing: "0.14em", fontWeight: 600, color: ACCENT, textTransform: "uppercase" }}>
-            <span style={{ display: "inline-block", width: 7, height: 7, borderRadius: "50%", background: ACCENT }} />
-            Ask a what-if
-          </div>
-          <div style={{ display: "flex", gap: 10, marginTop: 12, flexWrap: "wrap" }}>
+        <section style={{ background: INK, borderRadius: 12, padding: "12px 14px", color: SURFACE, marginBottom: 22 }}>
+          <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
             <input value={query} onChange={(e) => setQuery(e.target.value)} onKeyDown={(e) => e.key === "Enter" && interpret()}
-              placeholder="e.g. What if Wightman runs 3:29.0 at a Diamond League meeting?"
-              style={{ flex: 1, minWidth: 280, padding: "14px 16px", border: "none", borderRadius: 10, background: "#14181f", color: SURFACE, fontSize: 16, outline: "none" }} />
-            <button onClick={interpret} style={{ padding: "14px 26px", border: "none", borderRadius: 10, background: ACCENT, color: INK, fontSize: 15, fontWeight: 700, cursor: "pointer" }}>Interpret →</button>
+              placeholder="Or ask in plain words: What if Wightman runs 3:29.0 at a Diamond League meeting?"
+              aria-label="Ask a what-if in plain words"
+              style={{ flex: 1, minWidth: 240, padding: "10px 13px", border: "none", borderRadius: 8, background: "#14181f", color: SURFACE, fontSize: 15, outline: "none" }} />
+            <button onClick={() => interpret()} style={{ padding: "10px 18px", border: "none", borderRadius: 8, background: ACCENT, color: INK, fontSize: 14, fontWeight: 700, cursor: "pointer" }}>Ask →</button>
           </div>
-          <div style={{ display: "flex", gap: 8, marginTop: 12, flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: 6, marginTop: 8, flexWrap: "wrap" }}>
             {examples.map((ex) => (
-              <button key={ex} onClick={() => { setQuery(ex); setTimeout(interpret, 0); }}
-                style={{ padding: "7px 12px", border: "1px solid #2a313b", borderRadius: 20, background: "transparent", color: "#d8dce2", fontSize: 12.5, cursor: "pointer", fontFamily: MONO }}>
+              <button key={ex} onClick={() => { setQuery(ex); interpret(ex); }}
+                style={{ padding: "4px 10px", border: "1px solid #2a313b", borderRadius: 20, background: "transparent", color: "#d8dce2", fontSize: 11.5, cursor: "pointer", fontFamily: MONO }}>
                 {ex.length > 46 ? ex.slice(0, 44) + "…" : ex}
               </button>
             ))}
@@ -570,7 +573,7 @@ export default function App() {
               : (
                 <div style={{ border: "1.5px dashed #d8dce2", borderRadius: 14, padding: "40px 28px", textAlign: "center", color: MUTE }}>
                   <div style={{ fontSize: 17, fontWeight: 600, color: "#6b7480" }}>{busy ? "Running…" : selected ? `Loading ${selected}'s performances…` : "Run a what-if to see the impact"}</div>
-                  <div style={{ fontSize: 13.5, marginTop: 6 }}>Pick an athlete from the table or type a question above. The rank change shows here.</div>
+                  <div style={{ fontSize: 13.5, marginTop: 6 }}>Pick an athlete from the table, set the race in the console, and run it. The rank change shows here.</div>
                 </div>
               )}
         </section>
@@ -670,7 +673,7 @@ export default function App() {
           {/* WHAT-IF CONSOLE */}
           <div style={{ background: BG, border: "1px solid #e7eaef", borderRadius: 14, padding: "18px 18px 20px", position: narrow ? "static" : "sticky", top: 16 }}>
             <h2 style={{ margin: "0 0 4px", fontSize: 16, fontWeight: 700 }}>What-if console</h2>
-            <p style={{ margin: "0 0 14px", fontSize: 12.5, color: MUTE }}>Fine-tune the scenario, then run it.</p>
+            <p style={{ margin: "0 0 14px", fontSize: 12.5, color: MUTE }}>Choose an athlete, describe the race, run it.</p>
 
             <label style={labelStyle}>Athlete</label>
             <input value={form.athlete}
@@ -1057,6 +1060,13 @@ function ResultPanel({ rv, onToggle }) {
             <div style={{ opacity: 0.7 }}>CUTOFF</div>
             <div style={{ fontSize: 20, fontWeight: 700 }}>{rv.qual.cutoff != null ? Math.round(rv.qual.cutoff) : "—"}</div>
           </div>
+        </div>
+      )}
+
+      {verdict && (rv.qual.status === "in" || rv.qual.status === "blocked" || rv.qual.status === "below") && (
+        <div style={{ padding: "7px 22px", background: "#f2f4f7", borderBottom: "1px solid #e7eaef", fontSize: 11.5, color: "#6b7480", lineHeight: 1.45 }}>
+          ⓘ Ranking places are based on today’s world ranking list. World Athletics’ own qualification ranking counts only results inside the
+          qualifying window{rv.qual.windowEnd ? ` and is final on ${fmtDate(rv.qual.windowEnd)}` : ""}, so the cutoff will move.
         </div>
       )}
 
