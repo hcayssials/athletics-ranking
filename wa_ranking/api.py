@@ -97,7 +97,7 @@ def meta():
         "events": [
             {"key": k, **{f: e.get(f) for f in
                           ("label", "gender", "best_n", "main_event_min",
-                           "window_months", "entry_standard")},
+                           "window_months", "entry_standard", "main_event_codes")},
              # The discipline a hypothetical can be entered in: the main event plus similar /
              # indoor events. The UI builds the input-event picker from this.
              "input_events": [{"key": "main", "label": e.get("discipline"), "is_main": True,

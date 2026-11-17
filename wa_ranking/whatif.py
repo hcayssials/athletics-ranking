@@ -301,7 +301,13 @@ def what_if(event: str, athlete: str, new_time: str | float,
             "route_new": _route(status_new, slot_new, is_invited),
             "qualification_source": qual_cfg.get("qualification_source", "config"),
             "cutoff_score": cutoff,
-            "above_cutoff": (new_score is not None and cutoff is not None and new_score >= cutoff),
+            # Level with the last qualifier but left out (WA's own order breaks the tie the
+            # other way) is not "above the cutoff".
+            "above_cutoff": (new_score is not None and cutoff is not None
+                             and new_score >= cutoff and status_new != "out"),
+            # Score that gets the athlete in from the *current* field (before the
+            # hypothetical): one point past the last qualifier when they're outside it.
+            "score_to_qualify": _score_to_qualify(field_old, status_old),
             "status_old": status_old,
             "status_new": status_new,
             "qual_position_old": (slot_old or {}).get("position"),
@@ -318,8 +324,8 @@ def what_if(event: str, athlete: str, new_time: str | float,
     if not profile_info:
         top = max((s for s in others if s is not None), default=None)
         targets = []
-        if qualification and qualification.get("cutoff_score") is not None:
-            targets.append(("reach the qualifying cutoff", qualification["cutoff_score"]))
+        if qualification and qualification.get("score_to_qualify") is not None:
+            targets.append(("reach the qualifying cutoff", qualification["score_to_qualify"]))
         if top is not None:
             targets.append(("reach #1", top + 1))
         rows = _targets_required(event, recompute["old_counting"], best_n,
@@ -336,7 +342,7 @@ def what_if(event: str, athlete: str, new_time: str | float,
         old_counting = recompute["old_counting"]
         new_counting = recompute["new_counting"]
         list_scores = [a["ranking_score"] for a in data["athletes"] if a.get("ranking_score")]
-        target = (qualification["cutoff_score"] if qualification else
+        target = (qualification["score_to_qualify"] if qualification else
                   (min(list_scores) if list_scores else None))
         req = _required_time(event, old_counting, best_n, breakdown["placing_score"], target) \
             if target is not None else (None, None)
@@ -468,6 +474,19 @@ def _standard_target(event: str, standard: str, athlete: str, achievers: list[di
             "time": standard, "status": "met" if met else "reachable"}
 
 
+def _score_to_qualify(field: dict, status: str) -> float | None:
+    """Ranking score that puts an athlete in a resolved field they are measured against.
+
+    For an athlete already in (or held out only by the country cap) it is the cutoff — the
+    last ranking qualifier's score. An athlete who is `out` has to *pass* that qualifier: the
+    list order is WA's own tie-break, so being level on points is not enough (cutoff + 1).
+    """
+    cutoff = field["cutoff_score"]
+    if cutoff is None:
+        return None
+    return cutoff + 1 if status == "out" else cutoff
+
+
 def _route(status: str, slot: dict | None, is_invited: bool) -> str:
     """How an athlete gets in: wildcard / standard / ranking / blocked_country_cap / out."""
     if is_invited:
@@ -575,7 +594,7 @@ def required_targets(event: str, athlete: str, *, championship: str = "road_to_b
                                  defending_champion=qual_cfg.get("defending_champion"),
                                  auto_invites=qual_cfg.get("auto_invites"),
                                  standard_achievers=std_list)
-        cutoff = field["cutoff_score"]
+        cutoff = _score_to_qualify(field, athlete_status(field, ath["name"])[0])
 
     targets = []
     if cutoff is not None:

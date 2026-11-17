@@ -15,8 +15,6 @@ export function fmtTime(sec) {
   return m + ":" + s.toFixed(2).padStart(5, "0");
 }
 
-// Main discipline code for an event key, e.g. "1500m_men" -> "1500", "3000mSC_women" -> "3000SC".
-export const mainCode = (eventKey) => eventKey.replace(/_(men|women)$/, "").replace(/mSC$/, "SC").replace(/m$/, "");
 export const genderOf = (eventKey) => (/_women$/.test(eventKey) ? "women" : "men");
 export const surnameOf = (name) => {
   const up = name.split(" ").filter((w) => w === w.toUpperCase() && w.length > 1);
@@ -49,33 +47,49 @@ export function deriveName(slug) {
   return s.split("-").filter(Boolean).map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
 }
 
-// Pick an athlete's best performance for this event (fastest main-event run), to seed the console.
-export function bestPerf(athlete, eventKey) {
+// Pick an athlete's best performance in the event's Main Event, to seed the console.
+// `mainCodes` are WA's real discipline codes from the event config (10000m is "10K", the
+// steeple "3KSC" — they can't be derived from the event key). Null when the athlete has no
+// main-event result: a similar-event mark (a 10km road time, a 2000m steeple) must never be
+// pre-filled as if it were the main event.
+export function bestPerf(athlete, mainCodes) {
   const perfs = athlete && athlete.performances;
   if (!perfs || !perfs.length) return null;
-  const code = mainCode(eventKey);
-  const mains = perfs.filter((p) => p.discipline_code === code);
-  const pool = mains.length ? mains : perfs;
+  const codes = new Set(mainCodes || []);
+  const pool = perfs.filter((p) => codes.has(p.discipline_code));
+  if (!pool.length) return null;
   const best = pool.reduce((a, b) => (b.result_score > a.result_score ? b : a));
   return { time: best.mark, place: String(best.place), category: best.category };
 }
 
 // Find the best-matching athlete name in a ranking list for free-typed text.
+// Matching is on whole words, never substrings (a surname like "HE" must not match "the"),
+// and the athlete with the most name words in the text wins, so "Emmanuel Kiplagat" picks
+// Emmanuel Korir KIPLAGAT over a higher-ranked Kelvin KIPLAGAT. Ties go to the higher-ranked
+// athlete (list order). Strength of evidence, strongest first:
+//   full name > surname (+ given names) > loose name words (>= 4 letters each).
+// A surname under 4 letters ("HE", "LI", "AHL") only counts with a given name beside it.
+const words = (s) => norm(s).split(/[^a-z0-9]+/).filter(Boolean);
+
 export function matchAthlete(text, list) {
-  const nq = norm(text);
-  if (!nq || !list.length) return null;
-  for (const a of list) if (nq.includes(norm(a.name))) return a.name;          // full name present
-  for (const a of list) {                                                      // surname (uppercase token)
-    const surn = norm(a.name.split(" ").filter((w) => w === w.toUpperCase() && w.length > 1).join(" "));
-    if (surn && nq.includes(surn)) return a.name;
+  const q = words(text);
+  if (!q.length || !list.length) return null;
+  const hay = " " + q.join(" ") + " ";
+  const has = (phrase) => phrase && hay.includes(" " + phrase + " ");
+  let best = null, bestScore = 0;
+  for (const a of list) {
+    const parts = a.name.split(/\s+/).filter(Boolean);
+    const isSurn = (w) => w === w.toUpperCase() && w !== w.toLowerCase() && w.length > 1;
+    const surn = words(parts.filter(isSurn).join(" ")).join(" ");
+    const given = words(parts.filter((w) => !isSurn(w)).join(" "));
+    const givenHits = given.filter((t) => t.length >= 2 && has(t)).length;
+    let score = 0;
+    if (has(words(a.name).join(" "))) score = 1000;
+    else if (has(surn) && (surn.length >= 4 || givenHits > 0)) score = 100 + givenHits;
+    else score = words(a.name).filter((t) => t.length >= 4 && has(t)).length;
+    if (score > bestScore) { best = a.name; bestScore = score; }
   }
-  for (const a of list) {                                                      // any name token >= 4 chars
-    for (const tok of a.name.split(/\s+/)) {
-      const t = norm(tok);
-      if (t.length >= 4 && nq.includes(t)) return a.name;
-    }
-  }
-  return null;
+  return best;
 }
 
 // Pull a likely athlete name out of a natural-language what-if, for the unranked WA search:

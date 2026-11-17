@@ -300,7 +300,12 @@ export function whatIf(ctx, {
       route_new: route(statusNew, slotNew, isInvited),
       qualification_source: champEvent.qualification_source ?? "config",
       cutoff_score: cutoff,
-      above_cutoff: newScore !== null && cutoff !== null && newScore >= cutoff,
+      // Level with the last qualifier but left out (WA's own order breaks the tie the
+      // other way) is not "above the cutoff".
+      above_cutoff: newScore !== null && cutoff !== null && newScore >= cutoff && statusNew !== "out",
+      // Score that gets the athlete in from the *current* field (before the hypothetical):
+      // one point past the last qualifier when they're outside it.
+      score_to_qualify: scoreToQualify(fieldOld, statusOld),
       status_old: statusOld,
       status_new: statusNew,
       qual_position_old: (slotOld || {}).position ?? null,
@@ -318,8 +323,8 @@ export function whatIf(ctx, {
     const present = others.filter((s) => s !== null && s !== undefined);
     const top = present.length ? Math.max(...present) : null;
     const targets = [];
-    if (qualification && qualification.cutoff_score !== null) {
-      targets.push(["reach the qualifying cutoff", qualification.cutoff_score]);
+    if (qualification && qualification.score_to_qualify !== null) {
+      targets.push(["reach the qualifying cutoff", qualification.score_to_qualify]);
     }
     if (top !== null) targets.push(["reach #1", top + 1]);
     const rows = targetsRequired(ctx, ev, recompute.old_counting, bestN,
@@ -338,7 +343,7 @@ export function whatIf(ctx, {
     const oldCounting = recompute.old_counting;
     const newCounting = recompute.new_counting;
     const listScores = data.athletes.map((a) => a.ranking_score).filter((s) => s);
-    const target = qualification ? qualification.cutoff_score
+    const target = qualification ? qualification.score_to_qualify
       : listScores.length ? Math.min(...listScores) : null;
     const req = target !== null
       ? requiredTime(ctx, ev, oldCounting, bestN, breakdown.placing_score, target)
@@ -462,6 +467,15 @@ function standardTarget(ctx, ev, standard, athlete, achievers) {
 }
 
 // How an athlete gets in: wildcard / standard / ranking / blocked_country_cap / out.
+// Ranking score that puts an athlete in a resolved field. Already in (or held out only by
+// the country cap): the cutoff. `out`: one point past the last qualifier — the list order is
+// WA's own tie-break, so being level on points is not enough.
+function scoreToQualify(field, status) {
+  const cutoff = field.cutoff_score;
+  if (cutoff === null || cutoff === undefined) return null;
+  return status === "out" ? cutoff + 1 : cutoff;
+}
+
 function route(status, slot, isInvited) {
   if (isInvited) return "wildcard";
   if (status === "qualified") return (slot || {}).reason === "entry standard" ? "standard" : "ranking";
@@ -561,7 +575,7 @@ export function requiredTargets(ctx, event, athlete, {
       autoInvites: champEvent.auto_invites ?? null,
       standardAchievers: stdList,
     });
-    cutoff = field.cutoff_score;
+    cutoff = scoreToQualify(field, athleteStatus(field, ath.name)[0]);
   }
 
   const targets = [];

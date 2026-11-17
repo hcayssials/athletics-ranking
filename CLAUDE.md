@@ -115,6 +115,11 @@ without that one line — name derives from the slug, country rides along from t
 - **No feed snapshot ⇒ `standard_achievers_known: false`** and the field is modelled as if
   nobody had the standard; the UI says "who has it: unknown" instead of pretending. Don't
   silently default the list to empty anywhere else.
+- **Ties at the cutoff:** the list order is WA's own tie-break, so an athlete level on points
+  with the last ranking qualifier but listed below them is `out`. `qualification.score_to_qualify`
+  (the solver's "reach the qualifying cutoff" target) is measured against the field *before*
+  the hypothetical: the cutoff for an athlete already in, cutoff + 1 for one who is out.
+  `above_cutoff` is never true for an `out` athlete.
 - Reverse solver rows carry `kind` ("standard" = the exact time, no `~`; "score" = solved
   from ranking scores). `TargetRows` renders both.
 - The rolling world list is *not* WA's qualification-period ranking: WA's Road-to feed only

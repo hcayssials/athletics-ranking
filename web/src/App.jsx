@@ -153,7 +153,8 @@ function buildResultView(r, champCfg, qualifyOn, methodOpen) {
       country: r.country, countryAhead: q.country_ahead || 0,
       maxPerCountry: q.max_per_country,                       // null = no country cap
       inviteReason: invite ? invite.reason : null,            // why this athlete holds a wildcard
-      needPts: Math.max(0, Math.round((q.cutoff_score || 0) - r.new_score)),
+      // Points still needed to pass the last qualifier (level on points is not enough).
+      needPts: Math.max(1, Math.round((q.cutoff_score || 0) + 1 - r.new_score)),
       es: q.entry_standard || null,                           // entry-standard check (World Champs)
       achieversKnown: !!q.standard_achievers_known,
       achieversCount: q.standard_achievers_count || 0,
@@ -315,6 +316,9 @@ export default function App() {
   const eventLabel = eventCfg.label || event;
   const categories = meta ? meta.categories : ["GW"];
 
+  // WA discipline codes of an event's Main Event (from meta, e.g. 10000m -> ["10K"]).
+  const mainCodesOf = (ev) => ((meta && meta.events.find((e) => e.key === ev)) || {}).main_event_codes || [];
+
   async function run(overrideForm, champ = championship, ev = event, profile = null, profileCountry = null) {
     const f = overrideForm || form;
     let name = (f.athlete || "").trim();
@@ -391,7 +395,7 @@ export default function App() {
     try {
       const ath = await getAthlete(championship, event, name);
       setAthleteInfo(ath);
-      const best = bestPerf(ath, event);
+      const best = bestPerf(ath, mainCodesOf(event));
       if (best) setForm((s) => ({ ...s, athlete: name, ...best }));
     } catch { /* keep current values if the lookup fails */ }
   }
@@ -431,7 +435,7 @@ export default function App() {
       }
       let f = { ...form, athlete, subEvent: "main" };
       try {
-        const best = bestPerf(await getAthlete(champ, ev, athlete), ev);
+        const best = bestPerf(await getAthlete(champ, ev, athlete), mainCodesOf(ev));
         if (best) f = { ...f, ...best };           // default to their best performance…
       } catch { /* ignore lookup failure */ }
       if (p.time) f.time = p.time;                 // …then let explicit query values win
@@ -1016,7 +1020,7 @@ function ResultPanel({ rv, onToggle }) {
     else if (q.status === "standard") verdict = { mark: "✓", title: q.alreadyAchieved ? "QUALIFIES — HAS THE ENTRY STANDARD" : "QUALIFIES — ENTRY STANDARD", detail: `${q.alreadyAchieved ? "Already listed by WA with the standard" : "This race meets the standard"} — in regardless of ranking (position #${q.position} of ${q.quota}); ${cap != null ? `the ${cap}-per-country cap still applies` : "no country cap"}.${split}`, bg: "#e3f3e9", fg: "#1b3d2a", bar: "#1f8a4c" };
     else if (q.status === "in") verdict = { mark: "✓", title: "INSIDE THE QUALIFYING ZONE", detail: `Auto-confirmed on score — qualifying position #${q.position} of ${q.quota} (${fieldRules}).${split}`, bg: "#e3f3e9", fg: "#1b3d2a", bar: "#1f8a4c" };
     else if (q.status === "blocked") verdict = { mark: "≈", title: "ELIGIBLE — BUT FEDERATION'S CALL", detail: `Above the cutoff, yet ${q.countryAhead} higher-ranked ${q.country} athletes already hold the ${cap} places. The cap is a maximum — selection is ${q.country}'s decision.`, bg: "#fdebed", fg: "#2f4a6b", bar: "#2f4a6b" };
-    else verdict = { mark: "✕", title: "OUTSIDE THE QUALIFYING ZONE", detail: `Below the cutoff by ${q.needPts} pts at this score${q.es ? ` and ${q.es.meets_mark ? "the mark doesn't count for the standard here" : `${q.es.gap_seconds.toFixed(2)}s short of the standard`}` : ""}.${split}`, bg: "#fbe4e1", fg: "#8a2b22", bar: "#c62b35" };
+    else verdict = { mark: "✕", title: "OUTSIDE THE QUALIFYING ZONE", detail: `${q.needPts} pt${q.needPts === 1 ? "" : "s"} short of passing the last qualifier at this score${q.es ? ` and ${q.es.meets_mark ? "the mark doesn't count for the standard here" : `${q.es.gap_seconds.toFixed(2)}s short of the standard`}` : ""}.${split}`, bg: "#fbe4e1", fg: "#8a2b22", bar: "#c62b35" };
   }
   // Compact entry-standard line under the race breakdown: "Entry standard 3:30.00 · 1.00s short · 6 have it".
   const esLine = rv.qual && rv.qual.es ? (() => {

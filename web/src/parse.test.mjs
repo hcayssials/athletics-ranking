@@ -4,7 +4,7 @@
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { mainCode, parseQuery, bestPerf, matchAthlete, parseTime, extractSlug, deriveName, looksLikeProfile, extractName } from "./parse.js";
+import { parseQuery, bestPerf, matchAthlete, parseTime, extractSlug, deriveName, looksLikeProfile, extractName } from "./parse.js";
 import { findAthlete } from "./engine/whatif.js";
 
 const DATA = join(dirname(fileURLToPath(import.meta.url)), "..", "public", "data");
@@ -14,12 +14,6 @@ const eq = (got, want, msg) => {
   const g = JSON.stringify(got), w = JSON.stringify(want);
   if (g === w) { pass++; } else { fail++; console.log(`FAIL ${msg}\n   got  ${g}\n   want ${w}`); };
 };
-
-// --- mainCode ---
-eq(mainCode("1500m_men"), "1500", "mainCode 1500");
-eq(mainCode("800m_women"), "800", "mainCode 800");
-eq(mainCode("10000m_men"), "10000", "mainCode 10000");
-eq(mainCode("3000mSC_women"), "3000SC", "mainCode steeple");
 
 // --- parseTime (multi-digit minutes) ---
 eq(parseTime("3:29.50"), 209.5, "parseTime 1500");
@@ -78,8 +72,43 @@ const main = async () => {
   eq(matchAthlete("how about nader", list), "Isaac NADER", "match lowercase surname");
   eq(matchAthlete("nobody here", list), null, "match miss");
 
+  // Whole words only: short surnames must not match inside ordinary words ("HE" in "the"),
+  // and extra name words pick the right athlete among shared surnames / middle names.
+  const fake = [{ name: "Wuga HE" }, { name: "Kelvin KIPLAGAT" }, { name: "Emmanuel Korir KIPLAGAT" },
+                { name: "Aaron AHL" }, { name: "Zakaria EL AHLAAMI" }, { name: "Diane VAN ES" },
+                { name: "Elvin Josué CANALES" }, { name: "Josue LE CADRE" }];
+  eq(matchAthlete("what if she wins the final and makes the team", fake), null, "no ghost match on 'the'");
+  eq(matchAthlete("what if he wins", fake), null, "short surname alone is not a match");
+  eq(matchAthlete("Wuga He runs 31:00.00", fake), "Wuga HE", "short surname with given name");
+  eq(matchAthlete("Emmanuel Kiplagat wins", fake), "Emmanuel Korir KIPLAGAT", "middle name skipped");
+  eq(matchAthlete("kiplagat wins", fake), "Kelvin KIPLAGAT", "shared surname -> higher ranked");
+  eq(matchAthlete("Zakaria Ahlaami 8:10.00", fake), "Zakaria EL AHLAAMI", "no substring surname hit");
+  eq(matchAthlete("diane van es in 14:50.00", fake), "Diane VAN ES", "multi-word surname");
+  eq(matchAthlete("Josue Cadre 1:44.00", fake), "Josue LE CADRE", "most name words wins");
+
+  // Every athlete on every live list resolves to themselves from "First Last".
+  const meta = readJson("meta.json");
+  for (const e of meta.events) {
+    const l = readJson(`rankings/road_to_beijing__${e.key}.json`).athletes;
+    const wrong = l.filter((a) => {
+      const t = a.name.split(" ");
+      return matchAthlete(`what if ${t[0]} ${t[t.length - 1].toLowerCase()} wins the final`, l) !== a.name;
+    }).map((a) => a.name);
+    eq(wrong, [], `first+last resolves on ${e.key}`);
+    eq(matchAthlete("what if someone wins the diamond league final and makes the team", l), null, `no ghost on ${e.key}`);
+
+    // bestPerf: only ever a Main Event mark (10000m is "10K", steeple "3KSC").
+    const full = readJson(`lists/world__${e.key}.json`).athletes;
+    const bad = full.filter((a) => {
+      const b = bestPerf(a, e.main_event_codes);
+      const mains = a.performances.filter((p) => e.main_event_codes.includes(p.discipline_code));
+      return mains.length ? !(b && mains.some((p) => p.mark === b.time)) : b !== null;
+    }).map((a) => a.name);
+    eq(bad, [], `bestPerf seeds a main-event mark on ${e.key}`);
+  }
+
   const ath = findAthlete(readJson("lists/world__1500m_men.json"), "Jake WIGHTMAN");
-  const best = bestPerf(ath, "1500m_men");
+  const best = bestPerf(ath, ["1500"]);
   // Data refreshes weekly, so assert the *rule*, not a mark: bestPerf must return the
   // main-event (code 1500) performance with the highest result score.
   const mains = ath.performances.filter((p) => p.discipline_code === "1500");

@@ -233,3 +233,36 @@ def test_beijing_without_a_feed_snapshot_says_achievers_unknown(monkeypatch):
     q = r["qualification"]
     assert q["quota"] == 56 and q["standard_achievers_known"] is False
     assert q["qualification_source"] == "config" and q["entry_standard"]["standard"] == "3:30.00"
+
+
+def test_level_with_the_last_qualifier_is_not_in(monkeypatch):
+    """A tie at the cutoff: the list order is WA's tie-break, so the athlete listed below the
+    last qualifier on the same score is out, the solver must not say 'met', and the target is
+    one point past the cutoff — the same whatever hypothetical time is entered."""
+    from wa_ranking.whatif import required_targets, what_if
+    as_of = _stub_1500_list(monkeypatch, achievers=[])
+    from wa_ranking import whatif
+    data = whatif.fetch.fetch_championship()
+    tied = {"name": "Tied RUNNER", "country": "ESP", "ranking_score": 1300, "rank": 3,
+            "performances": [_perf(1300, "1500", "3:33.00") for _ in range(5)]}
+    data["athletes"].insert(2, tied)          # Top 1400, Mid 1300, Tied 1300, Low 1200
+    # 4 places: two wildcards + Top + Mid -> cutoff 1300, Tied is level but out.
+    cut = lambda rows: next(t for t in rows if "cutoff" in t["label"])
+
+    row = cut(required_targets("1500m_men", "Tied RUNNER", championship="road_to_beijing")["targets"])
+    assert row["status"] != "met" and row["target_score"] == 1301
+    assert cut(required_targets("1500m_men", "Mid RUNNER",
+                                championship="road_to_beijing")["targets"])["status"] == "met"
+
+    kw = dict(championship="road_to_beijing", as_of=as_of, qualify=True, verbose=False)
+    slow = what_if("1500m_men", "Tied RUNNER", "3:50.00", category="F", place=8, **kw)
+    q = slow["qualification"]
+    assert slow["new_score"] == 1300 and q["cutoff_score"] == 1300
+    assert q["route_new"] == "out" and q["above_cutoff"] is False
+    assert q["score_to_qualify"] == 1301
+
+    fast = what_if("1500m_men", "Tied RUNNER", "3:27.00", category="OW", place=1, **kw)
+    q = fast["qualification"]
+    assert q["route_new"] in ("ranking", "standard") and q["cutoff_score"] != 1300
+    assert q["score_to_qualify"] == 1301      # measured against the field before the what-if
+    assert cut(fast["what_would_it_take"]["targets"])["target_score"] == 1301
