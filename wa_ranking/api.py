@@ -157,6 +157,10 @@ def rankings(championship: str, event: str, limit: int | None = None):
         "standard_achievers": ce.get("standard_achievers"),   # None = unknown (no feed)
         "qualification_source": ce.get("qualification_source"),
         "feed_fetched": ce.get("feed_fetched"),
+        # The event's qualification window (per-event override, e.g. the 10,000m, else the
+        # championship's). The UI uses it to flag counting results raced before it opened.
+        "qualification_window": (ce.get("qualification_window")
+                                 or load_championship(championship).get("qualification_window")),
         "max_per_country": load_championship(championship).get("max_per_country"),
         "athletes": [{f: a.get(f) for f in _RANKING_FIELDS} for a in data["athletes"]],
     }

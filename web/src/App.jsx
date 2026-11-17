@@ -135,7 +135,7 @@ const stdChip = (isSel) => ({
 });
 
 // Map a /api/whatif response into the result-panel view model.
-function buildResultView(r, champCfg, qualifyOn, methodOpen) {
+function buildResultView(r, champCfg, qualifyOn, methodOpen, windowStart) {
   const rowKey = (p) => `${p.date_raw || p.date}|${p.mark}|${p.performance_score}`;
   const newKeys = new Set(r.new_counting.filter((p) => !p.hypothetical).map(rowKey));
   const display = r.new_counting.map((p) => ({ ...p, state: p.hypothetical ? "new" : "kept" }));
@@ -180,7 +180,7 @@ function buildResultView(r, champCfg, qualifyOn, methodOpen) {
     bestN: (r.assumptions && r.assumptions.best_n) || 5,
     windowMonths: (r.assumptions && r.assumptions.window_months) || 12,
     notes: (r.assumptions && r.assumptions.notes) || [],
-    qual, display, open: methodOpen,
+    qual, display, open: methodOpen, windowStart, scopeLabel: champCfg.scope_label,
     unranked, profileSummary: r.profile_summary,
     whatWouldItTake: r.what_would_it_take,
     hypoEvent: r.hypothetical_event,           // which discipline the hypothetical was in
@@ -241,6 +241,18 @@ export default function App() {
   // Championship) — show a notice instead of a ranking list.
   const notContested = (champCfg.not_contested || []).includes(event);
   const narrow = useIsNarrow();
+  // The event's qualification window, and whether today's list still reaches back before it
+  // opened (rank date minus the event's rolling window). While it does, the standings are a
+  // projection: some scores rest on results that won't count for qualification.
+  const qualWindow = hasQual && rankings ? rankings.qualification_window : null;
+  const listReachesBeforeWindow = (() => {
+    if (!qualWindow || !qualWindow.start || !rankings.rank_date) return false;
+    const d = new Date(rankings.rank_date + "T00:00:00Z");
+    if (Number.isNaN(d.getTime())) return false;
+    const months = ((meta.events.find((e) => e.key === event) || {}).window_months) || 12;
+    d.setUTCMonth(d.getUTCMonth() - months);
+    return d.toISOString().slice(0, 10) < qualWindow.start;
+  })();
 
   // The championship's own standard for the event (World Champs) beats the event default.
   const entryStandardFor = (ev, champ = championship) => {
@@ -538,6 +550,12 @@ export default function App() {
             onWorld={() => changeChampionship("world")} onEvent={changeEvent} />
         ) : (<>
 
+        {listReachesBeforeWindow && (
+          <div style={{ padding: "11px 16px", marginBottom: 16, border: "1px solid #f0dcae", borderRadius: 10, background: "#fdf6e6", color: "#6b4a00", fontSize: 13, lineHeight: 1.5 }}>
+            <b>A projection, not the official standings.</b> This uses today's world ranking. Only races from {fmtDate(qualWindow.start)} count for {champCfg.scope_label || "qualification"}, so some scores here include earlier results that will drop out. Those results are marked on each athlete's card.
+          </div>
+        )}
+
         {/* ASK BAR */}
         <section style={{ background: INK, borderRadius: 14, padding: "20px 22px", color: SURFACE, marginBottom: 22 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 12, letterSpacing: "0.14em", fontWeight: 600, color: ACCENT, textTransform: "uppercase" }}>
@@ -571,7 +589,7 @@ export default function App() {
             </div>
           )}
           {result
-            ? <ResultPanel rv={buildResultView(result, champCfg, form.qualify, methodOpen)} onToggle={() => setMethodOpen((v) => !v)} />
+            ? <ResultPanel rv={buildResultView(result, champCfg, form.qualify, methodOpen, qualWindow && qualWindow.start)} onToggle={() => setMethodOpen((v) => !v)} />
             : athleteInfo
               ? <AthletePreview info={athleteInfo} eventCfg={eventCfg} champCfg={champCfg} rankDate={rankings ? rankings.rank_date : null}
                   event={event} championship={championship} categories={categories} rankings={rankings} />
@@ -870,8 +888,14 @@ function TargetRows({ rows }) {
 
 // Counting-performances table, shared by the what-if result and the click-to-preview card.
 // Rows may carry a `state` ("new" / "dropped") to flag the what-if diff; plain rows render clean.
-function PerfTable({ rows }) {
+// `windowStart` (ISO date, qualification championships only) flags results raced before the
+// qualification window opened: they count for today's world ranking but not for qualification.
+function PerfTable({ rows, windowStart, scopeLabel }) {
+  const early = (p) => !!windowStart && !p.hypothetical && !!p.date && p.date < windowStart;
+  const live = rows.filter((p) => p.state !== "dropped");
+  const nEarly = live.filter(early).length;
   return (
+    <div>
     <div style={{ overflow: "auto" }}>
       <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12.5, minWidth: 540 }}>
         <thead>
@@ -891,6 +915,7 @@ function PerfTable({ rows }) {
                 <td style={{ padding: "7px 8px" }}>
                   {tag && <span style={{ display: "inline-block", fontSize: 9, fontWeight: 700, padding: "1px 5px", borderRadius: 4, marginRight: 7, background: tagBg, color: "#fff", verticalAlign: "middle", fontFamily: MONO }}>{tag}</span>}
                   {shortMeet(p.competition)}
+                  {early(p) && <span title={`Raced before ${fmtDate(windowStart)}`} style={{ display: "inline-block", fontSize: 9, fontWeight: 700, padding: "1px 5px", borderRadius: 4, marginLeft: 7, background: "#fdf1d8", color: "#8a5a00", verticalAlign: "middle", fontFamily: MONO, whiteSpace: "nowrap", textDecoration: "none" }}>BEFORE WINDOW</span>}
                 </td>
                 <td style={{ padding: "7px 8px", color: "#6b7480" }}>{shortEvent(p)}</td>
                 <td style={{ padding: "7px 8px", fontFamily: MONO }}>{p.category}</td>
@@ -904,6 +929,13 @@ function PerfTable({ rows }) {
           })}
         </tbody>
       </table>
+    </div>
+    {nEarly > 0 && (
+      <div style={{ fontSize: 12, color: "#8a5a00", marginTop: 10, lineHeight: 1.45 }}>
+        <b>{nEarly} of {live.length}</b> counting {live.length === 1 ? "result was" : "results were"} raced before {fmtDate(windowStart)}.
+        {" "}{nEarly === 1 ? "It counts" : "They count"} for today's world ranking but not for {scopeLabel || "qualification"}, so this score will change as {nEarly === 1 ? "it drops" : "they drop"} out.
+      </div>
+    )}
     </div>
   );
 }
@@ -1004,7 +1036,7 @@ function AthletePreview({ info, eventCfg, champCfg, rankDate, event, championshi
         <div style={{ fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: MUTE, fontWeight: 600, marginBottom: 8 }}>
           Counting performances (best {eventCfg.best_n || 5} of {eventCfg.window_months || 12} mo)
         </div>
-        <PerfTable rows={info.performances || []} />
+        <PerfTable rows={info.performances || []} windowStart={(rankings && rankings.qualification_window || {}).start} scopeLabel={champCfg.scope_label} />
         <WrBonusNote bonus={info.wr_bonus} records={info.wr_results} />
         <div style={{ fontSize: 12, color: MUTE, marginTop: 12 }}>Set a time, place &amp; category on the right, then run a what-if to see the impact.</div>
       </div>
@@ -1188,7 +1220,7 @@ function ResultPanel({ rv, onToggle }) {
               ))}
             </ul>
             <div style={{ fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: MUTE, fontWeight: 600, marginBottom: 8 }}>Counting performances (best {rv.bestN} of {rv.windowMonths} mo)</div>
-            <PerfTable rows={rv.display} />
+            <PerfTable rows={rv.display} windowStart={rv.windowStart} scopeLabel={rv.scopeLabel} />
             <WrBonusNote bonus={rv.wrBonus} records={rv.wrResults} />
           </div>
         )}
