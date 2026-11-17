@@ -4,7 +4,7 @@
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { parseQuery, bestPerf, matchAthlete, parseTime, extractSlug, deriveName, looksLikeProfile, extractName } from "./parse.js";
+import { shortSurnameMatches, parseQuery, bestPerf, matchAthlete, parseTime, extractSlug, deriveName, looksLikeProfile, extractName } from "./parse.js";
 import { findAthlete } from "./engine/whatif.js";
 
 const DATA = join(dirname(fileURLToPath(import.meta.url)), "..", "public", "data");
@@ -64,6 +64,27 @@ eq(looksLikeProfile("Jake WIGHTMAN"), false, "name not profile");
 eq(looksLikeProfile("Narve Gilje NORDÅS"), false, "spaced name not profile");
 eq(looksLikeProfile(""), false, "empty not profile");
 
+// --- parseQuery: goal vs venue, ordinals that aren't places, time formats ---
+const pq = (q) => { const { athlete, ...r } = parseQuery(q, "1500m_men"); return r; };
+eq(pq("Can Josh Kerr qualify for the World Championships with 3:30.00 at a Diamond League?"),
+   { championship: "road_to_beijing", category: "GW", time: "3:30.00" }, "worlds as goal, DL as venue");
+eq(pq("Kerr wins the World Championships in 3:29.00").category, "OW", "worlds as venue");
+eq(pq("what if Kerr runs 3:30.00 at the Olympics").category, "OW", "olympics as venue");
+eq(pq("Hovland runs 4:02.50 for third at a national meet to make the final in Beijing"),
+   { championship: "road_to_beijing", place: 3, category: "C", time: "4:02.50" }, "'make the final' is a goal");
+eq(pq("Kerr 3:31.00 to make the final").category, undefined, "'make the final' alone sets no category");
+eq(pq("Kerr wins the Diamond League final in 3:29.00").category, "DF", "DL final as venue");
+eq(pq("Kerr runs 3:29.5 in his first race of the season, finishing 4th").place, 4, "explicit place beats 'first race'");
+eq(pq("Kerr runs 3:29.5 in his first race of the season").place, undefined, "'first race' is not a place");
+eq(pq("Hodgkinson 1:54.6 on 23rd May in Rabat").place, undefined, "date ordinal is not a place");
+eq(pq("Hodgkinson 1:54.6 on May 23rd in Rabat").place, undefined, "month-first date is not a place");
+eq(pq("Kerr comes second in 3:30.00").place, 2, "second");
+eq(pq("Kerr 5th in 3:30.00").place, 5, "bare ordinal");
+eq(pq("Kerr wins his 2nd Diamond League in 3:30.00").place, 1, "win beats a counting ordinal");
+eq(pq("Wanyonyi 1.41.50 Diamond League final win").time, "1:41.50", "dotted time");
+eq(pq("Kerr 3:29,50 in Monaco").time, "3:29.50", "comma decimal");
+eq(pq("Kerr 3:29.50 on 12.06.27").time, "3:29.50", "a dotted date after a real time is ignored");
+
 // --- real data (static bundle): bestPerf + matchAthlete ---
 const main = async () => {
   const rk = readJson("rankings/road_to_beijing__1500m_men.json");
@@ -85,6 +106,10 @@ const main = async () => {
   eq(matchAthlete("Zakaria Ahlaami 8:10.00", fake), "Zakaria EL AHLAAMI", "no substring surname hit");
   eq(matchAthlete("diane van es in 14:50.00", fake), "Diane VAN ES", "multi-word surname");
   eq(matchAthlete("Josue Cadre 1:44.00", fake), "Josue LE CADRE", "most name words wins");
+
+  eq(shortSurnameMatches("He", fake), ["Wuga HE"], "short surname alone -> hint");
+  eq(shortSurnameMatches("Kiplagat", fake), [], "long surname -> no hint");
+  eq(shortSurnameMatches("Wuga He", fake), [], "with a given name -> no hint");
 
   // Every athlete on every live list resolves to themselves from "First Last".
   const meta = readJson("meta.json");

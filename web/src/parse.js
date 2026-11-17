@@ -92,6 +92,18 @@ export function matchAthlete(text, list) {
   return best;
 }
 
+// Athletes whose surname is too short to match on its own (under 4 letters: "HE", "LI",
+// "AHL") when `name` is nothing but that surname — so the UI can ask for the first name
+// instead of silently finding nobody.
+export function shortSurnameMatches(name, list) {
+  const q = words(name).join(" ");
+  if (!q || q.length >= 4) return [];
+  return list.filter((a) => {
+    const surn = words(a.name.split(/\s+/).filter((w) => w === w.toUpperCase() && w !== w.toLowerCase() && w.length > 1).join(" ")).join(" ");
+    return surn === q;
+  }).map((a) => a.name);
+}
+
 // Pull a likely athlete name out of a natural-language what-if, for the unranked WA search:
 // strip a leading framing phrase ("what if …") and any "women's 5000m:" prefix, then keep the
 // words before the first scenario verb, preposition, or number. Best-effort — if it comes back
@@ -108,6 +120,34 @@ export function extractName(query) {
   const cut = s.search(/\b(wins?|winning|won|finish\w*|runs?|running|ran|places?|placing|placed|scores?|gets?|clocks?|goes?|going|looks?|with|at|in|on|to)\b|\d/i);
   if (cut > 0) s = s.slice(0, cut);
   return s.trim().replace(/[?.,;:]+$/, "");
+}
+
+// A championship named as the *goal* ("qualify for the World Championships", "make the
+// final") says nothing about the meet the race is run at, so it must not set the category.
+// Blank those mentions out; "wins the worlds" / "at the Olympics" (the venue) are left alone.
+const CHAMP_TERM = /(?:world champ\w*|worlds|wch|olympi\w*|(?:dl |diamond league |diamond )?final)/g;
+const GOAL_BEFORE = /(?:qualif\w*|mak(?:e|es|ing)|reach(?:es|ing)?|get(?:s|ting)? (?:in)?to|road to|standard|spot|berth|ticket|select\w*|team|for)(?: \w+){0,2} (?:for |to |at |in )?(?:the )?(?:\d{4} )?$/;
+function maskGoals(nq) {
+  return nq.replace(CHAMP_TERM, (m, off) => (GOAL_BEFORE.test(nq.slice(0, off)) ? " ".repeat(m.length) : m));
+}
+
+const MONTH = "(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*";
+// What an ordinal counts when it isn't a finishing place: "first race", "2nd attempt", "23rd May".
+const NOT_A_PLACE = `(?:race|races|time|run|outing|meet|meeting|attempt|start|season|lap|laps|half|leg|ever|sub|diamond|dl|year|title|appearance|${MONTH})\\b`;
+
+function parsePlaceWords(nq) {
+  // 1. An explicit finishing place wins over everything ("finishing 4th", "4th place", "places 6").
+  let m = nq.match(/\bfinish\w*(?: in)? (\d{1,2})(?:st|nd|rd|th)?\b|\bplac(?:e|es|ed|ing) (\d{1,2})(?:st|nd|rd|th)?\b|\b(\d{1,2})(?:st|nd|rd|th) place\b/);
+  if (m) return +(m[1] || m[2] || m[3]);
+  // 2. Winning words.
+  if (/\bwin(s|ning)?\b|\bgold\b|\bchampion\b|\bvictor/.test(nq)) return 1;
+  if (/runner.?up|\bsilver\b/.test(nq)) return 2;
+  if (/\bbronze\b/.test(nq)) return 3;
+  // 3. Ordinals, unless they count something else ("first race", "23rd May", "May 23rd").
+  const ord = new RegExp(`(?<!${MONTH} )\\b(first|second|third|\\d{1,2}(?:st|nd|rd|th))\\b(?! (?:of )?${NOT_A_PLACE})`);
+  m = nq.match(ord);
+  if (m) return { first: 1, second: 2, third: 3 }[m[1]] || parseInt(m[1], 10);
+  return null;
 }
 
 // Parse a natural-language what-if into structured hints (all optional).
@@ -139,22 +179,23 @@ export function parseQuery(query, currentEvent) {
   }
 
   // finish place
-  if (/\bwin(s|ning)?\b|\b1st\b|\bfirst\b|\bgold\b|\bchampion\b|\bvictor/.test(nq)) out.place = 1;
-  else if (/\b2nd\b|\bsecond\b|runner.?up|\bsilver\b/.test(nq)) out.place = 2;
-  else if (/\b3rd\b|\bthird\b|\bbronze\b/.test(nq)) out.place = 3;
-  else { const pm = nq.match(/\b(\d+)(?:st|nd|rd|th)\b|\bplace\s+(\d+)|\bfinish(?:es|ing)?\s+(\d+)/); if (pm) out.place = +(pm[1] || pm[2] || pm[3]); }
+  const place = parsePlaceWords(nq);
+  if (place) out.place = place;
 
-  // meet category
-  if (/olympic|world champ|worlds|\bwch\b/.test(nq)) out.category = "OW";
-  else if (/(dl|diamond league)\s*final|diamond\s*final/.test(nq)) out.category = "DF";
-  else if (/diamond league|\bdl\b|grand prix|prefontaine|weltklasse|bowerman|continental tour gold/.test(nq)) out.category = "GW";
-  else if (/european champ|euro champ|area champ|continental champ/.test(nq)) out.category = "GL";
-  else if (/national\s*champ|\bnationals\b/.test(nq)) out.category = "B";   // National Championships
-  else if (/national\s*meet|\bdomestic\b/.test(nq)) out.category = "C";     // ordinary national-level meet
-  else if (/\bfinal\b/.test(nq)) out.category = "DF";
+  // meet category — from where the race is run, not the championship being aimed at
+  const cq = maskGoals(nq);
+  if (/olympi|world champ|worlds|\bwch\b/.test(cq)) out.category = "OW";
+  else if (/(dl|diamond league)\s*final|diamond\s*final/.test(cq)) out.category = "DF";
+  else if (/diamond league|\bdl\b|grand prix|prefontaine|weltklasse|bowerman|continental tour gold/.test(cq)) out.category = "GW";
+  else if (/european champ|euro champ|area champ|continental champ/.test(cq)) out.category = "GL";
+  else if (/national\s*champ|\bnationals\b/.test(cq)) out.category = "B";   // National Championships
+  else if (/national\s*meet|\bdomestic\b/.test(cq)) out.category = "C";     // ordinary national-level meet
+  else if (/\bfinal\b/.test(cq)) out.category = "DF";
 
-  // time
-  const t = parseTime(query);
+  // time: "3:29.50"; also a comma decimal ("3:29,50") and dots throughout ("1.41.50")
+  const tq = String(query).replace(/(\d:\d{2}),(\d)/, "$1.$2")
+    .replace(/(?<![\d.:])(\d{1,2})\.([0-5]\d)\.(\d{1,2})(?![\d.])/, "$1:$2.$3");
+  const t = parseTime(tq);
   if (t) out.time = fmtTime(t);
 
   return out;

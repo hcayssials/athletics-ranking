@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { getMeta, getRankings, getAthlete, searchAthletes, runWhatIf, getRequired } from "./api.js";
-import { parseTime, surnameOf, bestPerf, matchAthlete, parseQuery, extractSlug, deriveName, looksLikeProfile, extractName } from "./parse.js";
+import { parseTime, surnameOf, bestPerf, matchAthlete, parseQuery, extractSlug, deriveName, looksLikeProfile, extractName, shortSurnameMatches } from "./parse.js";
 import { INK, SURFACE, BG, ACCENT, MUTE, MONO } from "./theme.js";
 
 // Ranking What-If Studio — "WA Editorial" look (see theme.js), driven by the static data bundle
@@ -430,6 +430,13 @@ export default function App() {
         setForm(f);
         const name = extractName(query);
         if (!name) { setError("Couldn't tell which athlete you meant — try starting the question with their name."); return; }
+        // A surname under 4 letters ("He", "Li") doesn't match on its own — say so rather than
+        // searching World Athletics for two letters.
+        const short = shortSurnameMatches(name, rankings.athletes);
+        if (short.length) {
+          setError(`“${name}” is too short to match on its own — add the first name (on this list: ${short.slice(0, 3).join(", ")}${short.length > 3 ? "…" : ""}).`);
+          return;
+        }
         await searchFor(name, ev);
         return;
       }
