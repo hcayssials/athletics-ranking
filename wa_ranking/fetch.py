@@ -147,6 +147,39 @@ def fetch_athlete_calculation(competitor_id: str, calc_url_template: str,
     }
 
 
+# How deep to read each ranking list. WA serves 100 rows per page (page 1 at the bare URL,
+# then ?page=2, ...). 100 is NOT enough: the 3-per-country cap pushes the qualifying cutoff
+# far down the list (women's 1500m, Nov 2026: the last qualifier was row 100 of 100), and
+# once the list runs out the cutoff is silently wrong. build_static fails if the cutoff gets
+# near the end of the list again — raise this if it does.
+LIST_DEPTH = 200
+_PAGE_SIZE = 100
+
+
+def _ranking_rows(rankings_url: str, session, depth: int) -> list[dict]:
+    """Read ranking-list pages until `depth` rows are collected or WA runs out. Stops on a
+    page that adds nothing new (past the end WA may repeat or return an empty table)."""
+    rows: list[dict] = []
+    seen: set[str] = set()
+    page = 1
+    while len(rows) < depth:
+        if page > 1:
+            time.sleep(0.2)  # be polite between list pages
+        url = rankings_url if page == 1 else (
+            f"{rankings_url}{'&' if '?' in rankings_url else '?'}page={page}")
+        resp = session.get(url, headers=_HEADERS, timeout=_TIMEOUT)
+        resp.raise_for_status()
+        fresh = [r for r in parse_ranking_html(resp.text) if r["competitor_id"] not in seen]
+        if not fresh:
+            break
+        seen.update(r["competitor_id"] for r in fresh)
+        rows.extend(fresh)
+        if len(fresh) < _PAGE_SIZE:
+            break  # a short page is the last one
+        page += 1
+    return rows[:depth]
+
+
 def fetch_championship(championship: str, event: str, *, force: bool = False,
                        ttl_seconds: int = cache.DEFAULT_TTL_SECONDS,
                        limit: int | None = None) -> dict:
@@ -180,13 +213,12 @@ def fetch_championship(championship: str, event: str, *, force: bool = False,
         event_path=ev["discipline"], gender=ev["gender"])
     session = requests.Session()
 
-    resp = session.get(rankings_url, headers=_HEADERS, timeout=_TIMEOUT)
-    resp.raise_for_status()
-    rows = parse_ranking_html(resp.text)
+    depth = limit if limit is not None else LIST_DEPTH
+    rows = _ranking_rows(rankings_url, session, depth)
     if not rows and ev.get("graphql_event_group"):
-        rows = _rankings_via_graphql(ev, champ)  # e.g. steeplechase doesn't server-render
-    if limit is not None:
-        rows = rows[:limit]
+        # e.g. steeplechase when the page doesn't server-render
+        rows = _rankings_via_graphql(ev, champ, limit=depth)
+    rows = rows[:depth]
 
     athletes = []
     rank_date = None
@@ -212,7 +244,7 @@ def fetch_championship(championship: str, event: str, *, force: bool = False,
     return result
 
 
-def _rankings_via_graphql(ev: dict, champ: dict) -> list[dict]:
+def _rankings_via_graphql(ev: dict, champ: dict, limit: int | None = None) -> list[dict]:
     """Build ranking rows via GraphQL for events the HTML page doesn't render (steeplechase).
 
     The accessible rankings feed is women-only, so this raises for men's events rather than
@@ -222,7 +254,8 @@ def _rankings_via_graphql(ev: dict, champ: dict) -> list[dict]:
 
     region = champ.get("region")
     data = graphql.world_rankings(ev["graphql_event_group"],
-                                  region_type="area" if region else None, region=region)
+                                  region_type="area" if region else None, region=region,
+                                  limit=limit)
     if data is None:
         return []
     returned_gender = (data.get("parameters") or {}).get("gender")

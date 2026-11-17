@@ -168,6 +168,11 @@ times in an event. Dashboard: `https://<code>.goatcounter.com`. count.js ignores
   `tests/test_profile_fetch.py`, `tests/test_feed.py`) — keep/extend those when touching this
   layer. Feed rows carry a slug spelled differently from the ranking rows; `feed.athlete_key`
   joins on the trailing WA athlete id when you need to match them.
+- **Ranking lists are read 200 deep (`fetch.LIST_DEPTH`), two WA pages of 100.** 100 was not
+  enough: the 3-per-country cap pushes the qualifying cutoff far down the list (women's 1500m,
+  Nov 2026: row 100 of 100), and a list that runs out gives a silently wrong cutoff.
+  `build_static` fails (`list_depth_problem`) if any field's last ranking qualifier has fewer
+  than 10 rows below it — raise `LIST_DEPTH` and re-run `refresh_seed`, don't loosen the check.
 - **The WA-returned set is already the counting set** (≤ best_n). Baseline `ranking_score` must
   equal WA's published score — verify with a recompute spot-check after selection changes.
 - **Ranking score = floor(mean) + world-record bonus.** WA adds a bonus for each world record

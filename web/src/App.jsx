@@ -392,7 +392,7 @@ export default function App() {
       setCandidates(cands);
       if (!cands.length) setError(`Couldn't find “${name}” on World Athletics. Check the spelling, or paste their profile link.`);
     } catch {
-      setError(`${name} isn't in the top ~100, and the World Athletics search is unavailable right now — paste their profile link to run the analysis.`);
+      setError(`${name} isn't in the top ~${list.length || 200}, and the World Athletics search is unavailable right now — paste their profile link to run the analysis.`);
     } finally { setSearching(false); }
   }
 

@@ -407,7 +407,7 @@ def what_if(event: str, athlete: str, new_time: str | float,
         "new_perf_counts": recompute["new_perf_counts"],
         "old_rank": old_rank,
         "new_rank": new_rank,
-        "list_size": len(data["athletes"]),  # how many athletes we actually track (≈ top 100)
+        "list_size": len(data["athletes"]),  # how many athletes we actually track (fetch.LIST_DEPTH)
         "rank_delta": (None if old_rank is None else old_rank - new_rank),
         "old_counting": recompute["old_counting"],
         "new_counting": recompute["new_counting"],
