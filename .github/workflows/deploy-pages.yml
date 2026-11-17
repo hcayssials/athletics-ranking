@@ -80,8 +80,12 @@ jobs:
           node src/engine/parity.test.mjs
           node src/parse.test.mjs
 
+      # GOATCOUNTER_CODE (repo variable, optional): the GoatCounter site code for anonymous
+      # usage counts. Unset = the site ships with no tracking at all.
       - name: Build the site
         working-directory: web
+        env:
+          VITE_GOATCOUNTER_CODE: ${{ vars.GOATCOUNTER_CODE }}
         run: npm run build
 
       - uses: actions/upload-pages-artifact@v3

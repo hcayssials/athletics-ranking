@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { getMeta, getRankings, getAthlete, searchAthletes, runWhatIf, getRequired } from "./api.js";
 import { parseTime, surnameOf, bestPerf, matchAthlete, parseQuery, extractSlug, deriveName, looksLikeProfile, extractName } from "./parse.js";
 import { INK, SURFACE, BG, ACCENT, MUTE, MONO } from "./theme.js";
+import { track, analyticsOn } from "./analytics.js";
 
 // Ranking What-If Studio — "WA Editorial" look (see theme.js), driven by the static data bundle
 // + the local engine (src/api.js). All ranking/qualification numbers come from getRankings /
@@ -290,12 +291,13 @@ export default function App() {
     if (rankings.championship !== pendingShare.champ || rankings.event !== pendingShare.ev) return;
     const { f, champ, ev, profile } = pendingShare;
     setPendingShare(null);
-    run(f, champ, ev, profile);
+    run(f, champ, ev, profile, null, "link");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pendingShare, rankings]);
 
   // Manual selector changes start fresh; NL changes (via `pending`) keep their queued run alive.
   const changeChampionship = (c) => {
+    track("tab", c);
     setChampionship(c); setResult(null); setSelected(null); setAthleteInfo(null); setError(""); setCandidates(null);
     const std = entryStandardFor(event, c);
     if (std) setForm((s) => ({ ...s, time: std }));   // this championship's standard as the starting time
@@ -303,6 +305,7 @@ export default function App() {
   // New event → reset Time to that event's entry standard and Place to 1 (keep Category) so the
   // console never shows a time from the previous event. A later athlete pick still overrides these.
   const changeEvent = (e) => {
+    track("event", e);
     setEvent(e); setResult(null); setSelected(null); setAthleteInfo(null); setError(""); setCandidates(null);
     setForm((s) => ({ ...s, time: entryStandardFor(e), place: 1, subEvent: "main" }));
   };
@@ -315,7 +318,8 @@ export default function App() {
   const eventLabel = eventCfg.label || event;
   const categories = meta ? meta.categories : ["GW"];
 
-  async function run(overrideForm, champ = championship, ev = event, profile = null, profileCountry = null) {
+  // `via` is only for usage counting: manual (console) / ask (free-text box) / link (shared URL) / search (WA match).
+  async function run(overrideForm, champ = championship, ev = event, profile = null, profileCountry = null, via = "manual") {
     const f = overrideForm || form;
     let name = (f.athlete || "").trim();
     // A pasted World Athletics link/slug in the athlete field → unranked profile path.
@@ -338,6 +342,9 @@ export default function App() {
         ...(profile ? { profile, profile_country: profileCountry } : {}),
       });
       setResult(r); setSelected(r.athlete);
+      track("whatif", ev); track("whatif-via", via);
+      if (profile) track("whatif-unranked", ev);
+      if (f.subEvent && f.subEvent !== "main") track("whatif-similar", f.subEvent);
       // Reflect the scenario in the address bar so it can be copied / bookmarked / shared.
       const q = scenarioToQuery({
         champ, ev, name: r.athlete || name, profile,
@@ -360,14 +367,14 @@ export default function App() {
     const url = window.location.href;
     if (!navigator.clipboard) return;
     navigator.clipboard.writeText(url).then(() => {
-      setCopiedLink(true);
+      setCopiedLink(true); track("copy-link");
       setTimeout(() => setCopiedLink(false), 1800);
     }).catch(() => {});
   }
 
   // Auto-search WA for an unlisted name and surface matches the user can pick from.
   async function searchFor(name, ev = event) {
-    setSearching(true); setError("");
+    setSearching(true); setError(""); track("wa-search", ev);
     try {
       const { candidates: cands } = await searchAthletes(name, ev);
       setCandidates(cands);
@@ -380,7 +387,7 @@ export default function App() {
   // Pick a search match → run the unranked analysis from that athlete's profile.
   function pickCandidate(c) {
     setCandidates(null);
-    run({ ...form, athlete: c.name }, championship, event, c.slug, c.country);
+    run({ ...form, athlete: c.name }, championship, event, c.slug, c.country, "search");
   }
 
   // Click/pick an athlete → select it, preview their performances, and seed Time/Place/Category
@@ -388,6 +395,7 @@ export default function App() {
   async function selectAthlete(name) {
     setSelected(name); setResult(null); setAthleteInfo(null); setError("");
     setForm((s) => ({ ...s, athlete: name }));
+    track("preview", event);
     try {
       const ath = await getAthlete(championship, event, name);
       setAthleteInfo(ath);
@@ -438,7 +446,7 @@ export default function App() {
       if (p.place != null) f.place = p.place;
       if (p.category) f.category = p.category;
       setForm(f); setSelected(athlete);
-      run(f, champ, ev);
+      run(f, champ, ev, null, null, "ask");
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pending, rankings]);
@@ -791,6 +799,11 @@ export default function App() {
             Spot any issues?{" "}
             <a href={FEEDBACK_URL} target="_blank" rel="noreferrer" style={FOOT_LINK}>Let me know!</a>
           </div>
+          {analyticsOn && (
+            <div style={{ marginTop: 6 }}>
+              Anonymous usage counts via GoatCounter: no cookies, no personal data, no athlete names.
+            </div>
+          )}
         </footer>
       </div>
     </div>

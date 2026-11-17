@@ -61,6 +61,15 @@ those two features 401 until the next build; the core what-if (static data + loc
 unaffected. The profile *page* (best-ever rank) is CORS-blocked, so unranked athletes show
 without that one line — name derives from the slug, country rides along from the search result.
 
+## Usage counting (GoatCounter, optional)
+`web/src/analytics.js` loads GoatCounter's cookie-free `count.js` only when the build has
+`VITE_GOATCOUNTER_CODE` (the workflow passes the repo **variable** `GOATCOUNTER_CODE`; unset =
+no tracking, no footer line). It sends one page view per load (path only, never the shared
+`?a=…` query) plus events via `track(name, detail)`: `whatif/<event>`, `whatif-via/<manual|
+ask|link|search>`, `whatif-unranked/<event>`, `whatif-similar/<sub_event>`, `preview/<event>`,
+`tab/<champ>`, `event/<event>`, `wa-search/<event>`, `copy-link`. Never put athlete names or
+times in an event. Dashboard: `https://<code>.goatcounter.com`. count.js ignores localhost.
+
 ## Championships (world / Road to Beijing 27; Birmingham & Ultimate archived)
 - `data/championships.json` drives everything: presentation strings (`short_label`,
   `scope_label`, `rank_label`), qualification (`quota`, `max_per_country` — explicit `null`
