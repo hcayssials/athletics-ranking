@@ -139,6 +139,27 @@ def insert_and_recompute(perfs: list[dict], new_perf: dict, best_n: int, *,
     }
 
 
+def tie_key(perfs: list[dict]) -> list[int]:
+    """WA's tie-break for equal Ranking Scores (World Rankings Rules 1.2.6): the best
+    Performance Score decides, then the second best, and so on. Returned as the counting
+    scores, best first — compare two keys as lists; the greater ranks higher."""
+    return sorted((_score(p) for p in perfs or ()), reverse=True)
+
+
 def rank_position(all_scores: list[float], new_score: float) -> int:
     """1-based position of `new_score` among `all_scores` (ties: highest position)."""
     return 1 + sum(1 for s in all_scores if s is not None and s > new_score)
+
+
+def rank_among(others: list[dict], score: float, key: list[int]) -> int:
+    """1-based rank of an athlete on `score` among `others` (list rows with `ranking_score`
+    and `performances`), applying WA's tie-break: an athlete level on points ranks ahead only
+    with the better `tie_key`. Level on every counting score keeps the higher position."""
+    ahead = 0
+    for a in others:
+        s = a.get("ranking_score")
+        if s is None:
+            continue
+        if s > score or (s == score and tie_key(a.get("performances")) > key):
+            ahead += 1
+    return 1 + ahead

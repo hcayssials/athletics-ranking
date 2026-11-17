@@ -224,6 +224,13 @@ def build_vectors() -> None:
                                      "athlete": ath["name"], "place": 1, "category": "GW"})
                     add("required", {"event": event, "championship": champ,
                                      "athlete": ath["name"], "place": 3, "category": "B"})
+                    # Time spellings: comma / second colon as the decimal point must score
+                    # like the plain form; junk and impossible times must fail identically.
+                    for bad_t in (t.replace(".", ","), t.replace(".", ":"), "abc", "3:75.00",
+                                  "-5", "0:01.00"):
+                        add("whatif", {"event": event, "championship": champ,
+                                       "athlete": ath["name"], "time": bad_t,
+                                       "as_of": as_of.isoformat()})
                     # Entry-standard route (Beijing): exactly on the standard, a hair off it,
                     # a category too low to count, and an indoor mark that never counts.
                     std = feed.event_qualification(champ, event).get("entry_standard")

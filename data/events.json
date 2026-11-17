@@ -63,27 +63,29 @@
   "5000m_men": {
     "label": "Men's 5000m", "gender": "men",
     "discipline": "5000m", "main_event_codes": ["5000"],
-    "similar_event_codes": ["3000", "3000sh", "2M", "2Msh", "5000sh", "5KR"],
+    "similar_event_codes": ["3000", "3000sh", "2MLS", "2MLSsh", "5000sh", "5RR"],
     "best_n": 3, "main_event_min": 2, "window_months": 12,
     "result_table": "scoring_tables/5000m_men.csv",
     "placing_event_group": "5000m", "entry_standard": "12:50.00",
     "alt_events": [
       {"key": "3000m", "label": "3000m", "discipline_code": "3000", "result_table": "scoring_tables/3000m_men.csv"},
       {"key": "3000m_i", "label": "3000m (indoor)", "discipline_code": "3000sh", "result_table": "scoring_tables/3000m_men_indoor.csv", "indoor": true},
-      {"key": "5000m_i", "label": "5000m (indoor)", "discipline_code": "5000sh", "result_table": "scoring_tables/5000m_men_indoor.csv", "indoor": true}
+      {"key": "5000m_i", "label": "5000m (indoor)", "discipline_code": "5000sh", "result_table": "scoring_tables/5000m_men_indoor.csv", "indoor": true},
+      {"key": "5km", "label": "5km (road)", "discipline_code": "5RR", "result_table": "scoring_tables/5km_men.csv", "road": true, "standard_event": "5 km Road"}
     ]
   },
   "5000m_women": {
     "label": "Women's 5000m", "gender": "women",
     "discipline": "5000m", "main_event_codes": ["5000"],
-    "similar_event_codes": ["3000", "3000sh", "2M", "2Msh", "5000sh", "5KR"],
+    "similar_event_codes": ["3000", "3000sh", "2MLS", "2MLSsh", "5000sh", "5RR"],
     "best_n": 3, "main_event_min": 2, "window_months": 12,
     "result_table": "scoring_tables/5000m_women.csv",
     "placing_event_group": "5000m", "entry_standard": "14:36.00",
     "alt_events": [
       {"key": "3000m", "label": "3000m", "discipline_code": "3000", "result_table": "scoring_tables/3000m_women.csv"},
       {"key": "3000m_i", "label": "3000m (indoor)", "discipline_code": "3000sh", "result_table": "scoring_tables/3000m_women_indoor.csv", "indoor": true},
-      {"key": "5000m_i", "label": "5000m (indoor)", "discipline_code": "5000sh", "result_table": "scoring_tables/5000m_women_indoor.csv", "indoor": true}
+      {"key": "5000m_i", "label": "5000m (indoor)", "discipline_code": "5000sh", "result_table": "scoring_tables/5000m_women_indoor.csv", "indoor": true},
+      {"key": "5km", "label": "5km (road)", "discipline_code": "5RR", "result_table": "scoring_tables/5km_women.csv", "road": true, "standard_event": "5 km Road"}
     ]
   },
 

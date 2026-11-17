@@ -21,21 +21,27 @@ function bisectLeft(arr, x) {
   return lo;
 }
 
+// Strict, so a typo is an error rather than a silently different time. Two spellings of the
+// decimal point are normalised first: a comma ("3:29,50") and a second colon ("2:01:30" —
+// none of these events runs to hours, so that is 2:01.30).
 export function parseTime(value) {
-  if (typeof value === "number") return value;
-  const s = String(value).trim();
-  if (!s.includes(":")) {
-    const v = parseFloat(s);
-    if (Number.isNaN(v)) throw new Error(`could not convert string to float: '${s}'`);
-    return v;
+  const bad = () => new Error(`Can't read '${value}' as a time. Use a format like 3:29.50.`);
+  let seconds;
+  if (typeof value === "number") {
+    seconds = value;
+  } else {
+    let s = String(value).trim().replace(/,/g, ".");
+    if (s.split(":").length === 3) {            // m:ss:hh -> m:ss.hh
+      const i = s.lastIndexOf(":");
+      s = s.slice(0, i) + "." + s.slice(i + 1);
+    }
+    const m = s.match(/^(\d{1,2}):(\d{1,2}(?:\.\d+)?)$/);
+    if (m && Number(m[2]) < 60) seconds = pyRound(Number(m[1]) * 60 + Number(m[2]), 3);
+    else if (/^\d+(?:\.\d+)?$/.test(s)) seconds = Number(s);
+    else throw bad();
   }
-  let seconds = 0;
-  for (const p of s.split(":")) {
-    const v = parseFloat(p);
-    if (Number.isNaN(v)) throw new Error(`could not convert string to float: '${p}'`);
-    seconds = seconds * 60 + v;
-  }
-  return pyRound(seconds, 3);
+  if (!(seconds > 0 && Number.isFinite(seconds))) throw bad();
+  return seconds;
 }
 
 // A time scores the points of the fastest tabulated threshold it still meets:
@@ -96,6 +102,11 @@ export function performanceScore(result, placing, decay = 0) {
 // (the main event's, or a similar event's).
 export function scorePerformance(ctx, table, time, category, place,
                                  { perfDate = null, asOf = null, eventGroup = "standard" } = {}) {
+  if (table.length && parseTime(time) < table[0][0]) {
+    // Faster than the fastest tabulated mark (well beyond any record): almost certainly a typo.
+    throw new Error(`${time} is faster than anything on the World Athletics scoring `
+                    + "table for this event. Check the time.");
+  }
   const rscore = resultScore(table, time);
   const pscore = placingScore(ctx.placingScores, category, place, eventGroup);
   const months = perfDate && asOf ? monthAge(perfDate, asOf) : 0;

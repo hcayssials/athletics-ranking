@@ -13,7 +13,8 @@ from .config import (championship_event_config, load_championship, load_event,
                      load_placing_scores)
 from .profile import fetch_profile
 from .qualify import athlete_status, build_ranked, qualifying_field
-from .ranking import insert_and_recompute, ranking_score, rank_position, resolve_window, select_counting
+from .ranking import (insert_and_recompute, rank_among, ranking_score, resolve_window,
+                      select_counting, tie_key)
 from .scoring import (format_seconds, parse_time, placing_score, result_score, score_performance,
                       time_for_result_score)
 
@@ -227,8 +228,10 @@ def what_if(event: str, athlete: str, new_time: str | float,
                 )
 
     # New rank: hold all other athletes at their current (official) ranking scores.
+    # Level on points: WA's tie-break (best counting score, then the next, ...) decides.
     others = [a["ranking_score"] for a in data["athletes"] if a is not ath]
-    new_rank = rank_position(others, new_score)
+    new_key = tie_key(recompute["new_counting"])
+    new_rank = rank_among([a for a in data["athletes"] if a is not ath], new_score, new_key)
     old_rank = ath.get("rank")
 
     # Optional championship qualification: wildcard byes + entry-standard achievers +
@@ -266,7 +269,8 @@ def what_if(event: str, athlete: str, new_time: str | float,
                               if es and es["meets"] and not already_achieved else [])
 
         ranked_old = build_ranked(athletes)
-        ranked_new = build_ranked(athletes, override_name=ath["name"], override_score=new_score)
+        ranked_new = build_ranked(athletes, override_name=ath["name"], override_score=new_score,
+                                  override_key=new_key)
         field_old = qualifying_field(ranked_old, quota, max_per_country=max_pc,
                                      defending_champion=champion, auto_invites=invites,
                                      standard_achievers=std_list)
@@ -314,6 +318,12 @@ def what_if(event: str, athlete: str, new_time: str | float,
             "qual_position_new": (slot_new or {}).get("position"),
             "country_count": field_new["counts"].get(ath.get("country"), 0),
             "country_ahead": country_ahead,
+            # Things the model could not check — the UI says so rather than implying it did.
+            # No nationality (an unranked athlete from a pasted link): the country cap was
+            # not applied to them. List exhausted: the ranking list ran out before every
+            # place was filled, so the real cutoff is lower than `cutoff_score`.
+            "country_unknown": max_pc is not None and not ath.get("country"),
+            "field_incomplete": field_new["places_filled"] < quota,
             "field_new": field_new["slots"],
             "blocked_new": field_new["blocked"],
         }

@@ -30,7 +30,7 @@ def test_result_score_monotonic_and_bounds():
     assert result_score("1500m_men", "3:29.00") >= result_score("1500m_men", "3:35.00")
     # Faster than the fastest tabulated mark caps at the max; absurdly slow -> 0.
     assert result_score("1500m_men", "3:00.00") == result_score("1500m_men", "3:19.44")
-    assert result_score("1500m_men", "9:99.99") == 0
+    assert result_score("1500m_men", "9:59.99") == 0
 
 
 @pytest.mark.parametrize("cat,place,expected", [
@@ -76,3 +76,21 @@ def test_score_performance_breakdown():
     assert b["placing_score"] == 140
     assert b["decay"] == 0
     assert b["performance_score"] == 1402
+
+
+def test_parse_time_decimal_spellings_and_rejects():
+    import pytest
+    assert parse_time("3:29,50") == 209.5          # comma decimal
+    assert parse_time("2:01:30") == 121.3          # second colon = decimal point
+    assert parse_time(" 27:05.12 ") == 1625.12
+    for bad in ("abc", "3:29.00abc", "3:75.00", "-5", "0", "0:00", "nan", "inf", "1:2:3:4", ""):
+        with pytest.raises(ValueError):
+            parse_time(bad)
+
+
+def test_a_time_faster_than_the_table_is_rejected():
+    import pytest
+    from wa_ranking.scoring import score_performance
+    with pytest.raises(ValueError, match="faster than anything"):
+        score_performance("1500m_men", "0:01.00", "GW", 1)
+    assert score_performance("1500m_men", "3:30.00", "GW", 1)["result_score"] > 0

@@ -9,6 +9,18 @@ export function parseTime(t) {
   return +m[1] * 60 + +m[2] + (m[3] ? +("0." + m[3]) : 0);
 }
 
+// The time field, strictly: returns the canonical "m:ss.xx" text, or null if it isn't a time.
+// A comma ("3:29,50"), a second colon ("2:01:30") or dots throughout ("1.41.50") are read as
+// the decimal point / minute separator they obviously stand for.
+export function normalizeTime(t) {
+  let s = String(t ?? "").trim().replace(/,/g, ".");
+  let m = s.match(/^(\d{1,2})\.([0-5]\d)\.(\d{1,3})$/);          // 1.41.50
+  if (m) s = `${m[1]}:${m[2]}.${m[3]}`;
+  m = s.match(/^(\d{1,2}):([0-5]\d):(\d{1,3})$/);                 // 2:01:30
+  if (m) s = `${m[1]}:${m[2]}.${m[3]}`;
+  return /^\d{1,2}:[0-5]\d(\.\d{1,3})?$/.test(s) && !/^0+:00(\.0+)?$/.test(s) ? s : null;
+}
+
 export function fmtTime(sec) {
   if (sec == null) return "—";
   const m = Math.floor(sec / 60), s = sec - m * 60;

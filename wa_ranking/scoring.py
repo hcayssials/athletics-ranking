@@ -16,19 +16,34 @@ from datetime import date
 from .config import load_decay, load_event, load_placing_scores, load_result_table
 
 
+_SECONDS_RE = re.compile(r"^\d+(?:\.\d+)?$")
+_MIN_SEC_RE = re.compile(r"^(\d{1,2}):(\d{1,2}(?:\.\d+)?)$")
+
+
 def parse_time(value: str | float) -> float:
-    """Parse a race time to seconds. Accepts '3:30.11', '3:30', '210.11', or seconds."""
+    """Parse a race time to seconds. Accepts '3:30.11', '3:30', '210.11', or seconds.
+
+    Strict, so a typo is an error rather than a silently different time. Two spellings of the
+    decimal point are normalised first: a comma ('3:29,50') and a second colon ('2:01:30' —
+    none of these events runs to hours, so that is 2:01.30). Raises ValueError otherwise, or
+    for a time that isn't positive."""
     if isinstance(value, (int, float)):
-        return float(value)
-    s = str(value).strip()
-    if ":" not in s:
-        return float(s)
-    parts = s.split(":")
-    parts = [float(p) for p in parts]
-    seconds = 0.0
-    for p in parts:
-        seconds = seconds * 60 + p
-    return round(seconds, 3)
+        seconds = float(value)
+    else:
+        s = str(value).strip().replace(",", ".")
+        if s.count(":") == 2:                     # m:ss:hh -> m:ss.hh
+            head, _, tail = s.rpartition(":")
+            s = f"{head}.{tail}"
+        m = _MIN_SEC_RE.match(s)
+        if m and float(m.group(2)) < 60:
+            seconds = round(int(m.group(1)) * 60 + float(m.group(2)), 3)
+        elif _SECONDS_RE.match(s):
+            seconds = float(s)
+        else:
+            raise ValueError(f"Can't read '{value}' as a time. Use a format like 3:29.50.")
+    if not (seconds > 0 and seconds != float("inf")):
+        raise ValueError(f"Can't read '{value}' as a time. Use a format like 3:29.50.")
+    return seconds
 
 
 def result_score(event: str, time: str | float, result_table: str | None = None) -> int:
@@ -105,6 +120,13 @@ def score_performance(event: str, time: str | float, category: str, place: int,
                       event_group: str = "standard", result_table: str | None = None) -> dict:
     """Fully score a (hypothetical) performance, returning a breakdown dict. `result_table`
     overrides the scoring table (for a similar-event hypothetical, e.g. a 3000m)."""
+    seconds = parse_time(time)
+    table = load_result_table(result_table or load_event(event)["result_table"])
+    if table and seconds < table[0][0]:
+        # Faster than the fastest mark World Athletics tabulates (well beyond any record):
+        # almost certainly a typo, and it would otherwise quietly score the table maximum.
+        raise ValueError(f"{time} is faster than anything on the World Athletics scoring "
+                         "table for this event. Check the time.")
     rscore = result_score(event, time, result_table=result_table)
     pscore = placing_score(category, place, event_group)
     months = month_age(perf_date, as_of) if (perf_date and as_of) else 0

@@ -102,6 +102,31 @@ export function insertAndRecompute(perfs, newPerf, bestN, sel = {}, bonus = 0) {
   };
 }
 
+// WA's tie-break for equal Ranking Scores (World Rankings Rules 1.2.6): best Performance
+// Score, then the second best, and so on. The counting scores, best first.
+export function tieKey(perfs) {
+  return (perfs || []).map(score).sort((a, b) => b - a);
+}
+
+// Python list comparison: >0 when a ranks ahead of b.
+export function cmpTieKey(a, b) {
+  const n = Math.min(a.length, b.length);
+  for (let i = 0; i < n; i++) if (a[i] !== b[i]) return a[i] - b[i];
+  return a.length - b.length;
+}
+
+// 1-based rank of an athlete on `sc` among `others` (list rows), applying the tie-break:
+// level on points ranks ahead only with the better key.
+export function rankAmong(others, sc, key) {
+  let ahead = 0;
+  for (const a of others) {
+    const s = a.ranking_score;
+    if (s === null || s === undefined) continue;
+    if (s > sc || (s === sc && cmpTieKey(tieKey(a.performances), key) > 0)) ahead++;
+  }
+  return 1 + ahead;
+}
+
 // 1-based position among allScores (ties: highest position).
 export function rankPosition(allScores, newScore) {
   return 1 + allScores.filter((s) => s !== null && s !== undefined && s > newScore).length;

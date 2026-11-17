@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { getMeta, getRankings, getAthlete, searchAthletes, runWhatIf, getRequired } from "./api.js";
-import { parseTime, surnameOf, bestPerf, matchAthlete, parseQuery, extractSlug, deriveName, looksLikeProfile, extractName, shortSurnameMatches } from "./parse.js";
+import { normalizeTime, surnameOf, bestPerf, matchAthlete, parseQuery, extractSlug, deriveName, looksLikeProfile, extractName, shortSurnameMatches } from "./parse.js";
 import { INK, SURFACE, BG, ACCENT, MUTE, MONO } from "./theme.js";
 
 // Ranking What-If Studio — "WA Editorial" look (see theme.js), driven by the static data bundle
@@ -155,6 +155,7 @@ function buildResultView(r, champCfg, qualifyOn, methodOpen) {
       inviteReason: invite ? invite.reason : null,            // why this athlete holds a wildcard
       // Points still needed to pass the last qualifier (level on points is not enough).
       needPts: Math.max(1, Math.round((q.cutoff_score || 0) + 1 - r.new_score)),
+      countryUnknown: !!q.country_unknown, fieldIncomplete: !!q.field_incomplete,
       es: q.entry_standard || null,                           // entry-standard check (World Champs)
       achieversKnown: !!q.standard_achievers_known,
       achieversCount: q.standard_achievers_count || 0,
@@ -328,12 +329,14 @@ export default function App() {
       name = deriveName(profile) || profile;
     }
     if (!name) { setError("Enter an athlete — a name from the list, or a World Athletics link."); setResult(null); return; }
-    if (!parseTime(f.time)) { setError("Enter a time like 3:29.00."); setResult(null); return; }
+    const time = normalizeTime(f.time);   // "3:29,50" / "2:01:30" -> "3:29.50" / "2:01.30"
+    if (!time) { setError("Enter a time like 3:29.00."); setResult(null); return; }
+    if (time !== f.time) setForm((s) => ({ ...s, time }));
     setBusy(true); setError(""); setCandidates(null);
     try {
       const champQual = !!((meta.championships.find((x) => x.key === champ) || {}).has_qualification);
       const r = await runWhatIf({
-        event: ev, championship: champ, athlete: name, time: f.time,
+        event: ev, championship: champ, athlete: name, time,
         category: f.category, place: Math.max(1, parseInt(f.place) || 1),
         qualify: champQual && f.qualify,
         ...(f.subEvent && f.subEvent !== "main" ? { sub_event: f.subEvent } : {}),
@@ -345,7 +348,7 @@ export default function App() {
       // Reflect the scenario in the address bar so it can be copied / bookmarked / shared.
       const q = scenarioToQuery({
         champ, ev, name: r.athlete || name, profile,
-        time: f.time, place: Math.max(1, parseInt(f.place) || 1),
+        time, place: Math.max(1, parseInt(f.place) || 1),
         category: f.category, subEvent: f.subEvent, qualify: f.qualify, hasQual: champQual,
       });
       window.history.replaceState(null, "", `${window.location.pathname}?${q}`);
@@ -1028,6 +1031,9 @@ function ResultPanel({ rv, onToggle }) {
     else if (q.status === "in") verdict = { mark: "✓", title: "INSIDE THE QUALIFYING ZONE", detail: `Auto-confirmed on score — qualifying position #${q.position} of ${q.quota} (${fieldRules}).${split}`, bg: "#e3f3e9", fg: "#1b3d2a", bar: "#1f8a4c" };
     else if (q.status === "blocked") verdict = { mark: "≈", title: "ELIGIBLE — BUT FEDERATION'S CALL", detail: `Above the cutoff, yet ${q.countryAhead} higher-ranked ${q.country} athletes already hold the ${cap} places. The cap is a maximum — selection is ${q.country}'s decision.`, bg: "#fdebed", fg: "#2f4a6b", bar: "#2f4a6b" };
     else verdict = { mark: "✕", title: "OUTSIDE THE QUALIFYING ZONE", detail: `${q.needPts} pt${q.needPts === 1 ? "" : "s"} short of passing the last qualifier at this score${q.es ? ` and ${q.es.meets_mark ? "the mark doesn't count for the standard here" : `${q.es.gap_seconds.toFixed(2)}s short of the standard`}` : ""}.${split}`, bg: "#fbe4e1", fg: "#8a2b22", bar: "#c62b35" };
+    // What the model couldn't check, said plainly next to the verdict.
+    if (q.countryUnknown && cap != null) verdict.detail += ` Nationality unknown, so the ${cap}-per-country cap was not checked for this athlete.`;
+    if (q.fieldIncomplete) verdict.detail += " The ranking list ran out before every place was filled, so the true cutoff is lower than shown.";
   }
   // Compact entry-standard line under the race breakdown: "Entry standard 3:30.00 · 1.00s short · 6 have it".
   const esLine = rv.qual && rv.qual.es ? (() => {

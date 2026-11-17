@@ -266,3 +266,37 @@ def test_level_with_the_last_qualifier_is_not_in(monkeypatch):
     assert q["route_new"] in ("ranking", "standard") and q["cutoff_score"] != 1300
     assert q["score_to_qualify"] == 1301      # measured against the field before the what-if
     assert cut(fast["what_would_it_take"]["targets"])["target_score"] == 1301
+
+
+def test_tie_on_points_goes_to_the_better_best_performance(monkeypatch):
+    """WA rule 1.2.6: equal Ranking Scores are split by the best Performance Score, then the
+    next. A hypothetical that lands level with the last qualifier gets in when its best
+    counting score is the higher one — and the rank follows the same rule."""
+    from wa_ranking import whatif
+    from wa_ranking.qualify import build_ranked
+    from wa_ranking.ranking import rank_among, tie_key
+    as_of = _stub_1500_list(monkeypatch, achievers=[])
+    data = whatif.fetch.fetch_championship()
+    # Chaser: four 1290s + one 1250 = 1282. Replacing the 1250 with a 1340 gives exactly 1300,
+    # level with Mid RUNNER (five 1300s) but with a better best score (1340 > 1300).
+    chaser = {"name": "Chaser RUNNER", "country": "ESP", "ranking_score": 1282, "rank": 3,
+              "performances": [_perf(1290, "1500", "3:34.00") for _ in range(4)]
+                              + [_perf(1250, "1500", "3:36.00")]}
+    data["athletes"].insert(2, chaser)
+    monkeypatch.setattr(whatif, "score_performance", lambda *a, **k: {
+        "time": "3:31.00", "seconds": 211.0, "category": "B", "place": 1, "result_score": 1340,
+        "placing_score": 0, "months_old": 0, "decay": 0, "performance_score": 1340})
+    r = whatif.what_if("1500m_men", "Chaser RUNNER", "3:31.00", category="B", place=1,
+                       championship="road_to_beijing", as_of=as_of, qualify=True, verbose=False)
+    q = r["qualification"]
+    assert r["new_score"] == 1300 and r["new_rank"] == 2          # ahead of Mid on the tie-break
+    assert q["route_new"] == "ranking" and q["above_cutoff"] is True
+    assert [s["name"] for s in q["field_new"]][-1] == "Chaser RUNNER"   # Mid is pushed out
+
+    # The rule itself.
+    assert tie_key([{"performance_score": 5}, {"performance_score": 9}]) == [9, 5]
+    rows = [{"name": "A", "ranking_score": 1200, "performances": [_perf(1250, "1500", "x"), _perf(1150, "1500", "x")]},
+            {"name": "B", "ranking_score": 1200, "performances": [_perf(1260, "1500", "x"), _perf(1140, "1500", "x")]}]
+    assert [r["name"] for r in build_ranked(rows)] == ["B", "A"]
+    assert rank_among(rows, 1200, [1255, 1145]) == 2              # behind B (1260), ahead of A
+    assert rank_among(rows, 1200, [1250, 1150]) == 1 + 1          # level with A on everything

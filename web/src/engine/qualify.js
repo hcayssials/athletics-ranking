@@ -1,5 +1,6 @@
 // Port of wa_ranking/qualify.py — wildcards + entry-standard achievers + per-country cap + quota.
 // Operates on ranking positions/scores only; see the Python module docstring.
+import { cmpTieKey, tieKey } from "./ranking.js";
 
 export function qualifyingField(ranked, quota, {
   maxPerCountry = 3,
@@ -108,18 +109,25 @@ export function athleteStatus(field, name) {
   return ["out", null];
 }
 
-// Score-sorted ranking list, optionally substituting one athlete's score.
-export function buildRanked(athletes, { overrideName = null, overrideScore = null } = {}) {
+// Score-sorted ranking list, optionally substituting one athlete's score. Equal scores are
+// ordered by WA's tie-break (tieKey); `overrideKey` is the substituted athlete's new key.
+// Athletes level on everything keep their list order.
+export function buildRanked(athletes, { overrideName = null, overrideScore = null, overrideKey = null } = {}) {
   const rows = athletes.map((a) => {
     let score = a.ranking_score ?? null;
-    if (overrideName && a.name.toUpperCase() === overrideName.toUpperCase()) score = overrideScore;
-    return { name: a.name, country: a.country ?? null, ranking_score: score };
+    let key = tieKey(a.performances);
+    if (overrideName && a.name.toUpperCase() === overrideName.toUpperCase()) {
+      score = overrideScore;
+      if (overrideKey !== null) key = [...overrideKey];
+    }
+    return { name: a.name, country: a.country ?? null, ranking_score: score, tie_key: key };
   });
   rows.sort((a, b) => {
     const ka = a.ranking_score !== null ? 1 : 0;
     const kb = b.ranking_score !== null ? 1 : 0;
     if (ka !== kb) return kb - ka;
-    return (b.ranking_score || 0) - (a.ranking_score || 0);
+    const d = (b.ranking_score || 0) - (a.ranking_score || 0);
+    return d !== 0 ? d : cmpTieKey(b.tie_key, a.tie_key);
   });
   return rows;
 }

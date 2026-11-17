@@ -20,6 +20,8 @@ score was computed.
 """
 from __future__ import annotations
 
+from .ranking import tie_key
+
 
 def qualifying_field(ranked: list[dict], quota: int, *, max_per_country: int | None = 3,
                      defending_champion: dict | None = None,
@@ -149,14 +151,25 @@ def athlete_status(field: dict, name: str) -> tuple[str, dict | None]:
 
 
 def build_ranked(athletes: list[dict], *, override_name: str | None = None,
-                 override_score: float | None = None) -> list[dict]:
-    """Build a score-sorted ranking list, optionally substituting one athlete's score."""
+                 override_score: float | None = None,
+                 override_key: list[int] | None = None) -> list[dict]:
+    """Build a score-sorted ranking list, optionally substituting one athlete's score.
+
+    Equal scores are ordered by WA's tie-break (`ranking.tie_key`: best counting Performance
+    Score, then the next, ...). `override_key` is the substituted athlete's key — their new
+    counting set; without it they keep the key of their current performances. Athletes level
+    on everything keep their list order."""
     rows = []
     for a in athletes:
         score = a.get("ranking_score")
+        key = tie_key(a.get("performances"))
         if override_name and a["name"].upper() == override_name.upper():
             score = override_score
-        rows.append({"name": a["name"], "country": a.get("country"), "ranking_score": score})
-    rows.sort(key=lambda r: (r["ranking_score"] is not None, r["ranking_score"] or 0),
+            if override_key is not None:
+                key = list(override_key)
+        rows.append({"name": a["name"], "country": a.get("country"), "ranking_score": score,
+                     "tie_key": key})
+    rows.sort(key=lambda r: (r["ranking_score"] is not None, r["ranking_score"] or 0,
+                             r["tie_key"]),
               reverse=True)
     return rows

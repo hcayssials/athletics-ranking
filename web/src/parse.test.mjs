@@ -4,7 +4,7 @@
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { shortSurnameMatches, parseQuery, bestPerf, matchAthlete, parseTime, extractSlug, deriveName, looksLikeProfile, extractName } from "./parse.js";
+import { normalizeTime, shortSurnameMatches, parseQuery, bestPerf, matchAthlete, parseTime, extractSlug, deriveName, looksLikeProfile, extractName } from "./parse.js";
 import { findAthlete } from "./engine/whatif.js";
 
 const DATA = join(dirname(fileURLToPath(import.meta.url)), "..", "public", "data");
@@ -63,6 +63,14 @@ eq(looksLikeProfile("jake-heyward-14597392"), true, "profile bare slug");
 eq(looksLikeProfile("Jake WIGHTMAN"), false, "name not profile");
 eq(looksLikeProfile("Narve Gilje NORDÅS"), false, "spaced name not profile");
 eq(looksLikeProfile(""), false, "empty not profile");
+
+// --- normalizeTime: the time field ---
+eq(normalizeTime("3:29.50"), "3:29.50", "plain time");
+eq(normalizeTime(" 3:29,50 "), "3:29.50", "comma decimal");
+eq(normalizeTime("2:01:30"), "2:01.30", "second colon = decimal point");
+eq(normalizeTime("1.41.50"), "1:41.50", "dots throughout");
+eq(normalizeTime("27:05"), "27:05", "no decimals");
+for (const bad of ["", "abc", "3:29.00abc", "1:75.00", "3:5", "0:00.00", "59.80"]) eq(normalizeTime(bad), null, `reject '${bad}'`);
 
 // --- parseQuery: goal vs venue, ordinals that aren't places, time formats ---
 const pq = (q) => { const { athlete, ...r } = parseQuery(q, "1500m_men"); return r; };

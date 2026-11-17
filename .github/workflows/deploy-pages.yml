@@ -1,7 +1,8 @@
 name: Build & deploy static site
 
 # The whole deployment story (replaces the old refresh-seed workflow + the Railway server):
-#   - Weekly (Wednesdays 06:00 UTC — World Athletics updates rankings ~Tuesdays) and on
+#   - Weekly (Thursdays 06:00 UTC — World Athletics dates its list on Tuesdays but often
+#     publishes it late on Wednesday, so a Wednesday run kept capturing last week's) and on
 #     manual dispatch: re-scrape data/cache_seed/ from World Athletics, commit it if it
 #     changed, then build + deploy.
 #   - On push to main (code changes): build from the committed seed and deploy.
@@ -10,7 +11,7 @@ name: Build & deploy static site
 
 on:
   schedule:
-    - cron: "0 6 * * 3"   # Wednesdays 06:00 UTC
+    - cron: "0 6 * * 4"   # Thursdays 06:00 UTC
   workflow_dispatch: {}
   push:
     branches: [main]

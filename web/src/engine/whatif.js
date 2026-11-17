@@ -7,7 +7,7 @@
 //        getList(championship, event) -> full ranking data }
 
 import { parseTime, placingScore, pyRound, resultScore, scorePerformance, timeForResultScore } from "./scoring.js";
-import { insertAndRecompute, rankingScore, rankPosition, resolveWindow, selectCounting } from "./ranking.js";
+import { insertAndRecompute, rankAmong, rankingScore, resolveWindow, selectCounting, tieKey } from "./ranking.js";
 import { athleteStatus, buildRanked, qualifyingField } from "./qualify.js";
 
 export const todayISO = () => {
@@ -232,7 +232,9 @@ export function whatIf(ctx, {
 
   // New rank: hold all other athletes at their current (official) ranking scores.
   const others = data.athletes.filter((a) => a !== ath).map((a) => a.ranking_score);
-  const newRank = rankPosition(others, newScore);
+  // Level on points: WA's tie-break (best counting score, then the next, ...) decides.
+  const newKey = tieKey(recompute.new_counting);
+  const newRank = rankAmong(data.athletes.filter((a) => a !== ath), newScore, newKey);
   const oldRank = ath.rank ?? null;
 
   // Optional championship qualification: wildcard byes + entry-standard achievers + country
@@ -269,7 +271,7 @@ export function whatIf(ctx, {
         : []);
 
     const rankedOld = buildRanked(athletes);
-    const rankedNew = buildRanked(athletes, { overrideName: ath.name, overrideScore: newScore });
+    const rankedNew = buildRanked(athletes, { overrideName: ath.name, overrideScore: newScore, overrideKey: newKey });
     const qopts = { maxPerCountry: maxPc, defendingChampion: champion, autoInvites: invites };
     const fieldOld = qualifyingField(rankedOld, quota, { ...qopts, standardAchievers: stdList });
     const fieldNew = qualifyingField(rankedNew, quota, { ...qopts, standardAchievers: stdNew });
@@ -312,6 +314,9 @@ export function whatIf(ctx, {
       qual_position_new: (slotNew || {}).position ?? null,
       country_count: fieldNew.counts[ath.country] ?? 0,
       country_ahead: countryAhead,
+      // Things the model could not check — the UI says so rather than implying it did.
+      country_unknown: maxPc !== null && !ath.country,
+      field_incomplete: fieldNew.places_filled < quota,
       field_new: fieldNew.slots,
       blocked_new: fieldNew.blocked,
     };

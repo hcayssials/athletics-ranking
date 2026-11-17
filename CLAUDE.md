@@ -35,8 +35,8 @@ PREWARM=off python3 -m uvicorn wa_ranking.api:app --port 8077
 There is **no JS test runner** (vitest/jest) — JS tests run via `node`.
 
 ## Deploy (GitHub Pages, no server)
-`.github/workflows/deploy-pages.yml` does everything: weekly cron (Wed 06:00 UTC; WA updates
-~Tuesdays) re-scrapes `data/cache_seed/` and commits it; every push to `main` (and the cron)
+`.github/workflows/deploy-pages.yml` does everything: weekly cron (Thu 06:00 UTC; WA dates
+the list on Tuesdays but often publishes late on Wednesday) re-scrapes `data/cache_seed/` and commits it; every push to `main` (and the cron)
 then rebuilds the bundle, runs pytest + **the parity gate** (`parity.test.mjs` must reproduce
 every Python-generated golden vector exactly — 432 at the last count), builds the site, and
 publishes `web/dist` to Pages. A red gate blocks the deploy — that's the point; fix the engine mismatch, don't skip it.
@@ -107,7 +107,7 @@ without that one line — name derives from the slug, country rides along from t
   "ranking" / the wildcard label) and the field reports `standard_places` / `ranking_places`.
 - The what-if (`whatif.py:_entry_standard_check`, mirrored in `whatif.js`) tests the mark
   against the standard only when it can count: main event (or an alt event whose
-  `standard_event` matches a listed alternative — `events.json` tags the mile and 10km road;
+  `standard_event` matches a listed alternative — `events.json` tags the mile, 5km road and 10km road;
   indoor never counts), inside the qualification window (`as_of`), Category **C or above**.
   `qualification.entry_standard` = {standard, gap_seconds (signed, hundredths — computed as
   `round(s*100)` differences so both engines agree), meets, note}; `route_old/new` ∈ wildcard
@@ -115,11 +115,21 @@ without that one line — name derives from the slug, country rides along from t
 - **No feed snapshot ⇒ `standard_achievers_known: false`** and the field is modelled as if
   nobody had the standard; the UI says "who has it: unknown" instead of pretending. Don't
   silently default the list to empty anywhere else.
-- **Ties at the cutoff:** the list order is WA's own tie-break, so an athlete level on points
-  with the last ranking qualifier but listed below them is `out`. `qualification.score_to_qualify`
+- **Ties on points** follow WA's rule (World Rankings Rules 1.2.6; same wording in the Tokyo 25
+  qualification system — the Beijing 27 PDF still needs reading by hand): best counting
+  Performance Score decides, then the next, and so on (`ranking.tie_key`). `build_ranked` sorts
+  equal scores by it and `rank_among` ranks by it; the hypothetical athlete uses their *new*
+  counting set. Athletes level on every score keep list order. `qualification.score_to_qualify`
   (the solver's "reach the qualifying cutoff" target) is measured against the field *before*
-  the hypothetical: the cutoff for an athlete already in, cutoff + 1 for one who is out.
-  `above_cutoff` is never true for an `out` athlete.
+  the hypothetical: the cutoff for an athlete already in, cutoff + 1 (the guaranteed score)
+  for one who is out. `above_cutoff` is never true for an `out` athlete.
+- `qualification.country_unknown` (no nationality, so the cap wasn't applied) and
+  `field_incomplete` (the ~100-athlete list ran out before the quota filled, so the real
+  cutoff is lower) flag what the model couldn't check; the verdict says so.
+- **Times are parsed strictly** (`scoring.parse_time`, mirrored in JS): a comma or a second
+  colon is read as the decimal point (`3:29,50`, `2:01:30`), anything else malformed raises,
+  and a mark faster than the scoring table's fastest is rejected as a typo. The form
+  normalises through `parse.js:normalizeTime` before calling the engine.
 - Reverse solver rows carry `kind` ("standard" = the exact time, no `~`; "score" = solved
   from ranking scores). `TargetRows` renders both.
 - The rolling world list is *not* WA's qualification-period ranking: WA's Road-to feed only
